@@ -1,0 +1,13 @@
+name: Create Preview Builds
+
+on:
+  push:
+    branches: ["staging"]
+
+jobs:
+  build_android:
+    name: Build Android App
+    type: build
+    params:
+      platform: android
+      profile: preview
