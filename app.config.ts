@@ -30,7 +30,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true
   },
   android: {
-    versionCode: 2,
     package: 'com.myconnection',
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",
