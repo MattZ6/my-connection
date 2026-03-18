@@ -1,51 +1,74 @@
-import { ConfigContext, ExpoConfig } from 'expo/config'
+import { ConfigContext, ExpoConfig } from "expo/config"
+
+import { name, version } from "./package.json";
+
+type Variant = "development" | "preview" | "production";
+
+const variantConfig = {
+  development: {
+    name: "My Connection (Dev)",
+    package: "com.myconnection.dev",
+  },
+  preview: {
+    name: "My Connection (Preview)",
+    package: "com.myconnection.preview",
+  },
+  production: {
+    name: "My Connection",
+    package: "com.myconnection",
+  },
+} as const
+
+const buildVariant: Variant = process.env.APP_VARIANT ?? "development";
+
+const variant = variantConfig[buildVariant] ?? variantConfig.development;
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
 
-  name: 'Minha Conexão',
-  slug: 'my-connection',
-  version: '0.1.0',
-  scheme: 'com.myconnection',
-  orientation: 'default',
+  name: variant.name,
+
+  slug: name,
+  version,
+  scheme: name,
+
+  orientation: "default",
 
   icon: "./assets/icon.png",
-  userInterfaceStyle: "automatic",
-  backgroundColor: '#121113',
-  primaryColor: '#eeeef0',
-  androidNavigationBar: {
-    backgroundColor: '#121113'
-  },
-  androidStatusBar: {
-    barStyle: 'light-content',
-  },
 
   splash: {
     image: "./assets/splash.png",
     resizeMode: "contain",
     backgroundColor: "#121113",
   },
-  assetBundlePatterns: ["**/*"],
+
+  userInterfaceStyle: "automatic",
+  backgroundColor: "#121113",
+
+  primaryColor: "#eeeef0",
+
   ios: {
-    supportsTablet: true
+    bundleIdentifier: variant.package,
+    supportsTablet: true,
   },
+
   android: {
-    package: 'com.myconnection',
+    package: variant.package,
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png",
-      backgroundColor: "#121113",
+      foregroundImage: "./assets/images/adaptive-icon.png",
+      backgroundColor: "#0a0a0a",
     },
   },
-  web: {
-    favicon: "./assets/favicon.png"
-  },
+
   plugins: [
     "expo-router",
     "expo-font"
   ],
+
   extra: {
     eas: {
       projectId: "ae48172c-0960-40e5-b46a-1dcf6ce1db40"
-    }
+    },
+    variant: buildVariant,
   }
 })
