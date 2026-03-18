@@ -6,7 +6,7 @@ type Variant = "development" | "preview" | "production";
 
 const variantConfig = {
   development: {
-    name: "My Connection (Dev)",
+    name: "My Connection (Dev Client)",
     package: "com.myconnection.dev",
   },
   preview: {
