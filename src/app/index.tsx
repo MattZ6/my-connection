@@ -1,97 +1,101 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { useNetInfo, NetInfoStateType, NetInfoState } from '@react-native-community/netinfo';
-import { theme } from "@/theme";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  type NetInfoState,
+  NetInfoStateType,
+  useNetInfo,
+} from "@react-native-community/netinfo";
 import { Fragment } from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { theme } from "@/theme";
 
 const connectionType = {
-  [NetInfoStateType.bluetooth]: 'Bluetooth',
-  [NetInfoStateType.cellular]: 'Internet móvel',
-  [NetInfoStateType.ethernet]: 'Ethernet',
-  [NetInfoStateType.none]: 'Nenhuma',
-  [NetInfoStateType.other]: 'Outra',
-  [NetInfoStateType.unknown]: 'Desconhecido',
-  [NetInfoStateType.vpn]: 'VPN',
-  [NetInfoStateType.wifi]: 'Wi-Fi',
-  [NetInfoStateType.wimax]: 'WiMax',
-}
+  [NetInfoStateType.bluetooth]: "Bluetooth",
+  [NetInfoStateType.cellular]: "Cellular",
+  [NetInfoStateType.ethernet]: "Ethernet",
+  [NetInfoStateType.none]: "None",
+  [NetInfoStateType.other]: "Other",
+  [NetInfoStateType.unknown]: "Unkwon",
+  [NetInfoStateType.vpn]: "VPN",
+  [NetInfoStateType.wifi]: "Wi-Fi",
+  [NetInfoStateType.wimax]: "WiMax",
+};
 
 function getFields(info: NetInfoState) {
   if (info.type === NetInfoStateType.cellular) {
     return [
       {
-        label: 'Carrier',
-        value: info.details.carrier
+        label: "Carrier",
+        value: info.details.carrier,
       },
       {
-        label: 'Velocidade',
-        value: info.details.cellularGeneration
-      }
-    ]
+        label: "Speed",
+        value: info.details.cellularGeneration,
+      },
+    ];
   }
 
   if (info.type === NetInfoStateType.ethernet) {
     return [
       {
-        label: 'Endereço de IP',
-        value: info.details.ipAddress
+        label: "IP Address",
+        value: info.details.ipAddress,
       },
       {
-        label: 'Máscara de sub rede',
-        value: info.details.subnet
-      }
-    ]
+        label: "Subnet Mask",
+        value: info.details.subnet,
+      },
+    ];
   }
 
   if (info.type === NetInfoStateType.wifi) {
     return [
       {
-        label: 'Frequência',
-        value: `${info.details.frequency} GHz`
+        label: "Frequency",
+        value: `${info.details.frequency} GHz`,
       },
       {
-        label: 'Endereço de IP',
-        value: info.details.ipAddress
+        label: "IP Address",
+        value: info.details.ipAddress,
       },
       {
-        label: 'Máscara de sub rede',
-        value: info.details.subnet
+        label: "Subnet Mask",
+        value: info.details.subnet,
       },
       {
-        label: 'BSSID',
-        value: info.details.bssid
+        label: "BSSID",
+        value: info.details.bssid,
       },
       {
-        label: 'SSID',
-        value: info.details.ssid
+        label: "SSID",
+        value: info.details.ssid,
       },
       {
-        label: 'Intensidade do sinal',
-        value: `${info.details.strength}%`
+        label: "Strength",
+        value: `${info.details.strength}%`,
       },
       {
-        label: 'Velocidade',
-        value: `${info.details.linkSpeed} Mbps`
+        label: "Speed",
+        value: `${info.details.linkSpeed} Mbps`,
       },
       {
-        label: 'Velocidade de download',
-        value: `${info.details.rxLinkSpeed} Mbps`
+        label: "Download speed",
+        value: `${info.details.rxLinkSpeed} Mbps`,
       },
       {
-        label: 'Velocidade de upload',
-        value: `${info.details.txLinkSpeed} Mbps`
+        label: "Upload speed",
+        value: `${info.details.txLinkSpeed} Mbps`,
       },
-    ]
+    ];
   }
 
   return [];
 }
 
 export default function HomePage() {
-  const info = useNetInfo()
+  const info = useNetInfo();
 
   if (!info) {
-    return null
+    return null;
   }
 
   const extraFields = getFields(info);
@@ -101,48 +105,36 @@ export default function HomePage() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.card}>
           <View style={styles.header}>
-            <Text style={styles.title}>Conexão</Text>
+            <Text style={styles.title}>My connection</Text>
           </View>
 
           <View style={styles.field}>
-            <Text style={styles.label}>
-              Tipo
-            </Text>
+            <Text style={styles.label}>Type</Text>
+            <Text style={styles.value}>{connectionType[info.type]}</Text>
+          </View>
+
+          <View style={styles.divider} />
+
+          <View style={styles.field}>
+            <Text style={styles.label}>Is Wi-Fi enabled?</Text>
             <Text style={styles.value}>
-              {connectionType[info.type]}
+              {info.isWifiEnabled ? "Yes" : "No"}
             </Text>
           </View>
 
           <View style={styles.divider} />
 
           <View style={styles.field}>
-            <Text style={styles.label}>
-              WiFi habilitado
-            </Text>
-            <Text style={styles.value}>
-              {info.isWifiEnabled ? 'Sim' : 'Não'}
-            </Text>
+            <Text style={styles.label}>Is connected?</Text>
+            <Text style={styles.value}>{info.isConnected ? "Yes" : "No"}</Text>
           </View>
 
           <View style={styles.divider} />
 
           <View style={styles.field}>
-            <Text style={styles.label}>
-              Conectado à alguma rede
-            </Text>
+            <Text style={styles.label}>Is internet reachable?</Text>
             <Text style={styles.value}>
-              {info.isConnected ? 'Sim' : 'Não'}
-            </Text>
-          </View>
-
-          <View style={styles.divider} />
-
-          <View style={styles.field}>
-            <Text style={styles.label}>
-              Com acesso à internet
-            </Text>
-            <Text style={styles.value}>
-              {info.isInternetReachable ? 'Sim' : 'Não'}
+              {info.isInternetReachable ? "Yes" : "No"}
             </Text>
           </View>
         </View>
@@ -150,18 +142,14 @@ export default function HomePage() {
         {!!extraFields.length && (
           <View style={styles.card}>
             <View style={styles.header}>
-              <Text style={styles.title}>Sobre a rede</Text>
+              <Text style={styles.title}>Extra info</Text>
             </View>
 
             {extraFields.map((field, index) => (
               <Fragment key={field.label}>
                 <View style={styles.field}>
-                  <Text style={styles.label}>
-                    {field.label}
-                  </Text>
-                  <Text style={styles.value}>
-                    {field.value}
-                  </Text>
+                  <Text style={styles.label}>{field.label}</Text>
+                  <Text style={styles.value}>{field.value}</Text>
                 </View>
 
                 {!!(index < extraFields.length - 1) && (
@@ -173,7 +161,7 @@ export default function HomePage() {
         )}
       </ScrollView>
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -206,9 +194,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.mauve6,
   },
   field: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     gap: 16,
 
     paddingHorizontal: 16,
@@ -224,4 +212,4 @@ const styles = StyleSheet.create({
     fontSize: theme.fonts.size.body.md,
     color: theme.colors.mauve12,
   },
-})
+});

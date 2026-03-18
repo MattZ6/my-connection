@@ -10,9 +10,9 @@
       "android": {
         "buildType": "apk"
       },
-     "env": {
-				"APP_VARIANT": "development"
-			}
+      "env": {
+        "APP_VARIANT": "development"
+      }
     },
     "preview": {
       "autoIncrement": true,
@@ -21,14 +21,14 @@
         "buildType": "apk"
       },
       "env": {
-				"APP_VARIANT": "preview"
-			}
+        "APP_VARIANT": "preview"
+      }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-				"APP_VARIANT": "production"
-			}
+        "APP_VARIANT": "production"
+      }
     }
   },
   "submit": {

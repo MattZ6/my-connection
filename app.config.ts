@@ -1,4 +1,4 @@
-import { ConfigContext, ExpoConfig } from "expo/config"
+import type { ConfigContext, ExpoConfig } from "expo/config";
 
 import { name, version } from "./package.json";
 
@@ -17,7 +17,7 @@ const variantConfig = {
     name: "My Connection",
     package: "com.myconnection",
   },
-} as const
+} as const;
 
 const buildVariant: Variant = process.env.APP_VARIANT ?? "development";
 
@@ -60,15 +60,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
 
-  plugins: [
-    "expo-router",
-    "expo-font"
-  ],
+  plugins: ["expo-router", "expo-font"],
 
   extra: {
     eas: {
-      projectId: "ae48172c-0960-40e5-b46a-1dcf6ce1db40"
+      projectId: "ae48172c-0960-40e5-b46a-1dcf6ce1db40",
     },
     variant: buildVariant,
-  }
-})
+  },
+});
