@@ -19,4 +19,4 @@ export const fonts = {
       xl: 36,
     },
   },
-}
+};

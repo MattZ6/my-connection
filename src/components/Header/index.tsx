@@ -1,15 +1,15 @@
-import { theme } from "@/theme";
 import { StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { theme } from "@/theme";
 
 export function Header() {
-  const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.header, { paddingTop: 16 + insets.top }]} >
+    <View style={[styles.header, { paddingTop: 16 + insets.top }]}>
       <Text style={styles.text}>Esse é meu app</Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     padding: 16,
 
     borderBottomWidth: 1,
-    borderBottomColor: '#ededed',
+    borderBottomColor: "#ededed",
   },
   text: {
     fontFamily: theme.fonts.family.medium,
     fontSize: theme.fonts.size.heading.lg,
-  }
-})
+  },
+});
