@@ -39,13 +39,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   splash: {
     image: "./assets/splash.png",
     resizeMode: "contain",
-    backgroundColor: "#121113",
   },
 
   userInterfaceStyle: "automatic",
-  backgroundColor: "#121113",
-
-  primaryColor: "#eeeef0",
 
   ios: {
     bundleIdentifier: variant.package,
@@ -56,7 +52,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     package: variant.package,
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",
-      backgroundColor: "#0a0a0a",
     },
   },
 
