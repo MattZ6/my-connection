@@ -8,14 +8,128 @@ const variantConfig = {
   development: {
     name: "My Connection (Dev Client)",
     package: "com.myconnection.dev",
+    primaryColor: "#007CC9",
+    splash: {
+      android: {
+        imagePath: "./assets/variants/dev/splash.png",
+        light: {
+          backgroundColor: "#C2E8FF",
+        },
+        dark: {
+          backgroundColor: "#021C2C",
+        },
+      },
+      ios: {
+        imagePath: "./assets/variants/dev/splash.png",
+        light: {
+          backgroundColor: "#C2E8FF",
+        },
+        dark: {
+          backgroundColor: "#021C2C",
+        },
+      },
+    },
+    icon: {
+      android: {
+        imagePath: "./assets/variants/dev/android-adaptive-icon.png",
+        backgroundColor: "#C2E8FF",
+      },
+      ios: {
+        light: {
+          imagePath: "./assets/variants/dev/ios-light-icon.png",
+        },
+        dark: {
+          imagePath: "./assets/variants/dev/ios-dark-icon.png",
+        },
+        tinted: {
+          imagePath: "./assets/variants/ios-tinted-icon.png",
+        },
+      },
+    },
   },
   preview: {
     name: "My Connection (Preview)",
     package: "com.myconnection.preview",
+    primaryColor: "#E58600",
+    splash: {
+      android: {
+        imagePath: "./assets/variants/preview/splash.png",
+        light: {
+          backgroundColor: "#FBF0E0",
+        },
+        dark: {
+          backgroundColor: "#2F1B00",
+        },
+      },
+      ios: {
+        imagePath: "./assets/variants/preview/splash.png",
+        light: {
+          backgroundColor: "#FBF0E0",
+        },
+        dark: {
+          backgroundColor: "#2F1B00",
+        },
+      },
+    },
+    icon: {
+      android: {
+        imagePath: "./assets/variants/preview/android-adaptive-icon.png",
+        backgroundColor: "#FBF0E0",
+      },
+      ios: {
+        light: {
+          imagePath: "./assets/variants/preview/ios-light-icon.png",
+        },
+        dark: {
+          imagePath: "./assets/variants/preview/ios-dark-icon.png",
+        },
+        tinted: {
+          imagePath: "./assets/variants/ios-tinted-icon.png",
+        },
+      },
+    },
   },
   production: {
     name: "My Connection",
     package: "com.myconnection",
+    primaryColor: "#00A400",
+    splash: {
+      android: {
+        imagePath: "./assets/variants/production/splash.png",
+        light: {
+          backgroundColor: "#DDFFDD",
+        },
+        dark: {
+          backgroundColor: "#012F01",
+        },
+      },
+      ios: {
+        imagePath: "./assets/variants/production/splash.png",
+        light: {
+          backgroundColor: "#DDFFDD",
+        },
+        dark: {
+          backgroundColor: "#012F01",
+        },
+      },
+    },
+    icon: {
+      android: {
+        imagePath: "./assets/variants/production/android-adaptive-icon.png",
+        backgroundColor: "#DDFFDD",
+      },
+      ios: {
+        light: {
+          imagePath: "./assets/variants/production/ios-light-icon.png",
+        },
+        dark: {
+          imagePath: "./assets/variants/production/ios-dark-icon.png",
+        },
+        tinted: {
+          imagePath: "./assets/variants/ios-tinted-icon.png",
+        },
+      },
+    },
   },
 } as const;
 
@@ -33,25 +147,47 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: name,
 
   orientation: "default",
-
-  icon: "./assets/icon.png",
-
-  splash: {
-    image: "./assets/splash.png",
-    resizeMode: "contain",
-  },
-
   userInterfaceStyle: "automatic",
+
+  icon: variant.icon.ios.light.imagePath,
 
   ios: {
     bundleIdentifier: variant.package,
     supportsTablet: true,
+    icon: {
+      light: variant.icon.ios.light.imagePath,
+      dark: variant.icon.ios.dark.imagePath,
+      tinted: variant.icon.ios.tinted.imagePath,
+    },
+    splash: {
+      image: variant.splash.ios.imagePath,
+      tabletImage: variant.splash.ios.imagePath,
+      backgroundColor: variant.splash.ios.light.backgroundColor,
+      resizeMode: "contain",
+      dark: {
+        image: variant.splash.ios.imagePath,
+        tabletImage: variant.splash.ios.imagePath,
+        backgroundColor: variant.splash.ios.dark.backgroundColor,
+        resizeMode: "contain",
+      },
+    },
   },
 
   android: {
     package: variant.package,
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png",
+      foregroundImage: variant.icon.android.imagePath,
+      backgroundColor: variant.icon.android.backgroundColor,
+    },
+    splash: {
+      image: variant.splash.android.imagePath,
+      backgroundColor: variant.splash.android.light.backgroundColor,
+      resizeMode: "contain",
+      dark: {
+        image: variant.splash.android.imagePath,
+        backgroundColor: variant.splash.android.dark.backgroundColor,
+        resizeMode: "contain",
+      },
     },
   },
 
