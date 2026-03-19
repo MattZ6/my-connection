@@ -60,7 +60,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
 
-  plugins: ["expo-router", "expo-font"],
+  plugins: [
+    "expo-router",
+    "expo-font",
+    ["expo-dev-client", { launchMode: "launcher" }],
+  ],
 
   extra: {
     eas: {
