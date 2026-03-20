@@ -133,7 +133,8 @@ const variantConfig = {
   },
 } as const;
 
-const buildVariant: Variant = process.env.APP_VARIANT ?? "development";
+const buildVariant: Variant =
+  process.env.EXPO_PUBLIC_APP_VARIANT ?? "development";
 
 const variant = variantConfig[buildVariant] ?? variantConfig.development;
 
@@ -195,6 +196,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-router",
     "expo-font",
     ["expo-dev-client", { launchMode: "launcher" }],
+    [
+      "@sentry/react-native/expo",
+      {
+        url: "https://sentry.io/",
+        project: "my-connection",
+        organization: "zanin-y7",
+      },
+    ],
   ],
 
   extra: {

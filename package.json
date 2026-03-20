@@ -13,6 +13,7 @@
     "@expo-google-fonts/poppins": "0.2.3",
     "@expo/ui": "55.0.5",
     "@react-native-community/netinfo": "11.5.2",
+    "@sentry/react-native": "8.5.0",
     "expo": "55.0.8",
     "expo-constants": "55.0.9",
     "expo-dev-client": "55.0.18",
