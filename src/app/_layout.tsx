@@ -9,16 +9,54 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { Color, Stack } from "expo-router";
+import * as Sentry from "@sentry/react-native";
+import { isRunningInExpoGo } from "expo";
+import { Color, Stack, useNavigationContainerRef } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
+const packageName = String(process.env.npm_package_name || "");
+const packageVersion = String(process.env.npm_package_version || "");
+const environment = String(
+  process.env.EXPO_PUBLIC_APP_VARIANT || "development",
+);
+
+const navigationIntegration = Sentry.reactNavigationIntegration({
+  enableTimeToInitialDisplay: !isRunningInExpoGo(),
+});
+
+if (sentryDsn) {
+  Sentry.init({
+    dsn: sentryDsn,
+
+    release: `${packageName}@${packageVersion}`,
+
+    // Base config
+    sendDefaultPii: false,
+    environment,
+
+    // Sample
+    tracesSampleRate: 0.2,
+
+    // Session Replay
+    replaysSessionSampleRate: 0,
+    replaysOnErrorSampleRate: 1,
+
+    enableNativeFramesTracking: !isRunningInExpoGo(),
+
+    integrations: [navigationIntegration, Sentry.mobileReplayIntegration()],
+  });
+}
+
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+function RootLayout() {
+  const ref = useNavigationContainerRef();
+
   const colorScheme = useColorScheme();
 
   const [fontsLoaded] = useFonts({
@@ -32,6 +70,12 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+
+  useEffect(() => {
+    if (ref) {
+      navigationIntegration.registerNavigationContainer(ref);
+    }
+  }, [ref]);
 
   if (!fontsLoaded) {
     return null;
@@ -59,3 +103,11 @@ export default function RootLayout() {
     </SafeAreaProvider>
   );
 }
+
+let WrappedRootLayout: React.ComponentType = RootLayout;
+
+if (sentryDsn) {
+  WrappedRootLayout = Sentry.wrap(RootLayout);
+}
+
+export default WrappedRootLayout;
