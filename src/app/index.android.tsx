@@ -3,14 +3,13 @@ import {
   Column,
   Divider,
   Host,
-  LazyColumn,
   LinearProgressIndicator,
   Row,
   Text,
 } from "@expo/ui/jetpack-compose";
 import {
-  fillMaxSize,
   fillMaxWidth,
+  padding,
   paddingAll,
   weight,
 } from "@expo/ui/jetpack-compose/modifiers";
@@ -19,8 +18,10 @@ import {
   NetInfoStateType,
   useNetInfo,
 } from "@react-native-community/netinfo";
-import { Color, Stack } from "expo-router";
+import { Color } from "expo-router";
 import { SymbolView } from "expo-symbols";
+import { Text as RNText, ScrollView, useColorScheme, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const connectionType = {
   [NetInfoStateType.bluetooth]: "Bluetooth",
@@ -178,6 +179,8 @@ function getFields(info: NetInfoState) {
 }
 
 export default function HomePage() {
+  useColorScheme();
+  const insets = useSafeAreaInsets();
   const info = useNetInfo();
 
   if (!info) {
@@ -185,30 +188,63 @@ export default function HomePage() {
   }
 
   return (
-    <>
-      <Stack.Screen.Title>My Connection</Stack.Screen.Title>
-
-      <Host matchContents>
-        <LazyColumn
-          modifiers={[fillMaxSize()]}
-          verticalArrangement={{ spacedBy: 40 }}
-          contentPadding={{
-            top: 24,
-            bottom: 24,
-            start: 24,
-            end: 24,
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: Color.android.material.surface,
+      }}
+      showsVerticalScrollIndicator={false}
+      stickyHeaderIndices={[0]}
+      contentContainerStyle={{
+        paddingBottom: 24,
+      }}
+    >
+      <View
+        style={{
+          marginTop: 48,
+          paddingTop: insets.top + 16,
+          paddingHorizontal: 24,
+          paddingBottom: 16,
+          backgroundColor: Color.android.material.surface,
+        }}
+      >
+        <RNText
+          style={{
+            fontSize: 36,
+            lineHeight: 48,
+            color: Color.android.material.onSurface.toString(),
           }}
         >
-          <ConnectionQualityHero info={info} />
+          Connection Health
+        </RNText>
+      </View>
+      {/* <Host matchContents>
+        <Column modifiers={[padding(24, 48, 24, 16)]}>
+          <Text
+            style={{ typography: "displaySmall" }}
+            color={Color.android.material.onSurface.toString()}
+          >
+            My connection
+          </Text>
+        </Column>
+      </Host> */}
 
-          <AboutConnectionSection info={info} />
-
-          <Divider />
-
-          <ConnectionDetailsSection info={info} />
-        </LazyColumn>
+      <Host matchContents>
+        <ConnectionQualityHero info={info} />
       </Host>
-    </>
+
+      <Host matchContents>
+        <AboutConnectionSection info={info} />
+      </Host>
+
+      <Host matchContents>
+        <Divider modifiers={[paddingAll(24)]} />
+      </Host>
+
+      <Host matchContents>
+        <ConnectionDetailsSection info={info} />
+      </Host>
+    </ScrollView>
   );
 }
 
@@ -231,15 +267,15 @@ type ConnectionQualityHeroProps = {
 function ConnectionQualityHero({ info }: ConnectionQualityHeroProps) {
   return (
     <Card
-      modifiers={[fillMaxWidth()]}
+      modifiers={[fillMaxWidth(), paddingAll(24)]}
       colors={{
-        containerColor: Color.android.dynamic.surfaceContainerHigh,
-        contentColor: Color.android.dynamic.onSurface,
+        containerColor: Color.android.material.surfaceContainer,
+        contentColor: Color.android.material.onSurface,
       }}
     >
       <Column
         verticalArrangement={{ spacedBy: 20 }}
-        modifiers={[paddingAll(24)]}
+        modifiers={[padding(24, 32, 24, 32)]}
       >
         <Row
           verticalAlignment="center"
@@ -248,7 +284,7 @@ function ConnectionQualityHero({ info }: ConnectionQualityHeroProps) {
         >
           <SymbolView
             name={{ android: iconMap[info.type] }}
-            tintColor={Color.android.dynamic.primary}
+            tintColor={Color.android.material.onSurface}
             size={40}
           />
 
@@ -262,7 +298,7 @@ function ConnectionQualityHero({ info }: ConnectionQualityHeroProps) {
               info.isInternetReachable !== null && (
                 <Text
                   style={{ typography: "bodyLarge" }}
-                  color={Color.android.dynamic.onSurfaceVariant.toString()}
+                  color={Color.android.material.onSurfaceVariant.toString()}
                 >
                   {info.isInternetReachable
                     ? "Internet available"
@@ -287,6 +323,7 @@ function ConnectionQualityHero({ info }: ConnectionQualityHeroProps) {
             <LinearProgressIndicator
               progress={Number(info.details.strength ?? 0) / 100}
               modifiers={[fillMaxWidth()]}
+              color={Color.android.material.onSurface}
             />
 
             <Row horizontalArrangement={{ spacedBy: 24 }}>
@@ -320,13 +357,13 @@ function SpeedStat({ label, value }: SpeedStatProps) {
     <Column modifiers={[weight(1)]}>
       <Text
         style={{ typography: "labelMedium" }}
-        color={Color.android.dynamic.onSurfaceVariant.toString()}
+        color={Color.android.material.onSurfaceVariant.toString()}
       >
         {label}
       </Text>
       <Text
         style={{ typography: "titleLarge" }}
-        color={Color.android.dynamic.onSurfaceVariant.toString()}
+        color={Color.android.material.onSurfaceVariant.toString()}
       >
         {value}
       </Text>
@@ -340,9 +377,9 @@ type AboutConnectionSectionProps = {
 
 function AboutConnectionSection({ info }: AboutConnectionSectionProps) {
   return (
-    <Column verticalArrangement={{ spacedBy: 16 }}>
+    <Column verticalArrangement={{ spacedBy: 16 }} modifiers={[paddingAll(24)]}>
       <Text
-        color={Color.android.dynamic.onSurfaceVariant.toString()}
+        color={Color.android.material.onSurfaceVariant.toString()}
         style={{ typography: "labelLarge" }}
       >
         Summary
@@ -353,20 +390,20 @@ function AboutConnectionSection({ info }: AboutConnectionSectionProps) {
           <Row modifiers={[fillMaxWidth()]}>
             <Column modifiers={[weight(1)]}>
               <Text
-                color={Color.android.dynamic.onSurface.toString()}
+                color={Color.android.material.onSurface.toString()}
                 style={{ typography: "titleLarge" }}
               >
                 Enabled
               </Text>
               <Text
-                color={Color.android.dynamic.onSurfaceVariant.toString()}
+                color={Color.android.material.onSurfaceVariant.toString()}
                 style={{ typography: "bodyLarge" }}
               >
                 Whether the device's WiFi is on or off.
               </Text>
             </Column>
             <Text
-              color={Color.android.dynamic.onSurfaceVariant.toString()}
+              color={Color.android.material.onSurfaceVariant.toString()}
               style={{ typography: "bodyLarge" }}
             >
               {info.isWifiEnabled ? "Yes" : "No"}
@@ -377,20 +414,20 @@ function AboutConnectionSection({ info }: AboutConnectionSectionProps) {
         <Row modifiers={[fillMaxWidth()]}>
           <Column modifiers={[weight(1)]}>
             <Text
-              color={Color.android.dynamic.onSurface.toString()}
+              color={Color.android.material.onSurface.toString()}
               style={{ typography: "titleLarge" }}
             >
               Connected
             </Text>
             <Text
-              color={Color.android.dynamic.onSurfaceVariant.toString()}
+              color={Color.android.material.onSurfaceVariant.toString()}
               style={{ typography: "bodyLarge" }}
             >
               If there is an active network connection.
             </Text>
           </Column>
           <Text
-            color={Color.android.dynamic.onSurfaceVariant.toString()}
+            color={Color.android.material.onSurfaceVariant.toString()}
             style={{ typography: "bodyLarge" }}
           >
             {info.isConnected ? "Yes" : "No"}
@@ -400,13 +437,13 @@ function AboutConnectionSection({ info }: AboutConnectionSectionProps) {
         <Row modifiers={[fillMaxWidth()]}>
           <Column modifiers={[weight(1)]}>
             <Text
-              color={Color.android.dynamic.onSurface.toString()}
+              color={Color.android.material.onSurface.toString()}
               style={{ typography: "titleLarge" }}
             >
               Internet Availability
             </Text>
             <Text
-              color={Color.android.dynamic.onSurfaceVariant.toString()}
+              color={Color.android.material.onSurfaceVariant.toString()}
               style={{ typography: "bodyLarge" }}
             >
               If the internet is reachable with the currently active network
@@ -414,7 +451,7 @@ function AboutConnectionSection({ info }: AboutConnectionSectionProps) {
             </Text>
           </Column>
           <Text
-            color={Color.android.dynamic.onSurfaceVariant.toString()}
+            color={Color.android.material.onSurfaceVariant.toString()}
             style={{ typography: "bodyLarge" }}
           >
             {info.isInternetReachable ? "Yes" : "No"}
@@ -469,9 +506,9 @@ function ConnectionDetailsSection({ info }: ConnectionDetailsSectionProps) {
   }
 
   return (
-    <Column verticalArrangement={{ spacedBy: 16 }}>
+    <Column verticalArrangement={{ spacedBy: 16 }} modifiers={[paddingAll(24)]}>
       <Text
-        color={Color.android.dynamic.onSurfaceVariant.toString()}
+        color={Color.android.material.onSurfaceVariant.toString()}
         style={{ typography: "labelLarge" }}
       >
         {title}
@@ -482,14 +519,14 @@ function ConnectionDetailsSection({ info }: ConnectionDetailsSectionProps) {
           <Row key={item.label} modifiers={[fillMaxWidth()]}>
             <Column modifiers={[weight(1)]}>
               <Text
-                color={Color.android.dynamic.onSurface.toString()}
+                color={Color.android.material.onSurface.toString()}
                 style={{ typography: "titleMedium" }}
               >
                 {item.label}
               </Text>
               {item.hint && (
                 <Text
-                  color={Color.android.dynamic.onSurfaceVariant.toString()}
+                  color={Color.android.material.onSurfaceVariant.toString()}
                   style={{ typography: "bodyMedium" }}
                 >
                   {item.hint}
@@ -497,7 +534,7 @@ function ConnectionDetailsSection({ info }: ConnectionDetailsSectionProps) {
               )}
             </Column>
             <Text
-              color={Color.android.dynamic.onSurfaceVariant.toString()}
+              color={Color.android.material.onSurfaceVariant.toString()}
               style={{ typography: "bodyLarge" }}
             >
               {item.value}
