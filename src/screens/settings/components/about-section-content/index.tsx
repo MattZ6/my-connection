@@ -1,14 +1,21 @@
-import { Color } from "expo-router";
+import { Color, useNavigation } from "expo-router";
 import { SymbolView } from "expo-symbols";
+import { useCallback } from "react";
 import { Platform, Pressable, Text, useColorScheme, View } from "react-native";
 import { styles } from "./styles";
 
 export function AboutSectionContent() {
   useColorScheme();
+  const navigation = useNavigation();
+
+  const handleNavigateToAboutPage = useCallback(
+    () => navigation.navigate("about"),
+    [navigation.navigate],
+  );
 
   return (
     <View style={styles.card}>
-      <Pressable>
+      <Pressable onPress={handleNavigateToAboutPage}>
         <View style={styles.buttonContent}>
           <View style={styles.buttonIconContainer}>
             <SymbolView

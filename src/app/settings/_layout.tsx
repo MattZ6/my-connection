@@ -8,7 +8,7 @@ export default function SettingsStack() {
         headerStyle: {
           backgroundColor: Platform.select({
             android: Color.android?.dynamic?.surfaceContainerLow?.toString(),
-            ios: undefined,
+            ios: "transparent",
           }),
         },
       }}
