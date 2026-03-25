@@ -1,7 +1,6 @@
 import { Color } from "expo-router";
 import { Text as RNText, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors } from "@/theme/tokens/colors";
 
 export default function AboutPage() {
   const insets = useSafeAreaInsets();
@@ -38,7 +37,7 @@ export default function AboutPage() {
       <View>
         <Text
           style={{
-            color: colors.textMuted,
+            color: Color.android.material.onSurfaceVariant,
             fontSize: 12,
           }}
         >
@@ -55,7 +54,7 @@ export default function AboutPage() {
         >
           <Text
             style={{
-              color: colors.textMuted,
+              color: Color.android.material.onSurfaceVariant,
               fontSize: 14,
             }}
           >
@@ -81,7 +80,7 @@ export default function AboutPage() {
         >
           <Text
             style={{
-              color: colors.textMuted,
+              color: Color.android.material.onSurfaceVariant,
               fontSize: 14,
             }}
           >
