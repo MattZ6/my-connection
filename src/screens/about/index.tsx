@@ -1,5 +1,5 @@
 import { Color, Stack } from "expo-router";
-import { Platform, ScrollView } from "react-native";
+import { Platform, ScrollView, Text } from "react-native";
 import { AboutSection } from "./components/about-section";
 import { DeviceSection } from "./components/device-section";
 import { OSSection } from "./components/os-section";
@@ -28,6 +28,19 @@ export function AboutScreen() {
         <AboutSection />
         <DeviceSection />
         <OSSection />
+        <Text
+          style={{
+            fontSize: 14,
+            lineHeight: 24,
+            textAlign: "center",
+            color: Platform.select({
+              android: Color.android.dynamic.onSurfaceVariant,
+              ios: Color.ios.secondaryLabel,
+            }),
+          }}
+        >
+          Don't worry, this information won't leave your device.
+        </Text>
       </ScrollView>
     </>
   );
