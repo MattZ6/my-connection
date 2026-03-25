@@ -3,7 +3,6 @@ import {
   NetInfoStateType,
   useNetInfo,
 } from "@react-native-community/netinfo";
-import { Stack } from "expo-router";
 import { Fragment } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -123,7 +122,7 @@ export default function HomePage() {
         // { paddingBottom: styles.scrollContainer.padding + insets.bottom },
       ]}
     >
-      <Stack.Screen.Title large>My Connection</Stack.Screen.Title>
+      {/* <Stack.Screen.Title large>My Connection</Stack.Screen.Title> */}
 
       <View style={styles.card}>
         <View style={styles.header}>

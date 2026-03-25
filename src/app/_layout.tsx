@@ -17,7 +17,7 @@ import { NativeTabs } from "expo-router/unstable-native-tabs";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { useColorScheme } from "react-native";
+import { Platform, useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
@@ -88,26 +88,35 @@ function RootLayout() {
       <StatusBar animated style="auto" />
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <NativeTabs
-          backgroundColor={Color.android.dynamic.surfaceContainerLow}
-          iconColor={{
-            default: Color.android.dynamic.onSurfaceVariant,
-            selected: Color.android.dynamic.primary,
-          }}
-          labelStyle={{
-            default: {
-              color: Color.android.dynamic.onSurfaceVariant,
+          backgroundColor={Platform.select({
+            android: Color.android.dynamic.surfaceContainerLow,
+            ios: undefined,
+          })}
+          iconColor={Platform.select({
+            android: {
+              default: Color.android.dynamic.onSurfaceVariant,
+              selected: Color.android.dynamic.primary,
             },
-            selected: {
-              color: Color.android.dynamic.primary,
+            ios: undefined,
+          })}
+          labelStyle={Platform.select({
+            android: {
+              default: {
+                color: Color.android.dynamic.onSurfaceVariant,
+              },
+              selected: {
+                color: Color.android.dynamic.primary,
+              },
             },
-          }}
+            ios: undefined,
+          })}
           indicatorColor={Color.android.dynamic.primaryInverse}
           rippleColor={Color.android.dynamic.primaryFixedDim}
           tintColor={Color.android.dynamic.primary}
         >
           <NativeTabs.Trigger name="index">
+            <NativeTabs.Trigger.Icon sf="house" md="home" />
             <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-            <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
           </NativeTabs.Trigger>
           <NativeTabs.Trigger name="settings">
             <NativeTabs.Trigger.Icon sf="gear" md="settings" />
