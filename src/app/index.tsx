@@ -3,9 +3,10 @@ import {
   NetInfoStateType,
   useNetInfo,
 } from "@react-native-community/netinfo";
+import { Stack } from "expo-router";
 import { Fragment } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { theme } from "@/theme";
 
 const connectionType = {
@@ -50,8 +51,12 @@ function getFields(info: NetInfoState) {
   if (info.type === NetInfoStateType.wifi) {
     return [
       {
+        label: "Is connectin expensive?",
+        value: info.details.isConnectionExpensive ? "Yes" : "No",
+      },
+      {
         label: "Frequency",
-        value: `${info.details.frequency} GHz`,
+        value: info.details.frequency ? `${info.details.frequency} GHz` : "n/a",
       },
       {
         label: "IP Address",
@@ -71,19 +76,25 @@ function getFields(info: NetInfoState) {
       },
       {
         label: "Strength",
-        value: `${info.details.strength}%`,
+        value: info.details.strength ? `${info.details.strength}%` : "n/a",
       },
       {
         label: "Speed",
-        value: `${info.details.linkSpeed} Mbps`,
+        value: info.details.linkSpeed
+          ? `${info.details.linkSpeed} Mbps`
+          : "n/a",
       },
       {
         label: "Download speed",
-        value: `${info.details.rxLinkSpeed} Mbps`,
+        value: info.details.rxLinkSpeed
+          ? `${info.details.rxLinkSpeed} Mbps`
+          : "n/a",
       },
       {
         label: "Upload speed",
-        value: `${info.details.txLinkSpeed} Mbps`,
+        value: info.details.txLinkSpeed
+          ? `${info.details.txLinkSpeed} Mbps`
+          : "n/a",
       },
     ];
   }
@@ -92,6 +103,7 @@ function getFields(info: NetInfoState) {
 }
 
 export default function HomePage() {
+  const insets = useSafeAreaInsets();
   const info = useNetInfo();
 
   if (!info) {
@@ -101,66 +113,79 @@ export default function HomePage() {
   const extraFields = getFields(info);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.card}>
-          <View style={styles.header}>
-            <Text style={styles.title}>My connection</Text>
-          </View>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      alwaysBounceVertical
+      scrollIndicatorInsets={{ bottom: insets.bottom }}
+      style={styles.container}
+      contentContainerStyle={[
+        styles.scrollContainer,
+        // { paddingBottom: styles.scrollContainer.padding + insets.bottom },
+      ]}
+    >
+      <Stack.Screen.Title large>My Connection</Stack.Screen.Title>
 
-          <View style={styles.field}>
-            <Text style={styles.label}>Type</Text>
-            <Text style={styles.value}>{connectionType[info.type]}</Text>
-          </View>
-
-          <View style={styles.divider} />
-
-          <View style={styles.field}>
-            <Text style={styles.label}>Is Wi-Fi enabled?</Text>
-            <Text style={styles.value}>
-              {info.isWifiEnabled ? "Yes" : "No"}
-            </Text>
-          </View>
-
-          <View style={styles.divider} />
-
-          <View style={styles.field}>
-            <Text style={styles.label}>Is connected?</Text>
-            <Text style={styles.value}>{info.isConnected ? "Yes" : "No"}</Text>
-          </View>
-
-          <View style={styles.divider} />
-
-          <View style={styles.field}>
-            <Text style={styles.label}>Is internet reachable?</Text>
-            <Text style={styles.value}>
-              {info.isInternetReachable ? "Yes" : "No"}
-            </Text>
-          </View>
+      <View style={styles.card}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Connection</Text>
         </View>
 
-        {!!extraFields.length && (
-          <View style={styles.card}>
-            <View style={styles.header}>
-              <Text style={styles.title}>Extra info</Text>
+        <View style={styles.field}>
+          <Text style={styles.label}>Type</Text>
+          <Text style={styles.value}>{connectionType[info.type]}</Text>
+        </View>
+
+        {typeof info.isWifiEnabled !== "undefined" && (
+          <>
+            <View style={styles.divider} />
+
+            <View style={styles.field}>
+              <Text style={styles.label}>Is Wi-Fi enabled?</Text>
+              <Text style={styles.value}>
+                {info.isWifiEnabled ? "Yes" : "No"}
+              </Text>
             </View>
-
-            {extraFields.map((field, index) => (
-              <Fragment key={field.label}>
-                <View style={styles.field}>
-                  <Text style={styles.label}>{field.label}</Text>
-                  <Text style={styles.value}>{field.value}</Text>
-                </View>
-
-                {!!(index < extraFields.length - 1) && (
-                  <View style={styles.divider} />
-                )}
-              </Fragment>
-            ))}
-          </View>
+          </>
         )}
-      </ScrollView>
-    </SafeAreaView>
+
+        <View style={styles.divider} />
+
+        <View style={styles.field}>
+          <Text style={styles.label}>Is connected?</Text>
+          <Text style={styles.value}>{info.isConnected ? "Yes" : "No"}</Text>
+        </View>
+
+        <View style={styles.divider} />
+
+        <View style={styles.field}>
+          <Text style={styles.label}>Is internet reachable?</Text>
+          <Text style={styles.value}>
+            {info.isInternetReachable ? "Yes" : "No"}
+          </Text>
+        </View>
+      </View>
+
+      {!!extraFields.length && (
+        <View style={styles.card}>
+          <View style={styles.header}>
+            <Text style={styles.title}>Connection details</Text>
+          </View>
+
+          {extraFields.map((field, index) => (
+            <Fragment key={field.label}>
+              <View style={styles.field}>
+                <Text style={styles.label}>{field.label}</Text>
+                <Text style={styles.value}>{field.value}</Text>
+              </View>
+
+              {!!(index < extraFields.length - 1) && (
+                <View style={styles.divider} />
+              )}
+            </Fragment>
+          ))}
+        </View>
+      )}
+    </ScrollView>
   );
 }
 
