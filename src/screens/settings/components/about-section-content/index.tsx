@@ -2,7 +2,6 @@ import { Color, useNavigation } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { useCallback } from "react";
 import { Platform, Pressable, Text, useColorScheme, View } from "react-native";
-import { styles } from "./styles";
 
 export function AboutSectionContent() {
   useColorScheme();
@@ -19,10 +18,38 @@ export function AboutSectionContent() {
   );
 
   return (
-    <View style={styles.card}>
+    <View
+      style={{
+        borderRadius: 16,
+        backgroundColor: Platform.select({
+          android: Color.android.dynamic.surfaceContainerLow,
+          ios: Color.ios.secondarySystemBackground,
+        }),
+      }}
+    >
       <Pressable onPress={handleNavigateToAboutPage}>
-        <View style={styles.buttonContent}>
-          <View style={styles.buttonIconContainer}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 16,
+
+            padding: 16,
+          }}
+        >
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              backgroundColor: Platform.select({
+                android: Color.android.dynamic.primaryInverse,
+                ios: Color.ios.systemGray4,
+              }),
+            }}
+          >
             <SymbolView
               name={{ android: "info", ios: "info.circle" }}
               tintColor={Platform.select({
@@ -33,7 +60,19 @@ export function AboutSectionContent() {
             />
           </View>
 
-          <Text style={styles.buttonText}>About</Text>
+          <Text
+            style={{
+              flex: 1,
+              fontSize: 16,
+              lineHeight: 24,
+              color: Platform.select({
+                android: Color.android.dynamic.onSurface,
+                ios: Color.ios.label,
+              }),
+            }}
+          >
+            About
+          </Text>
 
           <SymbolView
             name={{ android: "chevron_right", ios: "chevron.right" }}
@@ -49,11 +88,40 @@ export function AboutSectionContent() {
         </View>
       </Pressable>
 
-      <View style={styles.divider} />
+      <View
+        style={{
+          height: 1,
+          marginHorizontal: 16,
+          backgroundColor: Platform.select({
+            android: Color.android.dynamic.surfaceContainerHigh,
+            ios: Color.ios.separator,
+          }),
+        }}
+      />
 
       <Pressable onPress={handleNavigateToLicensesPage}>
-        <View style={styles.buttonContent}>
-          <View style={styles.buttonIconContainer}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 16,
+
+            padding: 16,
+          }}
+        >
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              backgroundColor: Platform.select({
+                android: Color.android.dynamic.primaryInverse,
+                ios: Color.ios.systemGray4,
+              }),
+            }}
+          >
             <SymbolView
               name={{ android: "apk_document", ios: "doc" }}
               tintColor={Platform.select({
@@ -64,7 +132,19 @@ export function AboutSectionContent() {
             />
           </View>
 
-          <Text style={styles.buttonText}>Licenses</Text>
+          <Text
+            style={{
+              flex: 1,
+              fontSize: 16,
+              lineHeight: 24,
+              color: Platform.select({
+                android: Color.android.dynamic.onSurface,
+                ios: Color.ios.label,
+              }),
+            }}
+          >
+            Licenses
+          </Text>
 
           <SymbolView
             name={{ android: "chevron_right", ios: "chevron.right" }}

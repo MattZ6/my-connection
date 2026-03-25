@@ -69,7 +69,7 @@ export function LicensesScreen() {
             justifyContent: "center",
             borderWidth: 1,
             borderStyle: "solid",
-            borderRadius: 8,
+            borderRadius: 12,
             overflow: "hidden",
             borderColor: Platform.select({
               android: Color.android.dynamic.surfaceContainerHigh,
