@@ -23,7 +23,6 @@ import { Color, Stack } from "expo-router";
 import { Platform, ScrollView } from "react-native";
 import { Section } from "../../components/ui/section";
 import { AboutSectionContent } from "./components/about-section-content";
-import { PreferencesSectionContent } from "./components/preferences-section-content";
 
 export function SettingsScreen() {
   return (
@@ -45,9 +44,9 @@ export function SettingsScreen() {
           gap: 24,
         }}
       >
-        <Section title="Preferences">
+        {/* <Section title="Preferences">
           <PreferencesSectionContent />
-        </Section>
+        </Section> */}
 
         <Section title="About">
           <AboutSectionContent />
