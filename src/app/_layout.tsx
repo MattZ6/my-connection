@@ -88,61 +88,32 @@ function RootLayout() {
       <StatusBar animated style="auto" />
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <NativeTabs
-          backgroundColor={Color.android.material.surfaceContainerLow}
+          backgroundColor={Color.android.dynamic.surfaceContainerLow}
           iconColor={{
-            default: Color.android.material.onSurfaceVariant,
-            selected: Color.android.material.onSurface,
+            default: Color.android.dynamic.onSurfaceVariant,
+            selected: Color.android.dynamic.primary,
           }}
           labelStyle={{
             default: {
-              color: Color.android.material.onSurfaceVariant,
+              color: Color.android.dynamic.onSurfaceVariant,
             },
             selected: {
-              color: Color.android.material.onSurface,
+              color: Color.android.dynamic.primary,
             },
           }}
-          rippleColor={Color.android.material.onSurfaceVariant}
-          indicatorColor={Color.android.material.surfaceContainerHighest}
-          //  screenOptions={{
-          //     contentStyle: {
-          //       backgroundColor: Color.android.material.surface,
-          //     },
-          //     headerStyle: {
-          //       backgroundColor: Color.android.material.surface.toString(),
-          //     },
-          //     headerShadowVisible: false,
-          //     headerTitleStyle: {
-          //       color: Color.android.material.onSurfaceInverse.toString(),
-          //     },
-          //   }}
+          indicatorColor={Color.android.dynamic.primaryInverse}
+          rippleColor={Color.android.dynamic.primaryFixedDim}
+          tintColor={Color.android.dynamic.primary}
         >
           <NativeTabs.Trigger name="index">
             <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-            <NativeTabs.Trigger.Icon
-              sf="house.fill"
-              md="home"
-              selectedColor={Color.android.material.onSurface}
-            />
+            <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
           </NativeTabs.Trigger>
           <NativeTabs.Trigger name="about">
             <NativeTabs.Trigger.Icon sf="gear" md="settings" />
             <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
           </NativeTabs.Trigger>
         </NativeTabs>
-        {/* <Stack
-          screenOptions={{
-            contentStyle: {
-              backgroundColor: Color.android.material.surface,
-            },
-            headerStyle: {
-              backgroundColor: Color.android.material.surface.toString(),
-            },
-            headerShadowVisible: false,
-            headerTitleStyle: {
-              color: Color.android.material.onSurfaceInverse.toString(),
-            },
-          }}
-        /> */}
       </ThemeProvider>
     </SafeAreaProvider>
   );
