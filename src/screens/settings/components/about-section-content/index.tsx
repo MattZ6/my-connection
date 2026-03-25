@@ -9,7 +9,12 @@ export function AboutSectionContent() {
   const navigation = useNavigation();
 
   const handleNavigateToAboutPage = useCallback(
-    () => navigation.navigate("about"),
+    () => navigation.navigate("about" as never), // TODO: fix type
+    [navigation.navigate],
+  );
+
+  const handleNavigateToLicensesPage = useCallback(
+    () => navigation.navigate("licenses" as never), // TODO: fix type
     [navigation.navigate],
   );
 
@@ -46,7 +51,7 @@ export function AboutSectionContent() {
 
       <View style={styles.divider} />
 
-      <Pressable>
+      <Pressable onPress={handleNavigateToLicensesPage}>
         <View style={styles.buttonContent}>
           <View style={styles.buttonIconContainer}>
             <SymbolView
