@@ -114,7 +114,7 @@ function RootLayout() {
           rippleColor={Color.android.dynamic.primaryFixedDim}
           tintColor={Color.android.dynamic.primary}
         >
-          <NativeTabs.Trigger name="index">
+          <NativeTabs.Trigger name="(main)">
             <NativeTabs.Trigger.Icon sf="house" md="home" />
             <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
           </NativeTabs.Trigger>

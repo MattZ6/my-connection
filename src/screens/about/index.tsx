@@ -21,8 +21,9 @@ export function AboutScreen() {
           }),
         }}
         contentContainerStyle={{
-          padding: 24,
-          gap: 24,
+          paddingVertical: 32,
+          paddingHorizontal: 16,
+          gap: 32,
         }}
       >
         <AboutSection />
@@ -39,7 +40,7 @@ export function AboutScreen() {
             }),
           }}
         >
-          Don't worry, this information won't leave your device.
+          Don't worry, this information won't{"\n"}leave your device.
         </Text>
       </ScrollView>
     </>
