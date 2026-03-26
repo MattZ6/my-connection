@@ -21,7 +21,9 @@
 
 import { Color, Stack } from "expo-router";
 import { Platform, ScrollView } from "react-native";
-import { Section } from "../../components/ui/section";
+
+import { Section } from "@/components/ui/section";
+
 import { AboutSectionContent } from "./components/about-section-content";
 
 export function SettingsScreen() {
@@ -40,8 +42,9 @@ export function SettingsScreen() {
           }),
         }}
         contentContainerStyle={{
-          padding: 24,
-          gap: 24,
+          paddingVertical: 32,
+          paddingHorizontal: 16,
+          gap: 32,
         }}
       >
         {/* <Section title="Preferences">
