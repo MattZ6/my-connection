@@ -1,24 +1,27 @@
 import {
   Poppins_400Regular,
   Poppins_500Medium,
-  Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
 import {
   DarkTheme,
   DefaultTheme,
-  ThemeProvider,
+  ThemeProvider as NavigationThemeProvider,
 } from "@react-navigation/native";
 import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
 import ExpoConstants from "expo-constants";
-import { Color, useNavigationContainerRef } from "expo-router";
+import { useNavigationContainerRef } from "expo-router";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { Platform, useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+
+import { ThemeProvider } from "@/contexts/theme";
+
+import { useTheme } from "@/hooks/use-theme";
+import { useThemeMode } from "@/hooks/use-theme-mode";
 
 const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
 const packageName = String(ExpoConstants.expoConfig?.slug || "");
@@ -59,12 +62,9 @@ SplashScreen.preventAutoHideAsync();
 function RootLayout() {
   const ref = useNavigationContainerRef();
 
-  const colorScheme = useColorScheme();
-
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
-    Poppins_700Bold,
   });
 
   useEffect(() => {
@@ -85,46 +85,91 @@ function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar animated style="auto" />
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <NativeTabs
-          backgroundColor={Platform.select({
-            android: Color.android.dynamic.surfaceContainerLow,
-            ios: undefined,
-          })}
-          iconColor={Platform.select({
-            android: {
-              default: Color.android.dynamic.onSurfaceVariant,
-              selected: Color.android.dynamic.primary,
-            },
-            ios: undefined,
-          })}
-          labelStyle={Platform.select({
-            android: {
-              default: {
-                color: Color.android.dynamic.onSurfaceVariant,
-              },
-              selected: {
-                color: Color.android.dynamic.primary,
-              },
-            },
-            ios: undefined,
-          })}
-          indicatorColor={Color.android.dynamic.primaryInverse}
-          rippleColor={Color.android.dynamic.primaryFixedDim}
-          tintColor={Color.android.dynamic.primary}
-        >
-          <NativeTabs.Trigger name="(main)">
-            <NativeTabs.Trigger.Icon sf="house" md="home" />
-            <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-          </NativeTabs.Trigger>
-          <NativeTabs.Trigger name="settings">
-            <NativeTabs.Trigger.Icon sf="gear" md="settings" />
-            <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
-          </NativeTabs.Trigger>
-        </NativeTabs>
+      <ThemeProvider>
+        <NavigationProvider />
       </ThemeProvider>
     </SafeAreaProvider>
+  );
+}
+
+function NavigationProvider() {
+  const { resolvedTheme } = useThemeMode();
+
+  console.log(`Resolved theme ${resolvedTheme}`);
+
+  return (
+    <NavigationThemeProvider
+      value={resolvedTheme === "dark" ? DarkTheme : DefaultTheme}
+    >
+      <StatusBar animated style={resolvedTheme === "dark" ? "light" : "dark"} />
+      <TabsNavigation />
+    </NavigationThemeProvider>
+  );
+}
+
+function TabsNavigation() {
+  const { colors, fontFamily } = useTheme();
+
+  return (
+    <NativeTabs
+      backgroundColor={colors.background}
+      // iconColor={Platform.select({
+      //   android: {
+      //     default: Color.android.dynamic.onSurfaceVariant,
+      //     selected: Color.android.dynamic.primary,
+      //   },
+      //   ios: {
+      //     default: Color.ios.label,
+      //     selected: Color.ios.systemBlue,
+      //   },
+      // })}
+      iconColor={{
+        default: colors.textSecondary,
+        selected: colors.text,
+      }}
+      // labelStyle={Platform.select({
+      //   android: {
+      //     default: {
+      //       color: Color.android.dynamic.onSurfaceVariant,
+      //     },
+      //     selected: {
+      //       color: Color.android.dynamic.primary,
+      //     },
+      //   },
+      //   ios: {
+      //     default: {
+      //       color: Color.ios.label,
+      //     },
+      //     selected: {
+      //       color: Color.ios.systemBlue,
+      //     },
+      //   },
+      // })}
+      labelStyle={{
+        default: {
+          fontFamily: fontFamily.regular,
+          color: colors.textSecondary,
+        },
+        selected: {
+          fontFamily: fontFamily.regular,
+          color: colors.text,
+        },
+      }}
+      // indicatorColor={Color.android.dynamic.primaryInverse}
+      // tintColor={Color.android.dynamic.primary}
+      indicatorColor={colors.card}
+      rippleColor={colors.card}
+      // tintColor={colors.text}
+    >
+      <NativeTabs.Trigger name="(main)">
+        <NativeTabs.Trigger.Icon sf="house" md="home" />
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="settings">
+        <NativeTabs.Trigger.Icon sf="gear" md="settings" />
+        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
 
