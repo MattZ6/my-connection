@@ -1,78 +1,40 @@
-import { Color } from "expo-router";
-import { SymbolView } from "expo-symbols";
-import { Platform, Pressable, Text, useColorScheme, View } from "react-native";
-import { styles } from "./styles";
+import { useRouter } from "expo-router";
+import { useCallback } from "react";
+import { Card } from "@/components/ui/card";
+import { Section } from "@/components/ui/section";
+import { PressableConfigItem } from "../pressable-config-item";
 
 export function PreferencesSectionContent() {
-  useColorScheme();
+  const router = useRouter();
+
+  const handleNavigateToAppearancePage = useCallback(
+    () => router.navigate("/settings/appearance"),
+    [router.navigate],
+  );
 
   return (
-    <View style={styles.card}>
-      <Pressable>
-        <View style={styles.buttonContent}>
-          <View style={styles.buttonIconContainer}>
-            <SymbolView
-              name={{ android: "palette", ios: "paintbrush" }}
-              tintColor={Platform.select({
-                android: Color.android.dynamic.primary,
-                ios: Color.ios.label,
-              })}
-              size={Platform.select({
-                ios: 20,
-                android: 20,
-              })}
-            />
-          </View>
+    <Section title="Preferences">
+      <Card>
+        <PressableConfigItem
+          label="Appearance"
+          icon={{
+            android: "palette",
+            ios: "paintpalette",
+          }}
+          onPress={handleNavigateToAppearancePage}
+        />
 
-          <Text style={styles.buttonText}>Appearance</Text>
+        {/* <SectionDivider />
 
-          <SymbolView
-            name={{ android: "chevron_right", ios: "chevron.right" }}
-            tintColor={Platform.select({
-              android: Color.android.dynamic.outlineVariant,
-              ios: Color.ios.placeholderText,
-            })}
-            size={Platform.select({
-              ios: 14,
-              android: 24,
-            })}
-          />
-        </View>
-      </Pressable>
-
-      <View style={styles.divider} />
-
-      <Pressable>
-        <View style={styles.buttonContent}>
-          <View style={styles.buttonIconContainer}>
-            <SymbolView
-              name={{ android: "language", ios: "translate" }}
-              tintColor={Platform.select({
-                android: Color.android.dynamic.primary,
-                ios: Color.ios.label,
-              })}
-              size={Platform.select({
-                ios: 20,
-                android: 20,
-              })}
-            />
-          </View>
-
-          <Text style={styles.buttonText}>Language</Text>
-
-          <SymbolView
-            name={{ android: "chevron_right", ios: "chevron.right" }}
-            tintColor={Platform.select({
-              android: Color.android.dynamic.outlineVariant,
-              ios: Color.ios.placeholderText,
-            })}
-            size={Platform.select({
-              ios: 14,
-              android: 24,
-            })}
-          />
-        </View>
-      </Pressable>
-    </View>
+        <PressableConfigItem
+          label="Language"
+          icon={{
+            android: "language",
+            ios: "translate",
+          }}
+          onPress={handleNavigateToAppearancePage}
+        /> */}
+      </Card>
+    </Section>
   );
 }

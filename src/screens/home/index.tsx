@@ -3,17 +3,34 @@ import {
   NetInfoStateType,
   useNetInfo,
 } from "@react-native-community/netinfo";
-import { Color, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { Platform, ScrollView } from "react-native";
+
+import { useStyles } from "@/hooks/use-styles";
+import { useTheme } from "@/hooks/use-theme";
 
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSection } from "./components/connection-section";
 import { ConnectionSummary } from "./components/connection-summary";
 
+import { getStyles } from "./styles";
+
+const isIos = Platform.OS === "ios";
+
 export function HomeScreen() {
+  const { colors, fontFamily } = useTheme();
+
   return (
     <>
-      <Stack.Screen.Title large>Connection Health</Stack.Screen.Title>
+      <Stack.Screen.Title
+        large={isIos}
+        style={{
+          fontFamily: fontFamily.medium,
+          color: colors.text.toString(),
+        }}
+      >
+        Connection Health
+      </Stack.Screen.Title>
       <Content />
     </>
   );
@@ -237,23 +254,14 @@ function getSections(info: NetInfoState) {
 function Content() {
   const info = useNetInfo();
   const sections = getSections(info);
+  const styles = useStyles(getStyles);
 
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       showsVerticalScrollIndicator={false}
-      style={{
-        flex: 1,
-        backgroundColor: Platform.select({
-          android: Color.android.dynamic.surface,
-          ios: Color.ios.systemBackground,
-        }),
-      }}
-      contentContainerStyle={{
-        paddingVertical: 32,
-        paddingHorizontal: 16,
-        gap: 32,
-      }}
+      style={styles.container}
+      contentContainerStyle={styles.scrollContainer}
     >
       <ConnectionHero info={info} />
       <ConnectionSummary info={info} />

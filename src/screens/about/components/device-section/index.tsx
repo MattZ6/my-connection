@@ -1,8 +1,6 @@
 import * as ExpoDevice from "expo-device";
-import { Color } from "expo-router";
-import { Platform, Text, View } from "react-native";
-
-import { Section } from "@/components/ui/section";
+import { Card } from "@/components/ui/card";
+import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
 
 const DEVICE_TYPE_MAP = {
   [ExpoDevice.DeviceType.DESKTOP]: "Desktop",
@@ -19,110 +17,49 @@ export function DeviceSection() {
 
   return (
     <Section title="Device">
-      <View
-        style={{
-          borderRadius: 16,
-          backgroundColor: Platform.select({
-            android: Color.android.dynamic.surfaceContainerLow,
-            ios: Color.ios.secondarySystemBackground,
-          }),
-        }}
-      >
-        <Item label="Device Type" value={deviceType} />
+      <Card>
+        <SectionItem label="Device Type" value={deviceType} />
 
-        <Divider />
+        <SectionDivider />
 
-        <Item label="Manufacturer" value={ExpoDevice.manufacturer ?? ""} />
+        <SectionItem
+          label="Manufacturer"
+          value={ExpoDevice.manufacturer ?? ""}
+        />
 
-        <Divider />
+        <SectionDivider />
 
-        <Item label="Model" value={ExpoDevice.modelName ?? ""} />
+        <SectionItem label="Model" value={ExpoDevice.modelName ?? ""} />
 
-        <Divider />
+        <SectionDivider />
 
-        <Item
+        <SectionItem
           label="Year Class"
           value={String(ExpoDevice.deviceYearClass ?? "")}
         />
 
         {ExpoDevice.designName && (
           <>
-            <Divider />
+            <SectionDivider />
 
-            <Item label="Android Design Name" value={ExpoDevice.designName} />
+            <SectionItem
+              label="Android Design Name"
+              value={ExpoDevice.designName}
+            />
           </>
         )}
 
         {ExpoDevice.productName && (
           <>
-            <Divider />
+            <SectionDivider />
 
-            <Item label="Android Product Name" value={ExpoDevice.productName} />
+            <SectionItem
+              label="Android Product Name"
+              value={ExpoDevice.productName}
+            />
           </>
         )}
-      </View>
+      </Card>
     </Section>
-  );
-}
-
-function Divider() {
-  return (
-    <View
-      style={{
-        height: 1,
-        marginHorizontal: 16,
-        backgroundColor: Platform.select({
-          android: Color.android.dynamic.surfaceContainerHigh,
-          ios: Color.ios.separator,
-        }),
-      }}
-    />
-  );
-}
-
-type ItemProps = {
-  label: string;
-  value: string;
-};
-
-function Item({ label, value }: ItemProps) {
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 16,
-        paddingHorizontal: 16,
-        paddingVertical: 16,
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 16,
-          lineHeight: 24,
-          fontWeight: "500",
-          color: Platform.select({
-            android: Color.android.dynamic.onSurface,
-            ios: Color.ios.label,
-          }),
-        }}
-      >
-        {label}
-      </Text>
-      <Text
-        style={{
-          flex: 1,
-          fontSize: 16,
-          lineHeight: 24,
-          textAlign: "right",
-          color: Platform.select({
-            android: Color.android.dynamic.onSurfaceVariant,
-            ios: Color.ios.secondaryLabel,
-          }),
-        }}
-      >
-        {value}
-      </Text>
-    </View>
   );
 }
