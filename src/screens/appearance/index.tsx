@@ -1,18 +1,18 @@
 import { Stack } from "expo-router";
-import { Platform, ScrollView, Text } from "react-native";
+import { Platform, ScrollView } from "react-native";
 
+import { Section } from "@/components/ui/section";
 import { useStyles } from "@/hooks/use-styles";
+
 import { useTheme } from "@/hooks/use-theme";
 
-import { AboutSection } from "./components/about-section";
-import { DeviceSection } from "./components/device-section";
-import { OSSection } from "./components/os-section";
+import { ThemeSelect } from "./components/theme-select";
 
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
 
-export function AboutScreen() {
+export function AppearanceScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
 
@@ -26,7 +26,7 @@ export function AboutScreen() {
           color: colors.text.toString(),
         }}
       >
-        About
+        Appearance
       </Stack.Screen.Title>
 
       <ScrollView
@@ -35,12 +35,9 @@ export function AboutScreen() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        <AboutSection />
-        <DeviceSection />
-        <OSSection />
-        <Text style={styles.disclaimer}>
-          Don't worry, this information won't{"\n"}leave your device.
-        </Text>
+        <Section title="Theme">
+          <ThemeSelect />
+        </Section>
       </ScrollView>
     </>
   );

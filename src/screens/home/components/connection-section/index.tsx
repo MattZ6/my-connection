@@ -1,11 +1,7 @@
-import { Color } from "expo-router";
 import { Fragment } from "react";
-import { Platform, View } from "react-native";
 
-import { Section } from "@/components/ui/section";
-
-import { Divider } from "./components/divider";
-import { ListItem } from "./components/list-item";
+import { Card } from "@/components/ui/card";
+import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
 
 type Field = {
   label: string;
@@ -21,27 +17,19 @@ type Props = {
 export function ConnectionSection({ title, fields }: Props) {
   return (
     <Section title={title}>
-      <View
-        style={{
-          borderRadius: 16,
-          backgroundColor: Platform.select({
-            android: Color.android.dynamic.surfaceContainerLow,
-            ios: Color.ios.secondarySystemBackground,
-          }),
-        }}
-      >
+      <Card>
         {fields.map((field, index) => (
           <Fragment key={field.label}>
-            {index > 0 && <Divider />}
+            {index > 0 && <SectionDivider />}
 
-            <ListItem
+            <SectionItem
               label={field.label}
               hint={field.hint}
               value={field.value}
             />
           </Fragment>
         ))}
-      </View>
+      </Card>
     </Section>
   );
 }

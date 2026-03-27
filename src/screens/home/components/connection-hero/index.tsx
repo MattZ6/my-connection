@@ -2,10 +2,12 @@ import {
   type NetInfoState,
   NetInfoStateType,
 } from "@react-native-community/netinfo";
-import { Color } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { Platform, Text, View } from "react-native";
+import { Text, View } from "react-native";
+import { Card } from "@/components/ui/card";
+import { useStyles } from "@/hooks/use-styles";
 import { SpeedStat } from "./components/speed-stat";
+import { getStyles } from "./styles";
 
 const ANDROID_ICON_MAP = {
   [NetInfoStateType.bluetooth]: "bluetooth",
@@ -48,6 +50,8 @@ type Props = {
 };
 
 export function ConnectionHero({ info }: Props) {
+  const styles = useStyles(getStyles);
+
   const showSpeedStats =
     info.type === NetInfoStateType.wifi &&
     info.isWifiEnabled !== null &&
@@ -59,73 +63,29 @@ export function ConnectionHero({ info }: Props) {
     info.isWifiEnabled !== undefined;
 
   return (
-    <View
-      style={{
-        padding: 24,
-        borderRadius: 16,
-        gap: 24,
-        backgroundColor: Platform.select({
-          android: Color.android.dynamic.surfaceContainerLow,
-          ios: Color.ios.secondarySystemBackground,
-        }),
-      }}
-    >
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 24,
-        }}
-      >
+    <Card style={styles.container}>
+      <View style={styles.hero}>
         <SymbolView
           name={{
             ios: IOS_ICON_MAP[info.type],
             android: ANDROID_ICON_MAP[info.type],
           }}
-          tintColor={Platform.select({
-            android: Color.android.dynamic.primary,
-            ios: Color.ios.systemBlue,
-          })}
+          tintColor={styles.heroIcon.tintColor}
+          // tintColor={Platform.select({
+          //   android: Color.android.dynamic.primary,
+          //   ios: Color.ios.systemBlue,
+          // })}
           size={48}
         />
 
         <View>
-          <Text
-            style={{
-              fontSize: 12,
-              textTransform: "uppercase",
-              letterSpacing: 1,
-              color: Platform.select({
-                android: Color.android.dynamic.onSurfaceVariant,
-                ios: Color.ios.secondaryLabel,
-              }),
-            }}
-          >
-            Connection type
-          </Text>
-          <Text
-            style={{
-              fontSize: 24,
-              lineHeight: 40,
-              color: Platform.select({
-                android: Color.android.dynamic.onSurface,
-                ios: Color.ios.label,
-              }),
-            }}
-          >
-            {CONNECTION_TYPE_MAP[info.type]}
-          </Text>
+          <Text style={styles.heroLabel}>Connection type</Text>
+          <Text style={styles.heroValue}>{CONNECTION_TYPE_MAP[info.type]}</Text>
         </View>
       </View>
 
       {showCarrierStats && (
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 16,
-          }}
-        >
+        <View style={styles.statsRow}>
           <SpeedStat label="Carrier" value={info.details.carrier ?? "-"} />
           <SpeedStat
             label="Generation"
@@ -135,61 +95,24 @@ export function ConnectionHero({ info }: Props) {
       )}
 
       {showSpeedStats && (
-        <View
-          style={{
-            gap: 24,
-          }}
-        >
+        <>
           <View
             style={{
               gap: 6,
             }}
           >
-            <Text
-              style={{
-                fontSize: 12,
-                lineHeight: 20,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: Platform.select({
-                  android: Color.android.dynamic.onSurfaceVariant,
-                  ios: Color.ios.secondaryLabel,
-                }),
-              }}
-            >
-              Signal Strength
-            </Text>
-            <View
-              style={{
-                height: 8,
-                borderRadius: 8,
-                backgroundColor: Platform.select({
-                  android: Color.android.dynamic.surfaceContainerHigh,
-                  ios: Color.ios.secondarySystemFill,
-                }),
-              }}
-            >
+            <Text style={styles.signalStrengthLabel}>Signal Strength</Text>
+            <View style={styles.signalStrengthProgressContainer}>
               <View
-                style={{
-                  width: `${info.details.strength ?? 0}%`,
-                  height: 8,
-                  borderRadius: 8,
-                  backgroundColor: Platform.select({
-                    android: Color.android.dynamic.primary,
-                    ios: Color.ios.systemBlue,
-                  }),
-                }}
+                style={[
+                  styles.signalStrengthProgress,
+                  { width: `${info.details.strength ?? 0}%` },
+                ]}
               />
             </View>
           </View>
 
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 16,
-            }}
-          >
+          <View style={styles.statsRow}>
             <SpeedStat
               label="Speed"
               value={`${info.details.linkSpeed ?? "-"} Mbps`}
@@ -203,8 +126,8 @@ export function ConnectionHero({ info }: Props) {
               value={`${info.details.txLinkSpeed ?? "-"} Mbps`}
             />
           </View>
-        </View>
+        </>
       )}
-    </View>
+    </Card>
   );
 }

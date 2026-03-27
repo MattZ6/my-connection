@@ -1,15 +1,15 @@
 import * as ExpoApplication from "expo-application";
-import { Color } from "expo-router";
 import { useEffect, useState } from "react";
-import { Platform, Text, View } from "react-native";
-import { Section } from "@/components/ui/section";
+import { Platform } from "react-native";
+import { Card } from "@/components/ui/card";
+import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
 
 const dateFormatter = new Intl.DateTimeFormat("en-us", {
   dateStyle: "medium",
   timeStyle: "short",
 });
 
-export function AboutSection() {
+function useInstallDates() {
   const [installedAt, setInstalledAt] = useState<Date | null>(null);
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
 
@@ -45,104 +45,49 @@ export function AboutSection() {
     loadInfo();
   }, []);
 
+  return {
+    formattedInstalledAt,
+    formattedUpdatedAt,
+  };
+}
+
+export function AboutSection() {
+  const { formattedInstalledAt, formattedUpdatedAt } = useInstallDates();
+
   return (
     <Section title="About">
-      <View
-        style={{
-          borderRadius: 16,
-          backgroundColor: Platform.select({
-            android: Color.android.dynamic.surfaceContainerLow,
-            ios: Color.ios.secondarySystemBackground,
-          }),
-        }}
-      >
-        <Item label="Name" value={ExpoApplication.applicationName ?? ""} />
+      <Card>
+        <SectionItem
+          label="Name"
+          value={ExpoApplication.applicationName ?? ""}
+        />
 
-        <Divider />
+        <SectionDivider />
 
-        <Item label="Package" value={ExpoApplication.applicationId ?? ""} />
+        <SectionItem
+          label="Package"
+          value={ExpoApplication.applicationId ?? ""}
+        />
 
-        <Divider />
+        <SectionDivider />
 
-        <Item
+        <SectionItem
           label="Version"
           value={`v${ExpoApplication.nativeApplicationVersion} (${ExpoApplication.nativeBuildVersion})`}
         />
 
-        <Divider />
+        <SectionDivider />
 
-        <Item label="Install Date" value={formattedInstalledAt} />
+        <SectionItem label="Install Date" value={formattedInstalledAt} />
 
         {formattedUpdatedAt && (
           <>
-            <Divider />
+            <SectionDivider />
 
-            <Item label="Update Date" value={formattedUpdatedAt} />
+            <SectionItem label="Update Date" value={formattedUpdatedAt} />
           </>
         )}
-      </View>
+      </Card>
     </Section>
-  );
-}
-
-function Divider() {
-  return (
-    <View
-      style={{
-        height: 1,
-        marginHorizontal: 16,
-        backgroundColor: Platform.select({
-          android: Color.android.dynamic.surfaceContainerHigh,
-          ios: Color.ios.separator,
-        }),
-      }}
-    />
-  );
-}
-
-type ItemProps = {
-  label: string;
-  value: string;
-};
-
-function Item({ label, value }: ItemProps) {
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 16,
-        paddingHorizontal: 16,
-        paddingVertical: 16,
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 16,
-          lineHeight: 24,
-          fontWeight: "500",
-          color: Platform.select({
-            android: Color.android.dynamic.onSurface,
-            ios: Color.ios.label,
-          }),
-        }}
-      >
-        {label}
-      </Text>
-      <Text
-        style={{
-          flex: 1,
-          fontSize: 16,
-          lineHeight: 24,
-          textAlign: "right",
-          color: Platform.select({
-            android: Color.android.dynamic.onSurfaceVariant,
-            ios: Color.ios.secondaryLabel,
-          }),
-        }}
-      >
-        {value}
-      </Text>
-    </View>
   );
 }
