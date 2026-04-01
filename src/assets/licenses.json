@@ -53,6 +53,12 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "my-connection"
     },
+    "expo-haptics@55.0.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo",
+        "parents": "my-connection"
+    },
     "expo-insights@55.0.12": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",

@@ -20,6 +20,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@/contexts/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { useThemeMode } from "@/hooks/use-theme-mode";
+import { HapticsService } from "@/services/device/haptics";
 
 const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
 const packageName = String(ExpoConstants.expoConfig?.slug || "");
@@ -108,6 +109,9 @@ function TabsNavigation() {
 
   return (
     <NativeTabs
+      screenListeners={{
+        tabPress: HapticsService.performTabSelectedFeedback,
+      }}
       backgroundColor={colors.background}
       // iconColor={Platform.select({
       //   android: {
