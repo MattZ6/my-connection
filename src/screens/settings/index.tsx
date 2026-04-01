@@ -19,6 +19,10 @@ export function SettingsScreen() {
     <>
       <Stack.Screen.Title
         large={isIos}
+        largeStyle={{
+          fontFamily: fontFamily.medium,
+          color: colors.text.toString(),
+        }}
         style={{
           fontFamily: fontFamily.medium,
           color: colors.text.toString(),
