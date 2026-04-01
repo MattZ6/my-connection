@@ -95,8 +95,6 @@ function RootLayout() {
 function NavigationProvider() {
   const { resolvedTheme } = useThemeMode();
 
-  console.log(`Resolved theme ${resolvedTheme}`);
-
   return (
     <NavigationThemeProvider
       value={resolvedTheme === "dark" ? DarkTheme : DefaultTheme}
