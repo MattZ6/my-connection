@@ -1,6 +1,6 @@
+import { LegendList, type LegendListRenderItemProps } from "@legendapp/list";
 import { Stack } from "expo-router";
 import { useCallback } from "react";
-import { FlatList, type ListRenderItemInfo } from "react-native";
 
 import licenses from "@/assets/licenses.json";
 
@@ -32,9 +32,14 @@ const parsedLicenses = Object.keys(licenses)
       version = `v${key.substring(key.lastIndexOf("@") + 1)}`;
     }
 
-    const repository = String(
+    let repository = String(
       licenses[key as keyof typeof licenses].repository || "",
     );
+
+    if (repository.startsWith("github:")) {
+      repository = repository.replace("github:", "https://github.com/");
+    }
+
     const paths = repository.split("/");
     paths.pop();
 
@@ -52,16 +57,19 @@ export function LicensesScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
 
-  const renderItem = useCallback(({ item }: ListRenderItemInfo<License>) => {
-    return (
-      <LicenseItem
-        imageUrl={item.imageUrl}
-        name={item.name}
-        licenses={item.licenses}
-        version={item.version}
-      />
-    );
-  }, []);
+  const renderItem = useCallback(
+    ({ item }: LegendListRenderItemProps<License>) => {
+      return (
+        <LicenseItem
+          imageUrl={item.imageUrl}
+          name={item.name}
+          licenses={item.licenses}
+          version={item.version}
+        />
+      );
+    },
+    [],
+  );
 
   return (
     <>
@@ -75,13 +83,14 @@ export function LicensesScreen() {
         Licenses
       </Stack.Screen.Title>
 
-      <FlatList
+      <LegendList
         contentInsetAdjustmentBehavior="automatic"
         showsVerticalScrollIndicator={false}
         style={styles.container}
         data={parsedLicenses}
         renderItem={renderItem}
         keyExtractor={(item) => item.key}
+        recycleItems
       />
     </>
   );
