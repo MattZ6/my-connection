@@ -11,6 +11,12 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "my-connection"
     },
+    "@legendapp/list@2.0.19": {
+        "licenses": "MIT",
+        "repository": "github:LegendApp/legend-list",
+        "licenseUrl": "github:LegendApp/legend-list",
+        "parents": "my-connection"
+    },
     "@react-native-community/netinfo@11.5.2": {
         "licenses": "MIT",
         "repository": "https://github.com/react-native-netinfo/react-native-netinfo",
