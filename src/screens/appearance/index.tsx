@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { Platform, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 
 import { Section } from "@/components/ui/section";
 import { useStyles } from "@/hooks/use-styles";
@@ -10,8 +10,6 @@ import { ThemeSelect } from "./components/theme-select";
 
 import { getStyles } from "./styles";
 
-const isIos = Platform.OS === "ios";
-
 export function AppearanceScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
@@ -20,7 +18,6 @@ export function AppearanceScreen() {
     <>
       <Stack.Screen.BackButton displayMode="minimal" />
       <Stack.Screen.Title
-        large={isIos}
         style={{
           fontFamily: fontFamily.medium,
           color: colors.text.toString(),

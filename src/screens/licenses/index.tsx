@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { useCallback } from "react";
-import { FlatList, type ListRenderItemInfo, Platform } from "react-native";
+import { FlatList, type ListRenderItemInfo } from "react-native";
 
 import licenses from "@/assets/licenses.json";
 
@@ -48,8 +48,6 @@ const parsedLicenses = Object.keys(licenses)
   })
   .sort((previous, current) => previous.name.localeCompare(current.name));
 
-const isIos = Platform.OS === "ios";
-
 export function LicensesScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
@@ -69,7 +67,6 @@ export function LicensesScreen() {
     <>
       <Stack.Screen.BackButton displayMode="minimal" />
       <Stack.Screen.Title
-        large={isIos}
         style={{
           fontFamily: fontFamily.medium,
           color: colors.text.toString(),

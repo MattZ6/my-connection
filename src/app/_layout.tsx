@@ -17,9 +17,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
 import { ThemeProvider } from "@/contexts/theme";
-
 import { useTheme } from "@/hooks/use-theme";
 import { useThemeMode } from "@/hooks/use-theme-mode";
 

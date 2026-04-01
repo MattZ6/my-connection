@@ -1,6 +1,9 @@
 import { Stack } from "expo-router";
 import { Platform } from "react-native";
+
 import { useTheme } from "@/hooks/use-theme";
+
+const isIos = Platform.OS === "ios";
 
 export default function SettingsStack() {
   const { colors } = useTheme();
@@ -8,6 +11,7 @@ export default function SettingsStack() {
   return (
     <Stack
       screenOptions={{
+        headerTransparent: isIos,
         headerStyle: {
           backgroundColor: Platform.select({
             android: colors.card.toString(),
