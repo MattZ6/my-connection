@@ -9,6 +9,8 @@ import {
 
 import { useStyles } from "@/hooks/use-styles";
 
+import { HapticsService } from "@/services/device/haptics";
+
 import { getStyles } from "./styles";
 
 type Props = {
@@ -24,7 +26,7 @@ export function PressableConfigItem({ label, icon, onPress }: Props) {
   const styles = useStyles(getStyles);
 
   return (
-    <Pressable onPress={onPress}>
+    <Pressable onPressIn={HapticsService.performTapFeedback} onPress={onPress}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
           <SymbolView
