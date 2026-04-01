@@ -107,6 +107,12 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "my-connection"
     },
+    "react-native-mmkv@4.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mrousavy/react-native-mmkv",
+        "licenseUrl": "https://github.com/mrousavy/react-native-mmkv",
+        "parents": "my-connection"
+    },
     "react-native-safe-area-context@5.6.2": {
         "licenses": "MIT",
         "repository": "https://github.com/AppAndFlow/react-native-safe-area-context",
