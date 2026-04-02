@@ -15,6 +15,7 @@ import { useNavigationContainerRef } from "expo-router";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
+import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@/contexts/theme";
@@ -106,6 +107,10 @@ function NavigationProvider() {
 
 function TabsNavigation() {
   const { colors, fontFamily } = useTheme();
+
+  useEffect(() => {
+    ExpoSystemUI.setBackgroundColorAsync(colors.background);
+  }, [colors.background]);
 
   return (
     <NativeTabs
