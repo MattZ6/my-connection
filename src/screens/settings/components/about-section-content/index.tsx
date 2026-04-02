@@ -1,11 +1,15 @@
 import { useRouter } from "expo-router";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
+
 import { Card } from "@/components/ui/card";
 import { Section, SectionDivider } from "@/components/ui/section";
+
 import { PressableConfigItem } from "../pressable-config-item";
 
 export function AboutSectionContent() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleNavigateToAboutPage = useCallback(
     () => router.push("/settings/about"),
@@ -18,10 +22,10 @@ export function AboutSectionContent() {
   );
 
   return (
-    <Section title="About">
+    <Section title={t("settings.sections.about.title")}>
       <Card>
         <PressableConfigItem
-          label="About"
+          label={t("settings.sections.about.links.about.title")}
           icon={{ android: "info", ios: "info.circle" }}
           onPress={handleNavigateToAboutPage}
         />
@@ -29,7 +33,7 @@ export function AboutSectionContent() {
         <SectionDivider />
 
         <PressableConfigItem
-          label="Licenses"
+          label={t("settings.sections.about.links.licenses.title")}
           icon={{ android: "apk_document", ios: "doc" }}
           onPress={handleNavigateToLicensesPage}
         />

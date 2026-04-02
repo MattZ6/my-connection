@@ -2,6 +2,7 @@ import {
   type NetInfoState,
   NetInfoStateType,
 } from "@react-native-community/netinfo";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { Section } from "@/components/ui/section";
 import { Divider } from "./components/divider";
@@ -12,13 +13,15 @@ type Props = {
 };
 
 export function ConnectionSummary({ info }: Props) {
+  const { t } = useTranslation();
+
   const showWiFiEnabledSection =
     info.type === NetInfoStateType.wifi &&
     info.isWifiEnabled !== null &&
     info.isWifiEnabled !== undefined;
 
   return (
-    <Section title="Summary">
+    <Section title={t("home.sections.summary.title")}>
       <View
         style={{
           gap: 16,
@@ -27,9 +30,11 @@ export function ConnectionSummary({ info }: Props) {
         {showWiFiEnabledSection && (
           <>
             <ListItem
-              label="Wi-Fi Enabled"
-              value={info.isWifiEnabled ? "Yes" : "No"}
-              hint="Whether the device's Wi-Fi is on or off."
+              label={t("home.sections.summary.fields.wifi_enabled.title")}
+              value={t(
+                `home.sections.summary.fields.wifi_enabled.value.${info.isWifiEnabled}`,
+              )}
+              hint={t("home.sections.summary.fields.wifi_enabled.description")}
             />
 
             <Divider />
@@ -37,17 +42,23 @@ export function ConnectionSummary({ info }: Props) {
         )}
 
         <ListItem
-          label="Connected"
-          value={info.isConnected ? "Yes" : "No"}
-          hint="If there is an active network connection."
+          label={t("home.sections.summary.fields.connected.title")}
+          value={t(
+            `home.sections.summary.fields.connected.value.${info.isConnected}`,
+          )}
+          hint={t("home.sections.summary.fields.connected.description")}
         />
 
         <Divider />
 
         <ListItem
-          label="Internet Available"
-          value={info.isInternetReachable ? "Yes" : "No"}
-          hint="If the internet is reachable with the currently active network connection."
+          label={t("home.sections.summary.fields.internet_reachable.title")}
+          value={t(
+            `home.sections.summary.fields.internet_reachable.value.${info.isInternetReachable}`,
+          )}
+          hint={t(
+            "home.sections.summary.fields.internet_reachable.description",
+          )}
         />
       </View>
     </Section>

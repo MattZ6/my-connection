@@ -1,12 +1,10 @@
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
-
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
-
 import { AboutSectionContent } from "./components/about-section-content";
 import { PreferencesSectionContent } from "./components/preferences-section-content";
-
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -14,6 +12,7 @@ const isIos = Platform.OS === "ios";
 export function SettingsScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -28,7 +27,7 @@ export function SettingsScreen() {
           color: colors.text.toString(),
         }}
       >
-        Settings
+        {t("settings.meta.title")}
       </Stack.Screen.Title>
 
       <ScrollView

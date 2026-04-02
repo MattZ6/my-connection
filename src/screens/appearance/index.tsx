@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
 
 import { Section } from "@/components/ui/section";
@@ -13,6 +14,7 @@ import { getStyles } from "./styles";
 export function AppearanceScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -23,7 +25,7 @@ export function AppearanceScreen() {
           color: colors.text.toString(),
         }}
       >
-        Appearance
+        {t("appearance.meta.title")}
       </Stack.Screen.Title>
 
       <ScrollView
@@ -32,7 +34,7 @@ export function AppearanceScreen() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        <Section title="Theme">
+        <Section title={t("appearance.sections.theme.title")}>
           <ThemeSelect />
         </Section>
       </ScrollView>

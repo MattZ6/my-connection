@@ -4,6 +4,7 @@ import {
   useNetInfo,
 } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 
 import { useStyles } from "@/hooks/use-styles";
@@ -19,6 +20,7 @@ const isIos = Platform.OS === "ios";
 
 export function HomeScreen() {
   const { colors, fontFamily } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -33,7 +35,7 @@ export function HomeScreen() {
           color: colors.text.toString(),
         }}
       >
-        Connection Health
+        {t("home.meta.title")}
       </Stack.Screen.Title>
       <Content />
     </>
@@ -49,6 +51,7 @@ type Field = {
   label: string;
   hint?: string;
   value: string;
+  originalValue: string | number | boolean | null;
 };
 
 function getSections(info: NetInfoState) {
@@ -57,12 +60,13 @@ function getSections(info: NetInfoState) {
   switch (info.type) {
     case NetInfoStateType.bluetooth:
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });
@@ -70,26 +74,29 @@ function getSections(info: NetInfoState) {
 
     case NetInfoStateType.cellular:
       sections.push({
-        title: "Cellular",
+        title: "home.sections.cellular.title",
         fields: [
           {
-            label: "Carrier",
-            value: info.details.carrier ?? "",
+            label: "home.sections.cellular.fields.carrier.title",
+            value: info.details.carrier ?? "-",
+            originalValue: info.details.carrier,
           },
           {
-            label: "Cellular Generation",
-            value: info.details.cellularGeneration ?? "",
+            label: "home.sections.cellular.fields.generation.title",
+            value: info.details.cellularGeneration ?? "-",
+            originalValue: info.details.cellularGeneration,
           },
         ],
       });
 
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });
@@ -97,28 +104,31 @@ function getSections(info: NetInfoState) {
 
     case NetInfoStateType.ethernet:
       sections.push({
-        title: "IP Configuration",
+        title: "home.sections.ip.title",
         fields: [
           {
-            label: "IP Address",
-            hint: "Can be in IPv4 or IPv6 format.",
-            value: info.details.ipAddress ?? "",
+            label: "home.sections.ip.fields.ip.title",
+            hint: "home.sections.ip.fields.ip.description",
+            value: info.details.ipAddress ?? "-",
+            originalValue: info.details.ipAddress,
           },
           {
-            label: "Subnet Mask",
-            hint: "The subnet mask in IPv4 format.",
-            value: info.details.subnet ?? "",
+            label: "home.sections.ip.fields.mask.title",
+            hint: "home.sections.ip.fields.mask.description",
+            value: info.details.subnet ?? "-",
+            originalValue: info.details.subnet,
           },
         ],
       });
 
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });
@@ -129,12 +139,13 @@ function getSections(info: NetInfoState) {
 
     case NetInfoStateType.other:
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });
@@ -145,12 +156,13 @@ function getSections(info: NetInfoState) {
 
     case NetInfoStateType.vpn:
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });
@@ -159,77 +171,81 @@ function getSections(info: NetInfoState) {
     case NetInfoStateType.wifi:
       if (Platform.OS === "android") {
         sections.push({
-          title: "Performance",
+          title: "home.sections.performance.title",
           fields: [
             {
-              label: "Signal Strength",
-              value: info.details.strength ? `${info.details.strength}%` : "",
+              label: "home.sections.performance.fields.strength.title",
+              value: "home.sections.performance.fields.strength.value",
+              originalValue: info.details.strength ?? 0,
             },
             {
-              label: "Link Speed",
-              value: info.details.linkSpeed
-                ? `${info.details.linkSpeed} Mbps`
-                : "",
+              label: "home.sections.performance.fields.speed.title",
+              value: "home.sections.performance.fields.speed.value",
+              originalValue: info.details.linkSpeed ?? 0,
             },
             {
-              label: "Download",
-              value: info.details.rxLinkSpeed
-                ? `${info.details.rxLinkSpeed} Mbps`
-                : "",
+              label: "home.sections.performance.fields.download.title",
+              value: "home.sections.performance.fields.download.value",
+              originalValue: info.details.rxLinkSpeed ?? 0,
             },
             {
-              label: "Upload",
-              value: info.details.txLinkSpeed
-                ? `${info.details.txLinkSpeed} Mbps`
-                : "",
+              label: "home.sections.performance.fields.upload.title",
+              value: "home.sections.performance.fields.upload.value",
+              originalValue: info.details.txLinkSpeed ?? 0,
             },
           ],
         });
       }
 
       sections.push({
-        title: "Network",
+        title: "home.sections.network.title",
         fields: [
           {
-            label: "SSID",
-            value: info.details.ssid ?? "",
+            label: "home.sections.network.fields.ssid.title",
+            value: info.details.ssid ?? "-",
+            originalValue: info.details.ssid,
           },
           {
-            label: "BSSID",
-            value: info.details.bssid ?? "",
+            label: "home.sections.network.fields.bssid.title",
+            value: info.details.bssid ?? "-",
+            originalValue: info.details.bssid,
           },
           {
-            label: "Frequency",
-            value: info.details.frequency
-              ? `${(info.details.frequency / 1000).toFixed(1)} GHz`
-              : "",
+            label: "home.sections.network.fields.frequency.title",
+            value: "home.sections.network.fields.frequency.value",
+            originalValue: parseFloat(
+              ((info.details.frequency ?? 0) / 1000).toFixed(1),
+            ),
           },
         ],
       });
 
       sections.push({
-        title: "IP Configuration",
+        title: "home.sections.ip.title",
         fields: [
           {
-            label: "IP Address",
-            hint: "Can be in IPv4 or IPv6 format.",
-            value: info.details.ipAddress ?? "",
+            label: "home.sections.ip.fields.ip.title",
+            hint: "home.sections.ip.fields.ip.description",
+            value: info.details.ipAddress ?? "-",
+            originalValue: info.details.ipAddress,
           },
           {
-            label: "Subnet Mask",
-            hint: "The subnet mask in IPv4 format.",
-            value: info.details.subnet ?? "",
+            label: "home.sections.ip.fields.mask.title",
+            hint: "home.sections.ip.fields.mask.description",
+            value: info.details.subnet ?? "-",
+            originalValue: info.details.subnet,
           },
         ],
       });
 
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });
@@ -237,12 +253,13 @@ function getSections(info: NetInfoState) {
 
     case NetInfoStateType.wimax:
       sections.push({
-        title: "Connection Properties",
+        title: "home.sections.properties.title",
         fields: [
           {
-            label: "Expensive Connection",
-            hint: "Either energy or monetary.",
-            value: info.details.isConnectionExpensive ? "Yes" : "No",
+            label: "home.sections.properties.fields.expensive_connection.title",
+            hint: "home.sections.properties.fields.expensive_connection.description",
+            value: `home.sections.properties.fields.expensive_connection.value.${info.details.isConnectionExpensive}`,
+            originalValue: info.details.isConnectionExpensive,
           },
         ],
       });

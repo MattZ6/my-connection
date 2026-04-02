@@ -1,14 +1,11 @@
 import { LegendList, type LegendListRenderItemProps } from "@legendapp/list";
 import { Stack } from "expo-router";
 import { useCallback } from "react";
-
+import { useTranslation } from "react-i18next";
 import licenses from "@/assets/licenses.json";
-
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
-
 import { LicenseItem } from "./components/license-item";
-
 import { getStyles } from "./styles";
 
 type License = {
@@ -56,6 +53,7 @@ const parsedLicenses = Object.keys(licenses)
 export function LicensesScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
+  const { t } = useTranslation();
 
   const renderItem = useCallback(
     ({ item }: LegendListRenderItemProps<License>) => {
@@ -80,7 +78,7 @@ export function LicensesScreen() {
           color: colors.text.toString(),
         }}
       >
-        Licenses
+        {t("licenses.meta.title")}
       </Stack.Screen.Title>
 
       <LegendList
