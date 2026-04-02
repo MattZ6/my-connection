@@ -19,6 +19,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@/contexts/theme";
 import { useTheme } from "@/hooks/use-theme";
@@ -109,6 +110,7 @@ function NavigationProvider() {
 
 function TabsNavigation() {
   const { colors, fontFamily } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     ExpoSystemUI.setBackgroundColorAsync(colors.background);
@@ -170,11 +172,15 @@ function TabsNavigation() {
     >
       <NativeTabs.Trigger name="(main)">
         <NativeTabs.Trigger.Icon sf="house" md="home" />
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>
+          {t("tabs.home.title")}
+        </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
         <NativeTabs.Trigger.Icon sf="gear" md="settings" />
-        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>
+          {t("tabs.settings.title")}
+        </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );

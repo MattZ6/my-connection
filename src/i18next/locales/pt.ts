@@ -1,5 +1,13 @@
 export const pt = {
   translation: {
+    tabs: {
+      home: {
+        title: "Início",
+      },
+      settings: {
+        title: "Configurações",
+      },
+    },
     home: {
       meta: {
         title: "Minha Conexão",
