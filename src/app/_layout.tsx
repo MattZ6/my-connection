@@ -1,3 +1,5 @@
+import "@/i18next/i18next";
+
 import {
   Poppins_400Regular,
   Poppins_500Medium,

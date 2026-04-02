@@ -195,6 +195,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     "expo-router",
     "expo-font",
+    "expo-localization",
     ["expo-dev-client", { launchMode: "launcher" }],
     [
       "@sentry/react-native/expo",
