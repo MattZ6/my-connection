@@ -147,6 +147,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version,
   scheme: name,
 
+  platforms: ["ios", "android"],
+
   orientation: "default",
   userInterfaceStyle: "automatic",
 
