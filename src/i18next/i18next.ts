@@ -2,10 +2,18 @@ import { getLocales } from "expo-localization";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+import { SettingsRepository } from "@/repositories/settings";
+
 import en from "./locales/en";
 import pt from "./locales/pt";
 
-export const lng = getLocales()[0].languageCode ?? "en";
+const storedLanguage = SettingsRepository.getLanguage();
+
+export const lng = storedLanguage ?? getLocales()[0].languageCode ?? "en";
+
+if (!storedLanguage) {
+  SettingsRepository.saveLanguage(lng);
+}
 
 i18n.use(initReactI18next).init({
   resources: {

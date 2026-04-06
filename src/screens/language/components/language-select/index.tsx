@@ -5,8 +5,13 @@ import { Pressable, Text, View } from "react-native";
 
 import { Card } from "@/components/ui/card";
 import { SectionDivider } from "@/components/ui/section";
+
 import { useStyles } from "@/hooks/use-styles";
+
+import { SettingsRepository } from "@/repositories/settings";
+
 import { HapticsService } from "@/services/device/haptics";
+
 import { getStyles } from "./styles";
 
 const languages = ["en", "pt"];
@@ -18,6 +23,7 @@ export function LanguageSelect() {
   const handleSelectTheme = useCallback(
     (option: string) => {
       HapticsService.performSelectFeedback();
+      SettingsRepository.saveLanguage(option);
       i18n.changeLanguage(option);
     },
     [i18n.changeLanguage],
