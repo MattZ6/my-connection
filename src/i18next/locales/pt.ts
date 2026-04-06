@@ -299,6 +299,27 @@ export const pt = {
       disclaimer:
         "Não se preocupe, essas informações não\nsairão do seu dispositivo.",
     },
+    language: {
+      meta: {
+        title: "Idioma",
+      },
+      sections: {
+        language: {
+          title: "Idioma",
+          fields: {
+            language: {
+              en: {
+                title: "English",
+                description: "Inglês",
+              },
+              pt: {
+                title: "Português (Brasileiro)",
+              },
+            },
+          },
+        },
+      },
+    },
   },
 };
 

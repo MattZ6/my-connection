@@ -297,6 +297,27 @@ export const en = {
       },
       disclaimer: "Don't worry, this information won't\nleave your device.",
     },
+    language: {
+      meta: {
+        title: "Language",
+      },
+      sections: {
+        language: {
+          title: "Language",
+          fields: {
+            language: {
+              en: {
+                title: "English",
+              },
+              pt: {
+                title: "Português (Brasileiro)",
+                description: "Brazilian Portuguese",
+              },
+            },
+          },
+        },
+      },
+    },
   },
 };
 

@@ -16,6 +16,11 @@ export function PreferencesSectionContent() {
     [router.navigate],
   );
 
+  const handleNavigateToLanguagePage = useCallback(
+    () => router.navigate("/settings/language"),
+    [router.navigate],
+  );
+
   return (
     <Section title={t("settings.sections.preferences.title")}>
       <Card>
@@ -36,7 +41,7 @@ export function PreferencesSectionContent() {
             android: "language",
             ios: "translate",
           }}
-          onPress={handleNavigateToAppearancePage}
+          onPress={handleNavigateToLanguagePage}
         />
       </Card>
     </Section>
