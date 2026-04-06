@@ -7,7 +7,8 @@ type Field = {
   label: string;
   hint?: string;
   value: string;
-  originalValue: string | number | boolean | null;
+  ignoreTranslation?: boolean;
+  originalValue?: string | number | boolean | null;
 };
 
 type Props = {
@@ -28,7 +29,15 @@ export function ConnectionSection({ title, fields }: Props) {
             <SectionItem
               label={t(field.label)}
               hint={field.hint ? t(field.hint) : undefined}
-              value={t(field.value, { count: field.originalValue })}
+              value={
+                field.ignoreTranslation
+                  ? field.value
+                  : t(field.value, {
+                      count: Number.isNaN(field.originalValue)
+                        ? undefined
+                        : field.originalValue,
+                    })
+              }
             />
           </Fragment>
         ))}

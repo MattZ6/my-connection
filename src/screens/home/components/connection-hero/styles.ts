@@ -31,7 +31,6 @@ export function getStyles(theme: ThemeConfig) {
     },
     statsRow: {
       flexDirection: "row",
-      alignItems: "center",
       gap: 16,
     },
     signalStrengthLabel: {
