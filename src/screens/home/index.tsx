@@ -1,19 +1,20 @@
 import {
   type NetInfoState,
   NetInfoStateType,
+  refresh,
   useNetInfo,
 } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
+import { SymbolView } from "expo-symbols";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, ScrollView } from "react-native";
-
+import { Platform, Pressable, ScrollView } from "react-native";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
-
+import { HapticsService } from "@/services/device/haptics";
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSection } from "./components/connection-section";
 import { ConnectionSummary } from "./components/connection-summary";
-
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -279,21 +280,48 @@ function Content() {
   const styles = useStyles(getStyles);
 
   return (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      showsVerticalScrollIndicator={false}
-      style={styles.container}
-      contentContainerStyle={styles.scrollContainer}
-    >
-      <ConnectionHero info={info} />
-      <ConnectionSummary info={info} />
-      {sections.map((section) => (
-        <ConnectionSection
-          key={section.title}
-          title={section.title}
-          fields={section.fields}
-        />
-      ))}
-    </ScrollView>
+    <>
+      <ToolbarActions />
+
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsVerticalScrollIndicator={false}
+        style={styles.container}
+        contentContainerStyle={styles.scrollContainer}
+      >
+        <ConnectionHero info={info} />
+        <ConnectionSummary info={info} />
+        {sections.map((section) => (
+          <ConnectionSection
+            key={section.title}
+            title={section.title}
+            fields={section.fields}
+          />
+        ))}
+      </ScrollView>
+    </>
+  );
+}
+
+function ToolbarActions() {
+  const handleRefresh = useCallback(async () => {
+    HapticsService.performTapFeedback();
+
+    try {
+      await refresh();
+    } catch (_error) {
+      // Falha
+    }
+  }, []);
+
+  return (
+    <Stack.Toolbar placement="right" asChild>
+      <Pressable
+        style={{ padding: 8, marginRight: -8 }}
+        onPress={handleRefresh}
+      >
+        <SymbolView name={{ android: "refresh" }} />
+      </Pressable>
+    </Stack.Toolbar>
   );
 }
