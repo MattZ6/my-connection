@@ -51,7 +51,8 @@ type Field = {
   label: string;
   hint?: string;
   value: string;
-  originalValue: string | number | boolean | null;
+  ignoreTranslation?: boolean;
+  originalValue?: string | number | boolean | null;
 };
 
 function getSections(info: NetInfoState) {
@@ -110,13 +111,13 @@ function getSections(info: NetInfoState) {
             label: "home.sections.ip.fields.ip.title",
             hint: "home.sections.ip.fields.ip.description",
             value: info.details.ipAddress ?? "-",
-            originalValue: info.details.ipAddress,
+            ignoreTranslation: true,
           },
           {
             label: "home.sections.ip.fields.mask.title",
             hint: "home.sections.ip.fields.mask.description",
             value: info.details.subnet ?? "-",
-            originalValue: info.details.subnet,
+            ignoreTranslation: true,
           },
         ],
       });
@@ -227,13 +228,13 @@ function getSections(info: NetInfoState) {
             label: "home.sections.ip.fields.ip.title",
             hint: "home.sections.ip.fields.ip.description",
             value: info.details.ipAddress ?? "-",
-            originalValue: info.details.ipAddress,
+            ignoreTranslation: true,
           },
           {
             label: "home.sections.ip.fields.mask.title",
             hint: "home.sections.ip.fields.mask.description",
             value: info.details.subnet ?? "-",
-            originalValue: info.details.subnet,
+            ignoreTranslation: true,
           },
         ],
       });
