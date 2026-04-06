@@ -195,7 +195,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     "expo-router",
     "expo-font",
-    "expo-localization",
+    [
+      "expo-localization",
+      {
+        supportedLocales: {
+          ios: ["en", "pt"],
+          android: ["en", "pt"],
+        },
+      },
+    ],
     ["expo-dev-client", { launchMode: "launcher" }],
     [
       "@sentry/react-native/expo",
