@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { ScrollView, Text } from "react-native";
 
 import { useStyles } from "@/hooks/use-styles";
@@ -13,6 +14,7 @@ import { getStyles } from "./styles";
 export function AboutScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -23,7 +25,7 @@ export function AboutScreen() {
           color: colors.text.toString(),
         }}
       >
-        About
+        {t("about.meta.title")}
       </Stack.Screen.Title>
 
       <ScrollView
@@ -35,9 +37,7 @@ export function AboutScreen() {
         <AboutSection />
         <DeviceSection />
         <OSSection />
-        <Text style={styles.disclaimer}>
-          Don't worry, this information won't{"\n"}leave your device.
-        </Text>
+        <Text style={styles.disclaimer}>{t("about.disclaimer")}</Text>
       </ScrollView>
     </>
   );

@@ -1,5 +1,6 @@
 import { SymbolView } from "expo-symbols";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
 
 import { useStyles } from "@/hooks/use-styles";
@@ -11,34 +12,17 @@ import { getStyles } from "./styles";
 
 type ThemeValue = "system" | "light" | "dark";
 
-type Option = {
-  label: string;
-  value: ThemeValue;
-};
-
-const options: Option[] = [
-  {
-    label: "System (recommended)",
-    value: "system",
-  },
-  {
-    label: "Light",
-    value: "light",
-  },
-  {
-    label: "Dark",
-    value: "dark",
-  },
-] as const;
+const options: ThemeValue[] = ["system", "light", "dark"];
 
 export function ThemeSelect() {
   const { theme, changeTheme } = useThemeMode();
   const styles = useStyles(getStyles);
+  const { t } = useTranslation();
 
   const handleSelectTheme = useCallback(
-    (option: Option) => {
+    (option: ThemeValue) => {
       HapticsService.performSelectFeedback();
-      changeTheme(option.value);
+      changeTheme(option);
     },
     [changeTheme],
   );
@@ -46,10 +30,12 @@ export function ThemeSelect() {
   return (
     <View style={styles.card}>
       {options.map((option) => (
-        <Pressable key={option.value} onPress={() => handleSelectTheme(option)}>
+        <Pressable key={option} onPress={() => handleSelectTheme(option)}>
           <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>{option.label}</Text>
-            {theme === option.value && (
+            <Text style={styles.buttonText}>
+              {t(`appearance.sections.theme.fields.${option}.title`)}
+            </Text>
+            {theme === option && (
               <SymbolView
                 name={{ android: "check", ios: "checkmark" }}
                 size={20}

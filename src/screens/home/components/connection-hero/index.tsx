@@ -3,6 +3,7 @@ import {
   NetInfoStateType,
 } from "@react-native-community/netinfo";
 import { SymbolView } from "expo-symbols";
+import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
 import { Card } from "@/components/ui/card";
 import { useStyles } from "@/hooks/use-styles";
@@ -33,24 +34,13 @@ const IOS_ICON_MAP = {
   [NetInfoStateType.wimax]: "wifi",
 } as const;
 
-const CONNECTION_TYPE_MAP = {
-  [NetInfoStateType.bluetooth]: "Bluetooth",
-  [NetInfoStateType.cellular]: "Cellular",
-  [NetInfoStateType.ethernet]: "Ethernet",
-  [NetInfoStateType.none]: "None",
-  [NetInfoStateType.other]: "Other",
-  [NetInfoStateType.unknown]: "Unkwon",
-  [NetInfoStateType.vpn]: "VPN",
-  [NetInfoStateType.wifi]: "Wi-Fi",
-  [NetInfoStateType.wimax]: "WiMax",
-};
-
 type Props = {
   info: NetInfoState;
 };
 
 export function ConnectionHero({ info }: Props) {
   const styles = useStyles(getStyles);
+  const { t } = useTranslation();
 
   const showSpeedStats =
     info.type === NetInfoStateType.wifi &&
@@ -79,8 +69,12 @@ export function ConnectionHero({ info }: Props) {
         />
 
         <View>
-          <Text style={styles.heroLabel}>Connection type</Text>
-          <Text style={styles.heroValue}>{CONNECTION_TYPE_MAP[info.type]}</Text>
+          <Text style={styles.heroLabel}>
+            {t("home.sections.hero.fields.connection_type.label")}
+          </Text>
+          <Text style={styles.heroValue}>
+            {t(`home.sections.hero.fields.connection_type.value.${info.type}`)}
+          </Text>
         </View>
       </View>
 
@@ -101,7 +95,9 @@ export function ConnectionHero({ info }: Props) {
               gap: 6,
             }}
           >
-            <Text style={styles.signalStrengthLabel}>Signal Strength</Text>
+            <Text style={styles.signalStrengthLabel}>
+              {t("home.sections.hero.fields.strength.label")}
+            </Text>
             <View style={styles.signalStrengthProgressContainer}>
               <View
                 style={[
@@ -114,16 +110,22 @@ export function ConnectionHero({ info }: Props) {
 
           <View style={styles.statsRow}>
             <SpeedStat
-              label="Speed"
-              value={`${info.details.linkSpeed ?? "-"} Mbps`}
+              label={t("home.sections.hero.fields.speed.label")}
+              value={t("home.sections.hero.fields.speed.value", {
+                count: info.details.linkSpeed ?? 0,
+              })}
             />
             <SpeedStat
-              label="Download"
-              value={`${info.details.rxLinkSpeed ?? "-"} Mbps`}
+              label={t("home.sections.hero.fields.download.label")}
+              value={t("home.sections.hero.fields.download.value", {
+                count: info.details.rxLinkSpeed ?? 0,
+              })}
             />
             <SpeedStat
-              label="Upload"
-              value={`${info.details.txLinkSpeed ?? "-"} Mbps`}
+              label={t("home.sections.hero.fields.upload.label")}
+              value={t("home.sections.hero.fields.upload.value", {
+                count: info.details.txLinkSpeed ?? 0,
+              })}
             />
           </View>
         </>

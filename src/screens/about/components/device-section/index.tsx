@@ -1,41 +1,41 @@
 import * as ExpoDevice from "expo-device";
+import { useTranslation } from "react-i18next";
+
 import { Card } from "@/components/ui/card";
 import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
 
-const DEVICE_TYPE_MAP = {
-  [ExpoDevice.DeviceType.DESKTOP]: "Desktop",
-  [ExpoDevice.DeviceType.PHONE]: "Phone",
-  [ExpoDevice.DeviceType.TABLET]: "Tablet",
-  [ExpoDevice.DeviceType.TV]: "TV",
-  [ExpoDevice.DeviceType.UNKNOWN]: "Unkown",
-};
-
 export function DeviceSection() {
-  const deviceType =
-    DEVICE_TYPE_MAP[ExpoDevice.deviceType ?? ExpoDevice.DeviceType.UNKNOWN] ??
-    "???";
+  const { t } = useTranslation();
 
   return (
-    <Section title="Device">
+    <Section title={t("about.sections.device.title")}>
       <Card>
-        <SectionItem label="Device Type" value={deviceType} />
-
-        <SectionDivider />
-
         <SectionItem
-          label="Manufacturer"
-          value={ExpoDevice.manufacturer ?? ""}
+          label={t("about.sections.device.fields.type.title")}
+          value={t(
+            `about.sections.device.fields.type.value.${ExpoDevice.deviceType}`,
+          )}
         />
 
         <SectionDivider />
 
-        <SectionItem label="Model" value={ExpoDevice.modelName ?? ""} />
+        <SectionItem
+          label={t("about.sections.device.fields.manufacturer.title")}
+          value={ExpoDevice.manufacturer ?? "-"}
+        />
 
         <SectionDivider />
 
         <SectionItem
-          label="Year Class"
-          value={String(ExpoDevice.deviceYearClass ?? "")}
+          label={t("about.sections.device.fields.model.title")}
+          value={ExpoDevice.modelName ?? "-"}
+        />
+
+        <SectionDivider />
+
+        <SectionItem
+          label={t("about.sections.device.fields.year.title")}
+          value={String(ExpoDevice.deviceYearClass ?? "-")}
         />
 
         {ExpoDevice.designName && (
@@ -43,7 +43,9 @@ export function DeviceSection() {
             <SectionDivider />
 
             <SectionItem
-              label="Android Design Name"
+              label={t(
+                "about.sections.device.fields.android_design_name.title",
+              )}
               value={ExpoDevice.designName}
             />
           </>
@@ -54,7 +56,9 @@ export function DeviceSection() {
             <SectionDivider />
 
             <SectionItem
-              label="Android Product Name"
+              label={t(
+                "about.sections.device.fields.android_product_name.title",
+              )}
               value={ExpoDevice.productName}
             />
           </>
