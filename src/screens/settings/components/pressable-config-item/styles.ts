@@ -17,14 +17,10 @@ export function getStyles(theme: ThemeConfig) {
       width: 36,
       height: 36,
       borderRadius: theme.radii["4"],
-      backgroundColor: theme.colors.surface.base,
-      // backgroundColor: Platform.select({
-      //   android: Color.android.dynamic.primaryInverse,
-      //   ios: Color.ios.systemGray4,
-      // }),
+      backgroundColor: theme.colors.brandSurface.base,
     },
     icon: {
-      tintColor: theme.colors.content.base,
+      tintColor: theme.colors.brandContent.base,
     },
     text: {
       flex: 1,

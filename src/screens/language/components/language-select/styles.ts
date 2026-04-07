@@ -25,7 +25,7 @@ export function getStyles(theme: ThemeConfig) {
       color: theme.colors.content.muted,
     },
     icon: {
-      tintColor: theme.colors.content.base,
+      tintColor: theme.colors.brandContent.base,
     },
   });
 }

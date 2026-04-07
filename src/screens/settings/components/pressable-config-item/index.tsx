@@ -29,25 +29,13 @@ export function PressableConfigItem({ label, icon, onPress }: Props) {
     <Pressable onPressIn={HapticsService.performTapFeedback} onPress={onPress}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <SymbolView
-            name={icon}
-            tintColor={styles.icon.tintColor}
-            // tintColor={Platform.select({
-            //   android: Color.android.dynamic.primary,
-            //   ios: Color.ios.label,
-            // })}
-            size={20}
-          />
+          <SymbolView name={icon} tintColor={styles.icon.tintColor} size={20} />
         </View>
 
         <Text style={styles.text}>{label}</Text>
 
         <SymbolView
           name={{ android: "chevron_right", ios: "chevron.right" }}
-          // tintColor={Platform.select({
-          //   android: Color.android.dynamic.outlineVariant,
-          //   ios: Color.ios.placeholderText,
-          // })}
           tintColor={styles.chevron.tintColor}
           size={Platform.select({
             ios: 14,

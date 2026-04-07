@@ -123,10 +123,10 @@ function useTabsNavigationConfig() {
   const { t } = useTranslation();
 
   const backgroundColor = colors.surface.base;
-  const textColor = colors.content.base;
-  const mutedColor = colors.content.muted;
+  const textColor = colors.brandContent.base;
+  const mutedColor = colors.brandContent.muted;
   const font = fontFamily.regular;
-  const indicatorColor = colors.surface.elevated;
+  const indicatorColor = colors.brandSurface.elevated;
 
   const iconColor = useMemo(
     () => ({

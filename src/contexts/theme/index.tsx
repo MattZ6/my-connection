@@ -5,7 +5,7 @@ import { SettingsRepository } from "@/repositories/settings";
 
 import { darkTheme } from "@/theme/dark";
 import { lightTheme } from "@/theme/light";
-
+import { generateSystemTheme } from "@/theme/system";
 import type { ThemeContextTypes, ThemeProviderTypes } from "./types";
 
 export const ThemeContext = createContext({} as ThemeContextTypes.Context);
@@ -30,13 +30,18 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
     return appColorScheme;
   }, [appColorScheme, deviceColorScheme]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Consider deviceColorScheme to change colors
   const themeConfig = useMemo(() => {
-    if (resolvedMode === "light") {
+    if (appColorScheme === "system") {
+      return generateSystemTheme();
+    }
+
+    if (appColorScheme === "light") {
       return lightTheme;
     }
 
     return darkTheme;
-  }, [resolvedMode]);
+  }, [appColorScheme, deviceColorScheme]);
 
   const changeTheme = useCallback((input: ThemeContextTypes.ThemeOption) => {
     setAppColorScheme(input);

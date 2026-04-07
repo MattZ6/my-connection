@@ -14,7 +14,7 @@ export function getStyles(theme: ThemeConfig) {
       gap: 24,
     },
     heroIcon: {
-      tintColor: theme.colors.content.base,
+      tintColor: theme.colors.brandContent.base,
     },
     heroLabel: {
       fontFamily: theme.fontFamily.regular,
@@ -43,7 +43,7 @@ export function getStyles(theme: ThemeConfig) {
     signalStrengthProgressContainer: {
       height: 8,
       borderRadius: theme.radii["4"],
-      backgroundColor: theme.colors.surface.base,
+      backgroundColor: theme.colors.brandSurface.base,
       // backgroundColor: Platform.select({
       //   android: Color.android.dynamic.surfaceContainerHigh,
       //   ios: Color.ios.secondarySystemFill,
@@ -52,7 +52,7 @@ export function getStyles(theme: ThemeConfig) {
     signalStrengthProgress: {
       height: 8,
       borderRadius: theme.radii["4"],
-      backgroundColor: theme.colors.content.base,
+      backgroundColor: theme.colors.brandContent.base,
       // backgroundColor: Platform.select({
       //   android: Color.android.dynamic.primary,
       //   ios: Color.ios.systemBlue,
