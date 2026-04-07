@@ -137,12 +137,6 @@
         "licenseUrl": "https://github.com/mrousavy/react-native-mmkv",
         "parents": "my-connection"
     },
-    "react-native-nitro-modules@0.35.3": {
-        "licenses": "MIT",
-        "repository": "https://github.com/mrousavy/nitro",
-        "licenseUrl": "https://github.com/mrousavy/nitro",
-        "parents": "my-connection"
-    },
     "react-native-safe-area-context@5.6.2": {
         "licenses": "MIT",
         "repository": "https://github.com/AppAndFlow/react-native-safe-area-context",
@@ -153,12 +147,6 @@
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-screens",
         "licenseUrl": "https://github.com/software-mansion/react-native-screens/raw/master/LICENSE",
-        "parents": "my-connection"
-    },
-    "react-native-unistyles@3.2.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/jpudysz/react-native-unistyles",
-        "licenseUrl": "https://github.com/jpudysz/react-native-unistyles",
         "parents": "my-connection"
     },
     "react-native@0.83.4": {
