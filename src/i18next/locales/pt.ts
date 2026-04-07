@@ -228,7 +228,7 @@ export const pt = {
               title: "Nome",
             },
             package: {
-              title: "Pacote",
+              title: "Identificador",
             },
             version: {
               title: "Versão",

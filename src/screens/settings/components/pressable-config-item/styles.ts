@@ -16,25 +16,25 @@ export function getStyles(theme: ThemeConfig) {
       justifyContent: "center",
       width: 36,
       height: 36,
-      borderRadius: 8,
-      backgroundColor: theme.colors.background,
+      borderRadius: theme.radii["4"],
+      backgroundColor: theme.colors.surface.base,
       // backgroundColor: Platform.select({
       //   android: Color.android.dynamic.primaryInverse,
       //   ios: Color.ios.systemGray4,
       // }),
     },
     icon: {
-      tintColor: theme.colors.text,
+      tintColor: theme.colors.content.base,
     },
     text: {
       flex: 1,
       fontFamily: theme.fontFamily.medium,
-      fontSize: 16,
-      lineHeight: 24,
-      color: theme.colors.text,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
+      color: theme.colors.content.base,
     },
     chevron: {
-      tintColor: theme.colors.textSecondary,
+      tintColor: theme.colors.content.muted,
     },
   });
 }

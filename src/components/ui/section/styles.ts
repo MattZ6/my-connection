@@ -9,11 +9,11 @@ export function getSectionStyles(theme: ThemeConfig) {
     },
     title: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 12,
-      lineHeight: 20,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
       textTransform: "uppercase",
       letterSpacing: 1,
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
   });
 }
@@ -33,23 +33,23 @@ export function getSectionItemStyles(theme: ThemeConfig, direction: Direction) {
     },
     label: {
       fontFamily: theme.fontFamily.medium,
-      fontSize: 16,
-      lineHeight: 24,
-      color: theme.colors.text,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
+      color: theme.colors.content.base,
     },
     hint: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 20,
-      color: theme.colors.textSecondary,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      color: theme.colors.content.muted,
     },
     value: {
       fontFamily: theme.fontFamily.regular,
       flexShrink: 0,
-      fontSize: 16,
-      lineHeight: 24,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
       textAlign: direction === "row" ? "right" : "left",
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
   });
 }
@@ -59,7 +59,7 @@ export function getSectionDividerStyles(theme: ThemeConfig) {
     divider: {
       height: 1,
       marginHorizontal: 16,
-      backgroundColor: theme.colors.divider,
+      backgroundColor: theme.colors.border.default,
     },
   });
 }

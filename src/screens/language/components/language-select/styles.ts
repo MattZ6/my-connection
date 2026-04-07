@@ -3,10 +3,6 @@ import type { ThemeConfig } from "@/theme/types";
 
 export function getStyles(theme: ThemeConfig) {
   return StyleSheet.create({
-    card: {
-      borderRadius: 16,
-      backgroundColor: theme.colors.card,
-    },
     buttonContent: {
       flexDirection: "row",
       gap: 16,
@@ -18,18 +14,18 @@ export function getStyles(theme: ThemeConfig) {
     },
     buttonText: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 16,
-      lineHeight: 24,
-      color: theme.colors.text,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
+      color: theme.colors.content.base,
     },
     buttonDescription: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 24,
-      color: theme.colors.textSecondary,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      color: theme.colors.content.muted,
     },
     icon: {
-      tintColor: theme.colors.text,
+      tintColor: theme.colors.content.base,
     },
   });
 }

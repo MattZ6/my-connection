@@ -5,7 +5,7 @@ export function getStyles(theme: ThemeConfig) {
   return StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.colors.background,
+      backgroundColor: theme.colors.surface.base,
     },
   });
 }

@@ -9,17 +9,17 @@ export function getStyles(theme: ThemeConfig) {
     },
     label: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 12,
-      lineHeight: 20,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
       textTransform: "uppercase",
       letterSpacing: 1,
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
     value: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 20,
-      lineHeight: 32,
-      color: theme.colors.textSecondary,
+      fontSize: theme.fontSizes.title.fontSize,
+      lineHeight: theme.fontSizes.title.lineHeight,
+      color: theme.colors.content.base,
     },
   });
 }

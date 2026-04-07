@@ -4,7 +4,6 @@ import { ScrollView } from "react-native";
 
 import { Section } from "@/components/ui/section";
 import { useStyles } from "@/hooks/use-styles";
-
 import { useTheme } from "@/hooks/use-theme";
 
 import { ThemeSelect } from "./components/theme-select";
@@ -22,7 +21,7 @@ export function AppearanceScreen() {
       <Stack.Screen.Title
         style={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
       >
         {t("appearance.meta.title")}

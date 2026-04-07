@@ -1,7 +1,6 @@
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { ScrollView, Text } from "react-native";
-
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -22,7 +21,7 @@ export function AboutScreen() {
       <Stack.Screen.Title
         style={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
       >
         {t("about.meta.title")}

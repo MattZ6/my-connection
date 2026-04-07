@@ -1,13 +1,14 @@
 import type { ReactNode } from "react";
+import type { Theme } from "@/theme/types";
 
 export namespace ThemeContextTypes {
-  export type ResolvedTheme = "light" | "dark";
-  export type Theme = "system" | ResolvedTheme;
+  export type ResolvedThemeOption = "light" | "dark";
+  export type ThemeOption = "system" | ResolvedThemeOption;
 
-  export type Context = {
-    resolvedTheme: ResolvedTheme;
-    theme: Theme;
-    changeTheme: (input: Theme) => void;
+  export type Context = Theme & {
+    resolvedTheme: ResolvedThemeOption;
+    theme: ThemeOption;
+    changeTheme: (input: ThemeOption) => void;
   };
 }
 

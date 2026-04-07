@@ -18,7 +18,7 @@ export function LanguageScreen() {
       <Stack.Screen.Title
         style={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
       >
         {t("language.meta.title")}

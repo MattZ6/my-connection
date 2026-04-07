@@ -6,8 +6,7 @@ export function getStyles(theme: ThemeConfig) {
   return StyleSheet.create({
     divider: {
       height: 1,
-      marginHorizontal: 16,
-      backgroundColor: theme.colors.divider,
+      backgroundColor: theme.colors.border.default,
     },
   });
 }

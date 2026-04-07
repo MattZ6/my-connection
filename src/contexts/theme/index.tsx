@@ -3,41 +3,54 @@ import { useColorScheme } from "react-native";
 
 import { SettingsRepository } from "@/repositories/settings";
 
+import { darkTheme } from "@/theme/dark";
+import { lightTheme } from "@/theme/light";
+
 import type { ThemeContextTypes, ThemeProviderTypes } from "./types";
 
 export const ThemeContext = createContext({} as ThemeContextTypes.Context);
 
 export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
-  const deviceTheme = useColorScheme();
-  const [appTheme, setAppTheme] = useState<ThemeContextTypes.Theme>(() => {
-    const storedTheme = SettingsRepository.getTheme();
-    return storedTheme ?? "system";
-  });
+  const deviceColorScheme = useColorScheme();
+  const [appColorScheme, setAppColorScheme] =
+    useState<ThemeContextTypes.ThemeOption>(() => {
+      const storedTheme = SettingsRepository.getTheme();
+      return storedTheme ?? "system";
+    });
 
   const resolvedMode = useMemo(() => {
-    if (appTheme === "system") {
-      if (deviceTheme === "unspecified" || !deviceTheme) {
+    if (appColorScheme === "system") {
+      if (deviceColorScheme === "unspecified" || !deviceColorScheme) {
         return "light";
       }
 
-      return deviceTheme;
+      return deviceColorScheme;
     }
 
-    return appTheme;
-  }, [appTheme, deviceTheme]);
+    return appColorScheme;
+  }, [appColorScheme, deviceColorScheme]);
 
-  const changeTheme = useCallback((input: ThemeContextTypes.Theme) => {
-    setAppTheme(input);
+  const themeConfig = useMemo(() => {
+    if (resolvedMode === "light") {
+      return lightTheme;
+    }
+
+    return darkTheme;
+  }, [resolvedMode]);
+
+  const changeTheme = useCallback((input: ThemeContextTypes.ThemeOption) => {
+    setAppColorScheme(input);
     SettingsRepository.saveTheme(input);
   }, []);
 
   const contextValue = useMemo<ThemeContextTypes.Context>(
     () => ({
-      theme: appTheme,
+      theme: appColorScheme,
       resolvedTheme: resolvedMode,
       changeTheme,
+      ...themeConfig,
     }),
-    [appTheme, resolvedMode, changeTheme],
+    [appColorScheme, resolvedMode, changeTheme, themeConfig],
   );
 
   return (

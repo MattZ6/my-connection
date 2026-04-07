@@ -15,23 +15,23 @@ export function getStyles(theme: ThemeConfig) {
     },
     label: {
       fontFamily: theme.fontFamily.medium,
-      fontSize: 18,
-      lineHeight: 32,
-      color: theme.colors.text,
+      fontSize: theme.fontSizes.subtitle.fontSize,
+      lineHeight: theme.fontSizes.subtitle.lineHeight,
+      color: theme.colors.content.base,
     },
     hint: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 20,
-      color: theme.colors.textSecondary,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      color: theme.colors.content.muted,
     },
     value: {
       fontFamily: theme.fontFamily.regular,
       flexShrink: 0,
-      fontSize: 16,
-      lineHeight: 24,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
       textAlign: "right",
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
   });
 }
