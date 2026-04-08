@@ -5,9 +5,13 @@ import {
 import { SymbolView } from "expo-symbols";
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
+
 import { Card } from "@/components/ui/card";
+
 import { useStyles } from "@/hooks/use-styles";
-import { SpeedStat } from "./components/speed-stat";
+
+import { Stat } from "./components/stat";
+
 import { getStyles } from "./styles";
 
 const ANDROID_ICON_MAP = {
@@ -56,16 +60,12 @@ export function ConnectionHero({ info }: Props) {
     <Card style={styles.container}>
       <View style={styles.hero}>
         <SymbolView
+          size={48}
+          tintColor={styles.heroIcon.tintColor}
           name={{
             ios: IOS_ICON_MAP[info.type],
             android: ANDROID_ICON_MAP[info.type],
           }}
-          tintColor={styles.heroIcon.tintColor}
-          // tintColor={Platform.select({
-          //   android: Color.android.dynamic.primary,
-          //   ios: Color.ios.systemBlue,
-          // })}
-          size={48}
         />
 
         <View>
@@ -80,8 +80,8 @@ export function ConnectionHero({ info }: Props) {
 
       {showCarrierStats && (
         <View style={styles.statsRow}>
-          <SpeedStat label="Carrier" value={info.details.carrier ?? "-"} />
-          <SpeedStat
+          <Stat label="Carrier" value={info.details.carrier || "-"} />
+          <Stat
             label="Generation"
             value={info.details.cellularGeneration || "-"}
           />
@@ -109,19 +109,19 @@ export function ConnectionHero({ info }: Props) {
           </View>
 
           <View style={styles.statsRow}>
-            <SpeedStat
+            <Stat
               label={t("home.sections.hero.fields.speed.label")}
               value={t("home.sections.hero.fields.speed.value", {
                 count: info?.details?.linkSpeed || 0,
               })}
             />
-            <SpeedStat
+            <Stat
               label={t("home.sections.hero.fields.download.label")}
               value={t("home.sections.hero.fields.download.value", {
                 count: info?.details?.rxLinkSpeed || 0,
               })}
             />
-            <SpeedStat
+            <Stat
               label={t("home.sections.hero.fields.upload.label")}
               value={t("home.sections.hero.fields.upload.value", {
                 count: info?.details?.txLinkSpeed || 0,
