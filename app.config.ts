@@ -174,6 +174,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         resizeMode: "contain",
       },
     },
+    entitlements: {
+      "com.apple.developer.networking.wifi-info": true,
+    },
   },
 
   android: {
@@ -204,6 +207,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           ios: ["en", "pt"],
           android: ["en", "pt"],
         },
+      },
+    ],
+
+    [
+      "expo-location",
+      {
+        locationAlwaysAndWhenInUsePermission:
+          "Allow $(PRODUCT_NAME) to use your location to read your network SSID.",
+        locationWhenInUsePermission:
+          "Allow $(PRODUCT_NAME) to use your location to read your network SSID.",
+        isAndroidForegroundServiceEnabled: true,
       },
     ],
     ["expo-dev-client", { launchMode: "launcher" }],
