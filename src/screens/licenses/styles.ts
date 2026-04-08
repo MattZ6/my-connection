@@ -7,5 +7,8 @@ export function getStyles(theme: ThemeConfig) {
       flex: 1,
       backgroundColor: theme.colors.surface.base,
     },
+    scrollContainer: {
+      paddingVertical: 16,
+    },
   });
 }

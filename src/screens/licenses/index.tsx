@@ -93,6 +93,7 @@ export function LicensesScreen() {
         contentInsetAdjustmentBehavior="automatic"
         showsVerticalScrollIndicator={false}
         style={styles.container}
+        contentContainerStyle={styles.scrollContainer}
         data={parsedLicenses}
         renderItem={renderItem}
         keyExtractor={(item) => item.key}
