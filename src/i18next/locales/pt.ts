@@ -215,7 +215,9 @@ export const pt = {
         android_dynamic_colors: {
           fields: {
             dynamic_colors: {
-              title: "Usar cores dinâmicas",
+              title: "Usar cores do sistema",
+              description:
+                "Adapta as cores com base no tema e papel de parede do dispositivo.",
             },
           },
         },
