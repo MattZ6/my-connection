@@ -17,7 +17,10 @@ export function getStyles(theme: ThemeConfig) {
       width: 36,
       height: 36,
       borderRadius: theme.radii["4"],
-      backgroundColor: theme.colors.brandSurface.base,
+      backgroundColor:
+        theme.theme === "system"
+          ? theme.colors.brandSurface.base
+          : theme.colors.brandSurface.elevated,
     },
     icon: {
       tintColor: theme.colors.brandContent.base,

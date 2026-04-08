@@ -44,19 +44,11 @@ export function getStyles(theme: ThemeConfig) {
       height: 8,
       borderRadius: theme.radii["4"],
       backgroundColor: theme.colors.brandSurface.base,
-      // backgroundColor: Platform.select({
-      //   android: Color.android.dynamic.surfaceContainerHigh,
-      //   ios: Color.ios.secondarySystemFill,
-      // }),
     },
     signalStrengthProgress: {
       height: 8,
       borderRadius: theme.radii["4"],
       backgroundColor: theme.colors.brandContent.base,
-      // backgroundColor: Platform.select({
-      //   android: Color.android.dynamic.primary,
-      //   ios: Color.ios.systemBlue,
-      // }
     },
   });
 }

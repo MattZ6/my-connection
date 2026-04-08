@@ -11,7 +11,7 @@ export const colors = {
 
   brandSurface: {
     base: palette.gray["1"],
-    elevated: palette.gray["1"],
+    elevated: palette.gray["4"],
   },
 
   content: {
@@ -37,7 +37,7 @@ export const darkColors = {
 
   brandSurface: {
     base: darkPalette.gray["1"],
-    elevated: darkPalette.gray["1"],
+    elevated: darkPalette.gray["4"],
   },
   content: {
     base: darkPalette.gray["12"],
