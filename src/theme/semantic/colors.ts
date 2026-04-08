@@ -54,16 +54,28 @@ export const darkColors = {
   },
 };
 
-export function generateSystemColors() {
+type GenerateSystemColorsInput = {
+  useDynamicColors?: boolean;
+};
+
+export function generateSystemColors(
+  input: GenerateSystemColorsInput = { useDynamicColors: true },
+) {
+  let androidMaterialColor = Color.android.material;
+
+  if (input.useDynamicColors) {
+    androidMaterialColor = Color.android.dynamic;
+  }
+
   return {
     surface: {
       base: Platform.select({
-        android: Color.android.dynamic.surface,
+        android: androidMaterialColor.surface,
         ios: Color.ios.systemBackground,
         default: "",
       }),
       elevated: Platform.select({
-        android: Color.android.dynamic.surfaceContainerLow,
+        android: androidMaterialColor.surfaceContainerLow,
         ios: Color.ios.secondarySystemBackground,
         default: "",
       }),
@@ -71,12 +83,12 @@ export function generateSystemColors() {
 
     brandSurface: {
       base: Platform.select({
-        android: Color.android.dynamic.surfaceContainerHigh,
+        android: androidMaterialColor.surfaceContainerHigh,
         ios: Color.ios.systemBackground,
         default: "",
       }),
       elevated: Platform.select({
-        android: Color.android.dynamic.primaryInverse,
+        android: androidMaterialColor.primaryInverse,
         ios: Color.ios.secondarySystemBackground,
         default: "",
       }),
@@ -84,12 +96,12 @@ export function generateSystemColors() {
 
     brandContent: {
       base: Platform.select({
-        android: Color.android.dynamic.primary,
+        android: androidMaterialColor.primary,
         ios: Color.ios.systemBlue,
         default: "",
       }),
       muted: Platform.select({
-        android: Color.android.dynamic.onSurfaceVariant,
+        android: androidMaterialColor.onSurfaceVariant,
         ios: Color.ios.system,
         default: "",
       }),
@@ -97,12 +109,12 @@ export function generateSystemColors() {
 
     content: {
       base: Platform.select({
-        android: Color.android.dynamic.onSurface,
+        android: androidMaterialColor.onSurface,
         ios: Color.ios.label,
         default: "",
       }),
       muted: Platform.select({
-        android: Color.android.dynamic.onSurfaceVariant,
+        android: androidMaterialColor.onSurfaceVariant,
         ios: Color.ios.secondaryLabel,
         default: "",
       }),
@@ -110,7 +122,7 @@ export function generateSystemColors() {
 
     border: {
       default: Platform.select({
-        android: Color.android.dynamic.surfaceContainerHighest,
+        android: androidMaterialColor.surfaceContainerHighest,
         ios: Color.ios.separator,
         default: "",
       }),

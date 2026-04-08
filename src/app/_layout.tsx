@@ -176,7 +176,6 @@ function TabsNavigation() {
     settingsLabel,
     backgroundColor,
     iconColor,
-    indicatorColor,
     labelStyle,
     rippleColor,
   } = useTabsNavigationConfig();
@@ -187,11 +186,13 @@ function TabsNavigation() {
       backgroundColor={backgroundColor}
       iconColor={iconColor}
       labelStyle={labelStyle}
-      indicatorColor={indicatorColor}
       rippleColor={rippleColor}
     >
       <NativeTabs.Trigger name="(main)">
-        <NativeTabs.Trigger.Icon sf="house" md="home" />
+        <NativeTabs.Trigger.Icon
+          sf={{ default: "house", selected: "house.fill" }}
+          md="home"
+        />
         <NativeTabs.Trigger.Label>{homeLabel}</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 
@@ -201,80 +202,6 @@ function TabsNavigation() {
       </NativeTabs.Trigger>
     </NativeTabs>
   );
-
-  // const { colors, fontFamily } = useTheme();
-  // const { t } = useTranslation();
-
-  // useEffect(() => {
-  //   ExpoSystemUI.setBackgroundColorAsync(colors.surface.base);
-  // }, [colors.surface.base]);
-
-  // return (
-  //   <NativeTabs
-  //     screenListeners={screenListeners}
-  //     backgroundColor={colors.surface.base}
-  //     // iconColor={Platform.select({
-  //     //   android: {
-  //     //     default: Color.android.dynamic.onSurfaceVariant,
-  //     //     selected: Color.android.dynamic.primary,
-  //     //   },
-  //     //   ios: {
-  //     //     default: Color.ios.label,
-  //     //     selected: Color.ios.systemBlue,
-  //     //   },
-  //     // })}
-  //     iconColor={{
-  //       default: colors.content.muted,
-  //       selected: colors.content.base,
-  //     }}
-  //     // labelStyle={Platform.select({
-  //     //   android: {
-  //     //     default: {
-  //     //       color: Color.android.dynamic.onSurfaceVariant,
-  //     //     },
-  //     //     selected: {
-  //     //       color: Color.android.dynamic.primary,
-  //     //     },
-  //     //   },
-  //     //   ios: {
-  //     //     default: {
-  //     //       color: Color.ios.label,
-  //     //     },
-  //     //     selected: {
-  //     //       color: Color.ios.systemBlue,
-  //     //     },
-  //     //   },
-  //     // })}
-  //     labelStyle={{
-  //       default: {
-  //         fontFamily: fontFamily.regular,
-  //         color: colors.content.muted,
-  //       },
-  //       selected: {
-  //         fontFamily: fontFamily.regular,
-  //         color: colors.content.base,
-  //       },
-  //     }}
-  //     // indicatorColor={Color.android.dynamic.primaryInverse}
-  //     // tintColor={Color.android.dynamic.primary}
-  //     indicatorColor={colors.surface.elevated}
-  //     rippleColor={colors.surface.elevated}
-  //     // tintColor={colors.text}
-  //   >
-  //     <NativeTabs.Trigger name="(main)">
-  //       <NativeTabs.Trigger.Icon sf="house" md="home" />
-  //       <NativeTabs.Trigger.Label>
-  //         {t("tabs.home.title")}
-  //       </NativeTabs.Trigger.Label>
-  //     </NativeTabs.Trigger>
-  //     <NativeTabs.Trigger name="settings">
-  //       <NativeTabs.Trigger.Icon sf="gear" md="settings" />
-  //       <NativeTabs.Trigger.Label>
-  //         {t("tabs.settings.title")}
-  //       </NativeTabs.Trigger.Label>
-  //     </NativeTabs.Trigger>
-  //   </NativeTabs>
-  // );
 }
 
 let WrappedRootLayout: React.ComponentType = RootLayout;

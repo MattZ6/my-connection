@@ -3,11 +3,15 @@ import { fontFamily, fontSizes } from "./semantic/text";
 
 import { radii } from "./tokens/radii";
 
-export function generateSystemTheme() {
+type GenerateSystemThemeInput = {
+  useDynamicColors?: boolean;
+};
+
+export function generateSystemTheme(input?: GenerateSystemThemeInput) {
   return {
     fontFamily,
     fontSizes,
-    colors: generateSystemColors(),
+    colors: generateSystemColors(input),
     radii,
   };
 }

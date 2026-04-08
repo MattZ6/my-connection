@@ -1,4 +1,10 @@
-import { createContext, useCallback, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useColorScheme } from "react-native";
 
 import { SettingsRepository } from "@/repositories/settings";
@@ -11,6 +17,16 @@ import type { ThemeContextTypes, ThemeProviderTypes } from "./types";
 export const ThemeContext = createContext({} as ThemeContextTypes.Context);
 
 export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
+  const [isUsingAndroidDynamicColors, setIsUsingAndroidDynamicColors] =
+    useState(() => {
+      const storedValue = SettingsRepository.getAndroidDynamicColorsFlag();
+
+      if (storedValue === null) {
+        return true;
+      }
+
+      return storedValue;
+    });
   const deviceColorScheme = useColorScheme();
   const [appColorScheme, setAppColorScheme] =
     useState<ThemeContextTypes.ThemeOption>(() => {
@@ -33,7 +49,9 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
   // biome-ignore lint/correctness/useExhaustiveDependencies: Consider deviceColorScheme to change colors
   const themeConfig = useMemo(() => {
     if (appColorScheme === "system") {
-      return generateSystemTheme();
+      return generateSystemTheme({
+        useDynamicColors: isUsingAndroidDynamicColors,
+      });
     }
 
     if (appColorScheme === "light") {
@@ -41,11 +59,23 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
     }
 
     return darkTheme;
-  }, [appColorScheme, deviceColorScheme]);
+  }, [appColorScheme, isUsingAndroidDynamicColors, deviceColorScheme]);
 
   const changeTheme = useCallback((input: ThemeContextTypes.ThemeOption) => {
     setAppColorScheme(input);
     SettingsRepository.saveTheme(input);
+  }, []);
+
+  useEffect(
+    () =>
+      SettingsRepository.saveAndroidDynamicColorsFlag(
+        isUsingAndroidDynamicColors,
+      ),
+    [isUsingAndroidDynamicColors],
+  );
+
+  const toggleAndroidDynamicColors = useCallback(() => {
+    setIsUsingAndroidDynamicColors((previousValue) => !previousValue);
   }, []);
 
   const contextValue = useMemo<ThemeContextTypes.Context>(
@@ -53,9 +83,18 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
       theme: appColorScheme,
       resolvedTheme: resolvedMode,
       changeTheme,
+      isUsingAndroidDynamicColors,
+      toggleAndroidDynamicColors,
       ...themeConfig,
     }),
-    [appColorScheme, resolvedMode, changeTheme, themeConfig],
+    [
+      appColorScheme,
+      resolvedMode,
+      changeTheme,
+      themeConfig,
+      isUsingAndroidDynamicColors,
+      toggleAndroidDynamicColors,
+    ],
   );
 
   return (

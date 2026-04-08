@@ -3,9 +3,11 @@ import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
 
 import { Section } from "@/components/ui/section";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
+import { DynamicColorsToggle } from "./components/dynamic-colors-toggle";
 import { ThemeSelect } from "./components/theme-select";
 
 import { getStyles } from "./styles";
@@ -35,6 +37,10 @@ export function AppearanceScreen() {
       >
         <Section title={t("appearance.sections.theme.title")}>
           <ThemeSelect />
+        </Section>
+
+        <Section>
+          <DynamicColorsToggle />
         </Section>
       </ScrollView>
     </>
