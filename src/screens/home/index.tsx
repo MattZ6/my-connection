@@ -343,7 +343,7 @@ function ToolbarActions() {
       )}
 
       {Platform.OS === "ios" && (
-        <Stack.Toolbar.Button>
+        <Stack.Toolbar.Button onPress={handleRefresh}>
           <Stack.Toolbar.Icon sf="arrow.clockwise" />
         </Stack.Toolbar.Button>
       )}
