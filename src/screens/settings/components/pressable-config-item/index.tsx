@@ -29,7 +29,14 @@ export function PressableConfigItem({ label, icon, onPress }: Props) {
     <Pressable onPressIn={HapticsService.performTapFeedback} onPress={onPress}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <SymbolView name={icon} tintColor={styles.icon.tintColor} size={20} />
+          <SymbolView
+            name={icon}
+            tintColor={styles.icon.tintColor}
+            size={Platform.select({
+              ios: 20,
+              android: 24,
+            })}
+          />
         </View>
 
         <Text style={styles.text}>{label}</Text>
@@ -38,7 +45,7 @@ export function PressableConfigItem({ label, icon, onPress }: Props) {
           name={{ android: "chevron_right", ios: "chevron.right" }}
           tintColor={styles.chevron.tintColor}
           size={Platform.select({
-            ios: 14,
+            ios: 12,
             android: 24,
           })}
         />
