@@ -15,7 +15,7 @@ export default function SettingsStack() {
         headerTransparent: isIos,
         headerStyle: {
           backgroundColor: Platform.select({
-            android: colors.surface.elevated.toString(),
+            android: colors.surface.base.toString(),
             ios: "transparent",
           }),
         },

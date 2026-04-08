@@ -8,7 +8,7 @@ export function getStyles(theme: ThemeConfig) {
       backgroundColor: theme.colors.surface.base,
     },
     scrollContainer: {
-      paddingVertical: 32,
+      paddingVertical: 16,
       paddingHorizontal: 16,
       gap: 32,
     },
