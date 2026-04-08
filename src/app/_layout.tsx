@@ -3,6 +3,8 @@ import "@/i18next/i18next";
 import {
   Poppins_400Regular,
   Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
 import {
@@ -71,6 +73,8 @@ function RootLayout() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
   });
 
   useEffect(() => {
@@ -178,6 +182,7 @@ function TabsNavigation() {
     iconColor,
     labelStyle,
     rippleColor,
+    indicatorColor,
   } = useTabsNavigationConfig();
 
   return (
@@ -186,6 +191,7 @@ function TabsNavigation() {
       backgroundColor={backgroundColor}
       iconColor={iconColor}
       labelStyle={labelStyle}
+      indicatorColor={indicatorColor}
       rippleColor={rippleColor}
     >
       <NativeTabs.Trigger name="(main)">

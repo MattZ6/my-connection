@@ -9,12 +9,16 @@ import { SymbolView } from "expo-symbols";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, Pressable, ScrollView } from "react-native";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { HapticsService } from "@/services/device/haptics";
+
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSection } from "./components/connection-section";
 import { ConnectionSummary } from "./components/connection-summary";
+
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -28,11 +32,14 @@ export function HomeScreen() {
       <Stack.Screen.Title
         large={isIos}
         largeStyle={{
-          fontFamily: fontFamily.medium,
+          fontFamily: fontFamily.bold,
           color: colors.content.base.toString(),
         }}
         style={{
-          fontFamily: fontFamily.medium,
+          fontFamily: Platform.select({
+            android: fontFamily.medium,
+            ios: fontFamily.semiBold,
+          }),
           color: colors.content.base.toString(),
         }}
       >
