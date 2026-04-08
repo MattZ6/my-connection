@@ -189,6 +189,9 @@ export const pt = {
           },
         },
       },
+      disclaimer: {
+        text: "Este app não coleta dados pessoais.\nTodas as informações permanecem no seu dispositivo.",
+      },
     },
     appearance: {
       meta: {

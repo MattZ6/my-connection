@@ -1,10 +1,14 @@
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { AboutSectionContent } from "./components/about-section-content";
 import { PreferencesSectionContent } from "./components/preferences-section-content";
+import { PrivacyDisclaimer } from "./components/privacy-disclaimer";
+
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -41,6 +45,7 @@ export function SettingsScreen() {
       >
         <PreferencesSectionContent />
         <AboutSectionContent />
+        <PrivacyDisclaimer />
       </ScrollView>
     </>
   );

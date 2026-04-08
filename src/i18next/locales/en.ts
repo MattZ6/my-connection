@@ -188,6 +188,9 @@ export const en = {
           },
         },
       },
+      disclaimer: {
+        text: "This app doesn't collect personal data.\nAll information stays on your device.",
+      },
     },
     appearance: {
       meta: {
