@@ -19,11 +19,14 @@ export function SettingsScreen() {
       <Stack.Screen.Title
         large={isIos}
         largeStyle={{
-          fontFamily: fontFamily.medium,
+          fontFamily: fontFamily.bold,
           color: colors.content.base.toString(),
         }}
         style={{
-          fontFamily: fontFamily.medium,
+          fontFamily: Platform.select({
+            android: fontFamily.medium,
+            ios: fontFamily.semiBold,
+          }),
           color: colors.content.base.toString(),
         }}
       >

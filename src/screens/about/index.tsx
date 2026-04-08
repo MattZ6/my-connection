@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { ScrollView, Text } from "react-native";
+import { Platform, ScrollView, Text } from "react-native";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -20,7 +21,10 @@ export function AboutScreen() {
       <Stack.Screen.BackButton displayMode="minimal" />
       <Stack.Screen.Title
         style={{
-          fontFamily: fontFamily.medium,
+          fontFamily: Platform.select({
+            android: fontFamily.medium,
+            ios: fontFamily.semiBold,
+          }),
           color: colors.content.base.toString(),
         }}
       >

@@ -1,10 +1,14 @@
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { ScrollView } from "react-native";
+import { Platform, ScrollView } from "react-native";
+
 import { Section } from "@/components/ui/section";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { LanguageSelect } from "./components/language-select";
+
 import { getStyles } from "./styles";
 
 export function LanguageScreen() {
@@ -17,7 +21,10 @@ export function LanguageScreen() {
       <Stack.Screen.BackButton displayMode="minimal" />
       <Stack.Screen.Title
         style={{
-          fontFamily: fontFamily.medium,
+          fontFamily: Platform.select({
+            android: fontFamily.medium,
+            ios: fontFamily.semiBold,
+          }),
           color: colors.content.base.toString(),
         }}
       >

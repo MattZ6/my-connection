@@ -2,10 +2,15 @@ import { LegendList, type LegendListRenderItemProps } from "@legendapp/list";
 import { Stack } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { Platform } from "react-native";
+
 import licenses from "@/assets/licenses.json";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { LicenseItem } from "./components/license-item";
+
 import { getStyles } from "./styles";
 
 type License = {
@@ -74,7 +79,10 @@ export function LicensesScreen() {
       <Stack.Screen.BackButton displayMode="minimal" />
       <Stack.Screen.Title
         style={{
-          fontFamily: fontFamily.medium,
+          fontFamily: Platform.select({
+            android: fontFamily.medium,
+            ios: fontFamily.semiBold,
+          }),
           color: colors.content.base.toString(),
         }}
       >
