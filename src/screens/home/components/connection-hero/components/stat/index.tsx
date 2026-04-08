@@ -9,7 +9,7 @@ type Props = {
   value: string;
 };
 
-export function SpeedStat({ label, value }: Props) {
+export function Stat({ label, value }: Props) {
   const styles = useStyles(getStyles);
 
   return (

@@ -185,22 +185,22 @@ function getSections(info: NetInfoState) {
             {
               label: "home.sections.performance.fields.strength.title",
               value: "home.sections.performance.fields.strength.value",
-              originalValue: info.details?.strength ?? 0,
+              originalValue: info.details?.strength || 0,
             },
             {
               label: "home.sections.performance.fields.speed.title",
               value: "home.sections.performance.fields.speed.value",
-              originalValue: info.details?.linkSpeed ?? 0,
+              originalValue: info.details?.linkSpeed || 0,
             },
             {
               label: "home.sections.performance.fields.download.title",
               value: "home.sections.performance.fields.download.value",
-              originalValue: info.details?.rxLinkSpeed ?? 0,
+              originalValue: info.details?.rxLinkSpeed || 0,
             },
             {
               label: "home.sections.performance.fields.upload.title",
               value: "home.sections.performance.fields.upload.value",
-              originalValue: info.details?.txLinkSpeed ?? 0,
+              originalValue: info.details?.txLinkSpeed || 0,
             },
           ],
         });
@@ -211,19 +211,19 @@ function getSections(info: NetInfoState) {
         fields: [
           {
             label: "home.sections.network.fields.ssid.title",
-            value: info.details.ssid ?? "-",
+            value: info.details.ssid || "-",
             ignoreTranslation: true,
           },
           {
             label: "home.sections.network.fields.bssid.title",
-            value: info.details.bssid ?? "-",
+            value: info.details.bssid || "-",
             ignoreTranslation: true,
           },
           {
             label: "home.sections.network.fields.frequency.title",
             value: "home.sections.network.fields.frequency.value",
             originalValue: parseFloat(
-              ((info.details.frequency ?? 0) / 1000).toFixed(1),
+              ((info.details.frequency || 0) / 1000).toFixed(1),
             ),
           },
         ],
