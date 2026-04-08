@@ -5,7 +5,7 @@ export function getStyles(theme: ThemeConfig) {
   return StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.colors.background,
+      backgroundColor: theme.colors.surface.base,
     },
     scrollContainer: {
       paddingVertical: 32,
@@ -13,10 +13,10 @@ export function getStyles(theme: ThemeConfig) {
       gap: 32,
     },
     disclaimer: {
-      fontSize: 14,
-      lineHeight: 24,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
       textAlign: "center",
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
   });
 }

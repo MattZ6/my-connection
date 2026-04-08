@@ -9,21 +9,24 @@ import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider as NavigationThemeProvider,
+  type ParamListBase,
+  type ScreenListeners,
+  type TabNavigationState,
 } from "@react-navigation/native";
 import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
 import ExpoConstants from "expo-constants";
 import { useNavigationContainerRef } from "expo-router";
+import type { NativeTabNavigationEventMap } from "expo-router/build/native-tabs/types";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import * as ExpoSystemUI from "expo-system-ui";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@/contexts/theme";
 import { useTheme } from "@/hooks/use-theme";
-import { useThemeMode } from "@/hooks/use-theme-mode";
 import { HapticsService } from "@/services/device/haptics";
 
 const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
@@ -96,7 +99,7 @@ function RootLayout() {
 }
 
 function NavigationProvider() {
-  const { resolvedTheme } = useThemeMode();
+  const { resolvedTheme } = useTheme();
 
   return (
     <NavigationThemeProvider
@@ -108,79 +111,94 @@ function NavigationProvider() {
   );
 }
 
-function TabsNavigation() {
+const screenListeners: ScreenListeners<
+  TabNavigationState<ParamListBase>,
+  NativeTabNavigationEventMap
+> = {
+  tabPress: HapticsService.performTabSelectedFeedback,
+};
+
+function useTabsNavigationConfig() {
   const { colors, fontFamily } = useTheme();
   const { t } = useTranslation();
 
+  const backgroundColor = colors.surface.base;
+  const textColor = colors.brandContent.base;
+  const mutedColor = colors.brandContent.muted;
+  const font = fontFamily.regular;
+  const indicatorColor = colors.brandSurface.elevated;
+
+  const iconColor = useMemo(
+    () => ({
+      default: mutedColor,
+      selected: textColor,
+    }),
+    [mutedColor, textColor],
+  );
+
+  const labelStyle = useMemo(
+    () => ({
+      default: {
+        fontFamily: font,
+        color: mutedColor,
+      },
+      selected: {
+        fontFamily: font,
+        color: textColor,
+      },
+    }),
+    [font, mutedColor, textColor],
+  );
+
+  const rippleColor = indicatorColor;
+
+  const homeLabel = t("tabs.home.title");
+  const settingsLabel = t("tabs.settings.title");
+
   useEffect(() => {
-    ExpoSystemUI.setBackgroundColorAsync(colors.background);
-  }, [colors.background]);
+    ExpoSystemUI.setBackgroundColorAsync(backgroundColor);
+  }, [backgroundColor]);
+
+  return {
+    backgroundColor,
+    iconColor,
+    labelStyle,
+    indicatorColor,
+    rippleColor,
+    homeLabel,
+    settingsLabel,
+  };
+}
+
+function TabsNavigation() {
+  const {
+    homeLabel,
+    settingsLabel,
+    backgroundColor,
+    iconColor,
+    labelStyle,
+    rippleColor,
+  } = useTabsNavigationConfig();
 
   return (
     <NativeTabs
-      screenListeners={{
-        tabPress: HapticsService.performTabSelectedFeedback,
-      }}
-      backgroundColor={colors.background}
-      // iconColor={Platform.select({
-      //   android: {
-      //     default: Color.android.dynamic.onSurfaceVariant,
-      //     selected: Color.android.dynamic.primary,
-      //   },
-      //   ios: {
-      //     default: Color.ios.label,
-      //     selected: Color.ios.systemBlue,
-      //   },
-      // })}
-      iconColor={{
-        default: colors.textSecondary,
-        selected: colors.text,
-      }}
-      // labelStyle={Platform.select({
-      //   android: {
-      //     default: {
-      //       color: Color.android.dynamic.onSurfaceVariant,
-      //     },
-      //     selected: {
-      //       color: Color.android.dynamic.primary,
-      //     },
-      //   },
-      //   ios: {
-      //     default: {
-      //       color: Color.ios.label,
-      //     },
-      //     selected: {
-      //       color: Color.ios.systemBlue,
-      //     },
-      //   },
-      // })}
-      labelStyle={{
-        default: {
-          fontFamily: fontFamily.regular,
-          color: colors.textSecondary,
-        },
-        selected: {
-          fontFamily: fontFamily.regular,
-          color: colors.text,
-        },
-      }}
-      // indicatorColor={Color.android.dynamic.primaryInverse}
-      // tintColor={Color.android.dynamic.primary}
-      indicatorColor={colors.card}
-      rippleColor={colors.card}
-      // tintColor={colors.text}
+      screenListeners={screenListeners}
+      backgroundColor={backgroundColor}
+      iconColor={iconColor}
+      labelStyle={labelStyle}
+      rippleColor={rippleColor}
     >
       <NativeTabs.Trigger name="(main)">
-        <NativeTabs.Trigger.Icon sf="house" md="home" />
-        <NativeTabs.Trigger.Label>
-          {t("tabs.home.title")}
-        </NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf={{ default: "house", selected: "house.fill" }}
+          md="home"
+        />
+        <NativeTabs.Trigger.Label>{homeLabel}</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="settings">
         <NativeTabs.Trigger.Icon sf="gear" md="settings" />
-        <NativeTabs.Trigger.Label>
-          {t("tabs.settings.title")}
-        </NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{settingsLabel}</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );

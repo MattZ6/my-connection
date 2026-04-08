@@ -208,6 +208,13 @@ export const en = {
             },
           },
         },
+        android_dynamic_colors: {
+          fields: {
+            dynamic_colors: {
+              title: "Use dynamic colors",
+            },
+          },
+        },
       },
     },
     licenses: {

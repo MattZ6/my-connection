@@ -14,20 +14,20 @@ export function getStyles(theme: ThemeConfig) {
       gap: 24,
     },
     heroIcon: {
-      tintColor: theme.colors.text,
+      tintColor: theme.colors.brandContent.base,
     },
     heroLabel: {
       fontFamily: theme.fontFamily.regular,
       fontSize: 12,
       textTransform: "uppercase",
       letterSpacing: 1,
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
     heroValue: {
       fontFamily: theme.fontFamily.regular,
       fontSize: 24,
       lineHeight: 40,
-      color: theme.colors.text,
+      color: theme.colors.content.base,
     },
     statsRow: {
       flexDirection: "row",
@@ -38,12 +38,12 @@ export function getStyles(theme: ThemeConfig) {
       fontSize: 12,
       textTransform: "uppercase",
       letterSpacing: 1,
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
     signalStrengthProgressContainer: {
       height: 8,
-      borderRadius: 8,
-      backgroundColor: theme.colors.background,
+      borderRadius: theme.radii["4"],
+      backgroundColor: theme.colors.brandSurface.base,
       // backgroundColor: Platform.select({
       //   android: Color.android.dynamic.surfaceContainerHigh,
       //   ios: Color.ios.secondarySystemFill,
@@ -51,8 +51,8 @@ export function getStyles(theme: ThemeConfig) {
     },
     signalStrengthProgress: {
       height: 8,
-      borderRadius: 8,
-      backgroundColor: theme.colors.text,
+      borderRadius: theme.radii["4"],
+      backgroundColor: theme.colors.brandContent.base,
       // backgroundColor: Platform.select({
       //   android: Color.android.dynamic.primary,
       //   ios: Color.ios.systemBlue,

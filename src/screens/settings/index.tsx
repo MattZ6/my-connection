@@ -20,11 +20,11 @@ export function SettingsScreen() {
         large={isIos}
         largeStyle={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
         style={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
       >
         {t("settings.meta.title")}

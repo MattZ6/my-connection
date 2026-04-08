@@ -209,6 +209,13 @@ export const pt = {
             },
           },
         },
+        android_dynamic_colors: {
+          fields: {
+            dynamic_colors: {
+              title: "Usar cores dinâmicas",
+            },
+          },
+        },
       },
     },
     licenses: {
@@ -228,7 +235,7 @@ export const pt = {
               title: "Nome",
             },
             package: {
-              title: "Pacote",
+              title: "Identificador",
             },
             version: {
               title: "Versão",

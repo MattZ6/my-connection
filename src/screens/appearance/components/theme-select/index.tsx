@@ -5,7 +5,7 @@ import { Pressable, Text, View } from "react-native";
 import { Card } from "@/components/ui/card";
 import { SectionDivider } from "@/components/ui/section";
 import { useStyles } from "@/hooks/use-styles";
-import { useThemeMode } from "@/hooks/use-theme-mode";
+import { useTheme } from "@/hooks/use-theme";
 import { HapticsService } from "@/services/device/haptics";
 import { getStyles } from "./styles";
 
@@ -14,7 +14,7 @@ type ThemeValue = "system" | "light" | "dark";
 const options: ThemeValue[] = ["system", "light", "dark"];
 
 export function ThemeSelect() {
-  const { theme, changeTheme } = useThemeMode();
+  const { theme, changeTheme } = useTheme();
   const styles = useStyles(getStyles);
   const { t } = useTranslation();
 

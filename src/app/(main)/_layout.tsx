@@ -11,10 +11,11 @@ export default function MainStack() {
   return (
     <Stack
       screenOptions={{
+        headerShadowVisible: false,
         headerTransparent: isIos,
         headerStyle: {
           backgroundColor: Platform.select({
-            android: colors.card.toString(),
+            android: colors.surface.elevated.toString(),
             ios: "transparent",
           }),
         },

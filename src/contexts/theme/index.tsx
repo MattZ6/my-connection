@@ -1,43 +1,100 @@
-import { createContext, useCallback, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useColorScheme } from "react-native";
 
 import { SettingsRepository } from "@/repositories/settings";
 
+import { darkTheme } from "@/theme/dark";
+import { lightTheme } from "@/theme/light";
+import { generateSystemTheme } from "@/theme/system";
 import type { ThemeContextTypes, ThemeProviderTypes } from "./types";
 
 export const ThemeContext = createContext({} as ThemeContextTypes.Context);
 
 export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
-  const deviceTheme = useColorScheme();
-  const [appTheme, setAppTheme] = useState<ThemeContextTypes.Theme>(() => {
-    const storedTheme = SettingsRepository.getTheme();
-    return storedTheme ?? "system";
-  });
+  const [isUsingAndroidDynamicColors, setIsUsingAndroidDynamicColors] =
+    useState(() => {
+      const storedValue = SettingsRepository.getAndroidDynamicColorsFlag();
+
+      if (storedValue === null) {
+        return true;
+      }
+
+      return storedValue;
+    });
+  const deviceColorScheme = useColorScheme();
+  const [appColorScheme, setAppColorScheme] =
+    useState<ThemeContextTypes.ThemeOption>(() => {
+      const storedTheme = SettingsRepository.getTheme();
+      return storedTheme ?? "system";
+    });
 
   const resolvedMode = useMemo(() => {
-    if (appTheme === "system") {
-      if (deviceTheme === "unspecified" || !deviceTheme) {
+    if (appColorScheme === "system") {
+      if (deviceColorScheme === "unspecified" || !deviceColorScheme) {
         return "light";
       }
 
-      return deviceTheme;
+      return deviceColorScheme;
     }
 
-    return appTheme;
-  }, [appTheme, deviceTheme]);
+    return appColorScheme;
+  }, [appColorScheme, deviceColorScheme]);
 
-  const changeTheme = useCallback((input: ThemeContextTypes.Theme) => {
-    setAppTheme(input);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Consider deviceColorScheme to change colors
+  const themeConfig = useMemo(() => {
+    if (appColorScheme === "system") {
+      return generateSystemTheme({
+        useDynamicColors: isUsingAndroidDynamicColors,
+      });
+    }
+
+    if (appColorScheme === "light") {
+      return lightTheme;
+    }
+
+    return darkTheme;
+  }, [appColorScheme, isUsingAndroidDynamicColors, deviceColorScheme]);
+
+  const changeTheme = useCallback((input: ThemeContextTypes.ThemeOption) => {
+    setAppColorScheme(input);
     SettingsRepository.saveTheme(input);
+  }, []);
+
+  useEffect(
+    () =>
+      SettingsRepository.saveAndroidDynamicColorsFlag(
+        isUsingAndroidDynamicColors,
+      ),
+    [isUsingAndroidDynamicColors],
+  );
+
+  const toggleAndroidDynamicColors = useCallback(() => {
+    setIsUsingAndroidDynamicColors((previousValue) => !previousValue);
   }, []);
 
   const contextValue = useMemo<ThemeContextTypes.Context>(
     () => ({
-      theme: appTheme,
+      theme: appColorScheme,
       resolvedTheme: resolvedMode,
       changeTheme,
+      isUsingAndroidDynamicColors,
+      toggleAndroidDynamicColors,
+      ...themeConfig,
     }),
-    [appTheme, resolvedMode, changeTheme],
+    [
+      appColorScheme,
+      resolvedMode,
+      changeTheme,
+      themeConfig,
+      isUsingAndroidDynamicColors,
+      toggleAndroidDynamicColors,
+    ],
   );
 
   return (

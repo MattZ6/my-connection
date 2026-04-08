@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 type Props = {
-  title: string;
+  title?: string;
   children: ReactNode;
 };
 
@@ -20,7 +20,7 @@ export function Section({ title, children }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {!!title && <Text style={styles.title}>{title}</Text>}
       {children}
     </View>
   );

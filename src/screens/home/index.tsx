@@ -29,11 +29,11 @@ export function HomeScreen() {
         large={isIos}
         largeStyle={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
         style={{
           fontFamily: fontFamily.medium,
-          color: colors.text.toString(),
+          color: colors.content.base.toString(),
         }}
       >
         {t("home.meta.title")}
@@ -304,6 +304,8 @@ function Content() {
 }
 
 function ToolbarActions() {
+  const { colors } = useTheme();
+
   const handleRefresh = useCallback(async () => {
     HapticsService.performTapFeedback();
 
@@ -315,13 +317,29 @@ function ToolbarActions() {
   }, []);
 
   return (
-    <Stack.Toolbar placement="right" asChild>
-      <Pressable
-        style={{ padding: 8, marginRight: -8 }}
-        onPress={handleRefresh}
-      >
-        <SymbolView name={{ android: "refresh" }} />
-      </Pressable>
+    <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>
+      {Platform.OS === "android" && (
+        <Pressable
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 8,
+            marginRight: -8,
+          }}
+          onPress={handleRefresh}
+        >
+          <SymbolView
+            name={{ android: "refresh" }}
+            tintColor={colors.content.base}
+          />
+        </Pressable>
+      )}
+
+      {Platform.OS === "ios" && (
+        <Stack.Toolbar.Button>
+          <Stack.Toolbar.Icon sf="arrow.clockwise" />
+        </Stack.Toolbar.Button>
+      )}
     </Stack.Toolbar>
   );
 }

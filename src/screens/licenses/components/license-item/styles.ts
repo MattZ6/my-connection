@@ -15,9 +15,9 @@ export function getStyles(theme: ThemeConfig) {
       justifyContent: "center",
       borderWidth: 1,
       borderStyle: "solid",
-      borderRadius: 12,
+      borderRadius: theme.radii["5"],
       overflow: "hidden",
-      borderColor: theme.colors.divider,
+      borderColor: theme.colors.border.default,
       // borderColor: Platform.select({
       //   android: Color.android.dynamic.surfaceContainerHigh,
       //   ios: Color.ios.separator,
@@ -39,22 +39,22 @@ export function getStyles(theme: ThemeConfig) {
     },
     name: {
       fontFamily: theme.fontFamily.medium,
-      fontSize: 16,
-      lineHeight: 24,
-      color: theme.colors.text,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
+      color: theme.colors.content.base,
     },
     version: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 24,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       textAlign: "right",
-      color: theme.colors.textSecondary,
+      color: theme.colors.content.muted,
     },
     licenses: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 24,
-      color: theme.colors.textSecondary,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      color: theme.colors.content.muted,
     },
   });
 }
