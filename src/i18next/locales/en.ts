@@ -58,6 +58,7 @@ export const en = {
               value: {
                 true: "Yes",
                 false: "No",
+                null: "-",
               },
             },
             connected: {
@@ -66,6 +67,7 @@ export const en = {
               value: {
                 true: "Yes",
                 false: "No",
+                null: "-",
               },
             },
             internet_reachable: {
@@ -75,6 +77,7 @@ export const en = {
               value: {
                 true: "Yes",
                 false: "No",
+                null: "-",
               },
             },
           },

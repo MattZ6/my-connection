@@ -83,7 +83,7 @@ export function ConnectionHero({ info }: Props) {
           <SpeedStat label="Carrier" value={info.details.carrier ?? "-"} />
           <SpeedStat
             label="Generation"
-            value={info.details.cellularGeneration ?? "-"}
+            value={info.details.cellularGeneration || "-"}
           />
         </View>
       )}
@@ -102,7 +102,7 @@ export function ConnectionHero({ info }: Props) {
               <View
                 style={[
                   styles.signalStrengthProgress,
-                  { width: `${info.details?.strength ?? 0}%` },
+                  { width: `${info.details?.strength || 0}%` },
                 ]}
               />
             </View>
@@ -112,19 +112,19 @@ export function ConnectionHero({ info }: Props) {
             <SpeedStat
               label={t("home.sections.hero.fields.speed.label")}
               value={t("home.sections.hero.fields.speed.value", {
-                count: info?.details?.linkSpeed ?? 0,
+                count: info?.details?.linkSpeed || 0,
               })}
             />
             <SpeedStat
               label={t("home.sections.hero.fields.download.label")}
               value={t("home.sections.hero.fields.download.value", {
-                count: info?.details?.rxLinkSpeed ?? 0,
+                count: info?.details?.rxLinkSpeed || 0,
               })}
             />
             <SpeedStat
               label={t("home.sections.hero.fields.upload.label")}
               value={t("home.sections.hero.fields.upload.value", {
-                count: info?.details?.txLinkSpeed ?? 0,
+                count: info?.details?.txLinkSpeed || 0,
               })}
             />
           </View>

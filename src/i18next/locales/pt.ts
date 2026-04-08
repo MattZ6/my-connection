@@ -59,6 +59,7 @@ export const pt = {
               value: {
                 true: "Sim",
                 false: "Não",
+                null: "-",
               },
             },
             connected: {
@@ -67,6 +68,7 @@ export const pt = {
               value: {
                 true: "Sim",
                 false: "Não",
+                null: "-",
               },
             },
             internet_reachable: {
@@ -76,6 +78,7 @@ export const pt = {
               value: {
                 true: "Sim",
                 false: "Não",
+                null: "-",
               },
             },
           },
