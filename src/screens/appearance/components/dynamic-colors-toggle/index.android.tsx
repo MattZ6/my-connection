@@ -29,13 +29,21 @@ export function DynamicColorsToggle() {
 
   return (
     <Card>
-      <Pressable onPress={handleToggle}>
-        <View style={styles.buttonContent}>
-          <Text style={styles.buttonText}>
-            {t(
-              "appearance.sections.android_dynamic_colors.fields.dynamic_colors.title",
-            )}
-          </Text>
+      <Pressable onPress={handleToggle} disabled={theme !== "system"}>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <Text style={styles.title}>
+              {t(
+                "appearance.sections.android_dynamic_colors.fields.dynamic_colors.title",
+              )}
+            </Text>
+            <Text style={styles.description}>
+              {t(
+                "appearance.sections.android_dynamic_colors.fields.dynamic_colors.description",
+              )}
+            </Text>
+          </View>
+
           <Host matchContents>
             <Switch
               value={isUsingAndroidDynamicColors}

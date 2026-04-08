@@ -214,7 +214,9 @@ export const en = {
         android_dynamic_colors: {
           fields: {
             dynamic_colors: {
-              title: "Use dynamic colors",
+              title: "Use system colors",
+              description:
+                "Adapt colors based on your device theme and wallpaper.",
             },
           },
         },
