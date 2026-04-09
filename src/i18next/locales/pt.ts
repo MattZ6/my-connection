@@ -113,6 +113,35 @@ export const pt = {
           fields: {
             ssid: {
               title: "SSID",
+              action: {
+                title: "Toque para revelar",
+                handling: {
+                  permission_request: {
+                    title: "Acessar o nome da rede Wi-Fi",
+                    message:
+                      "Para exibir o nome da rede (SSID), este aplicativo precisa de permissão de localização. Isso é exigido pelo Android para acessar os detalhes da rede Wi-Fi.",
+                    action: {
+                      title: "Permitir acesso",
+                    },
+                  },
+                  permission_blocked: {
+                    title: "Permissão necessária",
+                    message:
+                      "A permissão de localização foi negada.\nPor favor, habilite-a nas configurações.",
+                    action: {
+                      title: "Abrir Configurações",
+                    },
+                  },
+                  location_off: {
+                    title: "Ativar localização",
+                    message:
+                      "Os serviços de localização devem estar ativados para ler os detalhes da rede Wi-Fi.",
+                    action: {
+                      title: "Abrir Configurações",
+                    },
+                  },
+                },
+              },
             },
             bssid: {
               title: "BSSID",

@@ -18,8 +18,10 @@
         "expo-font": "55.0.6",
         "expo-haptics": "55.0.13",
         "expo-insights": "55.0.15",
+        "expo-intent-launcher": "55.0.11",
         "expo-linking": "55.0.11",
         "expo-localization": "55.0.12",
+        "expo-location": "55.1.7",
         "expo-router": "55.0.11",
         "expo-splash-screen": "55.0.16",
         "expo-status-bar": "55.0.5",
@@ -693,6 +695,8 @@
 
     "expo-insights": ["expo-insights@55.0.15", "", { "dependencies": { "expo-eas-client": "~55.0.5" }, "peerDependencies": { "expo": "*" } }, "sha512-K2sp1rE6ZKfbd2ZfVW7zj5FCkH4sylwyZoC28I0OV/d+WOtJWyulmec+GRZP/zIhEee+Wgnqp1yNU4mYIqw4XQ=="],
 
+    "expo-intent-launcher": ["expo-intent-launcher@55.0.11", "", { "peerDependencies": { "expo": "*" } }, "sha512-C0KyAnYCMd4/Gx0bRL2i6F67kjidTFshXYFUQ1h43XB73d0RCJeWF9CnIQSOGTLaXY+laLDoM+pbZ8P5WANDkw=="],
+
     "expo-json-utils": ["expo-json-utils@55.0.2", "", {}, "sha512-QJMOZOPOG7CTnKcrdVaiummn2va1MCO56z++eyWkDv3GBRODldM6MFMDf/jTREWthFc2Nxo6TuyWRrEV9S6n/Q=="],
 
     "expo-keep-awake": ["expo-keep-awake@55.0.6", "", { "peerDependencies": { "expo": "*", "react": "*" } }, "sha512-acJjeHqkNxMVckEcJhGQeIksqqsarscSHJtT559bNgyiM4r14dViQ66su7bb6qDVeBt0K7z3glXI1dHVck1Zgg=="],
@@ -700,6 +704,8 @@
     "expo-linking": ["expo-linking@55.0.11", "", { "dependencies": { "expo-constants": "~55.0.11", "invariant": "^2.2.4" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-qVKOeaFZvaJl99mB1gle0AWaC+36t4SxIIf23rkqyjEs/ZJtt7Zr2NKcQpzNhxUyWms8CSKTAlMO1k9Hx9z9zw=="],
 
     "expo-localization": ["expo-localization@55.0.12", "", { "dependencies": { "rtl-detect": "^1.0.2" }, "peerDependencies": { "expo": "*", "react": "*" } }, "sha512-HggkFgTeiIIXpus9CMSO5d/YPxT2vhQXOO34bAQp1vNdByKgIU1k8ILsAlkPwJN4qnvGums+zdMakLO26aH+vA=="],
+
+    "expo-location": ["expo-location@55.1.7", "", { "dependencies": { "@expo/image-utils": "^0.8.12" }, "peerDependencies": { "expo": "*" } }, "sha512-E8Qib2yAHTU7WZM/Qrmfx7G/OvMAnjeIyinyKK6x/sFxm+nBu/hKwGEp2BIW9ubM1tBjaId7S0WSAaZr3OPzHg=="],
 
     "expo-manifests": ["expo-manifests@55.0.14", "", { "dependencies": { "@expo/config": "~55.0.13", "expo-json-utils": "~55.0.2" }, "peerDependencies": { "expo": "*" } }, "sha512-l2+fYFkZBR/hbd//LfKz5qBaUAQfC1kWdnqNr3HCa7vGNYcGKA4aMSTXZAJ0SEo1lkO26yz5cEFMGjYPbAAg0g=="],
 

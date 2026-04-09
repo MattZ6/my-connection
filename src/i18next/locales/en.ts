@@ -112,6 +112,35 @@ export const en = {
           fields: {
             ssid: {
               title: "SSID",
+              action: {
+                title: "Tap to reveal",
+                handling: {
+                  permission_request: {
+                    title: "Access Wi-Fi network name",
+                    message:
+                      "To display the network name (SSID), this app needs location permission. This is required by Android to access Wi-Fi details.",
+                    action: {
+                      title: "Allow Access",
+                    },
+                  },
+                  permission_blocked: {
+                    title: "Permission required",
+                    message:
+                      "Location permission was denied.\nPlease enable it in settings.",
+                    action: {
+                      title: "Open Settings",
+                    },
+                  },
+                  location_off: {
+                    title: "Turn on location",
+                    message:
+                      "Location services must be enabled to read Wi-Fi network details.",
+                    action: {
+                      title: "Open Settings",
+                    },
+                  },
+                },
+              },
             },
             bssid: {
               title: "BSSID",

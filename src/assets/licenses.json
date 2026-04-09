@@ -71,6 +71,12 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "my-connection"
     },
+    "expo-intent-launcher@55.0.11": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo",
+        "parents": "my-connection"
+    },
     "expo-linking@55.0.11": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
@@ -78,6 +84,12 @@
         "parents": "my-connection"
     },
     "expo-localization@55.0.12": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo",
+        "parents": "my-connection"
+    },
+    "expo-location@55.1.7": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
         "licenseUrl": "https://github.com/expo/expo",
