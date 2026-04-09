@@ -7,6 +7,7 @@ export function getStyles(theme: ThemeConfig) {
     card: {
       borderRadius: theme.radii["6"],
       backgroundColor: theme.colors.surface.elevated,
+      overflow: "hidden",
     },
   });
 }

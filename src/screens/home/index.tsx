@@ -1,4 +1,5 @@
 import {
+  configure,
   type NetInfoState,
   NetInfoStateType,
   refresh,
@@ -18,7 +19,7 @@ import { HapticsService } from "@/services/device/haptics";
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSection } from "./components/connection-section";
 import { ConnectionSummary } from "./components/connection-summary";
-
+import { NetworkSection } from "./components/network-section";
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -281,6 +282,8 @@ function getSections(info: NetInfoState) {
   return sections;
 }
 
+configure({ shouldFetchWiFiSSID: true });
+
 function Content() {
   const info = useNetInfo();
   const sections = getSections(info);
@@ -297,7 +300,17 @@ function Content() {
         contentContainerStyle={styles.scrollContainer}
       >
         <ConnectionHero info={info} />
+
         <ConnectionSummary info={info} />
+
+        {info.type === NetInfoStateType.wifi && (
+          <NetworkSection
+            ssid={info.details.ssid}
+            bssid={info.details.bssid || "-"}
+            frequency={info.details.frequency || 0}
+          />
+        )}
+
         {sections.map((section) => (
           <ConnectionSection
             key={section.title}

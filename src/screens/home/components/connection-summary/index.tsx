@@ -22,11 +22,7 @@ export function ConnectionSummary({ info }: Props) {
 
   return (
     <Section title={t("home.sections.summary.title")}>
-      <View
-        style={{
-          gap: 16,
-        }}
-      >
+      <View style={{ gap: 16 }}>
         {showWiFiEnabledSection && (
           <>
             <ListItem
