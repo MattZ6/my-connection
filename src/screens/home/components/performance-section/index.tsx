@@ -22,7 +22,7 @@ export function PerformanceSection({
   });
 
   const strengthValue = Number(String(strength || "").trim() || 0);
-  const speedValue = Number(String(strength || "").trim() || 0);
+  const speedValue = Number(String(speed || "").trim() || 0);
   const downloadValue = Number(String(download || "").trim() || 0);
   const uploadValue = Number(String(upload || "").trim() || 0);
 
