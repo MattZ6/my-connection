@@ -112,19 +112,25 @@ export function ConnectionHero({ info }: Props) {
             <Stat
               label={t("home.sections.hero.fields.speed.label")}
               value={t("home.sections.hero.fields.speed.value", {
-                count: info?.details?.linkSpeed || 0,
+                count: Number(
+                  String(info?.details?.linkSpeed || "").trim() || 0,
+                ),
               })}
             />
             <Stat
               label={t("home.sections.hero.fields.download.label")}
               value={t("home.sections.hero.fields.download.value", {
-                count: info?.details?.rxLinkSpeed || 0,
+                count: Number(
+                  String(info?.details?.rxLinkSpeed || "").trim() || 0,
+                ),
               })}
             />
             <Stat
               label={t("home.sections.hero.fields.upload.label")}
               value={t("home.sections.hero.fields.upload.value", {
-                count: info?.details?.txLinkSpeed || 0,
+                count: Number(
+                  String(info?.details?.txLinkSpeed || "").trim() || 0,
+                ),
               })}
             />
           </View>
