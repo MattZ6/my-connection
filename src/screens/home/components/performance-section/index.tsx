@@ -22,9 +22,6 @@ export function PerformanceSection({
   });
 
   const strengthValue = Number(String(strength || "").trim() || 0);
-  const speedValue = Number(String(speed || "").trim() || 0);
-  const downloadValue = Number(String(download || "").trim() || 0);
-  const uploadValue = Number(String(upload || "").trim() || 0);
 
   return (
     <Section title={t("title")}>
@@ -38,23 +35,33 @@ export function PerformanceSection({
 
         <SectionItem
           label={t("fields.speed.title")}
-          value={t("fields.speed.value", { count: speedValue })}
+          value={formatMbps(speed)}
         />
 
         <SectionDivider />
 
         <SectionItem
           label={t("fields.download.title")}
-          value={t("fields.download.value", { count: downloadValue })}
+          value={formatMbps(download)}
         />
 
         <SectionDivider />
 
         <SectionItem
           label={t("fields.upload.title")}
-          value={t("fields.upload.value", { count: uploadValue })}
+          value={formatMbps(upload)}
         />
       </Card>
     </Section>
   );
+}
+
+function formatMbps(value?: number | string | null) {
+  const parsedValue = String(value || "").trim();
+
+  if (!parsedValue) {
+    return "-";
+  }
+
+  return `${parsedValue} Mbps`;
 }

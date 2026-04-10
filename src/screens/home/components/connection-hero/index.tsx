@@ -111,31 +111,29 @@ export function ConnectionHero({ info }: Props) {
           <View style={styles.statsRow}>
             <Stat
               label={t("home.sections.hero.fields.speed.label")}
-              value={t("home.sections.hero.fields.speed.value", {
-                count: Number(
-                  String(info?.details?.linkSpeed || "").trim() || 0,
-                ),
-              })}
+              value={formatMbps(info.details.linkSpeed)}
             />
             <Stat
               label={t("home.sections.hero.fields.download.label")}
-              value={t("home.sections.hero.fields.download.value", {
-                count: Number(
-                  String(info?.details?.rxLinkSpeed || "").trim() || 0,
-                ),
-              })}
+              value={formatMbps(info.details.rxLinkSpeed)}
             />
             <Stat
               label={t("home.sections.hero.fields.upload.label")}
-              value={t("home.sections.hero.fields.upload.value", {
-                count: Number(
-                  String(info?.details?.txLinkSpeed || "").trim() || 0,
-                ),
-              })}
+              value={formatMbps(info.details.txLinkSpeed)}
             />
           </View>
         </>
       )}
     </Card>
   );
+}
+
+function formatMbps(value?: number | string | null) {
+  const parsedValue = String(value || "").trim();
+
+  if (!parsedValue) {
+    return "-";
+  }
+
+  return `${parsedValue} Mbps`;
 }
