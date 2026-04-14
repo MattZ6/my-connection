@@ -1,19 +1,15 @@
 import {
   configure,
   NetInfoStateType,
-  refresh,
   useNetInfo,
 } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
-import { SymbolView } from "expo-symbols";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, Pressable, ScrollView } from "react-native";
+import { Platform, ScrollView } from "react-native";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { HapticsService } from "@/services/device/haptics";
 import { CellularSection } from "./components/cellular-section";
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSummary } from "./components/connection-summary";
@@ -21,6 +17,8 @@ import { IPConfigSection } from "./components/ip-config-section";
 import { NetworkSection } from "./components/network-section";
 import { PerformanceSection } from "./components/performance-section";
 import { PropertiesSection } from "./components/properties-section";
+import { ToolbarActions } from "./components/toolbar-actions";
+
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -117,46 +115,5 @@ function Content() {
         )}
       </ScrollView>
     </>
-  );
-}
-
-function ToolbarActions() {
-  const { colors } = useTheme();
-
-  const handleRefresh = useCallback(async () => {
-    HapticsService.performTapFeedback();
-
-    try {
-      await refresh();
-    } catch (_error) {
-      // Falha
-    }
-  }, []);
-
-  return (
-    <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>
-      {Platform.OS === "android" && (
-        <Pressable
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 8,
-            marginRight: -8,
-          }}
-          onPress={handleRefresh}
-        >
-          <SymbolView
-            name={{ android: "refresh" }}
-            tintColor={colors.content.base}
-          />
-        </Pressable>
-      )}
-
-      {Platform.OS === "ios" && (
-        <Stack.Toolbar.Button onPress={handleRefresh}>
-          <Stack.Toolbar.Icon sf="arrow.clockwise" />
-        </Stack.Toolbar.Button>
-      )}
-    </Stack.Toolbar>
   );
 }

@@ -2,11 +2,17 @@ import { SymbolView } from "expo-symbols";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
+
 import { Card } from "@/components/ui/card";
 import { SectionDivider } from "@/components/ui/section";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { HapticsService } from "@/services/device/haptics";
+
+import { androidRippleConfig } from "@/theme/android-ripple";
+
 import { getStyles } from "./styles";
 
 type ThemeValue = "system" | "light" | "dark";
@@ -30,7 +36,11 @@ export function ThemeSelect() {
     <Card>
       {options.map((option, index) => (
         <Fragment key={option}>
-          <Pressable onPress={() => handleSelectTheme(option)}>
+          <Pressable
+            onPress={() => handleSelectTheme(option)}
+            android_disableSound
+            android_ripple={androidRippleConfig}
+          >
             <View style={styles.buttonContent}>
               <Text style={styles.buttonText}>
                 {t(`appearance.sections.theme.fields.${option}.title`)}

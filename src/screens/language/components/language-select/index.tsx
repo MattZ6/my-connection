@@ -12,6 +12,8 @@ import { SettingsRepository } from "@/repositories/settings";
 
 import { HapticsService } from "@/services/device/haptics";
 
+import { androidRippleConfig } from "@/theme/android-ripple";
+
 import { getStyles } from "./styles";
 
 const languages = ["en", "pt"];
@@ -33,7 +35,11 @@ export function LanguageSelect() {
     <Card>
       {languages.map((language, index) => (
         <Fragment key={language}>
-          <Pressable onPress={() => handleSelectTheme(language)}>
+          <Pressable
+            onPress={() => handleSelectTheme(language)}
+            android_disableSound
+            android_ripple={androidRippleConfig}
+          >
             <View style={styles.buttonContent}>
               <View style={styles.buttonTextContent}>
                 <Text style={styles.buttonText}>
