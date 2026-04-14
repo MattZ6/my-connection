@@ -16,11 +16,13 @@ import { androidRippleConfig } from "@/theme/android-ripple";
 
 import { getStyles } from "./styles";
 
-const languages = ["en", "pt"];
+const languages = ["en", "pt", "es"];
 
 export function LanguageSelect() {
   const styles = useStyles(getStyles);
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("translation", {
+    keyPrefix: "language.sections.language.fields.language",
+  });
 
   const handleSelectTheme = useCallback(
     (option: string) => {
@@ -42,16 +44,10 @@ export function LanguageSelect() {
           >
             <View style={styles.buttonContent}>
               <View style={styles.buttonTextContent}>
-                <Text style={styles.buttonText}>
-                  {t(
-                    `language.sections.language.fields.language.${language}.title`,
-                  )}
-                </Text>
+                <Text style={styles.buttonText}>{t(`${language}.title`)}</Text>
                 {i18n.language !== language && (
                   <Text style={styles.buttonDescription}>
-                    {t(
-                      `language.sections.language.fields.language.${language}.description`,
-                    )}
+                    {t(`${language}.description`)}
                   </Text>
                 )}
               </View>

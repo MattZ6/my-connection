@@ -5,6 +5,7 @@ import { initReactI18next } from "react-i18next";
 import { SettingsRepository } from "@/repositories/settings";
 
 import en from "./locales/en";
+import es from "./locales/es";
 import pt from "./locales/pt";
 
 const storedLanguage = SettingsRepository.getLanguage();
@@ -19,10 +20,11 @@ i18n.use(initReactI18next).init({
   resources: {
     en,
     pt,
+    es,
   },
   lng,
   fallbackLng: "en",
-  supportedLngs: ["en", "pt"],
+  supportedLngs: ["en", "pt", "es"],
 
   interpolation: {
     escapeValue: false,

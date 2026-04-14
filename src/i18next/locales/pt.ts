@@ -281,6 +281,10 @@ export const pt = {
               pt: {
                 title: "Português (Brasil)",
               },
+              es: {
+                title: "Español",
+                description: "Espanhol",
+              },
             },
           },
         },

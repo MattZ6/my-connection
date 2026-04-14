@@ -277,6 +277,10 @@ export const en = {
                 title: "Português (Brasil)",
                 description: "Brazilian Portuguese",
               },
+              es: {
+                title: "Español",
+                description: "Spanish",
+              },
             },
           },
         },
