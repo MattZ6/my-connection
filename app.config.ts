@@ -204,8 +204,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       "expo-localization",
       {
         supportedLocales: {
-          ios: ["en", "pt"],
-          android: ["en", "pt"],
+          ios: ["en", "pt", "es"],
+          android: ["en", "pt", "es"],
         },
       },
     ],
