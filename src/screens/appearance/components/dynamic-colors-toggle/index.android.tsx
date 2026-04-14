@@ -1,22 +1,31 @@
-import { Host, Switch } from "@expo/ui/jetpack-compose";
+import {
+  Column,
+  Host,
+  Row,
+  Spacer,
+  Surface,
+  Switch,
+  Text,
+} from "@expo/ui/jetpack-compose";
+import { paddingAll, weight, width } from "@expo/ui/jetpack-compose/modifiers";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
 
 import { Card } from "@/components/ui/card";
 
-import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
 import { HapticsService } from "@/services/device/haptics";
 
-import { getStyles } from "./styles";
-
 export function DynamicColorsToggle() {
-  const { t } = useTranslation();
-  const styles = useStyles(getStyles);
+  const { t } = useTranslation("translation", {
+    keyPrefix:
+      "appearance.sections.android_dynamic_colors.fields.dynamic_colors",
+  });
   const {
     theme,
+    fontFamily,
+    fontSizes,
     colors,
     isUsingAndroidDynamicColors,
     toggleAndroidDynamicColors,
@@ -29,24 +38,48 @@ export function DynamicColorsToggle() {
 
   return (
     <Card>
-      <Pressable onPress={handleToggle} disabled={theme !== "system"}>
-        <View style={styles.container}>
-          <View style={styles.content}>
-            <Text style={styles.title}>
-              {t(
-                "appearance.sections.android_dynamic_colors.fields.dynamic_colors.title",
-              )}
-            </Text>
-            <Text style={styles.description}>
-              {t(
-                "appearance.sections.android_dynamic_colors.fields.dynamic_colors.description",
-              )}
-            </Text>
-          </View>
+      <Host
+        style={{ width: "100%", height: "auto" }}
+        matchContents={{ vertical: true }}
+      >
+        <Surface
+          onClick={handleToggle}
+          color="transparent"
+          enabled={theme === "system"}
+        >
+          <Row
+            horizontalArrangement="spaceBetween"
+            verticalAlignment="center"
+            modifiers={[paddingAll(16)]}
+          >
+            <Column modifiers={[weight(1)]}>
+              <Text
+                style={{
+                  fontFamily: fontFamily.medium,
+                  fontSize: fontSizes.body.fontSize,
+                  lineHeight: fontSizes.body.lineHeight,
+                }}
+                color={colors.content.base.toString()}
+              >
+                {t("title")}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fontFamily.regular,
+                  fontSize: fontSizes.bodySmall.fontSize,
+                  lineHeight: fontSizes.bodySmall.lineHeight,
+                }}
+                color={colors.content.muted.toString()}
+              >
+                {t("description")}
+              </Text>
+            </Column>
 
-          <Host matchContents>
+            <Spacer modifiers={[width(16)]} />
+
             <Switch
               value={isUsingAndroidDynamicColors}
+              onCheckedChange={handleToggle}
               enabled={theme === "system"}
               colors={{
                 checkedBorderColor: colors.brandSurface.elevated,
@@ -70,9 +103,9 @@ export function DynamicColorsToggle() {
                 disabledUncheckedIconColor: colors.border.default,
               }}
             />
-          </Host>
-        </View>
-      </Pressable>
+          </Row>
+        </Surface>
+      </Host>
     </Card>
   );
 }

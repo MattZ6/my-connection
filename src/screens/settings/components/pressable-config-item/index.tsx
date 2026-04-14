@@ -1,4 +1,5 @@
 import { type AndroidSymbol, type SFSymbol, SymbolView } from "expo-symbols";
+import { useCallback } from "react";
 import {
   type GestureResponderEvent,
   Platform,
@@ -6,11 +7,9 @@ import {
   Text,
   View,
 } from "react-native";
-
 import { useStyles } from "@/hooks/use-styles";
-
 import { HapticsService } from "@/services/device/haptics";
-
+import { androidRippleConfig } from "@/theme/android-ripple";
 import { getStyles } from "./styles";
 
 type Props = {
@@ -25,8 +24,23 @@ type Props = {
 export function PressableConfigItem({ label, icon, onPress }: Props) {
   const styles = useStyles(getStyles);
 
+  const handlePress = useCallback(
+    (event: GestureResponderEvent) => {
+      HapticsService.performTapFeedback();
+
+      if (onPress) {
+        onPress(event);
+      }
+    },
+    [onPress],
+  );
+
   return (
-    <Pressable onPressIn={HapticsService.performTapFeedback} onPress={onPress}>
+    <Pressable
+      onPress={handlePress}
+      android_disableSound
+      android_ripple={androidRippleConfig}
+    >
       <View style={styles.content}>
         <View style={styles.iconContainer}>
           <SymbolView
