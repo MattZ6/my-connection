@@ -1,22 +1,18 @@
 export const pt = {
   translation: {
     tabs: {
-      home: {
-        title: "Início",
-      },
-      settings: {
-        title: "Configurações",
-      },
+      home: { title: "Início" },
+      settings: { title: "Configurações" },
     },
+
     home: {
-      meta: {
-        title: "Minha Conexão",
-      },
+      meta: { title: "Minha Conexão" },
+
       sections: {
         hero: {
           fields: {
             connection_type: {
-              label: "Tipo de Conexão",
+              label: "Tipo de conexão",
               value: {
                 bluetooth: "Bluetooth",
                 cellular: "Móvel",
@@ -26,198 +22,166 @@ export const pt = {
                 unknown: "Desconhecida",
                 vpn: "VPN",
                 wifi: "Wi-Fi",
-                wimax: "WiMax",
+                wimax: "WiMAX",
               },
             },
-            strength: {
-              label: "Intensidade do Sinal",
-            },
+            strength: { label: "Intensidade do sinal" },
             speed: {
               label: "Velocidade",
-              value_zero: "-",
+              value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
             download: {
               label: "Download",
-              value_zero: "-",
+              value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
             upload: {
               label: "Upload",
-              value_zero: "-",
+              value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
           },
         },
+
         summary: {
-          title: "Sumário",
+          title: "Resumo",
           fields: {
             wifi_enabled: {
-              title: "Wi-Fi Habilitado",
-              description:
-                "Se o Wi-Fi do dispositivo está ligado ou desligado.",
-              value: {
-                true: "Sim",
-                false: "Não",
-                null: "-",
-              },
+              title: "Wi-Fi ativado",
+              description: "Indica se o Wi-Fi está ligado.",
+              value: { true: "Sim", false: "Não", null: "—" },
             },
             connected: {
               title: "Conectado",
-              description: "Se existe uma conexão de rede ativa.",
-              value: {
-                true: "Sim",
-                false: "Não",
-                null: "-",
-              },
+              description:
+                "Indica se você está conectado a uma rede no momento.",
+              value: { true: "Sim", false: "Não", null: "—" },
             },
             internet_reachable: {
-              title: "Internet Disponível",
+              title: "Acesso à internet",
               description:
-                "Se é possível acessar a internet com a conexão de rede atual.",
-              value: {
-                true: "Sim",
-                false: "Não",
-                null: "-",
-              },
+                "Indica se é possível acessar a internet com a conexão atual.",
+              value: { true: "Sim", false: "Não", null: "—" },
             },
           },
         },
+
         performance: {
-          title: "Performance",
+          title: "Desempenho",
           fields: {
             strength: {
-              title: "Intensidade do Sinal",
-              value_zero: "-",
+              title: "Intensidade do sinal",
+              value_zero: "—",
               value_other: "{{ count }}%",
             },
             speed: {
-              title: "Velocidade",
-              value_zero: "-",
+              title: "Velocidade do link",
+              value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
             download: {
               title: "Download",
-              value_zero: "-",
+              value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
             upload: {
               title: "Upload",
-              value_zero: "-",
+              value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
           },
         },
+
         network: {
           title: "Rede",
           fields: {
             ssid: {
               title: "SSID",
               action: {
-                title: "Toque para revelar",
+                title: "Toque para exibir",
                 handling: {
                   permission_request: {
-                    title: "Acessar o nome da rede Wi-Fi",
+                    title: "Acessar nome da rede Wi-Fi",
                     message:
-                      "Para exibir o nome da rede (SSID), este aplicativo precisa de permissão de localização. Isso é exigido pelo Android para acessar os detalhes da rede Wi-Fi.",
-                    action: {
-                      title: "Permitir acesso",
-                    },
+                      "Para exibir o nome da rede Wi-Fi (SSID), este app precisa de acesso à localização. Isso é uma exigência do Android.",
+                    action: { title: "Permitir acesso" },
                   },
                   permission_blocked: {
                     title: "Permissão necessária",
                     message:
-                      "A permissão de localização foi negada.\nPor favor, habilite-a nas configurações.",
-                    action: {
-                      title: "Abrir Configurações",
-                    },
+                      "A permissão de localização foi negada.\nVocê pode ativá-la nas configurações do dispositivo.",
+                    action: { title: "Abrir configurações" },
                   },
                   location_off: {
                     title: "Ativar localização",
                     message:
-                      "Os serviços de localização devem estar ativados para ler os detalhes da rede Wi-Fi.",
-                    action: {
-                      title: "Abrir Configurações",
-                    },
+                      "É necessário ativar a localização para acessar os dados da rede Wi-Fi.",
+                    action: { title: "Abrir configurações" },
                   },
                 },
               },
             },
-            bssid: {
-              title: "BSSID",
-            },
+            bssid: { title: "BSSID" },
             frequency: {
               title: "Frequência",
-              value_zero: "-",
+              value_zero: "—",
               value_other: "{{ count }} GHz",
             },
           },
         },
+
         ip: {
           title: "Configuração de IP",
           fields: {
             ip: {
-              title: "Endereço de IP",
+              title: "Endereço IP",
               description: "Pode estar no formato IPv4 ou IPv6.",
             },
             mask: {
-              title: "Máscara de Sub-rede",
-              description: "No formato IPv4.",
+              title: "Máscara de sub-rede",
+              description: "Exibida no formato IPv4.",
             },
           },
         },
+
         cellular: {
-          title: "Conexão Móvel",
+          title: "Conexão móvel",
           fields: {
-            carrier: {
-              title: "Operadora",
-            },
-            generation: {
-              title: "Geração",
-            },
+            carrier: { title: "Operadora" },
+            generation: { title: "Geração da rede" },
           },
         },
+
         properties: {
-          title: "Propriedades da Conexão",
+          title: "Propriedades da conexão",
           fields: {
             expensive_connection: {
-              title: 'Conexão "Cara"',
-              description: "Seja em termos de energia ou financeiros.",
-              value: {
-                true: "Sim",
-                false: "Não",
-                null: "-",
-              },
+              title: "Conexão cara",
+              description:
+                "Pode consumir mais bateria ou gerar custos adicionais.",
+              value: { true: "Sim", false: "Não", null: "—" },
             },
           },
         },
       },
     },
+
     settings: {
-      meta: {
-        title: "Configurações",
-      },
+      meta: { title: "Configurações" },
       sections: {
         preferences: {
           title: "Preferências",
           links: {
-            appearance: {
-              title: "Aparência",
-            },
-            language: {
-              title: "Idioma",
-            },
+            appearance: { title: "Aparência" },
+            language: { title: "Idioma" },
           },
         },
         about: {
           title: "Sobre",
           links: {
-            about: {
-              title: "Sobre",
-            },
-            licenses: {
-              title: "Licenças",
-            },
+            about: { title: "Sobre" },
+            licenses: { title: "Licenças" },
           },
         },
       },
@@ -225,23 +189,16 @@ export const pt = {
         text: "Este app não coleta dados pessoais.\nTodas as informações permanecem no seu dispositivo.",
       },
     },
+
     appearance: {
-      meta: {
-        title: "Aparência",
-      },
+      meta: { title: "Aparência" },
       sections: {
         theme: {
           title: "Tema",
           fields: {
-            system: {
-              title: "Sistema (recomendado)",
-            },
-            light: {
-              title: "Claro",
-            },
-            dark: {
-              title: "Escuro",
-            },
+            system: { title: "Sistema (recomendado)" },
+            light: { title: "Claro" },
+            dark: { title: "Escuro" },
           },
         },
         android_dynamic_colors: {
@@ -255,98 +212,63 @@ export const pt = {
         },
       },
     },
-    licenses: {
-      meta: {
-        title: "Licenças",
-      },
-    },
+
+    licenses: { meta: { title: "Licenças" } },
+
     about: {
-      meta: {
-        title: "Sobre",
-      },
+      meta: { title: "Sobre" },
       sections: {
         about: {
-          title: "Sobre",
+          title: "Informações do app",
           fields: {
-            name: {
-              title: "Nome",
-            },
-            package: {
-              title: "Identificador",
-            },
-            version: {
-              title: "Versão",
-            },
-            installed_at: {
-              title: "Instalado em",
-            },
-            updated_at: {
-              title: "Atualizado em",
-            },
+            name: { title: "Nome" },
+            package: { title: "Identificador" },
+            version: { title: "Versão" },
+            installed_at: { title: "Instalado em" },
+            updated_at: { title: "Atualizado em" },
           },
         },
         device: {
           title: "Dispositivo",
           fields: {
             type: {
-              title: "Tipo de Dispositivo",
+              title: "Tipo de dispositivo",
               value: {
                 0: "Desconhecido",
                 1: "Smartphone",
                 2: "Tablet",
                 3: "Desktop",
                 4: "TV",
-                null: "-",
+                null: "—",
               },
             },
-            manufacturer: {
-              title: "Fabricante",
-            },
-            model: {
-              title: "Modelo",
-            },
-            year: {
-              title: "Ano do Dispositivo",
-            },
-            android_design_name: {
-              title: "Nome do Design do Android",
-            },
-            android_product_name: {
-              title: "Nome do Produto do Android",
-            },
+            manufacturer: { title: "Fabricante" },
+            model: { title: "Modelo" },
+            year: { title: "Ano do dispositivo" },
+            android_design_name: { title: "Nome do design do Android" },
+            android_product_name: { title: "Nome do produto do Android" },
           },
         },
         os: {
-          title: "Sistema Operacional",
+          title: "Sistema operacional",
           fields: {
-            name: {
-              title: "Nome",
-            },
-            version: {
-              title: "Versão",
-            },
-            build_id: {
-              title: "ID da Build",
-            },
-            internal_build_id: {
-              title: "ID Interno da Build",
-            },
-            android_api: {
-              title: "Nível da API do Android",
-            },
+            name: { title: "Nome" },
+            version: { title: "Versão" },
+            build_id: { title: "ID da build" },
+            internal_build_id: { title: "ID interno da build" },
+            android_api: { title: "Nível da API do Android" },
             android_build_fingerprint: {
-              title: "Fingerprint da Build do Android",
+              title: "Fingerprint da build",
             },
           },
         },
       },
       disclaimer:
-        "Não se preocupe, essas informações não\nsairão do seu dispositivo.",
+        "Não se preocupe — essas informações não saem do seu dispositivo.",
     },
+
     language: {
-      meta: {
-        title: "Idioma",
-      },
+      meta: { title: "Idioma" },
       sections: {
         language: {
           title: "Idioma",
@@ -357,7 +279,7 @@ export const pt = {
                 description: "Inglês",
               },
               pt: {
-                title: "Português (Brasileiro)",
+                title: "Português (Brasil)",
               },
             },
           },
