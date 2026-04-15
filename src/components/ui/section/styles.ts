@@ -28,6 +28,11 @@ export function getSectionItemStyles(theme: ThemeConfig, direction: Direction) {
       padding: 16,
       gap: direction === "row" ? 16 : 8,
     },
+    leading: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+    },
     content: {
       flex: 1,
     },
@@ -63,8 +68,10 @@ export function getSectionDividerStyles(theme: ThemeConfig) {
   return StyleSheet.create({
     divider: {
       height: 1,
-      marginHorizontal: 16,
       backgroundColor: theme.colors.border.default,
+    },
+    withMargin: {
+      marginHorizontal: 16,
     },
   });
 }

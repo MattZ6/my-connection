@@ -1,10 +1,14 @@
 import { SymbolView } from "expo-symbols";
 import type { ReactNode } from "react";
-import { Platform, Text, type TextProps, View } from "react-native";
-
+import {
+  Platform,
+  Text,
+  type TextProps,
+  View,
+  type ViewProps,
+} from "react-native";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
-
 import {
   type Direction,
   getSectionDividerStyles,
@@ -28,18 +32,34 @@ export function Section({ title, children }: Props) {
   );
 }
 
-type SectionItemRootProps = {
+type SectionItemRootProps = Pick<ViewProps, "style"> & {
   direction?: Direction;
   children: ReactNode;
 };
 
 export function SectionItemRoot({
   direction = "row",
+  style,
   ...props
 }: SectionItemRootProps) {
   const styles = useStyles((theme) => getSectionItemStyles(theme, direction));
 
-  return <View style={styles.container} {...props} />;
+  return <View style={[styles.container, style]} {...props} />;
+}
+
+type SectionItemLeadingProps = Pick<ViewProps, "style"> & {
+  direction?: Direction;
+  children: ReactNode;
+};
+
+export function SectionItemLeading({
+  direction = "row",
+  style,
+  ...props
+}: SectionItemLeadingProps) {
+  const styles = useStyles((theme) => getSectionItemStyles(theme, direction));
+
+  return <View style={[styles.leading, style]} {...props} />;
 }
 
 type SectionItemContentProps = {
@@ -56,18 +76,19 @@ export function SectionItemContent({
   return <View style={styles.content} {...props} />;
 }
 
-type SectionItemLabelProps = {
+type SectionItemLabelProps = Pick<TextProps, "style"> & {
   direction?: Direction;
   children: string;
 };
 
 export function SectionItemLabel({
   direction = "row",
+  style,
   ...props
 }: SectionItemLabelProps) {
   const styles = useStyles((theme) => getSectionItemStyles(theme, direction));
 
-  return <Text style={styles.label} {...props} />;
+  return <Text style={[styles.label, style]} {...props} />;
 }
 
 type SectionItemHintProps = Pick<TextProps, "style"> & {
@@ -155,8 +176,18 @@ export function SectionItem({
   );
 }
 
-export function SectionDivider() {
+type SectionDividerProps = {
+  horizontalMargin?: boolean;
+};
+
+export function SectionDivider({
+  horizontalMargin = true,
+}: SectionDividerProps) {
   const styles = useStyles(getSectionDividerStyles);
 
-  return <View style={styles.divider} />;
+  return (
+    <View
+      style={[styles.divider, horizontalMargin ? styles.withMargin : null]}
+    />
+  );
 }

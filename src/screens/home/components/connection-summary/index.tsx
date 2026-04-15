@@ -4,8 +4,9 @@ import {
 } from "@react-native-community/netinfo";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import { Section } from "@/components/ui/section";
-import { Divider } from "./components/divider";
+
+import { Section, SectionDivider } from "@/components/ui/section";
+
 import { ListItem } from "./components/list-item";
 
 type Props = {
@@ -33,7 +34,7 @@ export function ConnectionSummary({ info }: Props) {
               hint={t("home.sections.summary.fields.wifi_enabled.description")}
             />
 
-            <Divider />
+            <SectionDivider horizontalMargin={false} />
           </>
         )}
 
@@ -45,7 +46,7 @@ export function ConnectionSummary({ info }: Props) {
           hint={t("home.sections.summary.fields.connected.description")}
         />
 
-        <Divider />
+        <SectionDivider horizontalMargin={false} />
 
         <ListItem
           label={t("home.sections.summary.fields.internet_reachable.title")}

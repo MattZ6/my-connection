@@ -1,5 +1,14 @@
-import { Text, View } from "react-native";
+import {
+  SectionItemContent,
+  SectionItemHint,
+  SectionItemLabel,
+  SectionItemRoot,
+  SectionItemTrailing,
+  SectionItemValue,
+} from "@/components/ui/section";
+
 import { useStyles } from "@/hooks/use-styles";
+
 import { getStyles } from "./styles";
 
 type Props = {
@@ -12,12 +21,14 @@ export function ListItem({ label, hint, value }: Props) {
   const styles = useStyles(getStyles);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.label}>{label}</Text>
-        {!!hint && <Text style={styles.hint}>{hint}</Text>}
-      </View>
-      <Text style={styles.value}>{value}</Text>
-    </View>
+    <SectionItemRoot style={styles.container}>
+      <SectionItemContent>
+        <SectionItemLabel style={styles.label}>{label}</SectionItemLabel>
+        {!!hint && <SectionItemHint>{hint}</SectionItemHint>}
+      </SectionItemContent>
+      <SectionItemTrailing>
+        <SectionItemValue>{value}</SectionItemValue>
+      </SectionItemTrailing>
+    </SectionItemRoot>
   );
 }

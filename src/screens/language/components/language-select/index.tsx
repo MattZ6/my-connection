@@ -1,10 +1,17 @@
 import { SymbolView } from "expo-symbols";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
+import { Pressable } from "react-native";
 
 import { Card } from "@/components/ui/card";
-import { SectionDivider } from "@/components/ui/section";
+import {
+  SectionDivider,
+  SectionItemContent,
+  SectionItemHint,
+  SectionItemLabel,
+  SectionItemRoot,
+  SectionItemTrailing,
+} from "@/components/ui/section";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
@@ -42,23 +49,25 @@ export function LanguageSelect() {
             android_disableSound
             android_ripple={androidRippleConfig}
           >
-            <View style={styles.buttonContent}>
-              <View style={styles.buttonTextContent}>
-                <Text style={styles.buttonText}>{t(`${language}.title`)}</Text>
+            <SectionItemRoot>
+              <SectionItemContent>
+                <SectionItemLabel>{t(`${language}.title`)}</SectionItemLabel>
                 {i18n.language !== language && (
-                  <Text style={styles.buttonDescription}>
+                  <SectionItemHint>
                     {t(`${language}.description`)}
-                  </Text>
+                  </SectionItemHint>
                 )}
-              </View>
-              {i18n.language === language && (
-                <SymbolView
-                  name={{ android: "check", ios: "checkmark" }}
-                  size={20}
-                  tintColor={styles.icon.tintColor}
-                />
-              )}
-            </View>
+              </SectionItemContent>
+              <SectionItemTrailing>
+                {i18n.language === language && (
+                  <SymbolView
+                    name={{ android: "check", ios: "checkmark" }}
+                    size={20}
+                    tintColor={styles.icon.tintColor}
+                  />
+                )}
+              </SectionItemTrailing>
+            </SectionItemRoot>
           </Pressable>
 
           {index < languages.length - 1 && <SectionDivider />}
