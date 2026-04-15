@@ -105,19 +105,25 @@ export const pt = {
                     title: "Acessar nome da rede Wi-Fi",
                     message:
                       "Para exibir o nome da rede Wi-Fi (SSID), este app precisa de acesso à localização. Isso é uma exigência do Android.",
-                    action: { title: "Permitir acesso" },
+                    action: { title: "Permitir Acesso" },
                   },
                   permission_blocked: {
                     title: "Permissão necessária",
                     message:
                       "A permissão de localização foi negada.\nVocê pode ativá-la nas configurações do dispositivo.",
-                    action: { title: "Abrir configurações" },
+                    action: { title: "Abrir Configurações" },
+                  },
+                  precision_required: {
+                    title: "Localização precisa necessária",
+                    message:
+                      "Para exibir informações detalhadas da rede Wi-Fi, é necessário ativar a localização precisa.\nAjuste nas configurações do dispositivo.",
+                    action: { title: "Abrir Configurações" },
                   },
                   location_off: {
                     title: "Ativar localização",
                     message:
                       "É necessário ativar a localização para acessar os dados da rede Wi-Fi.",
-                    action: { title: "Abrir configurações" },
+                    action: { title: "Abrir Configurações" },
                   },
                 },
               },
@@ -174,6 +180,7 @@ export const pt = {
           title: "Preferências",
           links: {
             preferences: { title: "Preferências" },
+            permissions: { title: "Privacidade e permissões" },
             appearance: { title: "Aparência" },
             language: { title: "Idioma" },
           },
@@ -203,6 +210,60 @@ export const pt = {
           },
         },
       },
+    },
+
+    permissions: {
+      meta: { title: "Privacidade e permissões" },
+      sections: {
+        location: {
+          title: "Localização",
+          fields: {
+            permission: {
+              title: "Acesso à localização",
+              value: {
+                undetermined: "Não definido",
+                granted: "Permitido",
+                denied: "Não permitido",
+              },
+            },
+            precision: {
+              title: "Precisão",
+              value: {
+                none: "Indisponível",
+                precise: "Precisa",
+                reduced: "Reduzida",
+              },
+            },
+            location: {
+              title: "Serviços de localização",
+              value: {
+                true: "Ativados",
+                false: "Desativados",
+              },
+            },
+          },
+          action: {
+            request_permission: "Permitir acesso",
+            open_app_permission_settings: "Abrir configurações",
+            open_location_settings: "Ativar localização",
+          },
+          disclaimer: {
+            permission_undetermined:
+              "O acesso à localização é necessário para exibir os detalhes da rede Wi-Fi.",
+            permission_denied_can_ask_again:
+              "O acesso à localização é necessário para exibir os detalhes da rede Wi-Fi.",
+            permission_denied:
+              "O acesso à localização é necessário para exibir os detalhes da rede Wi-Fi.\nAtive nas configurações do dispositivo.",
+            invalid_precision:
+              "A localização precisa é necessária para acessar os detalhes da rede Wi-Fi.\nPermita a localização precisa.",
+            location_disabled:
+              "Ative os serviços de localização para acessar os detalhes da rede Wi-Fi.",
+            all_right: "Todas as configurações necessárias estão ativadas.",
+          },
+        },
+      },
+      disclaimer:
+        "Sua localização não é armazenada nem compartilhada.\nEla é usada apenas para acessar os dados da rede Wi-Fi.",
     },
 
     appearance: {

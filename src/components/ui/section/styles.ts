@@ -43,6 +43,11 @@ export function getSectionItemStyles(theme: ThemeConfig, direction: Direction) {
       lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.content.muted,
     },
+    trailing: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+    },
     value: {
       fontFamily: theme.fontFamily.regular,
       flexShrink: 0,

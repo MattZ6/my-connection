@@ -28,6 +28,7 @@ import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { LocationProvider } from "@/contexts/location";
 import { PreferencesProvider } from "@/contexts/preferences";
 import { ThemeProvider } from "@/contexts/theme";
 
@@ -98,11 +99,13 @@ function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <PreferencesProvider defaultHapticsEnabled>
-        <ThemeProvider>
-          <NavigationProvider />
-        </ThemeProvider>
-      </PreferencesProvider>
+      <ThemeProvider>
+        <PreferencesProvider defaultHapticsEnabled>
+          <LocationProvider>
+            <NavigationProvider />
+          </LocationProvider>
+        </PreferencesProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }

@@ -14,15 +14,15 @@ import {
   width,
 } from "@expo/ui/jetpack-compose/modifiers";
 import { refresh } from "@react-native-community/netinfo";
-import { ActivityAction, startActivityAsync } from "expo-intent-launcher";
-import * as ExpoLocation from "expo-location";
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import { useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Linking } from "react-native";
 
 import { useHaptics } from "@/hooks/use-haptics";
+import { useLocation } from "@/hooks/use-location";
 import { useTheme } from "@/hooks/use-theme";
+
+import { LocationUtils } from "@/utils/location";
 
 import { LocationBottomSheet } from "./components/location-bottom-sheet";
 
@@ -50,6 +50,13 @@ type SheetState = {
 export function SSIDButton({ ssid }: Props) {
   const sheetRef = useRef<ModalBottomSheetRef>(null);
   const [sheet, setSheet] = useState<SheetState>({ isOpen: false });
+  const {
+    permission,
+    precision,
+    canAskAgain,
+    locationServicesEnabled,
+    requestPermission,
+  } = useLocation();
   const { resolvedTheme, colors, fontFamily, fontSizes } = useTheme();
   const { performTapFeedback } = useHaptics();
   const { t } = useTranslation("translation", {
@@ -65,138 +72,104 @@ export function SSIDButton({ ssid }: Props) {
     }
   }, []);
 
+  const handleRequestPermission = useCallback(() => {
+    performTapFeedback();
+    requestPermission();
+  }, [performTapFeedback, requestPermission]);
+
   const handleOpenAppSettings = useCallback(() => {
     performTapFeedback();
-    Linking.openSettings();
+    LocationUtils.openAppSettings();
     handleClose();
   }, [handleClose, performTapFeedback]);
 
   const handleOpenLocationSettings = useCallback(() => {
     performTapFeedback();
-    startActivityAsync(ActivityAction.LOCATION_SOURCE_SETTINGS);
+    LocationUtils.openDeviceLocationSettings();
     handleClose();
   }, [handleClose, performTapFeedback]);
 
   const handleShowSSID = useCallback(async () => {
     performTapFeedback();
 
-    try {
-      const permission = await ExpoLocation.getForegroundPermissionsAsync();
-
-      if (!permission.granted) {
-        if (permission.canAskAgain) {
-          setSheet({
-            isOpen: true,
-            info: {
-              icon: "network_manage",
-              title: t("action.handling.permission_request.title"),
-              message: t("action.handling.permission_request.message"),
-              action: {
-                title: t("action.handling.permission_request.action.title"),
-                handler: async () => {
-                  performTapFeedback();
-
-                  try {
-                    const result =
-                      await ExpoLocation.requestForegroundPermissionsAsync();
-
-                    if (!result.granted) {
-                      if (!permission.canAskAgain) {
-                        setSheet({
-                          isOpen: true,
-                          info: {
-                            icon: "wifi_lock",
-                            title: t(
-                              "action.handling.permission_blocked.title",
-                            ),
-                            message: t(
-                              "action.handling.permission_blocked.message",
-                            ),
-                            action: {
-                              title: t(
-                                "action.handling.permission_blocked.action.title",
-                              ),
-                              handler: handleOpenAppSettings,
-                            },
-                          },
-                        });
-                      }
-                      return;
-                    }
-
-                    const locationEnabled =
-                      await ExpoLocation.hasServicesEnabledAsync();
-
-                    if (!locationEnabled) {
-                      setSheet({
-                        isOpen: true,
-                        info: {
-                          icon: "wifi_off",
-                          title: t("action.handling.location_off.title"),
-                          message: t("action.handling.location_off.message"),
-                          action: {
-                            title: t(
-                              "action.handling.location_off.action.title",
-                            ),
-                            handler: handleOpenLocationSettings,
-                          },
-                        },
-                      });
-                      return;
-                    }
-
-                    refresh();
-                  } catch (error) {
-                    console.log(error);
-                  }
-                },
-              },
-            },
-          });
-        } else {
-          setSheet({
-            isOpen: true,
-            info: {
-              icon: "wifi_lock",
-              title: t("action.handling.permission_blocked.title"),
-              message: t("action.handling.permission_blocked.message"),
-              action: {
-                title: t("action.handling.permission_blocked.action.title"),
-                handler: handleOpenAppSettings,
-              },
-            },
-          });
-        }
-        return;
-      }
-
-      const locationEnabled = await ExpoLocation.hasServicesEnabledAsync();
-
-      if (!locationEnabled) {
+    if (permission !== "granted") {
+      if (canAskAgain) {
         setSheet({
           isOpen: true,
           info: {
-            icon: "wifi_off",
-            title: t("action.handling.location_off.title"),
-            message: t("action.handling.location_off.message"),
+            icon: "network_manage",
+            title: t("action.handling.permission_request.title"),
+            message: t("action.handling.permission_request.message"),
             action: {
-              title: t("action.handling.location_off.action.title"),
-              handler: handleOpenLocationSettings,
+              title: t("action.handling.permission_request.action.title"),
+              handler: handleRequestPermission,
             },
           },
         });
         return;
       }
 
-      refresh();
-    } catch (error) {
-      console.log(error);
+      setSheet({
+        isOpen: true,
+        info: {
+          icon: "wifi_lock",
+          title: t("action.handling.permission_blocked.title"),
+          message: t("action.handling.permission_blocked.message"),
+          action: {
+            title: t("action.handling.permission_blocked.action.title"),
+            handler: handleOpenAppSettings,
+          },
+        },
+      });
+
+      return;
     }
+
+    if (precision !== "precise") {
+      setSheet({
+        isOpen: true,
+        info: {
+          icon: "network_manage",
+          title: t("action.handling.precision_required.title"),
+          message: t("action.handling.precision_required.message"),
+          action: {
+            title: t("action.handling.precision_required.action.title"),
+            handler: handleOpenAppSettings,
+          },
+        },
+      });
+
+      return;
+    }
+
+    if (!locationServicesEnabled) {
+      setSheet({
+        isOpen: true,
+        info: {
+          icon: "wifi_off",
+          title: t("action.handling.location_off.title"),
+          message: t("action.handling.location_off.message"),
+          action: {
+            title: t("action.handling.location_off.action.title"),
+            handler: handleOpenLocationSettings,
+          },
+        },
+      });
+
+      return;
+    }
+
+    refresh();
   }, [
-    t,
+    permission,
+    precision,
+    canAskAgain,
+    locationServicesEnabled,
     handleOpenAppSettings,
     handleOpenLocationSettings,
     performTapFeedback,
+    t,
+    handleRequestPermission,
   ]);
 
   return (
