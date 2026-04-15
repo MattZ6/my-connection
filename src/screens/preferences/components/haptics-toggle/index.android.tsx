@@ -14,27 +14,21 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 
 import { useHaptics } from "@/hooks/use-haptics";
+import { usePreferences } from "@/hooks/use-preferences";
 import { useTheme } from "@/hooks/use-theme";
 
-export function DynamicColorsToggle() {
-  const { performSelectFeedback } = useHaptics();
+export function HapticsToggle() {
   const { t } = useTranslation("translation", {
-    keyPrefix:
-      "appearance.sections.android_dynamic_colors.fields.dynamic_colors",
+    keyPrefix: "preferences.sections.haptics.fields.haptics",
   });
-  const {
-    theme,
-    fontFamily,
-    fontSizes,
-    colors,
-    isUsingAndroidDynamicColors,
-    toggleAndroidDynamicColors,
-  } = useTheme();
+  const { fontFamily, fontSizes, colors } = useTheme();
+  const { hapticsEnabled, toggleHaptics } = usePreferences();
+  const { performSelectFeedback } = useHaptics();
 
   const handleToggle = useCallback(() => {
     performSelectFeedback();
-    toggleAndroidDynamicColors();
-  }, [toggleAndroidDynamicColors, performSelectFeedback]);
+    toggleHaptics();
+  }, [toggleHaptics, performSelectFeedback]);
 
   return (
     <Card>
@@ -42,11 +36,7 @@ export function DynamicColorsToggle() {
         style={{ width: "100%", height: "auto" }}
         matchContents={{ vertical: true }}
       >
-        <Surface
-          onClick={handleToggle}
-          color="transparent"
-          enabled={theme === "system"}
-        >
+        <Surface onClick={handleToggle} color="transparent">
           <Row
             horizontalArrangement="spaceBetween"
             verticalAlignment="center"
@@ -78,9 +68,8 @@ export function DynamicColorsToggle() {
             <Spacer modifiers={[width(16)]} />
 
             <Switch
-              value={isUsingAndroidDynamicColors}
+              value={hapticsEnabled}
               onCheckedChange={handleToggle}
-              enabled={theme === "system"}
               colors={{
                 checkedBorderColor: colors.brandSurface.elevated,
                 checkedTrackColor: colors.brandSurface.elevated,

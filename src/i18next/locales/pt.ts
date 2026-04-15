@@ -173,6 +173,7 @@ export const pt = {
         preferences: {
           title: "Preferências",
           links: {
+            preferences: { title: "Preferências" },
             appearance: { title: "Aparência" },
             language: { title: "Idioma" },
           },
@@ -187,6 +188,20 @@ export const pt = {
       },
       disclaimer: {
         text: "Este app não coleta dados pessoais.\nTodas as informações permanecem no seu dispositivo.",
+      },
+    },
+
+    preferences: {
+      meta: { title: "Preferências" },
+      sections: {
+        haptics: {
+          fields: {
+            haptics: {
+              title: "Feedback tátil",
+              description: "Vibra levemente ao interagir.",
+            },
+          },
+        },
       },
     },
 

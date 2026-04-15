@@ -6,11 +6,10 @@ import { Pressable, Text, View } from "react-native";
 import { Card } from "@/components/ui/card";
 import { SectionDivider } from "@/components/ui/section";
 
+import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
 
 import { SettingsRepository } from "@/repositories/settings";
-
-import { HapticsService } from "@/services/device/haptics";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
@@ -19,6 +18,7 @@ import { getStyles } from "./styles";
 const languages = ["en", "pt", "es"];
 
 export function LanguageSelect() {
+  const { performSelectFeedback } = useHaptics();
   const styles = useStyles(getStyles);
   const { t, i18n } = useTranslation("translation", {
     keyPrefix: "language.sections.language.fields.language",
@@ -26,11 +26,11 @@ export function LanguageSelect() {
 
   const handleSelectTheme = useCallback(
     (option: string) => {
-      HapticsService.performSelectFeedback();
+      performSelectFeedback();
       SettingsRepository.saveLanguage(option);
       i18n.changeLanguage(option);
     },
-    [i18n.changeLanguage],
+    [i18n.changeLanguage, performSelectFeedback],
   );
 
   return (

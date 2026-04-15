@@ -7,9 +7,22 @@ const STORAGE_KEY = {
   THEME: "theme",
   DYNAMIC_COLORS: "android.dynamic-colors",
   LANGUAGE: "language",
+  HAPTICS: "haptics",
 };
 
 export const SettingsRepository = {
+  getHapticsFlag: () => {
+    const storedValue = personalSettingsStorage.getBoolean(STORAGE_KEY.HAPTICS);
+
+    if (storedValue === undefined || storedValue === null) {
+      return null;
+    }
+
+    return storedValue;
+  },
+  saveHapticsFlag: (value: boolean) => {
+    personalSettingsStorage.set(STORAGE_KEY.HAPTICS, value);
+  },
   getAndroidDynamicColorsFlag: () => {
     const storedValue = personalSettingsStorage.getBoolean(
       STORAGE_KEY.DYNAMIC_COLORS,
