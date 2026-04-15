@@ -27,6 +27,7 @@ import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { PreferencesProvider } from "@/contexts/preferences";
 import { ThemeProvider } from "@/contexts/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { HapticsService } from "@/services/device/haptics";
@@ -95,9 +96,11 @@ function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider>
-        <NavigationProvider />
-      </ThemeProvider>
+      <PreferencesProvider defaultHapticsEnabled>
+        <ThemeProvider>
+          <NavigationProvider />
+        </ThemeProvider>
+      </PreferencesProvider>
     </SafeAreaProvider>
   );
 }
