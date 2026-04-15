@@ -21,7 +21,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
   const lastSyncRef = useRef(0);
   const currentAppStateRef = useRef(AppState.currentState);
 
-  const [_, setIsLoading] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const [permission, setPermission] =
     useState<LocationContextTypes.Permission>("undetermined");
   const [precision, setPrecision] =
@@ -52,7 +52,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
       setPrecision(precision);
       setCanAskAgain(permission.canAskAgain);
       setLocationServicesEnabled(locationEnabled);
-      setIsLoading(true);
+      setIsReady(true);
     } catch (_error) {
       // TODO: O que fazer?
     }
@@ -71,6 +71,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
     setPrecision(precision);
     setCanAskAgain(permission.canAskAgain);
     setLocationServicesEnabled(locationEnabled);
+    setIsReady(true);
   }, []);
 
   const contextValue = useMemo<LocationContextTypes.Context>(
@@ -80,6 +81,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
       canAskAgain,
       locationServicesEnabled,
       requestPermission,
+      isReady,
     }),
     [
       permission,
@@ -87,6 +89,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
       canAskAgain,
       locationServicesEnabled,
       requestPermission,
+      isReady,
     ],
   );
 

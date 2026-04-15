@@ -5,6 +5,7 @@ export namespace LocationContextTypes {
   export type Precision = "precise" | "reduced" | "none";
 
   export type Context = {
+    isReady: boolean;
     permission: Permission;
     precision: Precision;
     canAskAgain: boolean;
