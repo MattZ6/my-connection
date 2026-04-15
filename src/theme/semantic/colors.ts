@@ -3,7 +3,7 @@ import { type OpaqueColorValue, Platform } from "react-native";
 
 import { darkPalette, palette } from "../tokens/palette";
 
-export const colors = {
+export const colors: Colors = {
   surface: {
     base: palette.gray["1"],
     elevated: palette.gray["2"],
@@ -27,9 +27,14 @@ export const colors = {
   border: {
     default: palette.gray["6"],
   },
+
+  semantic: {
+    warning: palette.red["11"],
+    success: palette.green["11"],
+  },
 };
 
-export const darkColors = {
+export const darkColors: Colors = {
   surface: {
     base: darkPalette.gray["1"],
     elevated: darkPalette.gray["2"],
@@ -52,6 +57,11 @@ export const darkColors = {
   border: {
     default: darkPalette.gray["6"],
   },
+
+  semantic: {
+    warning: darkPalette.red["11"],
+    success: darkPalette.green["11"],
+  },
 };
 
 type GenerateSystemColorsInput = {
@@ -60,7 +70,7 @@ type GenerateSystemColorsInput = {
 
 export function generateSystemColors(
   input: GenerateSystemColorsInput = { useDynamicColors: true },
-) {
+): Colors {
   let androidMaterialColor = Color.android.material;
 
   if (input.useDynamicColors) {
@@ -127,6 +137,19 @@ export function generateSystemColors(
         default: "",
       }),
     },
+
+    semantic: {
+      success: Platform.select({
+        android: androidMaterialColor.tertiary,
+        ios: Color.ios.label,
+        default: "",
+      }),
+      warning: Platform.select({
+        android: androidMaterialColor.error,
+        ios: Color.ios.secondaryLabel,
+        default: "",
+      }),
+    },
   };
 }
 
@@ -146,10 +169,16 @@ type Border = {
   default: AppColorValue;
 };
 
+type Semantic = {
+  warning: AppColorValue;
+  success: AppColorValue;
+};
+
 export type Colors = {
   surface: Surface;
   brandSurface: Surface;
   content: Content;
   brandContent: Content;
   border: Border;
+  semantic: Semantic;
 };
