@@ -1,10 +1,16 @@
 import { SymbolView } from "expo-symbols";
 import { Fragment, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
+import { Pressable } from "react-native";
 
 import { Card } from "@/components/ui/card";
-import { SectionDivider } from "@/components/ui/section";
+import {
+  SectionDivider,
+  SectionItemContent,
+  SectionItemLabel,
+  SectionItemRoot,
+  SectionItemTrailing,
+} from "@/components/ui/section";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
@@ -22,7 +28,9 @@ export function ThemeSelect() {
   const { theme, changeTheme } = useTheme();
   const { performSelectFeedback } = useHaptics();
   const styles = useStyles(getStyles);
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "appearance.sections.theme.fields",
+  });
 
   const handleSelectTheme = useCallback(
     (option: ThemeValue) => {
@@ -41,18 +49,20 @@ export function ThemeSelect() {
             android_disableSound
             android_ripple={androidRippleConfig}
           >
-            <View style={styles.buttonContent}>
-              <Text style={styles.buttonText}>
-                {t(`appearance.sections.theme.fields.${option}.title`)}
-              </Text>
-              {theme === option && (
-                <SymbolView
-                  name={{ android: "check", ios: "checkmark" }}
-                  size={20}
-                  tintColor={styles.icon.tintColor}
-                />
-              )}
-            </View>
+            <SectionItemRoot>
+              <SectionItemContent>
+                <SectionItemLabel>{t(`${option}.title`)}</SectionItemLabel>
+              </SectionItemContent>
+              <SectionItemTrailing>
+                {theme === option && (
+                  <SymbolView
+                    name={{ android: "check", ios: "checkmark" }}
+                    size={20}
+                    tintColor={styles.icon.tintColor}
+                  />
+                )}
+              </SectionItemTrailing>
+            </SectionItemRoot>
           </Pressable>
           {index < options.length - 1 && <SectionDivider />}
         </Fragment>

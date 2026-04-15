@@ -1,17 +1,21 @@
 import { type AndroidSymbol, type SFSymbol, SymbolView } from "expo-symbols";
 import { useCallback } from "react";
+import { type GestureResponderEvent, Platform, Pressable } from "react-native";
+
 import {
-  type GestureResponderEvent,
-  Platform,
-  Pressable,
-  Text,
-  View,
-} from "react-native";
+  SectionItemChevron,
+  SectionItemContent,
+  SectionItemLabel,
+  SectionItemLeading,
+  SectionItemRoot,
+  SectionItemTrailing,
+} from "@/components/ui/section";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
+
 import { getStyles } from "./styles";
 
 type Props = {
@@ -44,29 +48,21 @@ export function PressableConfigItem({ label, icon, onPress }: Props) {
       android_disableSound
       android_ripple={androidRippleConfig}
     >
-      <View style={styles.content}>
-        <View style={styles.iconContainer}>
+      <SectionItemRoot>
+        <SectionItemLeading style={styles.iconContainer}>
           <SymbolView
             name={icon}
             tintColor={styles.icon.tintColor}
-            size={Platform.select({
-              ios: 20,
-              android: 24,
-            })}
+            size={Platform.select({ ios: 20, android: 24 })}
           />
-        </View>
-
-        <Text style={styles.text}>{label}</Text>
-
-        <SymbolView
-          name={{ android: "chevron_right", ios: "chevron.right" }}
-          tintColor={styles.chevron.tintColor}
-          size={Platform.select({
-            ios: 12,
-            android: 24,
-          })}
-        />
-      </View>
+        </SectionItemLeading>
+        <SectionItemContent>
+          <SectionItemLabel>{label}</SectionItemLabel>
+        </SectionItemContent>
+        <SectionItemTrailing>
+          <SectionItemChevron />
+        </SectionItemTrailing>
+      </SectionItemRoot>
     </Pressable>
   );
 }

@@ -34,7 +34,7 @@ export function AboutSectionContent() {
 
         <PressableConfigItem
           label={t("settings.sections.about.links.licenses.title")}
-          icon={{ android: "apk_document", ios: "doc" }}
+          icon={{ android: "description", ios: "doc.text" }}
           onPress={handleNavigateToLicensesPage}
         />
       </Card>
