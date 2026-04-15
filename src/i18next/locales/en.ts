@@ -104,12 +104,18 @@ export const en = {
                     title: "Access Wi-Fi network name",
                     message:
                       "To show your Wi-Fi network name (SSID), this app requires location access. This is an Android system requirement.",
-                    action: { title: "Allow access" },
+                    action: { title: "Allow Access" },
                   },
                   permission_blocked: {
                     title: "Permission required",
                     message:
                       "Location permission was denied.\nYou can enable it in your device settings.",
+                    action: { title: "Open Settings" },
+                  },
+                  precision_required: {
+                    title: "Precise location required",
+                    message:
+                      "To show detailed Wi-Fi information, precise location needs to be enabled.\nUpdate your location settings to continue.",
                     action: { title: "Open Settings" },
                   },
                   location_off: {

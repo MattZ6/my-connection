@@ -105,19 +105,25 @@ export const pt = {
                     title: "Acessar nome da rede Wi-Fi",
                     message:
                       "Para exibir o nome da rede Wi-Fi (SSID), este app precisa de acesso à localização. Isso é uma exigência do Android.",
-                    action: { title: "Permitir acesso" },
+                    action: { title: "Permitir Acesso" },
                   },
                   permission_blocked: {
                     title: "Permissão necessária",
                     message:
                       "A permissão de localização foi negada.\nVocê pode ativá-la nas configurações do dispositivo.",
-                    action: { title: "Abrir configurações" },
+                    action: { title: "Abrir Configurações" },
+                  },
+                  precision_required: {
+                    title: "Localização precisa necessária",
+                    message:
+                      "Para exibir informações detalhadas da rede Wi-Fi, é necessário ativar a localização precisa.\nAjuste nas configurações do dispositivo.",
+                    action: { title: "Abrir Configurações" },
                   },
                   location_off: {
                     title: "Ativar localização",
                     message:
                       "É necessário ativar a localização para acessar os dados da rede Wi-Fi.",
-                    action: { title: "Abrir configurações" },
+                    action: { title: "Abrir Configurações" },
                   },
                 },
               },
