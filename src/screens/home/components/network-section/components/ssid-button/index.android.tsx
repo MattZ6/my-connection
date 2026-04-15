@@ -14,16 +14,14 @@ import {
   width,
 } from "@expo/ui/jetpack-compose/modifiers";
 import { refresh } from "@react-native-community/netinfo";
-import { ActivityAction, startActivityAsync } from "expo-intent-launcher";
 import * as ExpoLocation from "expo-location";
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import { useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Linking } from "react-native";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
-
+import { LocationUtils } from "@/utils/location";
 import { LocationBottomSheet } from "./components/location-bottom-sheet";
 
 type Props = {
@@ -67,13 +65,13 @@ export function SSIDButton({ ssid }: Props) {
 
   const handleOpenAppSettings = useCallback(() => {
     performTapFeedback();
-    Linking.openSettings();
+    LocationUtils.openAppSettings();
     handleClose();
   }, [handleClose, performTapFeedback]);
 
   const handleOpenLocationSettings = useCallback(() => {
     performTapFeedback();
-    startActivityAsync(ActivityAction.LOCATION_SOURCE_SETTINGS);
+    LocationUtils.openDeviceLocationSettings();
     handleClose();
   }, [handleClose, performTapFeedback]);
 
@@ -170,6 +168,8 @@ export function SSIDButton({ ssid }: Props) {
         return;
       }
 
+      // TODO: check precision
+
       const locationEnabled = await ExpoLocation.hasServicesEnabledAsync();
 
       if (!locationEnabled) {
@@ -190,6 +190,7 @@ export function SSIDButton({ ssid }: Props) {
 
       refresh();
     } catch (error) {
+      // TODO: tratar os erros
       console.log(error);
     }
   }, [
