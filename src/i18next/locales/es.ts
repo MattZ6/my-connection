@@ -174,6 +174,7 @@ export const es = {
           title: "Preferencias",
           links: {
             preferences: { title: "Preferencias" },
+            permissions: { title: "Privacidad y permisos" },
             appearance: { title: "Apariencia" },
             language: { title: "Idioma" },
           },
@@ -203,6 +204,60 @@ export const es = {
           },
         },
       },
+    },
+
+    permissions: {
+      meta: { title: "Privacidad y permisos" },
+      sections: {
+        location: {
+          title: "Ubicación",
+          fields: {
+            permission: {
+              title: "Acceso a la ubicación",
+              value: {
+                undetermined: "No determinado",
+                granted: "Permitido",
+                denied: "No permitido",
+              },
+            },
+            precision: {
+              title: "Precisión",
+              value: {
+                none: "No disponible",
+                precise: "Precisa",
+                reduced: "Reducida",
+              },
+            },
+            location: {
+              title: "Servicios de ubicación",
+              value: {
+                true: "Activados",
+                false: "Desactivados",
+              },
+            },
+          },
+          action: {
+            request_permission: "Permitir acceso",
+            open_app_permission_settings: "Abrir configuración",
+            open_location_settings: "Activar ubicación",
+          },
+          disclaimer: {
+            permission_undetermined:
+              "Se necesita acceso a la ubicación para mostrar los detalles de la red Wi-Fi.",
+            permission_denied_can_ask_again:
+              "Se necesita acceso a la ubicación para mostrar los detalles de la red Wi-Fi.",
+            permission_denied:
+              "Se requiere acceso a la ubicación para mostrar los detalles de la red Wi-Fi.\nActívalo en la configuración del dispositivo.",
+            invalid_precision:
+              "Se requiere ubicación precisa para acceder a los detalles de la red Wi-Fi.\nPermite la ubicación precisa.",
+            location_disabled:
+              "Activa los servicios de ubicación para acceder a los datos de la red Wi-Fi.",
+            all_right: "Todas las configuraciones necesarias están activadas.",
+          },
+        },
+      },
+      disclaimer:
+        "Tu ubicación no se almacena ni se comparte.\nSolo se utiliza para acceder a los datos de la red Wi-Fi.",
     },
 
     appearance: {

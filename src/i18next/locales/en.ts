@@ -173,6 +173,7 @@ export const en = {
           title: "Preferences",
           links: {
             preferences: { title: "Preferences" },
+            permissions: { title: "Privacy & Permissions" },
             appearance: { title: "Appearance" },
             language: { title: "Language" },
           },
@@ -202,6 +203,60 @@ export const en = {
           },
         },
       },
+    },
+
+    permissions: {
+      meta: { title: "Privacy & Permissions" },
+      sections: {
+        location: {
+          title: "Location",
+          fields: {
+            permission: {
+              title: "Location Access",
+              value: {
+                undetermined: "Not determined",
+                granted: "Allowed",
+                denied: "Not allowed",
+              },
+            },
+            precision: {
+              title: "Precision",
+              value: {
+                none: "Unavailable",
+                precise: "Precise",
+                reduced: "Reduced",
+              },
+            },
+            location: {
+              title: "Location Services",
+              value: {
+                true: "Enabled",
+                false: "Disabled",
+              },
+            },
+          },
+          action: {
+            request_permission: "Allow access",
+            open_app_permission_settings: "Open settings",
+            open_location_settings: "Turn on location",
+          },
+          disclaimer: {
+            permission_undetermined:
+              "Location access is needed to display your Wi-Fi network details.",
+            permission_denied_can_ask_again:
+              "Location access is needed to display your Wi-Fi network details.",
+            permission_denied:
+              "Location access is required to display Wi-Fi network details.\nEnable it in your device settings.",
+            invalid_precision:
+              "Precise location is required to access Wi-Fi network details.\nPlease allow precise location.",
+            location_disabled:
+              "Location services must be enabled to access Wi-Fi network details.",
+            all_right: "All required settings are enabled.",
+          },
+        },
+      },
+      disclaimer:
+        "Your location is never stored or shared.\nIt’s only used to access Wi-Fi network details.",
     },
 
     appearance: {

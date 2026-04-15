@@ -18,6 +18,11 @@ export function PreferencesSectionContent() {
     [router.navigate],
   );
 
+  const handleNavigateToPermissionsPage = useCallback(
+    () => router.navigate("/settings/permissions"),
+    [router.navigate],
+  );
+
   const handleNavigateToAppearancePage = useCallback(
     () => router.navigate("/settings/appearance"),
     [router.navigate],
@@ -35,6 +40,14 @@ export function PreferencesSectionContent() {
           label={t("links.preferences.title")}
           icon={{ android: "tune", ios: "slider.horizontal.3" }}
           onPress={handleNavigateToPreferencesPage}
+        />
+
+        <SectionDivider />
+
+        <PressableConfigItem
+          label={t("links.permissions.title")}
+          icon={{ android: "request_page", ios: "paintpalette" }}
+          onPress={handleNavigateToPermissionsPage}
         />
 
         <SectionDivider />
