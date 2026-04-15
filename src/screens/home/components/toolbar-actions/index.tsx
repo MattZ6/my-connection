@@ -4,9 +4,8 @@ import { SymbolView } from "expo-symbols";
 import { useCallback } from "react";
 import { Platform, Pressable, View } from "react-native";
 
+import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
-
-import { HapticsService } from "@/services/device/haptics";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
@@ -14,16 +13,17 @@ import { getStyles } from "./styles";
 
 export function ToolbarActions() {
   const styles = useStyles(getStyles);
+  const { performTapFeedback } = useHaptics();
 
   const handleRefresh = useCallback(async () => {
-    HapticsService.performTapFeedback();
+    performTapFeedback();
 
     try {
       await refresh();
     } catch (_error) {
       // Falha
     }
-  }, []);
+  }, [performTapFeedback]);
 
   return (
     <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>

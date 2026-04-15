@@ -7,8 +7,10 @@ import {
   Text,
   View,
 } from "react-native";
+
+import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
-import { HapticsService } from "@/services/device/haptics";
+
 import { androidRippleConfig } from "@/theme/android-ripple";
 import { getStyles } from "./styles";
 
@@ -23,16 +25,17 @@ type Props = {
 
 export function PressableConfigItem({ label, icon, onPress }: Props) {
   const styles = useStyles(getStyles);
+  const { performTapFeedback } = useHaptics();
 
   const handlePress = useCallback(
     (event: GestureResponderEvent) => {
-      HapticsService.performTapFeedback();
+      performTapFeedback();
 
       if (onPress) {
         onPress(event);
       }
     },
-    [onPress],
+    [onPress, performTapFeedback],
   );
 
   return (

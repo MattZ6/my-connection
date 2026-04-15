@@ -12,9 +12,10 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Card } from "@/components/ui/card";
+
+import { useHaptics } from "@/hooks/use-haptics";
 import { usePreferences } from "@/hooks/use-preferences";
 import { useTheme } from "@/hooks/use-theme";
-import { HapticsService } from "@/services/device/haptics";
 
 export function HapticsToggle() {
   const { t } = useTranslation("translation", {
@@ -22,11 +23,12 @@ export function HapticsToggle() {
   });
   const { fontFamily, fontSizes, colors } = useTheme();
   const { hapticsEnabled, toggleHaptics } = usePreferences();
+  const { performSelectFeedback } = useHaptics();
 
   const handleToggle = useCallback(() => {
-    HapticsService.performSelectFeedback();
+    performSelectFeedback();
     toggleHaptics();
-  }, [toggleHaptics]);
+  }, [toggleHaptics, performSelectFeedback]);
 
   return (
     <Card>

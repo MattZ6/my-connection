@@ -21,9 +21,8 @@ import { useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Linking } from "react-native";
 
+import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
-
-import { HapticsService } from "@/services/device/haptics";
 
 import { LocationBottomSheet } from "./components/location-bottom-sheet";
 
@@ -52,6 +51,7 @@ export function SSIDButton({ ssid }: Props) {
   const sheetRef = useRef<ModalBottomSheetRef>(null);
   const [sheet, setSheet] = useState<SheetState>({ isOpen: false });
   const { resolvedTheme, colors, fontFamily, fontSizes } = useTheme();
+  const { performTapFeedback } = useHaptics();
   const { t } = useTranslation("translation", {
     keyPrefix: "home.sections.network.fields.ssid",
   });
@@ -66,19 +66,19 @@ export function SSIDButton({ ssid }: Props) {
   }, []);
 
   const handleOpenAppSettings = useCallback(() => {
-    HapticsService.performTapFeedback();
+    performTapFeedback();
     Linking.openSettings();
     handleClose();
-  }, [handleClose]);
+  }, [handleClose, performTapFeedback]);
 
   const handleOpenLocationSettings = useCallback(() => {
-    HapticsService.performTapFeedback();
+    performTapFeedback();
     startActivityAsync(ActivityAction.LOCATION_SOURCE_SETTINGS);
     handleClose();
-  }, [handleClose]);
+  }, [handleClose, performTapFeedback]);
 
   const handleShowSSID = useCallback(async () => {
-    HapticsService.performTapFeedback();
+    performTapFeedback();
 
     try {
       const permission = await ExpoLocation.getForegroundPermissionsAsync();
@@ -94,7 +94,7 @@ export function SSIDButton({ ssid }: Props) {
               action: {
                 title: t("action.handling.permission_request.action.title"),
                 handler: async () => {
-                  HapticsService.performTapFeedback();
+                  performTapFeedback();
 
                   try {
                     const result =
@@ -192,7 +192,12 @@ export function SSIDButton({ ssid }: Props) {
     } catch (error) {
       console.log(error);
     }
-  }, [t, handleOpenAppSettings, handleOpenLocationSettings]);
+  }, [
+    t,
+    handleOpenAppSettings,
+    handleOpenLocationSettings,
+    performTapFeedback,
+  ]);
 
   return (
     <Host matchContents={{ vertical: true }} colorScheme={resolvedTheme}>

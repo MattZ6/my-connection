@@ -6,10 +6,9 @@ import { Pressable, Text, View } from "react-native";
 import { Card } from "@/components/ui/card";
 import { SectionDivider } from "@/components/ui/section";
 
+import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
-
-import { HapticsService } from "@/services/device/haptics";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
@@ -21,15 +20,16 @@ const options: ThemeValue[] = ["system", "light", "dark"];
 
 export function ThemeSelect() {
   const { theme, changeTheme } = useTheme();
+  const { performSelectFeedback } = useHaptics();
   const styles = useStyles(getStyles);
   const { t } = useTranslation();
 
   const handleSelectTheme = useCallback(
     (option: ThemeValue) => {
-      HapticsService.performSelectFeedback();
+      performSelectFeedback();
       changeTheme(option);
     },
-    [changeTheme],
+    [changeTheme, performSelectFeedback],
   );
 
   return (

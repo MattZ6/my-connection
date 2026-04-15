@@ -13,11 +13,11 @@ import { useTranslation } from "react-i18next";
 
 import { Card } from "@/components/ui/card";
 
+import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
 
-import { HapticsService } from "@/services/device/haptics";
-
 export function DynamicColorsToggle() {
+  const { performSelectFeedback } = useHaptics();
   const { t } = useTranslation("translation", {
     keyPrefix:
       "appearance.sections.android_dynamic_colors.fields.dynamic_colors",
@@ -32,9 +32,9 @@ export function DynamicColorsToggle() {
   } = useTheme();
 
   const handleToggle = useCallback(() => {
-    HapticsService.performSelectFeedback();
+    performSelectFeedback();
     toggleAndroidDynamicColors();
-  }, [toggleAndroidDynamicColors]);
+  }, [toggleAndroidDynamicColors, performSelectFeedback]);
 
   return (
     <Card>

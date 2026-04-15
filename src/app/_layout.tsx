@@ -27,10 +27,12 @@ import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+
 import { PreferencesProvider } from "@/contexts/preferences";
 import { ThemeProvider } from "@/contexts/theme";
+
+import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
-import { HapticsService } from "@/services/device/haptics";
 
 const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
 const packageName = String(ExpoConstants.expoConfig?.slug || "");
@@ -118,15 +120,9 @@ function NavigationProvider() {
   );
 }
 
-const screenListeners: ScreenListeners<
-  TabNavigationState<ParamListBase>,
-  NativeTabNavigationEventMap
-> = {
-  tabPress: HapticsService.performTabSelectedFeedback,
-};
-
 function useTabsNavigationConfig() {
   const { colors, fontFamily } = useTheme();
+  const { performTabSelectedFeedback } = useHaptics();
   const { t } = useTranslation();
 
   const backgroundColor = colors.surface.base;
@@ -162,6 +158,18 @@ function useTabsNavigationConfig() {
   const homeLabel = t("tabs.home.title");
   const settingsLabel = t("tabs.settings.title");
 
+  const screenListeners = useMemo<
+    ScreenListeners<
+      TabNavigationState<ParamListBase>,
+      NativeTabNavigationEventMap
+    >
+  >(
+    () => ({
+      tabPress: performTabSelectedFeedback,
+    }),
+    [performTabSelectedFeedback],
+  );
+
   useEffect(() => {
     ExpoSystemUI.setBackgroundColorAsync(backgroundColor);
   }, [backgroundColor]);
@@ -174,6 +182,7 @@ function useTabsNavigationConfig() {
     rippleColor,
     homeLabel,
     settingsLabel,
+    screenListeners,
   };
 }
 
@@ -186,6 +195,7 @@ function TabsNavigation() {
     labelStyle,
     rippleColor,
     indicatorColor,
+    screenListeners,
   } = useTabsNavigationConfig();
 
   return (
