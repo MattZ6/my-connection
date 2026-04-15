@@ -46,7 +46,7 @@ export function PreferencesSectionContent() {
 
         <PressableConfigItem
           label={t("links.permissions.title")}
-          icon={{ android: "request_page", ios: "paintpalette" }}
+          icon={{ android: "shield_lock", ios: "lock.shield" }}
           onPress={handleNavigateToPermissionsPage}
         />
 
