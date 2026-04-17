@@ -29,9 +29,9 @@ import { useTranslation } from "react-i18next";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { LocationProvider } from "@/contexts/location";
+import { NetworkUpdatesProvider } from "@/contexts/network-updates";
 import { PreferencesProvider } from "@/contexts/preferences";
 import { ThemeProvider } from "@/contexts/theme";
-
 import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -100,9 +100,14 @@ function RootLayout() {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <PreferencesProvider defaultHapticsEnabled>
+        <PreferencesProvider defaultHapticsEnabled={true}>
           <LocationProvider>
-            <NavigationProvider />
+            <NetworkUpdatesProvider
+              defaultAutomaticUpdatesEnabled={true}
+              defaultUpdateFrequency="60s"
+            >
+              <NavigationProvider />
+            </NetworkUpdatesProvider>
           </LocationProvider>
         </PreferencesProvider>
       </ThemeProvider>
