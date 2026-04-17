@@ -1,10 +1,10 @@
-import { refresh } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { useCallback } from "react";
 import { Platform, Pressable, View } from "react-native";
 
 import { useHaptics } from "@/hooks/use-haptics";
+import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useStyles } from "@/hooks/use-styles";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
@@ -14,6 +14,7 @@ import { getStyles } from "./styles";
 export function ToolbarActions() {
   const styles = useStyles(getStyles);
   const { performTapFeedback } = useHaptics();
+  const { refresh } = useNetworkUpdates();
 
   const handleRefresh = useCallback(async () => {
     performTapFeedback();
@@ -23,7 +24,7 @@ export function ToolbarActions() {
     } catch (_error) {
       // Falha
     }
-  }, [performTapFeedback]);
+  }, [performTapFeedback, refresh]);
 
   return (
     <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>
