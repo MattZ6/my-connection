@@ -1,12 +1,9 @@
-import {
-  configure,
-  NetInfoStateType,
-  useNetInfo,
-} from "@react-native-community/netinfo";
+import { NetInfoStateType } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 
+import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -50,10 +47,8 @@ export function HomeScreen() {
   );
 }
 
-configure({ shouldFetchWiFiSSID: true });
-
 function Content() {
-  const info = useNetInfo();
+  const { netInfo } = useNetworkUpdates();
   const styles = useStyles(getStyles);
 
   return (
@@ -66,52 +61,58 @@ function Content() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        <ConnectionHero info={info} />
+        {/* TODO: adicionar skeletons */}
 
-        <ConnectionSummary info={info} />
+        {!!netInfo && (
+          <>
+            <ConnectionHero info={netInfo} />
 
-        {info.type === NetInfoStateType.cellular && (
-          <CellularSection
-            carrier={info.details.carrier}
-            generation={info.details.cellularGeneration}
-          />
-        )}
+            <ConnectionSummary info={netInfo} />
 
-        {info.type === NetInfoStateType.wifi && (
-          <PerformanceSection
-            strength={info.details.strength}
-            speed={info.details.linkSpeed}
-            download={info.details.rxLinkSpeed}
-            upload={info.details.txLinkSpeed}
-          />
-        )}
+            {netInfo.type === NetInfoStateType.cellular && (
+              <CellularSection
+                carrier={netInfo.details.carrier}
+                generation={netInfo.details.cellularGeneration}
+              />
+            )}
 
-        {info.type === NetInfoStateType.wifi && (
-          <NetworkSection
-            ssid={info.details.ssid}
-            bssid={info.details.bssid || "-"}
-            frequency={info.details.frequency || 0}
-          />
-        )}
+            {netInfo.type === NetInfoStateType.wifi && (
+              <PerformanceSection
+                strength={netInfo.details.strength}
+                speed={netInfo.details.linkSpeed}
+                download={netInfo.details.rxLinkSpeed}
+                upload={netInfo.details.txLinkSpeed}
+              />
+            )}
 
-        {(info.type === NetInfoStateType.wifi ||
-          info.type === NetInfoStateType.ethernet) && (
-          <IPConfigSection
-            ipAddress={info.details.ipAddress}
-            subnetMask={info.details.subnet}
-          />
-        )}
+            {netInfo.type === NetInfoStateType.wifi && (
+              <NetworkSection
+                ssid={netInfo.details.ssid}
+                bssid={netInfo.details.bssid || "-"}
+                frequency={netInfo.details.frequency || 0}
+              />
+            )}
 
-        {(info.type === NetInfoStateType.bluetooth ||
-          info.type === NetInfoStateType.cellular ||
-          info.type === NetInfoStateType.vpn ||
-          info.type === NetInfoStateType.ethernet ||
-          info.type === NetInfoStateType.other ||
-          info.type === NetInfoStateType.wimax ||
-          info.type === NetInfoStateType.wifi) && (
-          <PropertiesSection
-            isConnectionExpensive={info.details.isConnectionExpensive}
-          />
+            {(netInfo.type === NetInfoStateType.wifi ||
+              netInfo.type === NetInfoStateType.ethernet) && (
+              <IPConfigSection
+                ipAddress={netInfo.details.ipAddress}
+                subnetMask={netInfo.details.subnet}
+              />
+            )}
+
+            {(netInfo.type === NetInfoStateType.bluetooth ||
+              netInfo.type === NetInfoStateType.cellular ||
+              netInfo.type === NetInfoStateType.vpn ||
+              netInfo.type === NetInfoStateType.ethernet ||
+              netInfo.type === NetInfoStateType.other ||
+              netInfo.type === NetInfoStateType.wimax ||
+              netInfo.type === NetInfoStateType.wifi) && (
+              <PropertiesSection
+                isConnectionExpensive={netInfo.details.isConnectionExpensive}
+              />
+            )}
+          </>
         )}
       </ScrollView>
     </>

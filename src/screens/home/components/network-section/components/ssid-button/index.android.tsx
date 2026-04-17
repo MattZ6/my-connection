@@ -13,13 +13,13 @@ import {
   paddingAll,
   width,
 } from "@expo/ui/jetpack-compose/modifiers";
-import { refresh } from "@react-native-community/netinfo";
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import { useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useLocation } from "@/hooks/use-location";
+import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useTheme } from "@/hooks/use-theme";
 
 import { LocationUtils } from "@/utils/location";
@@ -57,6 +57,7 @@ export function SSIDButton({ ssid }: Props) {
     locationServicesEnabled,
     requestPermission,
   } = useLocation();
+  const { refresh } = useNetworkUpdates();
   const { resolvedTheme, colors, fontFamily, fontSizes } = useTheme();
   const { performTapFeedback } = useHaptics();
   const { t } = useTranslation("translation", {
@@ -170,6 +171,7 @@ export function SSIDButton({ ssid }: Props) {
     performTapFeedback,
     t,
     handleRequestPermission,
+    refresh,
   ]);
 
   return (
