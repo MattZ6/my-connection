@@ -179,7 +179,7 @@ export const en = {
           title: "Preferences",
           links: {
             preferences: { title: "Preferences" },
-            permissions: { title: "Privacy & Permissions" },
+            permissions: { title: "Permissions" },
             appearance: { title: "Appearance" },
             language: { title: "Language" },
           },
@@ -200,7 +200,39 @@ export const en = {
     preferences: {
       meta: { title: "Preferences" },
       sections: {
+        network_updates: {
+          title: "Network updates",
+          fields: {
+            automatic_updates: {
+              title: "Automatic updates",
+              description: "Refresh network information automatically",
+            },
+            frequency: {
+              title: "Update frequency",
+            },
+            last_updated: {
+              title: "Last updated",
+              value: {
+                now: "now",
+                seconds_one: "{{count}} second ago",
+                seconds_other: "{{count}} seconds ago",
+                minutes_one: "{{count}} minute ago",
+                minutes_other: "{{count}} minutes ago",
+                hours_one: "{{count}} hour ago",
+                hours_other: "{{count}} hours ago",
+                days_one: "{{count}} day ago",
+                days_other: "{{count}} days ago",
+              },
+            },
+          },
+          actions: {
+            refresh: {
+              title: "Refresh network status",
+            },
+          },
+        },
         haptics: {
+          title: "Haptic Feedback",
           fields: {
             haptics: {
               title: "Haptic Feedback",
@@ -212,7 +244,7 @@ export const en = {
     },
 
     permissions: {
-      meta: { title: "Privacy & Permissions" },
+      meta: { title: "Permissions" },
       sections: {
         location: {
           title: "Location",

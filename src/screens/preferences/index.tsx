@@ -2,12 +2,12 @@ import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 
-import { Section } from "@/components/ui/section";
-
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { HapticsToggle } from "./components/haptics-toggle";
+import { HapticsSection } from "./components/haptics-section";
+import { NetworkSection } from "./components/network-section";
+import { RefreshNetworkSection } from "./components/refresh-network-section";
 
 import { getStyles } from "./styles";
 
@@ -37,9 +37,9 @@ export function PreferencesScreen() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        <Section>
-          <HapticsToggle />
-        </Section>
+        <NetworkSection />
+        <RefreshNetworkSection />
+        <HapticsSection />
       </ScrollView>
     </>
   );

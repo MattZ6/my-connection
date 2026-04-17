@@ -180,7 +180,7 @@ export const pt = {
           title: "Preferências",
           links: {
             preferences: { title: "Preferências" },
-            permissions: { title: "Privacidade e permissões" },
+            permissions: { title: "Permissões" },
             appearance: { title: "Aparência" },
             language: { title: "Idioma" },
           },
@@ -201,7 +201,39 @@ export const pt = {
     preferences: {
       meta: { title: "Preferências" },
       sections: {
+        network_updates: {
+          title: "Atualizações de rede",
+          fields: {
+            automatic_updates: {
+              title: "Atualizações automáticas",
+              description: "Atualiza automaticamente as informações da rede",
+            },
+            frequency: {
+              title: "Frequência de atualização",
+            },
+            last_updated: {
+              title: "Última atualização",
+              value: {
+                now: "agora",
+                seconds_one: "há {{count}} segundo",
+                seconds_other: "há {{count}} segundos",
+                minutes_one: "há {{count}} minuto",
+                minutes_other: "há {{count}} minutos",
+                hours_one: "há {{count}} hora",
+                hours_other: "há {{count}} horas",
+                days_one: "há {{count}} dia",
+                days_other: "há {{count}} dias",
+              },
+            },
+          },
+          actions: {
+            refresh: {
+              title: "Atualizar status da rede",
+            },
+          },
+        },
         haptics: {
+          title: "Feedback tátil",
           fields: {
             haptics: {
               title: "Feedback tátil",
@@ -213,7 +245,7 @@ export const pt = {
     },
 
     permissions: {
-      meta: { title: "Privacidade e permissões" },
+      meta: { title: "Permissões" },
       sections: {
         location: {
           title: "Localização",
