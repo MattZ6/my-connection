@@ -35,6 +35,12 @@
         "licenseUrl": "https://github.com/expo/expo",
         "parents": "my-connection"
     },
+    "expo-clipboard@55.0.13": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo",
+        "parents": "my-connection"
+    },
     "expo-constants@55.0.14": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
