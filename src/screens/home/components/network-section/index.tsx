@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
+
 import { Card } from "@/components/ui/card";
 import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
+
+import { BSSIDButton } from "./components/bssid-button";
 import { SSIDButton } from "./components/ssid-button";
 
 type Props = {
@@ -21,7 +24,7 @@ export function NetworkSection({ ssid, bssid, frequency }: Props) {
 
         <SectionDivider />
 
-        <SectionItem label={t("fields.bssid.title")} value={bssid} />
+        <BSSIDButton bssid={bssid} />
 
         <SectionDivider />
 

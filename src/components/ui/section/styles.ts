@@ -51,7 +51,7 @@ export function getSectionItemStyles(theme: ThemeConfig, direction: Direction) {
     trailing: {
       flexDirection: "row",
       alignItems: "center",
-      gap: 8,
+      gap: 12,
     },
     value: {
       fontFamily: theme.fontFamily.regular,
