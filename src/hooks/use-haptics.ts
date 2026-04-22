@@ -29,9 +29,27 @@ export function useHaptics() {
     HapticsService.performTabSelectedFeedback();
   }, [hapticsEnabled]);
 
+  const notifySuccess = useCallback(() => {
+    if (!hapticsEnabled) {
+      return;
+    }
+
+    HapticsService.performSuccessNotificationFeedback();
+  }, [hapticsEnabled]);
+
+  const notifyFailure = useCallback(() => {
+    if (!hapticsEnabled) {
+      return;
+    }
+
+    HapticsService.performFailureNotificationFeedback();
+  }, [hapticsEnabled]);
+
   return {
     performTapFeedback,
     performSelectFeedback,
     performTabSelectedFeedback,
+    notifySuccess,
+    notifyFailure,
   };
 }

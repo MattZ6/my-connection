@@ -15,4 +15,10 @@ export const HapticsService = {
       ExpoHaptics.selectionAsync();
     }
   },
+  performSuccessNotificationFeedback: () => {
+    ExpoHaptics.notificationAsync(ExpoHaptics.NotificationFeedbackType.Success);
+  },
+  performFailureNotificationFeedback: () => {
+    ExpoHaptics.notificationAsync(ExpoHaptics.NotificationFeedbackType.Error);
+  },
 };
