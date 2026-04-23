@@ -6,6 +6,7 @@ import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
 import { AboutSection } from "./components/about-section";
+import { AuthorSection } from "./components/author-section";
 import { DeviceSection } from "./components/device-section";
 import { OSSection } from "./components/os-section";
 
@@ -40,6 +41,7 @@ export function AboutScreen() {
         <AboutSection />
         <DeviceSection />
         <OSSection />
+        <AuthorSection />
         <Text style={styles.disclaimer}>{t("about.disclaimer")}</Text>
       </ScrollView>
     </>

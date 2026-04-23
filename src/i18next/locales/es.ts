@@ -1,5 +1,17 @@
 export const es = {
   translation: {
+    app: {
+      development: {
+        name: "Mi Conexión (Dev Client)",
+      },
+      preview: {
+        name: "Mi Conexión (Preview)",
+      },
+      production: {
+        name: "Mi Conexión",
+      },
+    },
+
     tabs: {
       home: { title: "Inicio" },
       settings: { title: "Configuración" },
@@ -379,6 +391,18 @@ export const es = {
             android_api: { title: "Nivel de API de Android" },
             android_build_fingerprint: {
               title: "Fingerprint de la compilación",
+            },
+          },
+        },
+        author: {
+          title: "Autor",
+          fields: {
+            description:
+              "{{app_name}} comenzó como una herramienta personal para explorar información de red y evolucionó hacia una app simple enfocada en claridad y control.",
+          },
+          actions: {
+            view_on_github: {
+              title: "View on GitHub",
             },
           },
         },
