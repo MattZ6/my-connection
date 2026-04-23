@@ -177,6 +177,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     entitlements: {
       "com.apple.developer.networking.wifi-info": true,
     },
+    infoPlist: {
+      CFBundleAllowMixedLocalizations: true,
+    },
   },
 
   android: {
@@ -197,6 +200,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
 
+  locales: {
+    en: "./languages/en.json",
+    pt: "./languages/pt.json",
+    es: "./languages/es.json",
+  },
+
   plugins: [
     "expo-router",
     "expo-font",
@@ -209,7 +218,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
       },
     ],
-
     [
       "expo-location",
       {
