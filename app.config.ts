@@ -221,10 +221,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       "expo-location",
       {
-        locationAlwaysAndWhenInUsePermission:
-          "Allow $(PRODUCT_NAME) to use your location to read your network SSID.",
-        locationWhenInUsePermission:
-          "Allow $(PRODUCT_NAME) to use your location to read your network SSID.",
         isAndroidForegroundServiceEnabled: true,
       },
     ],
