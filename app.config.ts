@@ -6,7 +6,6 @@ type Variant = "development" | "preview" | "production";
 
 const variantConfig = {
   development: {
-    name: "My Connection (Dev Client)",
     package: "com.myconnection.dev",
     primaryColor: "#007CC9",
     splash: {
@@ -46,9 +45,13 @@ const variantConfig = {
         },
       },
     },
+    locales: {
+      en: "./languages/variants/dev/en.json",
+      pt: "./languages/variants/dev/pt.json",
+      es: "./languages/variants/dev/es.json",
+    },
   },
   preview: {
-    name: "My Connection (Preview)",
     package: "com.myconnection.preview",
     primaryColor: "#E58600",
     splash: {
@@ -88,9 +91,13 @@ const variantConfig = {
         },
       },
     },
+    locales: {
+      en: "./languages/variants/preview/en.json",
+      pt: "./languages/variants/preview/pt.json",
+      es: "./languages/variants/preview/es.json",
+    },
   },
   production: {
-    name: "My Connection",
     package: "com.myconnection",
     primaryColor: "#00A400",
     splash: {
@@ -130,6 +137,11 @@ const variantConfig = {
         },
       },
     },
+    locales: {
+      en: "./languages/variants/prod/en.json",
+      pt: "./languages/variants/prod/pt.json",
+      es: "./languages/variants/prod/es.json",
+    },
   },
 } as const;
 
@@ -141,7 +153,7 @@ const variant = variantConfig[buildVariant] ?? variantConfig.development;
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
 
-  name: variant.name,
+  name: "My Connection",
 
   slug: name,
   version,
@@ -200,11 +212,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
   },
 
-  locales: {
-    en: "./languages/en.json",
-    pt: "./languages/pt.json",
-    es: "./languages/es.json",
-  },
+  locales: variant.locales,
 
   plugins: [
     "expo-router",
@@ -221,10 +229,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       "expo-location",
       {
-        locationAlwaysAndWhenInUsePermission:
-          "Allow $(PRODUCT_NAME) to use your location to read your network SSID.",
-        locationWhenInUsePermission:
-          "Allow $(PRODUCT_NAME) to use your location to read your network SSID.",
         isAndroidForegroundServiceEnabled: true,
       },
     ],
