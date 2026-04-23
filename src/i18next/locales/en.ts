@@ -371,7 +371,7 @@ export const en = {
         os: {
           title: "Operating System",
           fields: {
-            name: { title: "Name" },
+            name: { title: "OS" },
             version: { title: "Version" },
             build_id: { title: "Build ID" },
             internal_build_id: { title: "Internal Build ID" },

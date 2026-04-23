@@ -372,7 +372,7 @@ export const es = {
         os: {
           title: "Sistema operativo",
           fields: {
-            name: { title: "Nombre" },
+            name: { title: "SO" },
             version: { title: "Versión" },
             build_id: { title: "ID de compilación" },
             internal_build_id: { title: "ID interno" },

@@ -6,6 +6,12 @@ import { Card } from "@/components/ui/card";
 
 import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
 
+const environment = String(
+  process.env.EXPO_PUBLIC_APP_VARIANT || "development",
+) as "development" | "preview" | "production";
+
+const isDev = environment === "development";
+
 export function OSSection() {
   const { t } = useTranslation();
 
@@ -42,23 +48,31 @@ export function OSSection() {
           </>
         )}
 
-        <SectionDivider />
+        {isDev && (
+          <>
+            <SectionDivider />
 
-        <SectionItem
-          label={t("about.sections.os.fields.build_id.title")}
-          value={ExpoDevice.osBuildId ?? "-"}
-          direction="column"
-        />
+            <SectionItem
+              label={t("about.sections.os.fields.build_id.title")}
+              value={ExpoDevice.osBuildId ?? "-"}
+              direction="column"
+            />
+          </>
+        )}
 
-        <SectionDivider />
+        {isDev && (
+          <>
+            <SectionDivider />
 
-        <SectionItem
-          label={t("about.sections.os.fields.internal_build_id.title")}
-          value={ExpoDevice.osInternalBuildId ?? "-"}
-          direction="column"
-        />
+            <SectionItem
+              label={t("about.sections.os.fields.internal_build_id.title")}
+              value={ExpoDevice.osInternalBuildId ?? "-"}
+              direction="column"
+            />
+          </>
+        )}
 
-        {ExpoDevice.osBuildFingerprint && (
+        {isDev && ExpoDevice.osBuildFingerprint && (
           <>
             <SectionDivider />
 

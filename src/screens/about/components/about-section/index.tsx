@@ -75,15 +75,15 @@ export function AboutSection() {
         <SectionDivider />
 
         <SectionItem
-          label={t("about.sections.about.fields.package.title")}
-          value={ExpoApplication.applicationId ?? "-"}
+          label={t("about.sections.about.fields.version.title")}
+          value={`v${ExpoApplication.nativeApplicationVersion} (${ExpoApplication.nativeBuildVersion})`}
         />
 
         <SectionDivider />
 
         <SectionItem
-          label={t("about.sections.about.fields.version.title")}
-          value={`v${ExpoApplication.nativeApplicationVersion} (${ExpoApplication.nativeBuildVersion})`}
+          label={t("about.sections.about.fields.package.title")}
+          value={ExpoApplication.applicationId ?? "-"}
         />
 
         <SectionDivider />

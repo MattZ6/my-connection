@@ -4,6 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Section, SectionDivider, SectionItem } from "@/components/ui/section";
 
+const environment = String(
+  process.env.EXPO_PUBLIC_APP_VARIANT || "development",
+) as "development" | "preview" | "production";
+
+const isDev = environment === "development";
+
 export function DeviceSection() {
   const { t } = useTranslation();
 
@@ -38,7 +44,7 @@ export function DeviceSection() {
           value={String(ExpoDevice.deviceYearClass ?? "-")}
         />
 
-        {ExpoDevice.designName && (
+        {isDev && ExpoDevice.designName && (
           <>
             <SectionDivider />
 
@@ -51,7 +57,7 @@ export function DeviceSection() {
           </>
         )}
 
-        {ExpoDevice.productName && (
+        {isDev && ExpoDevice.productName && (
           <>
             <SectionDivider />
 
