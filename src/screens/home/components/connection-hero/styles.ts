@@ -40,15 +40,5 @@ export function getStyles(theme: ThemeConfig) {
       letterSpacing: 1,
       color: theme.colors.content.muted,
     },
-    signalStrengthProgressContainer: {
-      height: 8,
-      borderRadius: theme.radii["4"],
-      backgroundColor: theme.colors.brandSurface.base,
-    },
-    signalStrengthProgress: {
-      height: 8,
-      borderRadius: theme.radii["4"],
-      backgroundColor: theme.colors.brandContent.base,
-    },
   });
 }
