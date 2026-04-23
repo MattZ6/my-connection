@@ -1,9 +1,4 @@
-import {
-  addEventListener as addNetworkStateEventListener,
-  configure as configureNetwork,
-  fetch as fetchNetworkState,
-  type NetInfoState,
-} from "@react-native-community/netinfo";
+import NetInfo, { type NetInfoState } from "@react-native-community/netinfo";
 import {
   createContext,
   useCallback,
@@ -13,7 +8,9 @@ import {
   useState,
 } from "react";
 import { AppState } from "react-native";
+
 import { SettingsRepository } from "@/repositories/settings";
+
 import type {
   NetworkUpdatesContextTypes,
   NetworkUpdatesProviderTypes,
@@ -23,7 +20,7 @@ export const NetworkUpdatesContext = createContext(
   {} as NetworkUpdatesContextTypes.Context,
 );
 
-configureNetwork({ shouldFetchWiFiSSID: true });
+NetInfo.configure({ shouldFetchWiFiSSID: true });
 
 export function NetworkUpdatesProvider({
   children,
@@ -71,11 +68,7 @@ export function NetworkUpdatesProvider({
   );
 
   const refresh = useCallback(async () => {
-    const state = await fetchNetworkState();
-    const now = new Date();
-
-    setNetInfo(state);
-    setLastUpdated(now);
+    await NetInfo.refresh();
   }, []);
 
   const safeRefresh = useCallback(async () => {
@@ -113,7 +106,7 @@ export function NetworkUpdatesProvider({
   }, [automaticUpdatesOn, updateFrequency, safeRefresh, appState]);
 
   useEffect(() => {
-    const changetSubscription = AppState.addEventListener(
+    const changeSubscription = AppState.addEventListener(
       "change",
       (nextState) => {
         setAppState(nextState);
@@ -121,11 +114,11 @@ export function NetworkUpdatesProvider({
       },
     );
 
-    return () => changetSubscription.remove();
+    return () => changeSubscription.remove();
   }, []);
 
   useEffect(() => {
-    const unsubscribe = addNetworkStateEventListener((state) => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
       const now = new Date();
 
       setNetInfo(state);
