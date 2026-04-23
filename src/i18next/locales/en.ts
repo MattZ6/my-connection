@@ -1,5 +1,17 @@
 export const en = {
   translation: {
+    app: {
+      development: {
+        name: "My Connection (Dev Client)",
+      },
+      preview: {
+        name: "My Connection (Preview)",
+      },
+      production: {
+        name: "My Connection",
+      },
+    },
+
     tabs: {
       home: { title: "Home" },
       settings: { title: "Settings" },
@@ -378,6 +390,18 @@ export const en = {
             android_api: { title: "Android API Level" },
             android_build_fingerprint: {
               title: "Build Fingerprint",
+            },
+          },
+        },
+        author: {
+          title: "Author",
+          fields: {
+            description:
+              "{{app_name}} started as a personal tool to explore network information and evolved into a simple app focused on clarity and control.",
+          },
+          actions: {
+            view_on_github: {
+              title: "View on GitHub",
             },
           },
         },
