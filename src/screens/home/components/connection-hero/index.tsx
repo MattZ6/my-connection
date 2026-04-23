@@ -9,9 +9,8 @@ import { Text, View } from "react-native";
 import { Card } from "@/components/ui/card";
 
 import { useStyles } from "@/hooks/use-styles";
-
+import { AnimatedProgress } from "./components/animated-progress";
 import { Stat } from "./components/stat";
-
 import { getStyles } from "./styles";
 
 const ANDROID_ICON_MAP = {
@@ -98,14 +97,7 @@ export function ConnectionHero({ info }: Props) {
             <Text style={styles.signalStrengthLabel}>
               {t("home.sections.hero.fields.strength.label")}
             </Text>
-            <View style={styles.signalStrengthProgressContainer}>
-              <View
-                style={[
-                  styles.signalStrengthProgress,
-                  { width: `${info.details?.strength || 0}%` },
-                ]}
-              />
-            </View>
+            <AnimatedProgress value={info.details.strength || 0} />
           </View>
 
           <View style={styles.statsRow}>
