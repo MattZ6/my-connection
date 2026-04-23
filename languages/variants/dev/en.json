@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "My Connection (Dev Client)",
+    "NSLocationWhenInUseUsageDescription": "Allow My Connection (Dev Client) to access your location to read Wi-Fi network details.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow My Connection (Dev Client) to access your location to read Wi-Fi network details."
+  },
+  "android": {
+    "app_name": "My Connection (Dev Client)"
+  }
+}

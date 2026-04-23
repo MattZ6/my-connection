@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Minha Conexão (Preview)",
+    "NSLocationWhenInUseUsageDescription": "Permita que o Minha Conexão (Preview) acesse sua localização para ler informações da rede Wi-Fi.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Permita que o Minha Conexão (Preview) acesse sua localização para ler informações da rede Wi-Fi."
+  },
+  "android": {
+    "app_name": "Minha Conexão (Preview)"
+  }
+}
