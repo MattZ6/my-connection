@@ -176,6 +176,18 @@ export const pt = {
     settings: {
       meta: { title: "Configurações" },
       sections: {
+        environment_banner: {
+          development: {
+            title: "Versão de desenvolvimento",
+            description:
+              "Esta versão é usada para desenvolvimento e testes. Algumas funcionalidades podem estar incompletas ou instáveis.",
+          },
+          preview: {
+            title: "Versão de prévia",
+            description:
+              "Esta é uma versão de prévia do app. Algumas funcionalidades ainda estão em evolução.",
+          },
+        },
         preferences: {
           title: "Preferências",
           links: {
