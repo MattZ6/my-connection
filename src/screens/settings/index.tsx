@@ -6,12 +6,17 @@ import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
 import { AboutSectionContent } from "./components/about-section-content";
+import { EnvironmentBanner } from "./components/environment-banner";
 import { PreferencesSectionContent } from "./components/preferences-section-content";
 import { PrivacyDisclaimer } from "./components/privacy-disclaimer";
 
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
+
+const environment = String(
+  process.env.EXPO_PUBLIC_APP_VARIANT || "development",
+) as "development" | "preview" | "production";
 
 export function SettingsScreen() {
   const { colors, fontFamily } = useTheme();
@@ -43,6 +48,7 @@ export function SettingsScreen() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
+        <EnvironmentBanner variant={environment} />
         <PreferencesSectionContent />
         <AboutSectionContent />
         <PrivacyDisclaimer />

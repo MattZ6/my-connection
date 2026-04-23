@@ -175,6 +175,18 @@ export const en = {
     settings: {
       meta: { title: "Settings" },
       sections: {
+        environment_banner: {
+          development: {
+            title: "Development build",
+            description:
+              "This version is used for development and testing. Some features may be incomplete or unstable.",
+          },
+          preview: {
+            title: "Preview build",
+            description:
+              "This is a preview version of the app. Some features may still be evolving.",
+          },
+        },
         preferences: {
           title: "Preferences",
           links: {
