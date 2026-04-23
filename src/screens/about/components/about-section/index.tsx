@@ -57,6 +57,10 @@ function useInstallDates({ language }: UseInstallDatesInput) {
   };
 }
 
+const environment = String(
+  process.env.EXPO_PUBLIC_APP_VARIANT || "development",
+) as "development" | "preview" | "production";
+
 export function AboutSection() {
   const { t, i18n } = useTranslation();
 
@@ -69,7 +73,7 @@ export function AboutSection() {
       <Card>
         <SectionItem
           label={t("about.sections.about.fields.name.title")}
-          value={ExpoApplication.applicationName ?? "-"}
+          value={t(`app.${environment}.name`)}
         />
 
         <SectionDivider />
