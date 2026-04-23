@@ -1,0 +1,10 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Minha Conexão",
+    "NSLocationWhenInUseUsageDescription": "Permita que o Minha Conexão acesse sua localização para ler informações da rede Wi-Fi.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Permita que o Minha Conexão acesse sua localização para ler informações da rede Wi-Fi."
+  },
+  "android": {
+    "app_name": "Minha Conexão"
+  }
+}
