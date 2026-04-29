@@ -451,72 +451,75 @@ export const pt = {
         meta: {
           "v0.5.0": {
             title: "Um pouco mais humano",
-            date: "2026-04-20",
+            date: "2026-04-23",
             description:
-              "Melhorias focadas em clareza, contexto e personalidade.",
+              "Esta atualização traz mais contexto e personalidade, deixando o app mais claro e completo.",
           },
           "v0.4.0": {
             title: "Mais controle e feedback",
-            date: "2026-04-10",
+            date: "2026-04-23",
             description:
-              "Novas funcionalidades de rede e melhorias de interação.",
+              "Novas funcionalidades de rede, melhor feedback e interações mais suaves.",
           },
           "v0.3.0": {
-            title: "Refinamentos e estabilidade",
-            date: "2026-03-30",
+            title: "Mais fluido e confiável",
+            date: "2026-04-09",
             description:
-              "Melhorias em interface, performance e confiabilidade.",
+              "Diversas correções e ajustes para deixar o app mais estável e consistente.",
           },
           "v0.2.0": {
             title: "Uma experiência mais completa",
-            date: "2026-03-26",
+            date: "2026-04-06",
             description:
-              "Grande atualização com temas, haptics e internacionalização.",
+              "Temas, haptics e múltiplos idiomas — esta atualização traz recursos que definem a experiência do app.",
           },
           "v0.1.7": {
-            title: "Refinamentos nas configurações",
+            title: "Configurações mais organizadas",
             date: "2026-03-25",
             description:
-              "Melhorias na estrutura e consistência visual das configurações.",
+              "Melhorias na estrutura e no layout para deixar as configurações mais claras e fáceis de usar.",
           },
           "v0.1.6": {
-            title: "Melhorias no Android",
-            date: "2026-03-24",
+            title: "Melhor experiência no Android",
+            date: "2026-03-25",
             description:
-              "Atualizações focadas na experiência Android e informações do dispositivo.",
+              "Melhorias focadas no Android, incluindo informações do dispositivo e consistência visual.",
           },
           "v0.1.5": {
-            title: "Correção de dependência",
-            date: "2026-03-23",
-            description: "Ajuste na versão do Sentry para maior estabilidade.",
+            title: "Correção de estabilidade",
+            date: "2026-03-24",
+            description:
+              "Ajustes em dependências para manter o app estável e funcionando corretamente.",
           },
           "v0.1.4": {
-            title: "Melhorias na navegação",
-            date: "2026-03-22",
+            title: "Navegação mais simples",
+            date: "2026-03-24",
             description:
-              "Adiciona navegação por abas para uma experiência mais fluida.",
+              "Adição de navegação por abas para facilitar o uso e tornar a experiência mais intuitiva.",
           },
           "v0.1.3": {
-            title: "Monitoramento de falhas",
-            date: "2026-03-21",
-            description:
-              "Adiciona monitoramento de falhas para melhorar estabilidade e diagnóstico.",
-          },
-          "v0.1.2": {
-            title: "Melhorias na identidade visual",
+            title: "Cuidando da estabilidade",
             date: "2026-03-20",
             description:
-              "Esta atualização introduz ícone e splash screen baseados na variante do app.",
+              "Monitoramento de falhas adicionado para identificar problemas e melhorar a confiabilidade.",
           },
-          "v0.1.1": {
-            title: "Pequenos ajustes",
+          "v0.1.2": {
+            title: "Uma identidade mais clara",
             date: "2026-03-19",
             description:
-              "Uma pequena atualização focada em simplificar a configuração do app.",
+              "Ícone e splash agora se adaptam à variante do app, facilitando identificar cada ambiente.",
+          },
+          "v0.1.1": {
+            title: "Pequena limpeza",
+            date: "2026-03-19",
+            description:
+              "Um ajuste interno para deixar tudo mais simples e fácil de evoluir.",
           },
           "v0.1.0": {
             title: "Um novo começo",
-            date: "2026-03-18",
+            date: "2026-03-19",
+            description:
+              "O início de uma nova fase — uma ideia simples evoluindo para um app mais estruturado.",
           },
         },
         content: {
