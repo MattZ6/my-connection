@@ -21,6 +21,11 @@ export function AboutSectionContent() {
     [router.push],
   );
 
+  const handleNavigateToChangelogPage = useCallback(
+    () => router.push("/settings/changelog"),
+    [router.push],
+  );
+
   return (
     <Section title={t("settings.sections.about.title")}>
       <Card>
@@ -36,6 +41,14 @@ export function AboutSectionContent() {
           label={t("settings.sections.about.links.licenses.title")}
           icon={{ android: "description", ios: "doc.text" }}
           onPress={handleNavigateToLicensesPage}
+        />
+
+        <SectionDivider />
+
+        <PressableConfigItem
+          label="Changelog"
+          icon={{ android: "history_edu", ios: "doc.on.doc" }}
+          onPress={handleNavigateToChangelogPage}
         />
       </Card>
     </Section>

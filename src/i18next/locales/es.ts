@@ -434,6 +434,363 @@ export const es = {
         },
       },
     },
+
+    changelog: {
+      meta: {
+        title: "Changelog",
+      },
+      sections: {
+        latest_version: {
+          title: "Última versión",
+        },
+        previous_versions: {
+          title: "Versiones anteriores",
+        },
+      },
+      versions: {
+        meta: {
+          "v0.5.0": {
+            title: "Un poco más humano",
+            date: "2026-04-20",
+            description:
+              "Mejoras enfocadas en claridad, contexto y personalidad.",
+          },
+          "v0.4.0": {
+            title: "Más control y feedback",
+            date: "2026-04-10",
+            description: "Nuevas funciones de red y mejoras en la interacción.",
+          },
+          "v0.3.0": {
+            title: "Refinamientos y estabilidad",
+            date: "2026-03-30",
+            description:
+              "Mejoras en la interfaz, el rendimiento y la confiabilidad.",
+          },
+          "v0.2.0": {
+            title: "Una experiencia más completa",
+            date: "2026-03-26",
+            description:
+              "Gran actualización con temas, haptics e internacionalización.",
+          },
+          "v0.1.7": {
+            title: "Ajustes en configuración",
+            date: "2026-03-25",
+            description:
+              "Mejoras en la estructura y consistencia visual de la configuración.",
+          },
+          "v0.1.6": {
+            title: "Mejoras en Android",
+            date: "2026-03-24",
+            description:
+              "Actualizaciones enfocadas en la experiencia Android e información del dispositivo.",
+          },
+          "v0.1.5": {
+            title: "Corrección de dependencias",
+            date: "2026-03-23",
+            description:
+              "Ajuste en la versión de Sentry para mayor estabilidad.",
+          },
+          "v0.1.4": {
+            title: "Mejoras en la navegación",
+            date: "2026-03-22",
+            description:
+              "Se añade navegación por pestañas para una experiencia más fluida.",
+          },
+          "v0.1.3": {
+            title: "Monitoreo de fallos",
+            date: "2026-03-21",
+            description:
+              "Se añade monitoreo de fallos para mejorar la estabilidad y el diagnóstico.",
+          },
+          "v0.1.2": {
+            title: "Mejoras en la identidad visual",
+            date: "2026-03-20",
+            description:
+              "Esta actualización introduce icono y splash screen basados en la variante de la app.",
+          },
+          "v0.1.1": {
+            title: "Pequeños ajustes",
+            date: "2026-03-19",
+            description:
+              "Una pequeña actualización enfocada en simplificar la configuración de la app.",
+          },
+          "v0.1.0": {
+            title: "Un nuevo comienzo",
+            date: "2026-03-18",
+          },
+        },
+        content: {
+          "v0.5.0": {
+            paragraphs: [
+              "Esta actualización añade más contexto y personalidad a la app.",
+              "Se realizaron pequeños cambios para hacer la experiencia más clara y completa.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Nuevas funciones",
+                items: ["Se añadió la sección de autor en la pantalla About"],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Mejora de las secciones de la pantalla About",
+                  "Banner de entorno (dev/preview)",
+                  "Traducciones basadas en variante",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: ["Mejora en el comportamiento de actualización de red"],
+              },
+            ],
+          },
+          "v0.4.0": {
+            paragraphs: [
+              "Esta actualización introduce más control sobre la información de red y mejora el feedback de las interacciones.",
+              "También añade mejoras en permisos, animaciones y actualizaciones en tiempo real.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Nuevas funciones",
+                items: [
+                  "Gestor de actualizaciones de red",
+                  "Copia del BSSID",
+                  "Barra animada de intensidad de señal",
+                  "Gestión de permisos de ubicación en Android",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Mejor feedback de interacción en Android",
+                  "Preferencia de haptics",
+                  "Ajustes en el botón de actualización",
+                  "Mejoras en las traducciones",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Corrección en la visualización de valores de descarga",
+                ],
+              },
+            ],
+          },
+          "v0.3.0": {
+            paragraphs: [
+              "Esta actualización se enfoca en refinamientos y mejoras de estabilidad.",
+              "Se realizaron varias correcciones y ajustes visuales para hacer la app más consistente y confiable.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Nuevas funciones",
+                items: [
+                  "Aviso de privacidad en configuración",
+                  "Visualización del SSID en Android",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Se añadió un botón de actualización",
+                  "Mejoras en el sistema de temas",
+                  "Refinamiento de la pantalla About y textos dinámicos",
+                  "Ajustes visuales generales",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Corrección de traducciones en la pantalla principal",
+                  "Corrección de valores de descarga y visualización",
+                  "Ajustes en campos de rendimiento",
+                ],
+              },
+            ],
+          },
+          "v0.2.0": {
+            paragraphs: [
+              "Esta actualización representa un gran avance, incorporando funcionalidades clave que definen la experiencia de la app.",
+              "Se añadieron temas, feedback háptico e internacionalización, junto con varias mejoras en el diseño, rendimiento y consistencia general.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Nuevas funciones",
+                items: [
+                  "Soporte de temas con persistencia",
+                  "Incorporación de feedback háptico",
+                  "Internacionalización (i18n)",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Mejora en la estructura y el diseño de la pantalla principal",
+                  "Ajustes en los headers de iOS y mayor consistencia visual",
+                  "Refinamiento de las secciones de configuración",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Migración de la lista de licencias a una lista virtualizada",
+                  "Mejoras en la configuración de la app",
+                  "Actualización de dependencias",
+                ],
+              },
+            ],
+          },
+          "v0.1.7": {
+            paragraphs: [
+              "Esta actualización mejora la experiencia de configuración con ajustes de diseño, nombres y estructura.",
+              "La navegación ahora es más clara y consistente.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Mejoras en nombres y estilos de configuración en Android",
+                  "Refinamiento de la estructura de configuración",
+                  "Pequeños ajustes de diseño y estilo",
+                ],
+              },
+            ],
+          },
+          "v0.1.6": {
+            paragraphs: [
+              "Esta actualización mejora la experiencia en Android y corrige pequeños problemas en la pantalla About.",
+              "También añade información del dispositivo para mayor visibilidad.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Uso de colores dinámicos Material 3 en Android",
+                  "Se añadió información del dispositivo Android",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Corrección de importación inválida de colores en la pantalla About",
+                ],
+              },
+            ],
+          },
+          "v0.1.5": {
+            paragraphs: [
+              "Esta actualización corrige un problema relacionado con Sentry al volver a una versión más estable.",
+            ],
+            highlights: [
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: ["Rollback de la versión de Sentry a una más estable"],
+              },
+            ],
+          },
+          "v0.1.4": {
+            paragraphs: [
+              "Esta actualización introduce navegación por pestañas, facilitando moverse entre las diferentes secciones de la app.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: ["Se añadió navegación basada en pestañas"],
+              },
+            ],
+          },
+          "v0.1.3": {
+            paragraphs: [
+              "Esta actualización introduce Sentry para el monitoreo de fallos, permitiendo detectar mejor problemas inesperados y mejorar la estabilidad general.",
+            ],
+            highlights: [
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: ["Se añadió Sentry para monitoreo de fallos"],
+              },
+            ],
+          },
+          "v0.1.2": {
+            paragraphs: [
+              "Esta actualización introduce mejoras visuales al configurar el icono de la app y la splash screen según la variante actual.",
+              "Esto permite diferenciar mejor entre los entornos de desarrollo, preview y producción, facilitando identificar qué versión de la app está en uso.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Configuración del icono de la app según la variante",
+                  "Configuración de la splash screen según la variante",
+                ],
+              },
+            ],
+          },
+          "v0.1.1": {
+            paragraphs: [
+              "Esta actualización se enfoca en una pequeña limpieza de la configuración de la app, haciéndola más simple y fácil de evolucionar a partir de ahora.",
+            ],
+            highlights: [
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Eliminación de definiciones de colores de la configuración de la app",
+                ],
+              },
+            ],
+          },
+          "v0.1.0": {
+            paragraphs: [
+              "Esta versión marca el inicio de una nueva fase para My Connection.",
+              "El proyecto comenzó en marzo de 2024 como una idea simple. Después de un tiempo, retomé el desarrollo con una dirección más clara y un enfoque más estructurado — introduciendo pull requests, versionado y un flujo de trabajo adecuado.",
+              "A partir de ahora, el objetivo es evolucionar la app paso a paso, enfocándose en claridad, consistencia y una mejor experiencia general.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Migración a Expo SDK 55",
+                  "Configuración de builds de desarrollo y preview",
+                  "Introducción de variantes de build (development, preview, production)",
+                  "Configuración del dev client",
+                  "Estructura base de UI con Expo UI",
+                  "Mejoras en configuración y lint",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Configuración de versionado remoto con EAS",
+                  "Workflows de CI para builds de preview",
+                  "Actualización de dependencias y limpieza del proyecto",
+                ],
+              },
+            ],
+          },
+        },
+      },
+    },
   },
 };
 
