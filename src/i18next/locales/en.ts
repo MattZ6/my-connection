@@ -430,6 +430,357 @@ export const en = {
         },
       },
     },
+
+    changelog: {
+      meta: {
+        title: "Changelog",
+      },
+      sections: {
+        latest_version: {
+          title: "Latest version",
+        },
+        previous_versions: {
+          title: "Previous versions",
+        },
+      },
+      versions: {
+        meta: {
+          "v0.5.0": {
+            title: "A bit more human",
+            date: "2026-04-20",
+            description:
+              "Improvements focused on clarity, context, and personality.",
+          },
+          "v0.4.0": {
+            title: "More control and feedback",
+            date: "2026-04-10",
+            description:
+              "New network features, better feedback, and improved interactions.",
+          },
+          "v0.3.0": {
+            title: "Refinements and stability",
+            date: "2026-03-30",
+            description:
+              "Improvements across UI, performance, and reliability.",
+          },
+          "v0.2.0": {
+            title: "A more complete experience",
+            date: "2026-03-26",
+            description:
+              "Major update introducing themes, haptics, and internationalization.",
+          },
+          "v0.1.7": {
+            title: "Settings refinements",
+            date: "2026-03-25",
+            description: "Improved settings structure and visual consistency.",
+          },
+          "v0.1.6": {
+            title: "Android improvements",
+            date: "2026-03-24",
+            description:
+              "Improvements focused on Android experience and device information.",
+          },
+          "v0.1.5": {
+            title: "Dependency fix",
+            date: "2026-03-23",
+            description:
+              "Adjusted Sentry dependency version for better stability.",
+          },
+          "v0.1.4": {
+            title: "Navigation improvements",
+            date: "2026-03-22",
+            description:
+              "Added tab-based navigation for a smoother app experience.",
+          },
+          "v0.1.3": {
+            title: "Crash reporting setup",
+            date: "2026-03-21",
+            description:
+              "Introduced crash reporting to improve stability and error tracking.",
+          },
+          "v0.1.2": {
+            title: "Visual identity improvements",
+            date: "2026-03-20",
+            description:
+              "This update introduces variant-based app icon and splash screen.",
+          },
+          "v0.1.1": {
+            title: "Small adjustments",
+            date: "2026-03-19",
+            description:
+              "A small update focused on cleaning up the app configuration.",
+          },
+          "v0.1.0": {
+            title: "A fresh start",
+            date: "2026-03-18",
+          },
+        },
+        content: {
+          "v0.5.0": {
+            paragraphs: [
+              "This update focuses on adding more context and personality to the app.",
+              "Small but meaningful changes were made to improve clarity and make the experience feel more complete.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: ["Added author section in About screen"],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved About screen sections",
+                  "Added environment banner for dev and preview builds",
+                  "Improved metadata translations by variant",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: ["Improved network updates behavior using refresh"],
+              },
+            ],
+          },
+          "v0.4.0": {
+            paragraphs: [
+              "This update introduces more control over network data and improves interaction feedback across the app.",
+              "It also brings better handling of permissions, animations, and real-time updates.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "Added network updates manager",
+                  "Added BSSID copy functionality",
+                  "Introduced animated signal strength bar",
+                  "Added location permission management on Android",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved pressable feedback on Android",
+                  "Added haptics preference setting",
+                  "Improved refresh button styles",
+                  "Enhanced translation metadata",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: ["Fixed download value display issues"],
+              },
+            ],
+          },
+          "v0.3.0": {
+            paragraphs: [
+              "This update focuses on refining the experience and improving stability across the app.",
+              "Several UI improvements, bug fixes, and structural changes were introduced to make the app more reliable and consistent.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "Added privacy disclaimer in settings",
+                  "Added SSID display on Android",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Added refresh button to home screen",
+                  "Improved theme system and selection colors",
+                  "Refined About screen and dynamic color texts",
+                  "Applied various UI and style refinements",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: [
+                  "Fixed broken translations on the home screen",
+                  "Fixed download speed and display issues",
+                  "Improved performance field values",
+                ],
+              },
+            ],
+          },
+          "v0.2.0": {
+            paragraphs: [
+              "This update represents a major step forward, introducing core features that define the app experience.",
+              "Themes, haptic feedback, and internationalization were added, along with several improvements to layout, performance, and overall consistency.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "Added theme support with persistence",
+                  "Introduced haptic feedback",
+                  "Added internationalization (i18n)",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved home screen layout and structure",
+                  "Enhanced iOS headers and visual consistency",
+                  "Added dividers and refinements to settings sections",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Migrated licenses list to a virtualized list",
+                  "Improved app configuration and platform targeting",
+                  "Updated dependencies and project setup",
+                ],
+              },
+            ],
+          },
+          "v0.1.7": {
+            paragraphs: [
+              "This update improves the settings experience by refining layout, naming, and structure.",
+              "It makes navigation clearer and ensures a more consistent visual experience across the app.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved settings naming and styles on Android",
+                  "Refined settings structure and separation",
+                  "Applied small layout and style fixes",
+                ],
+              },
+            ],
+          },
+          "v0.1.6": {
+            paragraphs: [
+              "This update focuses on improving the Android experience and fixing minor issues in the About screen.",
+              "It also introduces device information details for better visibility into the current device.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Adopted Material 3 dynamic colors on Android",
+                  "Added Android device information details",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: ["Fixed invalid color token import in About screen"],
+              },
+            ],
+          },
+          "v0.1.5": {
+            paragraphs: [
+              "This update fixes an issue related to the Sentry dependency by rolling back to a more stable version.",
+            ],
+            highlights: [
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: ["Rolled back Sentry dependency to a stable version"],
+              },
+            ],
+          },
+          "v0.1.4": {
+            paragraphs: [
+              "This update introduces tab-based navigation, making it easier to move between different sections of the app.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: ["Added tabs navigation structure"],
+              },
+            ],
+          },
+          "v0.1.3": {
+            paragraphs: [
+              "This update introduces crash reporting using Sentry, allowing better tracking of unexpected issues and improving overall app stability.",
+            ],
+            highlights: [
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: ["Added Sentry for crash reporting and error tracking"],
+              },
+            ],
+          },
+          "v0.1.2": {
+            paragraphs: [
+              "This update introduces visual improvements by configuring the app icon and splash screen based on the current build variant.",
+              "This helps better differentiate development, preview, and production environments, making it easier to identify which version of the app is running.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Configured app icon based on build variant",
+                  "Configured splash screen based on build variant",
+                ],
+              },
+            ],
+          },
+          "v0.1.1": {
+            paragraphs: [
+              "This update focuses on a small cleanup in the app configuration to keep things simpler and easier to evolve moving forward.",
+            ],
+            highlights: [
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: ["Removed color definitions from app configuration"],
+              },
+            ],
+          },
+          "v0.1.0": {
+            paragraphs: [
+              "This version marks the beginning of a new phase for My Connection.",
+              "The project originally started back in March 2024 as a simple idea. After some time, I came back to it with a clearer direction and a more structured approach — introducing pull requests, versioning, and a proper development workflow.",
+              "From here on, the goal is to evolve the app step by step, focusing on clarity, consistency, and a better overall experience.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Migrated to Expo SDK 55",
+                  "Set up development and preview build pipelines",
+                  "Introduced build variants (development, preview, production)",
+                  "Configured dev client for local development",
+                  "Added base UI structure using Expo UI",
+                  "Improved project configuration and linting",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Remote versioning setup via EAS",
+                  "CI workflows for preview builds",
+                  "Dependency updates and project cleanup",
+                ],
+              },
+            ],
+          },
+        },
+      },
+    },
   },
 };
 
