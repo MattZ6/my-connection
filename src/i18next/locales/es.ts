@@ -449,6 +449,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.6.0": {
+            title: "Ahora contando su propia historia",
+            date: "2026-04-29",
+            description:
+              "La app ahora muestra qué ha cambiado — junto con algunas mejoras internas.",
+          },
           "v0.5.0": {
             title: "Un poco más humano",
             date: "2026-04-23",
@@ -523,6 +529,35 @@ export const es = {
           },
         },
         content: {
+          "v0.6.0": {
+            paragraphs: [
+              "Esta actualización introduce el changelog dentro de la app, facilitando seguir su evolución con el tiempo.",
+              "También incluye mejoras estructurales y visuales para mantener todo más limpio, consistente y fácil de mantener.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Nuevas funciones",
+                items: ["Se añadió el changelog dentro de la app"],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Ajustes tipográficos con mejor espaciado entre letras",
+                  "Mejora en la estructura de metadatos del changelog",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Refactorización de providers en una sola estructura",
+                  "Actualización de dependencias",
+                ],
+              },
+            ],
+          },
           "v0.5.0": {
             paragraphs: [
               "Esta actualización añade más contexto y personalidad a la app.",

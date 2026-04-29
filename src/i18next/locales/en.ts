@@ -445,6 +445,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.6.0": {
+            title: "Now telling its own story",
+            date: "2026-04-29",
+            description:
+              "The app can now show what’s new — along with a few improvements behind the scenes.",
+          },
           "v0.5.0": {
             title: "A bit more human",
             date: "2026-04-23",
@@ -519,6 +525,37 @@ export const en = {
           },
         },
         content: {
+          "v0.6.0": {
+            paragraphs: [
+              "This update introduces the in-app changelog, making it easier to follow how the app evolves over time.",
+              "It also includes a few structural and visual improvements to keep things clean, consistent, and easier to maintain.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "Added in-app changelog to track updates directly in the app",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved typography with better letter spacing",
+                  "Refined changelog metadata structure",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Refactored providers into a single structure",
+                  "Updated dependencies",
+                ],
+              },
+            ],
+          },
           "v0.5.0": {
             paragraphs: [
               "This update focuses on adding more context and personality to the app.",
