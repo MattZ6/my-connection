@@ -7,13 +7,10 @@ import {
   Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider as NavigationThemeProvider,
-  type ParamListBase,
-  type ScreenListeners,
-  type TabNavigationState,
+import type {
+  ParamListBase,
+  ScreenListeners,
+  TabNavigationState,
 } from "@react-navigation/native";
 import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
@@ -22,16 +19,12 @@ import { useNavigationContainerRef } from "expo-router";
 import type { NativeTabNavigationEventMap } from "expo-router/build/native-tabs/types";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { LocationProvider } from "@/contexts/location";
-import { NetworkUpdatesProvider } from "@/contexts/network-updates";
-import { PreferencesProvider } from "@/contexts/preferences";
-import { ThemeProvider } from "@/contexts/theme";
+import { Provider } from "@/contexts/provider";
+
 import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -98,33 +91,9 @@ function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider>
-        <PreferencesProvider defaultHapticsEnabled={true}>
-          <LocationProvider>
-            <NetworkUpdatesProvider
-              defaultAutomaticUpdatesEnabled={true}
-              defaultUpdateFrequency="60s"
-            >
-              <NavigationProvider />
-            </NetworkUpdatesProvider>
-          </LocationProvider>
-        </PreferencesProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
-  );
-}
-
-function NavigationProvider() {
-  const { resolvedTheme } = useTheme();
-
-  return (
-    <NavigationThemeProvider
-      value={resolvedTheme === "dark" ? DarkTheme : DefaultTheme}
-    >
-      <StatusBar animated style={resolvedTheme === "dark" ? "light" : "dark"} />
+    <Provider>
       <TabsNavigation />
-    </NavigationThemeProvider>
+    </Provider>
   );
 }
 
