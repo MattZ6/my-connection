@@ -18,9 +18,10 @@ export function getStyles(theme: ThemeConfig) {
     },
     heroLabel: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 12,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
       textTransform: "uppercase",
-      letterSpacing: 1,
+      letterSpacing: 1.25,
       color: theme.colors.content.muted,
     },
     heroValue: {
@@ -35,9 +36,10 @@ export function getStyles(theme: ThemeConfig) {
     },
     signalStrengthLabel: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 12,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
       textTransform: "uppercase",
-      letterSpacing: 1,
+      letterSpacing: 1.25,
       color: theme.colors.content.muted,
     },
   });

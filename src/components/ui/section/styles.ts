@@ -12,7 +12,7 @@ export function getSectionStyles(theme: ThemeConfig) {
       fontSize: theme.fontSizes.label.fontSize,
       lineHeight: theme.fontSizes.label.lineHeight,
       textTransform: "uppercase",
-      letterSpacing: 1,
+      letterSpacing: 1.25,
       color: theme.colors.content.muted,
     },
   });
