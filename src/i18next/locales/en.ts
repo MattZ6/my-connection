@@ -447,72 +447,75 @@ export const en = {
         meta: {
           "v0.5.0": {
             title: "A bit more human",
-            date: "2026-04-20",
+            date: "2026-04-23",
             description:
-              "Improvements focused on clarity, context, and personality.",
+              "This update adds more context and personality, making the app feel clearer and more complete.",
           },
           "v0.4.0": {
             title: "More control and feedback",
-            date: "2026-04-10",
+            date: "2026-04-23",
             description:
-              "New network features, better feedback, and improved interactions.",
+              "New network features, better feedback, and smoother interactions across the app.",
           },
           "v0.3.0": {
-            title: "Refinements and stability",
-            date: "2026-03-30",
+            title: "Smoother and more reliable",
+            date: "2026-04-09",
             description:
-              "Improvements across UI, performance, and reliability.",
+              "Several fixes and refinements to make the app feel more stable and consistent.",
           },
           "v0.2.0": {
             title: "A more complete experience",
-            date: "2026-03-26",
+            date: "2026-04-06",
             description:
-              "Major update introducing themes, haptics, and internationalization.",
+              "Themes, haptics, and multiple languages — this update brings key features that shape the app experience.",
           },
           "v0.1.7": {
-            title: "Settings refinements",
+            title: "Better organized settings",
             date: "2026-03-25",
-            description: "Improved settings structure and visual consistency.",
+            description:
+              "Improved structure and layout to make settings clearer and easier to navigate.",
           },
           "v0.1.6": {
-            title: "Android improvements",
-            date: "2026-03-24",
+            title: "Better Android experience",
+            date: "2026-03-25",
             description:
-              "Improvements focused on Android experience and device information.",
+              "Improvements focused on Android, including device information and visual consistency.",
           },
           "v0.1.5": {
-            title: "Dependency fix",
-            date: "2026-03-23",
+            title: "Stability fix",
+            date: "2026-03-24",
             description:
-              "Adjusted Sentry dependency version for better stability.",
+              "Adjusted dependencies to keep things stable and working as expected.",
           },
           "v0.1.4": {
-            title: "Navigation improvements",
-            date: "2026-03-22",
+            title: "Easier navigation",
+            date: "2026-03-24",
             description:
-              "Added tab-based navigation for a smoother app experience.",
+              "Added tab navigation to make moving around the app simpler and more intuitive.",
           },
           "v0.1.3": {
-            title: "Crash reporting setup",
-            date: "2026-03-21",
-            description:
-              "Introduced crash reporting to improve stability and error tracking.",
-          },
-          "v0.1.2": {
-            title: "Visual identity improvements",
+            title: "Keeping things safe",
             date: "2026-03-20",
             description:
-              "This update introduces variant-based app icon and splash screen.",
+              "Crash reporting is now in place to help catch issues and improve reliability over time.",
           },
-          "v0.1.1": {
-            title: "Small adjustments",
+          "v0.1.2": {
+            title: "A clearer identity",
             date: "2026-03-19",
             description:
-              "A small update focused on cleaning up the app configuration.",
+              "App icon and splash screen now adapt to each build, making environments easier to recognize.",
+          },
+          "v0.1.1": {
+            title: "Small cleanup",
+            date: "2026-03-19",
+            description:
+              "A small internal cleanup to keep things simpler and easier to evolve.",
           },
           "v0.1.0": {
             title: "A fresh start",
-            date: "2026-03-18",
+            date: "2026-03-19",
+            description:
+              "The beginning of a new phase — a simple idea evolving into a more structured and thoughtful app.",
           },
         },
         content: {
