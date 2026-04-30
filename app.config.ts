@@ -7,31 +7,37 @@ type Variant = "development" | "preview" | "production";
 const variantConfig = {
   development: {
     package: "com.myconnection.dev",
-    primaryColor: "#007CC9",
+    primaryColor: "#43484E",
     splash: {
       android: {
-        imagePath: "./assets/variants/dev/splash.png",
         light: {
-          backgroundColor: "#C2E8FF",
+          imagePath: "./assets/variants/dev/splash-light.png",
+          backgroundColor: "#F0F0F3",
         },
         dark: {
-          backgroundColor: "#021C2C",
+          imagePath: "./assets/variants/dev/splash-dark.png",
+          backgroundColor: "#18191B",
         },
       },
       ios: {
-        imagePath: "./assets/variants/dev/splash.png",
         light: {
-          backgroundColor: "#C2E8FF",
+          imagePath: "./assets/variants/dev/splash-light.png",
+          backgroundColor: "#F0F0F3",
         },
         dark: {
-          backgroundColor: "#021C2C",
+          imagePath: "./assets/variants/dev/splash-dark.png",
+          backgroundColor: "#18191B",
         },
       },
     },
     icon: {
       android: {
-        imagePath: "./assets/variants/dev/android-adaptive-icon.png",
-        backgroundColor: "#C2E8FF",
+        foregroundImagePath:
+          "./assets/variants/dev/android-adaptive-icon-foreground.png",
+        backgroundImagePath:
+          "./assets/variants/dev/android-adaptive-icon-background.png",
+        monochromeImagePath: "./assets/variants/android-monochrome-icon.png",
+        backgroundColor: "#18191B",
       },
       ios: {
         light: {
@@ -53,31 +59,37 @@ const variantConfig = {
   },
   preview: {
     package: "com.myconnection.preview",
-    primaryColor: "#E58600",
+    primaryColor: "#B0B4BA",
     splash: {
       android: {
-        imagePath: "./assets/variants/preview/splash.png",
         light: {
-          backgroundColor: "#FBF0E0",
+          imagePath: "./assets/variants/preview/splash-light.png",
+          backgroundColor: "#E0E1E6",
         },
         dark: {
-          backgroundColor: "#2F1B00",
+          imagePath: "./assets/variants/preview/splash-dark.png",
+          backgroundColor: "#212225",
         },
       },
       ios: {
-        imagePath: "./assets/variants/preview/splash.png",
         light: {
-          backgroundColor: "#FBF0E0",
+          imagePath: "./assets/variants/preview/splash-light.png",
+          backgroundColor: "#E0E1E6",
         },
         dark: {
-          backgroundColor: "#2F1B00",
+          imagePath: "./assets/variants/preview/splash-dark.png",
+          backgroundColor: "#212225",
         },
       },
     },
     icon: {
       android: {
-        imagePath: "./assets/variants/preview/android-adaptive-icon.png",
-        backgroundColor: "#FBF0E0",
+        foregroundImagePath:
+          "./assets/variants/preview/android-adaptive-icon-foreground.png",
+        backgroundImagePath:
+          "./assets/variants/preview/android-adaptive-icon-background.png",
+        monochromeImagePath: "./assets/variants/android-monochrome-icon.png",
+        backgroundColor: "#212225",
       },
       ios: {
         light: {
@@ -99,31 +111,36 @@ const variantConfig = {
   },
   production: {
     package: "com.myconnection",
-    primaryColor: "#00A400",
+    primaryColor: "#FCFCFD",
     splash: {
       android: {
-        imagePath: "./assets/variants/production/splash.png",
         light: {
-          backgroundColor: "#DDFFDD",
+          imagePath: "./assets/variants/production/splash-light.png",
+          backgroundColor: "#FCFCFD",
         },
         dark: {
-          backgroundColor: "#012F01",
+          imagePath: "./assets/variants/production/splash-dark.png",
+          backgroundColor: "#111113",
         },
       },
       ios: {
-        imagePath: "./assets/variants/production/splash.png",
         light: {
-          backgroundColor: "#DDFFDD",
+          imagePath: "./assets/variants/production/splash-light.png",
+          backgroundColor: "#FCFCFD",
         },
         dark: {
-          backgroundColor: "#012F01",
+          imagePath: "./assets/variants/production/splash-dark.png",
+          backgroundColor: "#111113",
         },
       },
     },
     icon: {
       android: {
-        imagePath: "./assets/variants/production/android-adaptive-icon.png",
-        backgroundColor: "#DDFFDD",
+        foregroundImagePath:
+          "./assets/variants/production/android-adaptive-icon-foreground.png",
+        backgroundImagePath: undefined,
+        monochromeImagePath: "./assets/variants/android-monochrome-icon.png",
+        backgroundColor: "#111113",
       },
       ios: {
         light: {
@@ -175,13 +192,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       tinted: variant.icon.ios.tinted.imagePath,
     },
     splash: {
-      image: variant.splash.ios.imagePath,
-      tabletImage: variant.splash.ios.imagePath,
+      image: variant.splash.ios.light.imagePath,
+      tabletImage: variant.splash.ios.light.imagePath,
       backgroundColor: variant.splash.ios.light.backgroundColor,
       resizeMode: "contain",
       dark: {
-        image: variant.splash.ios.imagePath,
-        tabletImage: variant.splash.ios.imagePath,
+        image: variant.splash.ios.dark.imagePath,
+        tabletImage: variant.splash.ios.dark.imagePath,
         backgroundColor: variant.splash.ios.dark.backgroundColor,
         resizeMode: "contain",
       },
@@ -197,15 +214,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   android: {
     package: variant.package,
     adaptiveIcon: {
-      foregroundImage: variant.icon.android.imagePath,
+      foregroundImage: variant.icon.android.foregroundImagePath,
+      backgroundImage: variant.icon.android.backgroundImagePath,
+      monochromeImage: variant.icon.android.monochromeImagePath,
       backgroundColor: variant.icon.android.backgroundColor,
     },
     splash: {
-      image: variant.splash.android.imagePath,
+      image: variant.splash.android.light.imagePath,
       backgroundColor: variant.splash.android.light.backgroundColor,
       resizeMode: "contain",
       dark: {
-        image: variant.splash.android.imagePath,
+        image: variant.splash.android.dark.imagePath,
         backgroundColor: variant.splash.android.dark.backgroundColor,
         resizeMode: "contain",
       },
