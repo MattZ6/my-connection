@@ -5,11 +5,9 @@ import { Pressable, Text, View } from "react-native";
 
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
-
+import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
 import { useStyles } from "@/hooks/use-styles";
-
 import { androidRippleConfig } from "@/theme/android-ripple";
-
 import { getStyles } from "./styles";
 
 type Props = {
@@ -28,9 +26,12 @@ export function LatestVersionCard({
   onPress,
 }: Props) {
   const styles = useStyles(getStyles);
+  const { currrentAppVersion, lastVersionViewed } = useLastVersionViewed();
   const { t } = useTranslation("translation", {
     keyPrefix: "changelog.sections",
   });
+
+  const hasNews = currrentAppVersion !== lastVersionViewed;
 
   const handlePress = useCallback(() => onPress(version), [onPress, version]);
 
@@ -52,7 +53,9 @@ export function LatestVersionCard({
                     size={20}
                   />
                   <Text style={styles.version}>{version}</Text>
+                  {hasNews && <View style={styles.newVersionDot} />}
                 </View>
+
                 <Text style={styles.date}>{formattedDate}</Text>
               </View>
 

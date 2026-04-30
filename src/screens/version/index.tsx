@@ -1,7 +1,9 @@
 import { Stack } from "expo-router";
+import { useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 
+import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -35,6 +37,8 @@ type Props = {
 };
 
 export function VersionScreen({ version }: Props) {
+  const { currrentAppVersion, lastVersionViewed, setLastVersionViewed } =
+    useLastVersionViewed();
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
   const { t, i18n } = useTranslation("translation", {
@@ -57,6 +61,14 @@ export function VersionScreen({ version }: Props) {
       year: "numeric",
     },
   );
+
+  useLayoutEffect(() => {
+    const isCurrentVersionChangelog = version === currrentAppVersion;
+
+    if (isCurrentVersionChangelog && version !== lastVersionViewed) {
+      setLastVersionViewed(version);
+    }
+  }, [version, currrentAppVersion, lastVersionViewed, setLastVersionViewed]);
 
   return (
     <>

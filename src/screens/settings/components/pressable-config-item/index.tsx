@@ -1,6 +1,11 @@
 import { type AndroidSymbol, type SFSymbol, SymbolView } from "expo-symbols";
 import { useCallback } from "react";
-import { type GestureResponderEvent, Platform, Pressable } from "react-native";
+import {
+  type GestureResponderEvent,
+  Platform,
+  Pressable,
+  View,
+} from "react-native";
 
 import {
   SectionItemChevron,
@@ -25,9 +30,10 @@ type Props = {
     android: AndroidSymbol;
   };
   onPress: ((event: GestureResponderEvent) => void) | null | undefined;
+  hasNews?: boolean;
 };
 
-export function PressableConfigItem({ label, icon, onPress }: Props) {
+export function PressableConfigItem({ label, icon, onPress, hasNews }: Props) {
   const styles = useStyles(getStyles);
   const { performTapFeedback } = useHaptics();
 
@@ -60,6 +66,7 @@ export function PressableConfigItem({ label, icon, onPress }: Props) {
           <SectionItemLabel>{label}</SectionItemLabel>
         </SectionItemContent>
         <SectionItemTrailing>
+          {hasNews && <View style={styles.newsDot} />}
           <SectionItemChevron />
         </SectionItemTrailing>
       </SectionItemRoot>
