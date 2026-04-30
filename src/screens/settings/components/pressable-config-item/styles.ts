@@ -18,5 +18,11 @@ export function getStyles(theme: ThemeConfig) {
     icon: {
       tintColor: theme.colors.brandContent.base,
     },
+    newsDot: {
+      width: 8,
+      height: 8,
+      borderRadius: theme.radii.full,
+      backgroundColor: theme.colors.semantic.warning,
+    },
   });
 }

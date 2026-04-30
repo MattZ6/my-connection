@@ -48,6 +48,12 @@ export function getStyles(theme: ThemeConfig) {
       lineHeight: theme.fontSizes.bodySmall.lineHeight,
       textAlign: "right",
     },
+    newVersionDot: {
+      width: 8,
+      height: 8,
+      borderRadius: theme.radii.full,
+      backgroundColor: theme.colors.semantic.warning,
+    },
     content: {
       gap: 8,
     },
@@ -58,7 +64,7 @@ export function getStyles(theme: ThemeConfig) {
       lineHeight: theme.fontSizes.subtitle.lineHeight,
     },
     description: {
-      fontFamily: theme.fontFamily.medium,
+      fontFamily: theme.fontFamily.regular,
       color: theme.colors.content.muted,
       fontSize: theme.fontSizes.body.fontSize,
       lineHeight: theme.fontSizes.body.lineHeight,
