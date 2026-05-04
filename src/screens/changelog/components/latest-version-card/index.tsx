@@ -5,9 +5,12 @@ import { Pressable, Text, View } from "react-native";
 
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
+
 import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
 import { useStyles } from "@/hooks/use-styles";
+
 import { androidRippleConfig } from "@/theme/android-ripple";
+
 import { getStyles } from "./styles";
 
 type Props = {

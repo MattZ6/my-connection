@@ -50,16 +50,17 @@ export function ChangelogScreen() {
       ([version, content], _index) => {
         const date = new Date(`${content.date}T00:00:00`);
 
+        const isSameYear = now.getFullYear() === date.getFullYear();
+
         return {
           version,
           title: content.title,
+          description: content.description,
           date: date.toLocaleDateString(i18n.language, {
             day: "numeric",
             month: "short",
-            year:
-              now.getFullYear() !== date.getFullYear() ? "numeric" : undefined,
+            year: isSameYear ? undefined : "numeric",
           }),
-          description: content.description,
         };
       },
     );
@@ -116,9 +117,9 @@ export function ChangelogScreen() {
             android_ripple={androidRippleConfig}
             onPress={() => handleNavigateToVersionPage(item.version)}
           >
-            <SectionItemRoot>
+            <SectionItemRoot style={styles.versionItem}>
               <SectionItemLeading>
-                <SectionItemHint style={{ width: 48 }}>
+                <SectionItemHint style={styles.versionLabel}>
                   {item.version}
                 </SectionItemHint>
               </SectionItemLeading>

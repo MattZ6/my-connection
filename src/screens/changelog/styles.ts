@@ -11,5 +11,11 @@ export function getStyles(theme: ThemeConfig) {
     scrollContainer: {
       paddingBottom: 16,
     },
+    versionItem: {
+      paddingVertical: 12,
+    },
+    versionLabel: {
+      width: 48,
+    },
   });
 }
