@@ -1,5 +1,7 @@
 import { Image, Text, View } from "react-native";
+
 import { useStyles } from "@/hooks/use-styles";
+
 import { getStyles } from "./styles";
 
 type Props = {
