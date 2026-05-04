@@ -449,6 +449,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.7.0": {
+            title: "Más refinado",
+            date: "2026-05-04",
+            description:
+              "Esta actualización aporta más fluidez, animaciones sutiles y una identidad visual más cuidada.",
+          },
           "v0.6.0": {
             title: "Ahora contando su propia historia",
             date: "2026-04-29",
@@ -529,6 +535,41 @@ export const es = {
           },
         },
         content: {
+          "v0.7.0": {
+            paragraphs: [
+              "Esta actualización se centra en hacer la app más fluida y agradable de usar.",
+              "Pequeñas animaciones, ajustes visuales y mejoras de consistencia ayudan a crear una experiencia más refinada en el día a día.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Nuevas funciones",
+                items: [
+                  "Se añadió animación al botón de actualización de red",
+                  "Animaciones suaves de entrada en las tarjetas de la pantalla principal",
+                  "Feedback animado al copiar el BSSID",
+                  "Indicador sutil de nuevas versiones en el changelog",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Ajustes de espaciado en los elementos del changelog",
+                  "Nueva paleta de colores para mayor consistencia visual",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Visual & Assets",
+                items: [
+                  "Nuevo icono y splash screen de la app",
+                  "Mejora en la calidad y proporción de los iconos",
+                  "Refinamiento del icono adaptativo en Android",
+                ],
+              },
+            ],
+          },
           "v0.6.0": {
             paragraphs: [
               "Esta actualización introduce el changelog dentro de la app, facilitando seguir su evolución con el tiempo.",

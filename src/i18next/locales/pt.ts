@@ -449,6 +449,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.7.0": {
+            title: "Mais refinado",
+            date: "2026-05-04",
+            description:
+              "Esta atualização traz mais fluidez, animações sutis e uma identidade visual mais refinada.",
+          },
           "v0.6.0": {
             title: "Agora contando sua própria história",
             date: "2026-04-29",
@@ -529,6 +535,41 @@ export const pt = {
           },
         },
         content: {
+          "v0.7.0": {
+            paragraphs: [
+              "Esta atualização foca em deixar o app mais fluido e agradável de usar.",
+              "Pequenas animações, ajustes visuais e melhorias de consistência ajudam a criar uma experiência mais refinada no dia a dia.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Novas Funcionalidades",
+                items: [
+                  "Animação adicionada ao botão de atualização de rede",
+                  "Animações suaves de entrada nos cards da tela inicial",
+                  "Feedback animado ao copiar o BSSID",
+                  "Indicador sutil de novas versões no changelog",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Ajustes de espaçamento nos itens do changelog",
+                  "Nova paleta de cores para melhor consistência visual",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Visual & Assets",
+                items: [
+                  "Novo ícone e splash screen do app",
+                  "Melhoria na qualidade e proporção dos ícones",
+                  "Refinamento do ícone adaptativo no Android",
+                ],
+              },
+            ],
+          },
           "v0.6.0": {
             paragraphs: [
               "Esta atualização traz o changelog dentro do próprio app, facilitando acompanhar sua evolução ao longo do tempo.",

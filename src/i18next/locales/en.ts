@@ -445,6 +445,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.7.0": {
+            title: "More refined",
+            date: "2026-05-04",
+            description:
+              "This update focuses on polish, smoother interactions, and a more refined visual identity.",
+          },
           "v0.6.0": {
             title: "Now telling its own story",
             date: "2026-04-29",
@@ -525,6 +531,42 @@ export const en = {
           },
         },
         content: {
+          "v0.7.0": {
+            paragraphs: [
+              "This update brings a series of refinements to make the app feel smoother and more responsive.",
+              "From subtle animations to visual improvements, everything was designed to feel more cohesive and polished.",
+            ],
+
+            highlights: [
+              {
+                type: "features",
+                title: "New Features",
+                items: [
+                  "Added animations to the refresh action",
+                  "Added subtle entry animations to home cards",
+                  "Improved BSSID copy interaction with animated feedback",
+                  "Added a subtle indicator for new versions in the changelog",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Refined spacing in changelog items",
+                  "Updated color palette for better visual consistency",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Visual & Assets",
+                items: [
+                  "Revamped app icon and splash screen",
+                  "Improved icon quality and sizing",
+                  "Polished Android adaptive icon with better shadow",
+                ],
+              },
+            ],
+          },
           "v0.6.0": {
             paragraphs: [
               "This update introduces the in-app changelog, making it easier to follow how the app evolves over time.",
