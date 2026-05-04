@@ -8,7 +8,7 @@ import { SSIDButton } from "./components/ssid-button";
 
 type Props = {
   ssid: string | null;
-  bssid: string;
+  bssid: string | null;
   frequency: number;
 };
 
@@ -17,6 +17,8 @@ export function NetworkSection({ ssid, bssid, frequency }: Props) {
     keyPrefix: "home.sections.network",
   });
 
+  const bssidValue = ssid ? bssid : null;
+
   return (
     <Section title={t("title")}>
       <Card>
@@ -24,7 +26,7 @@ export function NetworkSection({ ssid, bssid, frequency }: Props) {
 
         <SectionDivider />
 
-        <BSSIDButton bssid={bssid} />
+        <BSSIDButton bssid={bssidValue} />
 
         <SectionDivider />
 
