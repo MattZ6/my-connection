@@ -2,11 +2,10 @@ import { NetInfoStateType } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
-
+import { FadeInWrapper } from "@/components/animated/fade-in-wrapper";
 import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
-
 import { CellularSection } from "./components/cellular-section";
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSummary } from "./components/connection-summary";
@@ -15,7 +14,6 @@ import { NetworkSection } from "./components/network-section";
 import { PerformanceSection } from "./components/performance-section";
 import { PropertiesSection } from "./components/properties-section";
 import { ToolbarActions } from "./components/toolbar-actions";
-
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -61,44 +59,54 @@ function Content() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        {/* TODO: adicionar skeletons */}
-
         {!!netInfo && (
           <>
-            <ConnectionHero info={netInfo} />
+            <FadeInWrapper>
+              <ConnectionHero info={netInfo} />
+            </FadeInWrapper>
 
-            <ConnectionSummary info={netInfo} />
+            <FadeInWrapper>
+              <ConnectionSummary info={netInfo} />
+            </FadeInWrapper>
 
             {netInfo.type === NetInfoStateType.cellular && (
-              <CellularSection
-                carrier={netInfo.details.carrier}
-                generation={netInfo.details.cellularGeneration}
-              />
+              <FadeInWrapper>
+                <CellularSection
+                  carrier={netInfo.details.carrier}
+                  generation={netInfo.details.cellularGeneration}
+                />
+              </FadeInWrapper>
             )}
 
             {netInfo.type === NetInfoStateType.wifi && (
-              <PerformanceSection
-                strength={netInfo.details.strength}
-                speed={netInfo.details.linkSpeed}
-                download={netInfo.details.rxLinkSpeed}
-                upload={netInfo.details.txLinkSpeed}
-              />
+              <FadeInWrapper>
+                <PerformanceSection
+                  strength={netInfo.details.strength}
+                  speed={netInfo.details.linkSpeed}
+                  download={netInfo.details.rxLinkSpeed}
+                  upload={netInfo.details.txLinkSpeed}
+                />
+              </FadeInWrapper>
             )}
 
             {netInfo.type === NetInfoStateType.wifi && (
-              <NetworkSection
-                ssid={netInfo.details.ssid}
-                bssid={netInfo.details.bssid || "-"}
-                frequency={netInfo.details.frequency || 0}
-              />
+              <FadeInWrapper>
+                <NetworkSection
+                  ssid={netInfo.details.ssid}
+                  bssid={netInfo.details.bssid || "-"}
+                  frequency={netInfo.details.frequency || 0}
+                />
+              </FadeInWrapper>
             )}
 
             {(netInfo.type === NetInfoStateType.wifi ||
               netInfo.type === NetInfoStateType.ethernet) && (
-              <IPConfigSection
-                ipAddress={netInfo.details.ipAddress}
-                subnetMask={netInfo.details.subnet}
-              />
+              <FadeInWrapper>
+                <IPConfigSection
+                  ipAddress={netInfo.details.ipAddress}
+                  subnetMask={netInfo.details.subnet}
+                />
+              </FadeInWrapper>
             )}
 
             {(netInfo.type === NetInfoStateType.bluetooth ||
@@ -108,9 +116,11 @@ function Content() {
               netInfo.type === NetInfoStateType.other ||
               netInfo.type === NetInfoStateType.wimax ||
               netInfo.type === NetInfoStateType.wifi) && (
-              <PropertiesSection
-                isConnectionExpensive={netInfo.details.isConnectionExpensive}
-              />
+              <FadeInWrapper>
+                <PropertiesSection
+                  isConnectionExpensive={netInfo.details.isConnectionExpensive}
+                />
+              </FadeInWrapper>
             )}
           </>
         )}
