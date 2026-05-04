@@ -1,10 +1,10 @@
 import { Stack } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { useCallback } from "react";
 import { Platform, Pressable, View } from "react-native";
+import Animated from "react-native-reanimated";
 
+import { useAnimatedNetworkUpdates } from "@/hooks/use-animated-network-updates";
 import { useHaptics } from "@/hooks/use-haptics";
-import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useStyles } from "@/hooks/use-styles";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
@@ -13,18 +13,13 @@ import { getStyles } from "./styles";
 
 export function ToolbarActions() {
   const styles = useStyles(getStyles);
-  const { performTapFeedback } = useHaptics();
-  const { refresh } = useNetworkUpdates();
+  const { performTapFeedback, notifySuccess, notifyFailure } = useHaptics();
 
-  const handleRefresh = useCallback(async () => {
-    performTapFeedback();
-
-    try {
-      await refresh();
-    } catch (_error) {
-      // Falha
-    }
-  }, [performTapFeedback, refresh]);
+  const { isRefreshing, refresh, animatedStyle } = useAnimatedNetworkUpdates({
+    onBefore: performTapFeedback,
+    onSuccess: notifySuccess,
+    onFailure: notifyFailure,
+  });
 
   return (
     <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>
@@ -35,18 +30,21 @@ export function ToolbarActions() {
             android_disableSound
             android_ripple={androidRippleConfig}
             hitSlop={{ right: 8, top: 16, left: 16, bottom: 16 }}
-            onPress={handleRefresh}
+            onPress={refresh}
+            disabled={isRefreshing}
           >
-            <SymbolView
-              name={{ android: "refresh" }}
-              tintColor={styles.icon.color}
-            />
+            <Animated.View style={animatedStyle}>
+              <SymbolView
+                name={{ android: "refresh" }}
+                tintColor={styles.icon.color}
+              />
+            </Animated.View>
           </Pressable>
         </View>
       )}
 
       {Platform.OS === "ios" && (
-        <Stack.Toolbar.Button onPress={handleRefresh}>
+        <Stack.Toolbar.Button onPress={refresh} disabled={isRefreshing}>
           <Stack.Toolbar.Icon sf="arrow.clockwise" />
         </Stack.Toolbar.Button>
       )}

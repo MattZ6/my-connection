@@ -1,7 +1,7 @@
 import { SymbolView } from "expo-symbols";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable } from "react-native";
+import Animated from "react-native-reanimated";
 
 import { Card } from "@/components/ui/card";
 import {
@@ -12,32 +12,34 @@ import {
   SectionItemTrailing,
 } from "@/components/ui/section";
 
+import { useAnimatedNetworkUpdates } from "@/hooks/use-animated-network-updates";
 import { useHaptics } from "@/hooks/use-haptics";
-import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useTheme } from "@/hooks/use-theme";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
 export function RefreshNetworkSection() {
   const { colors } = useTheme();
-  const { performTapFeedback } = useHaptics();
-  const { refresh } = useNetworkUpdates();
+  const { performTapFeedback, notifySuccess, notifyFailure } = useHaptics();
+
+  const { isRefreshing, refresh, animatedStyle } = useAnimatedNetworkUpdates({
+    onBefore: performTapFeedback,
+    onSuccess: notifySuccess,
+    onFailure: notifyFailure,
+  });
+
   const { t } = useTranslation("translation", {
     keyPrefix: "preferences.sections.network_updates.actions.refresh",
   });
-
-  const handleRefresh = useCallback(() => {
-    performTapFeedback();
-    refresh();
-  }, [performTapFeedback, refresh]);
 
   return (
     <Section>
       <Card>
         <Pressable
-          onPress={handleRefresh}
+          onPress={refresh}
           android_disableSound
           android_ripple={androidRippleConfig}
+          disabled={isRefreshing}
         >
           <SectionItemRoot>
             <SectionItemContent>
@@ -45,11 +47,13 @@ export function RefreshNetworkSection() {
             </SectionItemContent>
 
             <SectionItemTrailing>
-              <SymbolView
-                name={{ android: "refresh", ios: "arrow.clockwise" }}
-                size={24}
-                tintColor={colors.content.muted}
-              />
+              <Animated.View style={animatedStyle}>
+                <SymbolView
+                  name={{ android: "refresh", ios: "arrow.clockwise" }}
+                  size={24}
+                  tintColor={colors.content.muted}
+                />
+              </Animated.View>
             </SectionItemTrailing>
           </SectionItemRoot>
         </Pressable>
