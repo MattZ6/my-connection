@@ -2,10 +2,13 @@ import { NetInfoStateType } from "@react-native-community/netinfo";
 import { Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
+
 import { FadeInWrapper } from "@/components/animated/fade-in-wrapper";
+
 import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { CellularSection } from "./components/cellular-section";
 import { ConnectionHero } from "./components/connection-hero";
 import { ConnectionSummary } from "./components/connection-summary";
@@ -14,6 +17,7 @@ import { NetworkSection } from "./components/network-section";
 import { PerformanceSection } from "./components/performance-section";
 import { PropertiesSection } from "./components/properties-section";
 import { ToolbarActions } from "./components/toolbar-actions";
+
 import { getStyles } from "./styles";
 
 const isIos = Platform.OS === "ios";
@@ -93,7 +97,7 @@ function Content() {
               <FadeInWrapper>
                 <NetworkSection
                   ssid={netInfo.details.ssid}
-                  bssid={netInfo.details.bssid || "-"}
+                  bssid={netInfo.details.bssid}
                   frequency={netInfo.details.frequency || 0}
                 />
               </FadeInWrapper>

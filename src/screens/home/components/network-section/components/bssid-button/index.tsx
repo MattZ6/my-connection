@@ -2,7 +2,13 @@ import * as ExpoClipboard from "expo-clipboard";
 import { SymbolView } from "expo-symbols";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, Pressable } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 import {
   SectionItemContent,
@@ -24,15 +30,22 @@ function waitAsync(durationInMS: number) {
 const MIN_COPY_DURATION = 600;
 const SUCCESSFUL_COPY_FEEDBACK_DURATION = 1500;
 
-type CopyState = "idle" | "copied" | "copying";
+const ANIMATION_DURATION = 200;
+
+enum CopyState {
+  idle = 0,
+  copying = 1,
+  copied = 2,
+}
 
 type Props = {
-  bssid: string;
+  bssid: string | null;
 };
 
 export function BSSIDButton({ bssid }: Props) {
+  const progress = useSharedValue(0);
   const isClickLockedRef = useRef(false);
-  const [copyState, setCopyState] = useState<CopyState>("idle");
+  const [copyState, setCopyState] = useState<CopyState>(CopyState.idle);
   const { colors } = useTheme();
   const { performTapFeedback, notifySuccess, notifyFailure } = useHaptics();
   const { t } = useTranslation("translation", {
@@ -40,14 +53,14 @@ export function BSSIDButton({ bssid }: Props) {
   });
 
   const handleCopy = useCallback(async () => {
-    if (isClickLockedRef.current) {
+    if (isClickLockedRef.current || !bssid) {
       return;
     }
 
     performTapFeedback();
 
     isClickLockedRef.current = true;
-    setCopyState("copying");
+    setCopyState(CopyState.copying);
 
     try {
       await Promise.all([
@@ -58,10 +71,10 @@ export function BSSIDButton({ bssid }: Props) {
       ]);
 
       notifySuccess();
-      setCopyState("copied");
+      setCopyState(CopyState.copied);
     } catch (_error) {
       notifyFailure();
-      setCopyState("idle");
+      setCopyState(CopyState.idle);
     } finally {
       isClickLockedRef.current = false;
     }
@@ -70,9 +83,9 @@ export function BSSIDButton({ bssid }: Props) {
   useEffect(() => {
     let timeoutId: number;
 
-    if (copyState === "copied") {
+    if (copyState === CopyState.copied) {
       timeoutId = setTimeout(() => {
-        setCopyState("idle");
+        setCopyState(CopyState.idle);
         isClickLockedRef.current = false;
       }, SUCCESSFUL_COPY_FEEDBACK_DURATION);
     }
@@ -82,12 +95,74 @@ export function BSSIDButton({ bssid }: Props) {
     };
   }, [copyState]);
 
+  useEffect(() => {
+    progress.value = withTiming(copyState, {
+      duration: ANIMATION_DURATION,
+    });
+  }, [copyState, progress]);
+
+  const iddleIconAnimatedStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [CopyState.idle, CopyState.copying, CopyState.copied],
+      [1, 0, 0],
+    );
+    const scale = interpolate(
+      progress.value,
+      [CopyState.idle, CopyState.copying],
+      [1, 0.95],
+    );
+
+    return {
+      opacity,
+      transform: [{ scale }],
+    };
+  });
+
+  const loadingAnimatedStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [CopyState.idle, CopyState.copying, CopyState.copied],
+      [0, 1, 0],
+    );
+
+    const scale = interpolate(
+      progress.value,
+      [CopyState.copying, CopyState.copied],
+      [0.95, 1],
+    );
+
+    return {
+      opacity,
+      transform: [{ scale }],
+    };
+  });
+
+  const successIconAnimatedStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [CopyState.copying, CopyState.copied],
+      [0, 1],
+    );
+
+    const scale = interpolate(
+      progress.value,
+      [CopyState.copying, CopyState.copied],
+      [0.95, 1],
+    );
+
+    return {
+      opacity,
+      transform: [{ scale }],
+    };
+  });
+
   return (
     <Pressable
       onPress={handleCopy}
       android_disableSound
       android_ripple={androidRippleConfig}
-      disabled={copyState !== "idle"}
+      disabled={copyState !== CopyState.idle || !bssid}
     >
       <SectionItemRoot>
         <SectionItemContent>
@@ -95,18 +170,35 @@ export function BSSIDButton({ bssid }: Props) {
         </SectionItemContent>
 
         <SectionItemTrailing>
-          <SectionItemValue>{bssid}</SectionItemValue>
-          {copyState === "copying" ? (
-            <ActivityIndicator size={20} color={colors.content.muted} />
-          ) : (
-            <SymbolView
-              name={{
-                android:
-                  copyState === "copied" ? "check_circle" : "content_copy",
-              }}
-              size={20}
-              tintColor={colors.content.muted}
-            />
+          <SectionItemValue>{bssid || "-"}</SectionItemValue>
+          {bssid && (
+            <View style={{ width: 20, height: 20 }}>
+              <Animated.View
+                style={[StyleSheet.absoluteFill, iddleIconAnimatedStyle]}
+              >
+                <SymbolView
+                  name={{ android: "content_copy" }}
+                  size={20}
+                  tintColor={colors.content.muted}
+                />
+              </Animated.View>
+
+              <Animated.View
+                style={[StyleSheet.absoluteFill, loadingAnimatedStyle]}
+              >
+                <ActivityIndicator size={20} color={colors.content.muted} />
+              </Animated.View>
+
+              <Animated.View
+                style={[StyleSheet.absoluteFill, successIconAnimatedStyle]}
+              >
+                <SymbolView
+                  name={{ android: "check_circle" }}
+                  size={20}
+                  tintColor={colors.content.muted}
+                />
+              </Animated.View>
+            </View>
           )}
         </SectionItemTrailing>
       </SectionItemRoot>
