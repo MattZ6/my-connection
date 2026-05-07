@@ -6,7 +6,7 @@ type Variant = "development" | "preview" | "production";
 
 const variantConfig = {
   development: {
-    package: "com.myconnection.dev",
+    package: "dev.zanin.myconnection.dev",
     primaryColor: "#43484E",
     splash: {
       android: {
@@ -58,7 +58,7 @@ const variantConfig = {
     },
   },
   preview: {
-    package: "com.myconnection.preview",
+    package: "dev.zanin.myconnection.preview",
     primaryColor: "#B0B4BA",
     splash: {
       android: {
@@ -110,7 +110,7 @@ const variantConfig = {
     },
   },
   production: {
-    package: "com.myconnection",
+    package: "dev.zanin.myconnection",
     primaryColor: "#FCFCFD",
     splash: {
       android: {
