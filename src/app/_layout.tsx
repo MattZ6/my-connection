@@ -1,12 +1,5 @@
 import "@/i18next/i18next";
 
-import {
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  Poppins_700Bold,
-  useFonts,
-} from "@expo-google-fonts/poppins";
 import type {
   ParamListBase,
   ScreenListeners,
@@ -25,6 +18,7 @@ import { useTranslation } from "react-i18next";
 
 import { Provider } from "@/contexts/provider";
 
+import { useFontFamily } from "@/hooks/use-font-family";
 import { useHaptics } from "@/hooks/use-haptics";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -67,12 +61,7 @@ SplashScreen.preventAutoHideAsync();
 function RootLayout() {
   const ref = useNavigationContainerRef();
 
-  const [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold,
-    Poppins_700Bold,
-  });
+  const [fontsLoaded] = useFontFamily();
 
   useEffect(() => {
     if (fontsLoaded) {
