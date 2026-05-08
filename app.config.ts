@@ -245,12 +245,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
       },
     ],
-    [
-      "expo-location",
-      {
-        isAndroidForegroundServiceEnabled: true,
-      },
-    ],
+    ["expo-location"],
     ["expo-dev-client", { launchMode: "launcher" }],
     [
       "@sentry/react-native/expo",
