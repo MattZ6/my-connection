@@ -449,6 +449,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.7.1": {
+            title: "Listo para publicación",
+            date: "2026-05-08",
+            description:
+              "Pequeños ajustes enfocados en publicación, permisos y organización del proyecto.",
+          },
           "v0.7.0": {
             title: "Más refinado",
             date: "2026-05-04",
@@ -535,6 +541,23 @@ export const es = {
           },
         },
         content: {
+          "v0.7.1": {
+            paragraphs: [
+              "Esta actualización se centra en preparar la app para distribución en producción y publicación en las tiendas.",
+              "Algunas configuraciones internas y permisos de Android fueron ajustados para mantener la app más limpia y alineada con los requisitos de las plataformas.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Se eliminó el permiso innecesario de foreground location en Android",
+                  "Se actualizó el nombre de paquete al nuevo namespace",
+                  "Actualizaciones generales de dependencias y mantenimiento",
+                ],
+              },
+            ],
+          },
           "v0.7.0": {
             paragraphs: [
               "Esta actualización se centra en hacer la app más fluida y agradable de usar.",
