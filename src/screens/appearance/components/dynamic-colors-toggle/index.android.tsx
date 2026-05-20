@@ -29,12 +29,17 @@ export function DynamicColorsToggle() {
     colors,
     isUsingAndroidDynamicColors,
     toggleAndroidDynamicColors,
+    isAndroidDynamicColorsAvailable,
   } = useTheme();
 
   const handleToggle = useCallback(() => {
     performSelectFeedback();
     toggleAndroidDynamicColors();
   }, [toggleAndroidDynamicColors, performSelectFeedback]);
+
+  if (!isAndroidDynamicColorsAvailable) {
+    return null;
+  }
 
   return (
     <Card>

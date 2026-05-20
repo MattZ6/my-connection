@@ -6,6 +6,7 @@ export namespace ThemeContextTypes {
   export type ThemeOption = "system" | ResolvedThemeOption;
 
   export type Context = Theme & {
+    isAndroidDynamicColorsAvailable: boolean;
     isUsingAndroidDynamicColors: boolean;
     toggleAndroidDynamicColors: () => void;
     resolvedTheme: ResolvedThemeOption;
