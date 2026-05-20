@@ -1,3 +1,4 @@
+import * as ExpoDevice from "expo-device";
 import {
   createContext,
   useCallback,
@@ -5,20 +6,33 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useColorScheme } from "react-native";
+import { Platform, useColorScheme } from "react-native";
 
 import { SettingsRepository } from "@/repositories/settings";
 
 import { darkTheme } from "@/theme/dark";
 import { lightTheme } from "@/theme/light";
 import { generateSystemTheme } from "@/theme/system";
+
 import type { ThemeContextTypes, ThemeProviderTypes } from "./types";
 
 export const ThemeContext = createContext({} as ThemeContextTypes.Context);
 
+const MIN_ANDROID_DYNAMIC_COLORS_SDK = 31;
+
+const IS_DYNAMIC_COLORS_AVAILABLE = Platform.select({
+  android:
+    Number(ExpoDevice.platformApiLevel || 0) >= MIN_ANDROID_DYNAMIC_COLORS_SDK,
+  default: true,
+});
+
 export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
   const [isUsingAndroidDynamicColors, setIsUsingAndroidDynamicColors] =
     useState(() => {
+      if (!IS_DYNAMIC_COLORS_AVAILABLE) {
+        return false;
+      }
+
       const storedValue = SettingsRepository.getAndroidDynamicColorsFlag();
 
       if (storedValue === null) {
@@ -46,12 +60,17 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
     return appColorScheme;
   }, [appColorScheme, deviceColorScheme]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Consider deviceColorScheme to change colors
   const themeConfig = useMemo(() => {
     if (appColorScheme === "system") {
-      return generateSystemTheme({
-        useDynamicColors: isUsingAndroidDynamicColors,
-      });
+      if (isUsingAndroidDynamicColors) {
+        return generateSystemTheme({ useDynamicColors: true });
+      }
+
+      if (deviceColorScheme === "light") {
+        return lightTheme;
+      }
+
+      return darkTheme;
     }
 
     if (appColorScheme === "light") {
@@ -59,7 +78,7 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
     }
 
     return darkTheme;
-  }, [appColorScheme, isUsingAndroidDynamicColors, deviceColorScheme]);
+  }, [appColorScheme, deviceColorScheme, isUsingAndroidDynamicColors]);
 
   const changeTheme = useCallback((input: ThemeContextTypes.ThemeOption) => {
     setAppColorScheme(input);
@@ -75,7 +94,9 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
   );
 
   const toggleAndroidDynamicColors = useCallback(() => {
-    setIsUsingAndroidDynamicColors((previousValue) => !previousValue);
+    if (IS_DYNAMIC_COLORS_AVAILABLE) {
+      setIsUsingAndroidDynamicColors((previousValue) => !previousValue);
+    }
   }, []);
 
   const contextValue = useMemo<ThemeContextTypes.Context>(
@@ -85,6 +106,7 @@ export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
       changeTheme,
       isUsingAndroidDynamicColors,
       toggleAndroidDynamicColors,
+      isAndroidDynamicColorsAvailable: IS_DYNAMIC_COLORS_AVAILABLE,
       ...themeConfig,
     }),
     [
