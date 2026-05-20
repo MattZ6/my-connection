@@ -53,6 +53,12 @@ export const en = {
               value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
+            carrier: {
+              label: "Carrier",
+            },
+            generation: {
+              label: "Generation",
+            },
           },
         },
 

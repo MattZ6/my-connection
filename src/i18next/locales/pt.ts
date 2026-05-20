@@ -53,6 +53,12 @@ export const pt = {
               value_zero: "—",
               value_other: "{{ count }} Mbps",
             },
+            carrier: {
+              label: "Operadora",
+            },
+            generation: {
+              label: "Rede",
+            },
           },
         },
 

@@ -69,10 +69,13 @@ export function ConnectionHero({ info }: Props) {
 
       {showCarrierStats && (
         <View style={styles.statsRow}>
-          <Stat label="Carrier" value={info.details.carrier || "-"} />
           <Stat
-            label="Generation"
-            value={info.details.cellularGeneration || "-"}
+            label={t("home.sections.hero.fields.carrier.label")}
+            value={info.details.carrier || "-"}
+          />
+          <Stat
+            label={t("home.sections.hero.fields.generation.label")}
+            value={String(info.details.cellularGeneration || "-").toUpperCase()}
           />
         </View>
       )}
