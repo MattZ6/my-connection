@@ -191,18 +191,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       dark: variant.icon.ios.dark.imagePath,
       tinted: variant.icon.ios.tinted.imagePath,
     },
-    splash: {
-      image: variant.splash.ios.light.imagePath,
-      tabletImage: variant.splash.ios.light.imagePath,
-      backgroundColor: variant.splash.ios.light.backgroundColor,
-      resizeMode: "contain",
-      dark: {
-        image: variant.splash.ios.dark.imagePath,
-        tabletImage: variant.splash.ios.dark.imagePath,
-        backgroundColor: variant.splash.ios.dark.backgroundColor,
-        resizeMode: "contain",
-      },
-    },
     entitlements: {
       "com.apple.developer.networking.wifi-info": true,
     },
@@ -218,16 +206,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundImage: variant.icon.android.backgroundImagePath,
       monochromeImage: variant.icon.android.monochromeImagePath,
       backgroundColor: variant.icon.android.backgroundColor,
-    },
-    splash: {
-      image: variant.splash.android.light.imagePath,
-      backgroundColor: variant.splash.android.light.backgroundColor,
-      resizeMode: "contain",
-      dark: {
-        image: variant.splash.android.dark.imagePath,
-        backgroundColor: variant.splash.android.dark.backgroundColor,
-        resizeMode: "contain",
-      },
     },
   },
 
@@ -246,6 +224,33 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     ["expo-location"],
+    [
+      "expo-splash-screen",
+      {
+        android: {
+          image: variant.splash.android.light.imagePath,
+          backgroundColor: variant.splash.android.light.backgroundColor,
+          resizeMode: "contain",
+          dark: {
+            image: variant.splash.android.dark.imagePath,
+            backgroundColor: variant.splash.android.dark.backgroundColor,
+            resizeMode: "contain",
+          },
+        },
+        ios: {
+          image: variant.splash.ios.light.imagePath,
+          tabletImage: variant.splash.ios.light.imagePath,
+          backgroundColor: variant.splash.ios.light.backgroundColor,
+          resizeMode: "contain",
+          dark: {
+            image: variant.splash.ios.dark.imagePath,
+            tabletImage: variant.splash.ios.dark.imagePath,
+            backgroundColor: variant.splash.ios.dark.backgroundColor,
+            resizeMode: "contain",
+          },
+        },
+      },
+    ],
     ["expo-dev-client", { launchMode: "launcher" }],
     [
       "@sentry/react-native/expo",
