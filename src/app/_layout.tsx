@@ -1,15 +1,15 @@
 import "@/i18next/i18next";
 
-import type {
-  ParamListBase,
-  ScreenListeners,
-  TabNavigationState,
-} from "@react-navigation/native";
 import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
 import ExpoConstants from "expo-constants";
 import { useNavigationContainerRef } from "expo-router";
 import type { NativeTabNavigationEventMap } from "expo-router/build/native-tabs/types";
+import type {
+  ParamListBase,
+  ScreenListeners,
+  TabNavigationState,
+} from "expo-router/build/react-navigation";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 import * as SplashScreen from "expo-splash-screen";
 import * as ExpoSystemUI from "expo-system-ui";
