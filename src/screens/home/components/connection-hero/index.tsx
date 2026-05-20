@@ -2,40 +2,33 @@ import {
   type NetInfoState,
   NetInfoStateType,
 } from "@react-native-community/netinfo";
-import { SymbolView } from "expo-symbols";
+import { type AndroidSymbol, type SFSymbol, SymbolView } from "expo-symbols";
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
 
 import { Card } from "@/components/ui/card";
 
 import { useStyles } from "@/hooks/use-styles";
+
 import { AnimatedProgress } from "./components/animated-progress";
 import { Stat } from "./components/stat";
+
 import { getStyles } from "./styles";
 
-const ANDROID_ICON_MAP = {
-  [NetInfoStateType.bluetooth]: "bluetooth",
-  [NetInfoStateType.cellular]: "signal_cellular_4_bar",
-  [NetInfoStateType.ethernet]: "settings_ethernet",
-  [NetInfoStateType.none]: "unknown_med",
-  [NetInfoStateType.other]: "network_ping",
-  [NetInfoStateType.unknown]: "error_outline",
-  [NetInfoStateType.vpn]: "vpn_key",
-  [NetInfoStateType.wifi]: "wifi",
-  [NetInfoStateType.wimax]: "wifi",
-} as const;
-
-const IOS_ICON_MAP = {
-  [NetInfoStateType.bluetooth]: "cellularbars",
-  [NetInfoStateType.cellular]: "cellularbars",
-  [NetInfoStateType.ethernet]: "wave.3.backward",
-  [NetInfoStateType.none]: "minus",
-  [NetInfoStateType.other]: "info.circle",
-  [NetInfoStateType.unknown]: "questionmark",
-  [NetInfoStateType.vpn]: "wifi",
-  [NetInfoStateType.wifi]: "wifi",
-  [NetInfoStateType.wimax]: "wifi",
-} as const;
+const ICON_MAP: Record<
+  NetInfoStateType,
+  { ios: SFSymbol; android: AndroidSymbol }
+> = {
+  bluetooth: { ios: "cellularbars", android: "bluetooth" },
+  cellular: { ios: "cellularbars", android: "signal_cellular_4_bar" },
+  ethernet: { ios: "wave.3.backward", android: "settings_ethernet" },
+  none: { ios: "minus", android: "unknown_med" },
+  other: { ios: "info.circle", android: "network_ping" },
+  unknown: { ios: "questionmark", android: "error_outline" },
+  vpn: { ios: "wifi", android: "vpn_key" },
+  wifi: { ios: "wifi", android: "wifi" },
+  wimax: { ios: "wifi", android: "wifi" },
+};
 
 type Props = {
   info: NetInfoState;
@@ -61,10 +54,7 @@ export function ConnectionHero({ info }: Props) {
         <SymbolView
           size={48}
           tintColor={styles.heroIcon.tintColor}
-          name={{
-            ios: IOS_ICON_MAP[info.type],
-            android: ANDROID_ICON_MAP[info.type],
-          }}
+          name={ICON_MAP[info.type]}
         />
 
         <View>
