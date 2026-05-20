@@ -17,17 +17,12 @@ export function CellularSection({ carrier, generation }: Props) {
   return (
     <Section title={t("title")}>
       <Card>
-        <SectionItem
-          label={t("fields.carrier.title")}
-          hint={t("fields.carrier.description")}
-          value={carrier ?? "-"}
-        />
+        <SectionItem label={t("fields.carrier.title")} value={carrier ?? "-"} />
 
         <SectionDivider />
 
         <SectionItem
           label={t("fields.generation.title")}
-          hint={t("fields.generation.description")}
           value={generation ?? "-"}
         />
       </Card>
