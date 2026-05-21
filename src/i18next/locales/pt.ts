@@ -210,18 +210,23 @@ export const pt = {
           title: "Preferências",
           links: {
             preferences: { title: "Preferências" },
-            permissions: { title: "Permissões" },
             appearance: { title: "Aparência" },
             language: { title: "Idioma" },
+          },
+        },
+        privacy: {
+          title: "Privacidade",
+          links: {
+            permissions: { title: "Permissões" },
+            privacy_policy: { title: "Política de Privacidade" },
           },
         },
         about: {
           title: "Sobre",
           links: {
             about: { title: "Sobre" },
-            licenses: { title: "Licenças" },
             changelog: { title: "Changelog" },
-            privacy_policy: { title: "Política de Privacidade" },
+            licenses: { title: "Licenças" },
           },
         },
       },

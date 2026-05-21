@@ -209,18 +209,23 @@ export const en = {
           title: "Preferences",
           links: {
             preferences: { title: "Preferences" },
-            permissions: { title: "Permissions" },
             appearance: { title: "Appearance" },
             language: { title: "Language" },
+          },
+        },
+        privacy: {
+          title: "Privacy",
+          links: {
+            permissions: { title: "Permissions" },
+            privacy_policy: { title: "Privacy Policy" },
           },
         },
         about: {
           title: "About",
           links: {
             about: { title: "About" },
-            licenses: { title: "Licenses" },
             changelog: { title: "Changelog" },
-            privacy_policy: { title: "Privacy Policy" },
+            licenses: { title: "Licenses" },
           },
         },
       },

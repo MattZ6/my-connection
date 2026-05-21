@@ -30,7 +30,7 @@ type Props = {
     ios: SFSymbol;
     android: AndroidSymbol;
   };
-  onPress: ((event: GestureResponderEvent) => void) | null | undefined;
+  onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
   hasNews?: boolean;
   external?: boolean;
 };
@@ -82,7 +82,7 @@ export function PressableConfigItem({
               tintColor={colors.content.muted}
               size={Platform.select({
                 ios: 12,
-                android: 24,
+                android: 20,
               })}
             />
           ) : (
