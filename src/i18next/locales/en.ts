@@ -219,6 +219,8 @@ export const en = {
           links: {
             about: { title: "About" },
             licenses: { title: "Licenses" },
+            changelog: { title: "Changelog" },
+            privacy_policy: { title: "Privacy Policy" },
           },
         },
       },

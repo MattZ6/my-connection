@@ -11,7 +11,7 @@ import type {
   TabNavigationState,
 } from "expo-router/build/react-navigation";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
-import * as SplashScreen from "expo-splash-screen";
+import * as ExpoSplashScreen from "expo-splash-screen";
 import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -56,7 +56,7 @@ if (sentryDsn) {
   });
 }
 
-SplashScreen.preventAutoHideAsync();
+ExpoSplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
   const ref = useNavigationContainerRef();
@@ -65,7 +65,7 @@ function RootLayout() {
 
   useEffect(() => {
     if (fontsLoaded) {
-      SplashScreen.hideAsync();
+      ExpoSplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 

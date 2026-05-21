@@ -18,6 +18,7 @@ import {
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
+import { useTheme } from "@/hooks/use-theme";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
@@ -31,9 +32,17 @@ type Props = {
   };
   onPress: ((event: GestureResponderEvent) => void) | null | undefined;
   hasNews?: boolean;
+  external?: boolean;
 };
 
-export function PressableConfigItem({ label, icon, onPress, hasNews }: Props) {
+export function PressableConfigItem({
+  label,
+  icon,
+  onPress,
+  hasNews,
+  external,
+}: Props) {
+  const { colors } = useTheme();
   const styles = useStyles(getStyles);
   const { performTapFeedback } = useHaptics();
 
@@ -67,7 +76,18 @@ export function PressableConfigItem({ label, icon, onPress, hasNews }: Props) {
         </SectionItemContent>
         <SectionItemTrailing>
           {hasNews && <View style={styles.newsDot} />}
-          <SectionItemChevron />
+          {external ? (
+            <SymbolView
+              name={{ android: "arrow_outward", ios: "link" }}
+              tintColor={colors.content.muted}
+              size={Platform.select({
+                ios: 12,
+                android: 24,
+              })}
+            />
+          ) : (
+            <SectionItemChevron />
+          )}
         </SectionItemTrailing>
       </SectionItemRoot>
     </Pressable>
