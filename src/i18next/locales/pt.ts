@@ -457,6 +457,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.8.0": {
+            title: "Pronto para distribuição",
+            date: "2026-05-21",
+            description:
+              "Melhorias de infraestrutura, privacidade e plataforma focadas em preparar o app para uma distribuição mais ampla.",
+          },
           "v0.7.1": {
             title: "Pronto para publicação",
             date: "2026-05-08",
@@ -549,6 +555,44 @@ export const pt = {
           },
         },
         content: {
+          "v0.8.0": {
+            paragraphs: [
+              "Esta atualização foca em infraestrutura, atualizações de plataforma e preparação geral do app para distribuição.",
+              "Grande parte do trabalho desta versão aconteceu nos bastidores — melhorando a base do projeto, modernizando dependências e refinando o comportamento do app entre Android e iOS.",
+              "A versão também adiciona acesso direto à Política de Privacidade externa a partir do app, deixando a experiência mais transparente e completa.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Expansão do suporte a cores dinâmicas no Android para SDK 31 ou superior.",
+                  "Adicionadas traduções ausentes relacionadas à conexão celular.",
+                  "Melhorado o fluxo de permissões ao ativar os serviços de localização.",
+                  "Adicionado link direto para a Política de Privacidade externa.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestrutura",
+                items: [
+                  "Migração do projeto para o Expo SDK 56.",
+                  "Migração dos imports de navegação do React Navigation para Expo Router.",
+                  "Configuração do fluxo automatizado de build e submit de produção para Android.",
+                  "Atualização dos requisitos mínimos da EAS CLI.",
+                  "Movido o carregamento de fontes para um hook dedicado.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correções",
+                items: [
+                  "Removidas descrições não utilizadas da seção celular.",
+                  "Melhorado o comportamento da bottom sheet de permissões após conceder permissões.",
+                ],
+              },
+            ],
+          },
           "v0.7.1": {
             paragraphs: [
               "Esta atualização foca na preparação do app para distribuição em produção e publicação nas lojas.",
@@ -592,7 +636,7 @@ export const pt = {
               },
               {
                 type: "infrastructure",
-                title: "Visual & Assets",
+                title: "Infraestrutura",
                 items: [
                   "Novo ícone e splash screen do app",
                   "Melhoria na qualidade e proporção dos ícones",

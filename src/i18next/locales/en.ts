@@ -453,6 +453,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.8.0": {
+            title: "Ready for distribution",
+            date: "2026-05-21",
+            description:
+              "Infrastructure, privacy, and platform improvements focused on preparing the app for broader distribution.",
+          },
           "v0.7.1": {
             title: "Ready for publishing",
             date: "2026-05-08",
@@ -545,6 +551,44 @@ export const en = {
           },
         },
         content: {
+          "v0.8.0": {
+            paragraphs: [
+              "This update focuses on infrastructure, platform upgrades, and overall app distribution preparation.",
+              "A large part of the work in this version happened behind the scenes — improving the project's foundation, modernizing dependencies, and refining how the app behaves across Android and iOS.",
+              "It also introduces direct access to the external Privacy Policy page from inside the app, helping make the experience more transparent and complete.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Expanded Android dynamic color support for SDK 31 and above.",
+                  "Added missing cellular connection translations.",
+                  "Improved permission handling flow when enabling location services.",
+                  "Added a direct link to the external Privacy Policy page.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Migrated the project to Expo SDK 56.",
+                  "Migrated navigation imports from React Navigation to Expo Router.",
+                  "Configured automated Android production build and submit workflow.",
+                  "Updated the minimum EAS CLI version requirements.",
+                  "Moved font loading logic into a dedicated hook.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: [
+                  "Removed unused descriptions from the cellular section.",
+                  "Improved permission bottom sheet behavior after granting permissions.",
+                ],
+              },
+            ],
+          },
           "v0.7.1": {
             paragraphs: [
               "This update focuses on preparing the app for production distribution and store publishing.",
@@ -588,7 +632,7 @@ export const en = {
               },
               {
                 type: "infrastructure",
-                title: "Visual & Assets",
+                title: "Infrastructure",
                 items: [
                   "Revamped app icon and splash screen",
                   "Improved icon quality and sizing",
