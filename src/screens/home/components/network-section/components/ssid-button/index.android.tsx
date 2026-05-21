@@ -14,7 +14,7 @@ import {
   width,
 } from "@expo/ui/jetpack-compose/modifiers";
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useHaptics } from "@/hooks/use-haptics";
@@ -48,6 +48,7 @@ type SheetState = {
 };
 
 export function SSIDButton({ ssid }: Props) {
+  const arePermissionsOkRef = useRef<boolean | null>(null);
   const sheetRef = useRef<ModalBottomSheetRef>(null);
   const [sheet, setSheet] = useState<SheetState>({ isOpen: false });
   const {
@@ -172,6 +173,42 @@ export function SSIDButton({ ssid }: Props) {
     t,
     handleRequestPermission,
     refresh,
+  ]);
+
+  useEffect(() => {
+    async function autoCloseBottomSheet() {
+      if (!sheet.isOpen) {
+        return;
+      }
+
+      const isEverythingOk =
+        permission === "granted" &&
+        precision === "precise" &&
+        locationServicesEnabled;
+
+      if (arePermissionsOkRef.current === null) {
+        arePermissionsOkRef.current = isEverythingOk;
+        return;
+      }
+
+      const isPreviouslyEverythingOk = arePermissionsOkRef.current;
+
+      if (!isPreviouslyEverythingOk && isEverythingOk) {
+        await handleClose();
+        await refresh();
+      }
+
+      arePermissionsOkRef.current = isEverythingOk;
+    }
+
+    autoCloseBottomSheet();
+  }, [
+    permission,
+    precision,
+    locationServicesEnabled,
+    handleClose,
+    refresh,
+    sheet.isOpen,
   ]);
 
   return (
