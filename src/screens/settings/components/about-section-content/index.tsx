@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { Linking, Platform } from "react-native";
 
 import { Card } from "@/components/ui/card";
 import { Section, SectionDivider } from "@/components/ui/section";
@@ -31,6 +32,17 @@ export function AboutSectionContent() {
     [router.push],
   );
 
+  function handleOpenPrivacyPolicy() {
+    const params = new URLSearchParams({
+      source: "myconnection-app",
+      platform: Platform.OS,
+    });
+
+    const url = `https://zanin.dev/myconnection/privacy-policy?${params.toString()}`;
+
+    Linking.openURL(url);
+  }
+
   return (
     <Section title={t("settings.sections.about.title")}>
       <Card>
@@ -51,10 +63,19 @@ export function AboutSectionContent() {
         <SectionDivider />
 
         <PressableConfigItem
-          label="Changelog"
+          label={t("settings.sections.about.links.changelog.title")}
           icon={{ android: "history_edu", ios: "doc.on.doc" }}
           onPress={handleNavigateToChangelogPage}
           hasNews={hasNews}
+        />
+
+        <SectionDivider />
+
+        <PressableConfigItem
+          label={t("settings.sections.about.links.privacy_policy.title")}
+          icon={{ android: "policy", ios: "hand.raised" }}
+          onPress={handleOpenPrivacyPolicy}
+          external
         />
       </Card>
     </Section>

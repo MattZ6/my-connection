@@ -220,6 +220,8 @@ export const pt = {
           links: {
             about: { title: "Sobre" },
             licenses: { title: "Licenças" },
+            changelog: { title: "Changelog" },
+            privacy_policy: { title: "Política de Privacidade" },
           },
         },
       },
