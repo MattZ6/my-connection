@@ -1,4 +1,4 @@
-import * as ExpoDevice from "expo-device";
+import { isDynamicColorAvailable } from "@expo/ui/jetpack-compose";
 import {
   createContext,
   useCallback,
@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 import { Platform, useColorScheme } from "react-native";
-
 import { SettingsRepository } from "@/repositories/settings";
 
 import { darkTheme } from "@/theme/dark";
@@ -18,12 +17,9 @@ import type { ThemeContextTypes, ThemeProviderTypes } from "./types";
 
 export const ThemeContext = createContext({} as ThemeContextTypes.Context);
 
-const MIN_ANDROID_DYNAMIC_COLORS_SDK = 31;
-
 const IS_DYNAMIC_COLORS_AVAILABLE = Platform.select({
-  android:
-    Number(ExpoDevice.platformApiLevel || 0) >= MIN_ANDROID_DYNAMIC_COLORS_SDK,
-  default: true,
+  android: isDynamicColorAvailable,
+  default: false,
 });
 
 export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
