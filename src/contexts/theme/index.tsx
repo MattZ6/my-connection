@@ -19,7 +19,7 @@ export const ThemeContext = createContext({} as ThemeContextTypes.Context);
 
 const IS_DYNAMIC_COLORS_AVAILABLE = Platform.select({
   android: isDynamicColorAvailable,
-  default: true,
+  default: false,
 });
 
 export function ThemeProvider({ children }: ThemeProviderTypes.Props) {
