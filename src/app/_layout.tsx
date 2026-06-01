@@ -3,6 +3,7 @@ import "@/i18next/i18next";
 import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
 import ExpoConstants from "expo-constants";
+import { Observe, ObserveRoot, useObserve } from "expo-observe";
 import { useNavigationContainerRef } from "expo-router";
 import type { NativeTabNavigationEventMap } from "expo-router/build/native-tabs/types";
 import type {
@@ -15,7 +16,6 @@ import * as ExpoSplashScreen from "expo-splash-screen";
 import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-
 import { Provider } from "@/contexts/provider";
 
 import { useFontFamily } from "@/hooks/use-font-family";
@@ -56,18 +56,23 @@ if (sentryDsn) {
   });
 }
 
+Observe.configure({
+  integrations: { "expo-router": true },
+});
+
 ExpoSplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
   const ref = useNavigationContainerRef();
-
   const [fontsLoaded] = useFontFamily();
+  const { markInteractive } = useObserve();
 
   useEffect(() => {
     if (fontsLoaded) {
       ExpoSplashScreen.hideAsync();
+      markInteractive();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, markInteractive]);
 
   useEffect(() => {
     if (ref) {
@@ -195,4 +200,4 @@ if (sentryDsn) {
   WrappedRootLayout = Sentry.wrap(RootLayout);
 }
 
-export default WrappedRootLayout;
+export default ObserveRoot.wrap(WrappedRootLayout);
