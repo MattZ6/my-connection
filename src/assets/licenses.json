@@ -101,6 +101,12 @@
         "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
         "parents": "my-connection"
     },
+    "expo-observe@56.0.18": {
+        "licenses": "MIT",
+        "repository": "https://github.com/expo/expo",
+        "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
+        "parents": "my-connection"
+    },
     "expo-router@56.2.8": {
         "licenses": "MIT",
         "repository": "https://github.com/expo/expo",
@@ -137,7 +143,7 @@
         "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
         "parents": "my-connection"
     },
-    "i18next@26.0.4": {
+    "i18next@26.3.0": {
         "licenses": "MIT",
         "repository": "https://github.com/i18next/i18next",
         "licenseUrl": "https://github.com/i18next/i18next/raw/master/LICENSE",
