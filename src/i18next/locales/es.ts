@@ -462,6 +462,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.9.0": {
+            title: "Sitio web oficial y mejoras",
+            date: "2026-06-04",
+            description:
+              "Presenta el sitio web oficial de My Connection mientras continúa mejorando la experiencia del producto y su integración con las plataformas.",
+          },
           "v0.8.0": {
             title: "Listo para distribución",
             date: "2026-05-21",
@@ -560,6 +566,34 @@ export const es = {
           },
         },
         content: {
+          "v0.9.0": {
+            paragraphs: [
+              "Esta versión presenta el sitio web oficial de My Connection, reuniendo la Política de Privacidad, el Registro de Cambios y los recursos de soporte en un único lugar.",
+              "También incluye varias mejoras en la experiencia de la aplicación, facilitando la navegación por Configuración y mejorando el comportamiento de Dynamic Colors en dispositivos Android compatibles.",
+              "Detrás de escena, la observabilidad y los flujos de distribución continúan evolucionando para preparar el proyecto para su próximo lanzamiento público.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Reorganización de las secciones de Configuración para facilitar la navegación.",
+                  "Mejora en la verificación de disponibilidad de Dynamic Colors en dispositivos Android compatibles.",
+                  "Actualización del enlace de la Política de Privacidad para apuntar al sitio web oficial.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Configuración de Expo Observe para la observabilidad de la aplicación.",
+                  "Mejoras en los diagnósticos del flujo de publicación en producción para Android.",
+                  "Actualización de la configuración de la pista de distribución Android.",
+                  "Actualización de las dependencias del proyecto.",
+                ],
+              },
+            ],
+          },
           "v0.8.0": {
             paragraphs: [
               "Esta actualización se centra en infraestructura, mejoras de plataforma y preparación general de la app para distribución.",

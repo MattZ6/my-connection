@@ -458,6 +458,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.9.0": {
+            title: "Official website & refinements",
+            date: "2026-06-04",
+            description:
+              "Introduces the official My Connection website while continuing to improve the overall product experience and platform integration.",
+          },
           "v0.8.0": {
             title: "Ready for distribution",
             date: "2026-05-21",
@@ -556,6 +562,34 @@ export const en = {
           },
         },
         content: {
+          "v0.9.0": {
+            paragraphs: [
+              "This release introduces the official My Connection website, bringing together the Privacy Policy, Changelog, and support resources in a single place.",
+              "It also includes several refinements across the app experience, making settings easier to navigate and improving Dynamic Colors behavior on supported Android devices.",
+              "Behind the scenes, observability and distribution workflows continue to evolve, helping prepare the project for its upcoming public release.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Reorganized Settings sections to improve navigation and discoverability.",
+                  "Improved Dynamic Colors availability checks on supported Android devices.",
+                  "Updated the Privacy Policy link to point to the official website.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Configured Expo Observe for app observability.",
+                  "Improved Android production submission workflow diagnostics.",
+                  "Updated Android release track configuration.",
+                  "Updated project dependencies.",
+                ],
+              },
+            ],
+          },
           "v0.8.0": {
             paragraphs: [
               "This update focuses on infrastructure, platform upgrades, and overall app distribution preparation.",

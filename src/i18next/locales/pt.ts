@@ -462,6 +462,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.9.0": {
+            title: "Site oficial e refinamentos",
+            date: "2026-06-04",
+            description:
+              "Apresenta o site oficial do My Connection enquanto continua evoluindo a experiência do produto e sua integração com as plataformas.",
+          },
           "v0.8.0": {
             title: "Pronto para distribuição",
             date: "2026-05-21",
@@ -560,6 +566,34 @@ export const pt = {
           },
         },
         content: {
+          "v0.9.0": {
+            paragraphs: [
+              "Esta versão apresenta o site oficial do My Connection, reunindo a Política de Privacidade, o Changelog e os recursos de suporte em um único lugar.",
+              "Também inclui diversos refinamentos na experiência do aplicativo, tornando as Configurações mais organizadas e melhorando o comportamento das Dynamic Colors em dispositivos Android compatíveis.",
+              "Nos bastidores, a observabilidade e os fluxos de distribuição continuam evoluindo, ajudando a preparar o projeto para seu futuro lançamento público.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Reorganização das seções de Configurações para facilitar a navegação.",
+                  "Melhoria na verificação de disponibilidade das Dynamic Colors em dispositivos Android compatíveis.",
+                  "Atualização do link da Política de Privacidade para o site oficial.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestrutura",
+                items: [
+                  "Configuração do Expo Observe para observabilidade do aplicativo.",
+                  "Melhorias nos diagnósticos do fluxo de envio para produção no Android.",
+                  "Atualização da configuração da trilha de distribuição Android.",
+                  "Atualização das dependências do projeto.",
+                ],
+              },
+            ],
+          },
           "v0.8.0": {
             paragraphs: [
               "Esta atualização foca em infraestrutura, atualizações de plataforma e preparação geral do app para distribuição.",
