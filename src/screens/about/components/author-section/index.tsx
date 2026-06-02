@@ -1,6 +1,5 @@
-import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
-import { Linking, Pressable, Text, View } from "react-native";
+import { Image, Linking, Pressable, Text, View } from "react-native";
 
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
@@ -37,7 +36,8 @@ export function AuthorSection() {
       <Card style={styles.card}>
         <Image
           source={{ uri: author.avatar }}
-          contentFit="cover"
+          alt=""
+          resizeMode="cover"
           style={styles.avatar}
         />
 
