@@ -12,7 +12,7 @@ const params = new URLSearchParams({
   platform: Platform.OS,
 });
 
-const PRIVACY_POLICY_LINK = `https://zanin.dev/myconnection/privacy-policy?${params.toString()}`;
+const PRIVACY_POLICY_LINK = `https://myconnection.zanin.dev/privacy?${params.toString()}`;
 
 export function PrivacySectionContent() {
   const { t } = useTranslation("translation", {
