@@ -462,9 +462,15 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.9.1": {
+            title: "Melhorias de estabilidade e qualidade",
+            date: "2026-06-02",
+            description:
+              "Uma pequena atualização focada em estabilidade, qualidade e preparação para futuras versões.",
+          },
           "v0.9.0": {
             title: "Site oficial e refinamentos",
-            date: "2026-06-04",
+            date: "2026-06-02",
             description:
               "Apresenta o site oficial do My Connection enquanto continua evoluindo a experiência do produto e sua integração com as plataformas.",
           },
@@ -566,6 +572,31 @@ export const pt = {
           },
         },
         content: {
+          "v0.9.1": {
+            paragraphs: [
+              "Esta atualização é focada em melhorias de estabilidade e qualidade do projeto.",
+              "Embora não traga grandes funcionalidades visíveis para o usuário, diversos ajustes foram realizados nos bastidores para tornar futuras atualizações mais confiáveis e fáceis de manter.",
+              "O resultado é um fluxo de desenvolvimento mais saudável e uma base mais sólida para as próximas versões.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Melhoria da estabilidade geral do projeto.",
+                  "Refinamento da qualidade e consistência interna do código.",
+                  "Melhorias no processo de preparação de novas versões.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correções",
+                items: [
+                  "Correção de um problema relacionado à seção do autor.",
+                ],
+              },
+            ],
+          },
           "v0.9.0": {
             paragraphs: [
               "Esta versão apresenta o site oficial do My Connection, reunindo a Política de Privacidade, o Changelog e os recursos de suporte em um único lugar.",

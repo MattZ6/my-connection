@@ -458,9 +458,15 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.9.1": {
+            title: "Stability & quality improvements",
+            date: "2026-06-02",
+            description:
+              "A small maintenance release focused on improving overall stability and release quality.",
+          },
           "v0.9.0": {
             title: "Official website & refinements",
-            date: "2026-06-04",
+            date: "2026-06-02",
             description:
               "Introduces the official My Connection website while continuing to improve the overall product experience and platform integration.",
           },
@@ -562,6 +568,29 @@ export const en = {
           },
         },
         content: {
+          "v0.9.1": {
+            paragraphs: [
+              "This update focuses on stability and quality improvements across the project.",
+              "While there are no major user-facing features in this release, several improvements were made behind the scenes to make future updates more reliable and easier to maintain.",
+              "The result is a healthier development workflow and a more stable foundation for upcoming releases.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved overall project stability.",
+                  "Refined internal code quality and consistency.",
+                  "Improved release preparation workflow.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: ["Fixed an issue affecting the author section."],
+              },
+            ],
+          },
           "v0.9.0": {
             paragraphs: [
               "This release introduces the official My Connection website, bringing together the Privacy Policy, Changelog, and support resources in a single place.",

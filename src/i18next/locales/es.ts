@@ -462,9 +462,15 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.9.1": {
+            title: "Mejoras de estabilidad y calidad",
+            date: "2026-06-02",
+            description:
+              "Una pequeña actualización centrada en la estabilidad, la calidad y la preparación para futuras versiones.",
+          },
           "v0.9.0": {
             title: "Sitio web oficial y mejoras",
-            date: "2026-06-04",
+            date: "2026-06-02",
             description:
               "Presenta el sitio web oficial de My Connection mientras continúa mejorando la experiencia del producto y su integración con las plataformas.",
           },
@@ -566,6 +572,31 @@ export const es = {
           },
         },
         content: {
+          "v0.9.1": {
+            paragraphs: [
+              "Esta actualización se centra en mejoras de estabilidad y calidad del proyecto.",
+              "Aunque no incluye grandes funciones visibles para el usuario, se realizaron varios ajustes internos para que las futuras actualizaciones sean más confiables y fáciles de mantener.",
+              "El resultado es un flujo de desarrollo más sólido y una mejor base para las próximas versiones.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Mejora de la estabilidad general del proyecto.",
+                  "Refinamiento de la calidad y consistencia interna del código.",
+                  "Mejoras en el proceso de preparación de nuevas versiones.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Corrección de un problema relacionado con la sección del autor.",
+                ],
+              },
+            ],
+          },
           "v0.9.0": {
             paragraphs: [
               "Esta versión presenta el sitio web oficial de My Connection, reuniendo la Política de Privacidad, el Registro de Cambios y los recursos de soporte en un único lugar.",
