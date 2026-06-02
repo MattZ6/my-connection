@@ -81,7 +81,7 @@ export function BSSIDButton({ bssid }: Props) {
   }, [performTapFeedback, notifySuccess, notifyFailure, bssid]);
 
   useEffect(() => {
-    let timeoutId: number;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     if (copyState === CopyState.copied) {
       timeoutId = setTimeout(() => {
