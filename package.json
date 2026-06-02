@@ -9,6 +9,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "lint:ci": "biome ci .",
     "licenses:generate": "bunx npm-license-crawler -onlyDirectDependencies -json ./src/assets/licenses.json"
   },
   "dependencies": {
