@@ -1,5 +1,6 @@
+import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 
@@ -44,6 +45,7 @@ export function VersionScreen({ version }: Props) {
   const { t, i18n } = useTranslation("translation", {
     keyPrefix: "changelog.versions",
   });
+  const { markInteractive } = useObserve();
 
   const meta = t(`meta.${version}`, {
     returnObjects: true,
@@ -69,6 +71,10 @@ export function VersionScreen({ version }: Props) {
       setLastVersionViewed(version);
     }
   }, [version, currrentAppVersion, lastVersionViewed, setLastVersionViewed]);
+
+  useEffect(() => {
+    markInteractive();
+  }, [markInteractive]);
 
   return (
     <>

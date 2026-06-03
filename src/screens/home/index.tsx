@@ -1,5 +1,7 @@
 import { NetInfoStateType } from "@react-native-community/netinfo";
+import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 
@@ -52,6 +54,11 @@ export function HomeScreen() {
 function Content() {
   const { netInfo } = useNetworkUpdates();
   const styles = useStyles(getStyles);
+  const { markInteractive } = useObserve();
+
+  useEffect(() => {
+    markInteractive();
+  }, [markInteractive]);
 
   return (
     <>

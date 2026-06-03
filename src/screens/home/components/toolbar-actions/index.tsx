@@ -1,5 +1,7 @@
+import { Observe } from "expo-observe";
 import { Stack } from "expo-router";
 import { SymbolView } from "expo-symbols";
+import { useCallback } from "react";
 import { Platform, Pressable, View } from "react-native";
 import Animated from "react-native-reanimated";
 
@@ -21,6 +23,16 @@ export function ToolbarActions() {
     onFailure: notifyFailure,
   });
 
+  const handleRefresh = useCallback(() => {
+    Observe.logEvent("connection.refresh", {
+      attributes: {
+        source: "manual",
+        from: "/(main)",
+      },
+    });
+    refresh();
+  }, [refresh]);
+
   return (
     <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>
       {Platform.OS === "android" && (
@@ -30,7 +42,7 @@ export function ToolbarActions() {
             android_disableSound
             android_ripple={androidRippleConfig}
             hitSlop={{ right: 8, top: 16, left: 16, bottom: 16 }}
-            onPress={refresh}
+            onPress={handleRefresh}
             disabled={isRefreshing}
           >
             <Animated.View style={animatedStyle}>
@@ -44,7 +56,7 @@ export function ToolbarActions() {
       )}
 
       {Platform.OS === "ios" && (
-        <Stack.Toolbar.Button onPress={refresh} disabled={isRefreshing}>
+        <Stack.Toolbar.Button onPress={handleRefresh} disabled={isRefreshing}>
           <Stack.Toolbar.Icon sf="arrow.clockwise" />
         </Stack.Toolbar.Button>
       )}
