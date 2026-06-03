@@ -1,16 +1,26 @@
+import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
 import { SymbolView } from "expo-symbols";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView, Text, View } from "react-native";
+
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
+
 import { LocationSection } from "./components/location-section";
+
 import { getStyles } from "./styles";
 
 export function PermissionsScreen() {
   const { colors, radii, fontSizes, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
   const { t } = useTranslation("translation", { keyPrefix: "permissions" });
+  const { markInteractive } = useObserve();
+
+  useEffect(() => {
+    markInteractive();
+  }, [markInteractive]);
 
   return (
     <>

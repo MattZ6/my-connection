@@ -1,7 +1,8 @@
 import { LegendList } from "@legendapp/list/react-native";
+import { useObserve } from "expo-observe";
 import { Stack, useRouter } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, Pressable } from "react-native";
 
@@ -40,6 +41,7 @@ export function ChangelogScreen() {
   const { performTapFeedback } = useHaptics();
   const router = useRouter();
   const { t, i18n } = useTranslation("translation", { keyPrefix: "changelog" });
+  const { markInteractive } = useObserve();
 
   const { latestVersion, versions } = useMemo(() => {
     const rawVersionsMap = t("versions.meta", {
@@ -78,6 +80,10 @@ export function ChangelogScreen() {
     },
     [performTapFeedback, router.push],
   );
+
+  useEffect(() => {
+    markInteractive();
+  }, [markInteractive]);
 
   return (
     <>

@@ -1,4 +1,6 @@
+import { Observe } from "expo-observe";
 import { SymbolView } from "expo-symbols";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable } from "react-native";
 import Animated from "react-native-reanimated";
@@ -21,6 +23,9 @@ import { androidRippleConfig } from "@/theme/android-ripple";
 export function RefreshNetworkSection() {
   const { colors } = useTheme();
   const { performTapFeedback, notifySuccess, notifyFailure } = useHaptics();
+  const { t } = useTranslation("translation", {
+    keyPrefix: "preferences.sections.network_updates.actions.refresh",
+  });
 
   const { isRefreshing, refresh, animatedStyle } = useAnimatedNetworkUpdates({
     onBefore: performTapFeedback,
@@ -28,15 +33,21 @@ export function RefreshNetworkSection() {
     onFailure: notifyFailure,
   });
 
-  const { t } = useTranslation("translation", {
-    keyPrefix: "preferences.sections.network_updates.actions.refresh",
-  });
+  const handleRefresh = useCallback(() => {
+    Observe.logEvent("connection.refresh", {
+      attributes: {
+        source: "manual",
+        from: "/settings/preferences",
+      },
+    });
+    refresh();
+  }, [refresh]);
 
   return (
     <Section>
       <Card>
         <Pressable
-          onPress={refresh}
+          onPress={handleRefresh}
           android_disableSound
           android_ripple={androidRippleConfig}
           disabled={isRefreshing}

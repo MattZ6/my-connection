@@ -2,8 +2,9 @@ import {
   LegendList,
   type LegendListRenderItemProps,
 } from "@legendapp/list/react-native";
+import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform } from "react-native";
 
@@ -62,6 +63,11 @@ export function LicensesScreen() {
   const { colors, fontFamily } = useTheme();
   const styles = useStyles(getStyles);
   const { t } = useTranslation();
+  const { markInteractive } = useObserve();
+
+  useEffect(() => {
+    markInteractive();
+  }, [markInteractive]);
 
   const renderItem = useCallback(
     ({ item }: LegendListRenderItemProps<License>) => {
