@@ -212,6 +212,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   locales: variant.locales,
 
   plugins: [
+    "expo-status-bar",
     "expo-router",
     "expo-font",
     [
