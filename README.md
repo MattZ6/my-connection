@@ -10,14 +10,13 @@
 
 > Understand your connection.
 
-A mobile app for understanding your connection, signal, performance, and network details clearly.
-
 <br />
 
 [Website](https://myconnection.zanin.dev) ·
 [Play Store](https://play.google.com/store/apps/details?id=dev.zanin.myconnection) ·
 [Changelog](https://myconnection.zanin.dev/changelog) ·
-[Privacy](https://myconnection.zanin.dev/privacy)
+[Privacy](https://myconnection.zanin.dev/privacy) ·
+[Contributing](.github/CONTRIBUTING.md)
 
 <br />
 
@@ -143,7 +142,7 @@ My Connection is developed as a **real-world mobile application**, with the tool
 - Automated production builds
 - Google Play distribution
 - Release workflow for production versions
-- Public changelog (sort of dev notes)
+- Public changelog
 - Production application configuration
 
 ### Internationalization
@@ -169,7 +168,7 @@ The project uses:
 The application also makes use of platform capabilities such as:
 
 - Network state information
-- Location permission handling for Wi-Fi information (SSID and BSSID)
+- Location permission handling for Wi-Fi information such as SSID and BSSID
 - Haptics
 - System appearance
 - M3 Android Dynamic Colors
@@ -269,15 +268,15 @@ My Connection is licensed under the [MIT License](LICENSE.md).
 
 Copyright © 2026 Matheus Zanin.
 
----
+___
 
 <div align="center">
   <img
     src="./.github/docs/logo.jpg"
     alt="My Connection"
-    width="80"
-    height="80"
+    width="64"
+    height="64"
   />
 
- > Understand your connection.
+  <strong>Understand your connection.</strong>
 </div>
