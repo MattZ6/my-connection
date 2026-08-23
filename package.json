@@ -3,8 +3,29 @@
   "name": "my-connection",
   "version": "0.9.1",
   "main": "expo-router/entry",
-  "description": "Know your connection. Instantly.",
+  "description": "Understand your connection.",
   "license": "MIT",
+  "author": {
+    "name": "Matheus Zanin",
+    "url": "https://zanin.dev"
+  },
+  "homepage": "https://myconnection.zanin.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MattZ6/my-connection"
+  },
+  "bugs": {
+    "url": "https://github.com/MattZ6/my-connection/issues"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "network",
+    "wifi",
+    "android",
+    "typescript",
+    "zanin.dev"
+  ],
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
