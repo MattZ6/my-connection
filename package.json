@@ -4,6 +4,7 @@
   "version": "0.9.1",
   "main": "expo-router/entry",
   "description": "Know your connection. Instantly.",
+  "license": "MIT",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
