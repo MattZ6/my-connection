@@ -462,6 +462,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.9.2": {
+            title: "Pequenos ajustes, uma base melhor",
+            date: "2026-08-23",
+            description:
+              "Uma pequena atualização de manutenção com uma correção no link da política de privacidade e melhorias na base do projeto.",
+          },
           "v0.9.1": {
             title: "Melhorias de estabilidade e qualidade",
             date: "2026-06-02",
@@ -572,6 +578,33 @@ export const pt = {
           },
         },
         content: {
+          "v0.9.2": {
+            paragraphs: [
+              "Esta é uma pequena atualização de manutenção focada em manter o My Connection confiável e preparado para o que vem pela frente.",
+              "A principal mudança visível para o usuário corrige um link incorreto na página de política de privacidade, enquanto o projeto também recebeu melhorias em dependências, CI, analytics e qualidade de código.",
+              "Também adicionamos as bases para o projeto open source, incluindo um novo README, diretrizes de contribuição, Código de Conduta e licença MIT.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Melhoramos a documentação e as diretrizes do projeto open source.",
+                  "Atualizamos dependências e ferramentas de desenvolvimento.",
+                  "Melhoramos a configuração do workflow de CI.",
+                  "Aprimoramos a medição de performance da aplicação.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correções",
+                items: [
+                  "Corrigimos um link externo incorreto na página de política de privacidade.",
+                  "Corrigimos problemas de lint no projeto.",
+                ],
+              },
+            ],
+          },
           "v0.9.1": {
             paragraphs: [
               "Esta atualização é focada em melhorias de estabilidade e qualidade do projeto.",

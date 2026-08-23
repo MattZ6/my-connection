@@ -458,6 +458,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.9.2": {
+            title: "Small fixes, better foundations",
+            date: "2026-08-23",
+            description:
+              "A small maintenance release with a privacy link fix and improvements to the project's foundation.",
+          },
           "v0.9.1": {
             title: "Stability & quality improvements",
             date: "2026-06-02",
@@ -568,6 +574,33 @@ export const en = {
           },
         },
         content: {
+          "v0.9.2": {
+            paragraphs: [
+              "This is a small maintenance release focused on keeping My Connection reliable and ready for what comes next.",
+              "The main user-facing change fixes an incorrect link on the privacy policy page, while the project also received dependency, CI, analytics, and code quality improvements.",
+              "We also added the project's open-source foundations, including a README, contribution guidelines, Code of Conduct, and MIT license.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Improved project documentation and open-source guidelines.",
+                  "Updated dependencies and development tooling.",
+                  "Improved CI workflow configuration.",
+                  "Improved application performance measurement.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: [
+                  "Fixed an incorrect external link on the privacy policy page.",
+                  "Fixed lint issues across the project.",
+                ],
+              },
+            ],
+          },
           "v0.9.1": {
             paragraphs: [
               "This update focuses on stability and quality improvements across the project.",

@@ -462,6 +462,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.9.2": {
+            title: "Pequeños ajustes, una base mejor",
+            date: "2026-08-23",
+            description:
+              "Una pequeña actualización de mantenimiento con una corrección en el enlace de la política de privacidad y mejoras en la base del proyecto.",
+          },
           "v0.9.1": {
             title: "Mejoras de estabilidad y calidad",
             date: "2026-06-02",
@@ -572,6 +578,33 @@ export const es = {
           },
         },
         content: {
+          "v0.9.2": {
+            paragraphs: [
+              "Esta es una pequeña actualización de mantenimiento centrada en mantener My Connection estable y preparado para lo que viene.",
+              "El principal cambio visible para el usuario corrige un enlace incorrecto en la página de política de privacidad, mientras que el proyecto también recibió mejoras en dependencias, CI, analytics y calidad del código.",
+              "También añadimos las bases para el proyecto open source, incluyendo un nuevo README, pautas de contribución, Código de Conducta y licencia MIT.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Mejoramos la documentación y las pautas del proyecto open source.",
+                  "Actualizamos dependencias y herramientas de desarrollo.",
+                  "Mejoramos la configuración del workflow de CI.",
+                  "Mejoramos la medición del rendimiento de la aplicación.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Corregimos un enlace externo incorrecto en la página de política de privacidad.",
+                  "Corregimos problemas de lint en el proyecto.",
+                ],
+              },
+            ],
+          },
           "v0.9.1": {
             paragraphs: [
               "Esta actualización se centra en mejoras de estabilidad y calidad del proyecto.",
