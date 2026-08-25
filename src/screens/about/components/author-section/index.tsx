@@ -17,7 +17,7 @@ const environment = String(
 
 const author = {
   avatar: "https://github.com/MattZ6.png?size=128",
-  github: "https://github.com/MattZ6",
+  github: "https://github.com/MattZ6/my-connection",
   name: "Matheus Zanin",
 };
 
