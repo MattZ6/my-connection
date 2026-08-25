@@ -5,7 +5,7 @@
     "licenseUrl": "https://github.com/expo/google-fonts/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "@expo/ui@57.0.12": {
+  "@expo/ui@57.0.13": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo",
@@ -41,13 +41,13 @@
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo-constants@57.0.13": {
+  "expo-constants@57.0.14": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo-dev-client@57.0.14": {
+  "expo-dev-client@57.0.15": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
@@ -71,7 +71,7 @@
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo-insights@57.0.12": {
+  "expo-insights@57.0.13": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
@@ -95,25 +95,25 @@
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo-location@57.0.12": {
+  "expo-location@57.0.13": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo-observe@57.0.15": {
+  "expo-observe@57.0.16": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo-router@57.0.15": {
+  "expo-router@57.0.16": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo",
     "parents": "my-connection"
   },
-  "expo-splash-screen@57.0.7": {
+  "expo-splash-screen@57.0.8": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
@@ -137,7 +137,7 @@
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "expo@57.0.15": {
+  "expo@57.0.16": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
     "licenseUrl": "https://github.com/expo/expo/raw/master/LICENSE",
