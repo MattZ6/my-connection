@@ -15,7 +15,7 @@
 [Website](https://myconnection.zanin.dev) ·
 [Play Store](https://play.google.com/store/apps/details?id=dev.zanin.myconnection) ·
 [Changelog](https://myconnection.zanin.dev/changelog) ·
-[Privacy](https://myconnection.zanin.dev/privacy) ·
+[Privacy](https://myconnection.zanin.dev/privacy-policy) ·
 [Contributing](.github/CONTRIBUTING.md)
 
 <br />
