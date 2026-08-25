@@ -458,6 +458,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.9.3": {
+            title: "Small improvements",
+            date: "2026-08-25",
+            description:
+              "A small update with improvements to the preferences interface and release workflow.",
+          },
           "v0.9.2": {
             title: "Small fixes, better foundations",
             date: "2026-08-23",
@@ -574,6 +580,23 @@ export const en = {
           },
         },
         content: {
+          "v0.9.3": {
+            paragraphs: [
+              "This update brings a few small improvements to the app.",
+              "The preferences interface has been refined, along with some release and project maintenance updates.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Refined the preferences interface.",
+                  "Improved the placement of settings controls.",
+                  "Updated the Android release workflow.",
+                ],
+              },
+            ],
+          },
           "v0.9.2": {
             paragraphs: [
               "This is a small maintenance release focused on keeping My Connection reliable and ready for what comes next.",

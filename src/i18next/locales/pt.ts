@@ -462,6 +462,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.9.3": {
+            title: "Pequenas melhorias",
+            date: "2026-08-25",
+            description:
+              "Uma pequena atualização com melhorias na interface de preferências e no fluxo de publicação.",
+          },
           "v0.9.2": {
             title: "Pequenos ajustes, uma base melhor",
             date: "2026-08-23",
@@ -578,6 +584,23 @@ export const pt = {
           },
         },
         content: {
+          "v0.9.3": {
+            paragraphs: [
+              "Esta atualização traz algumas pequenas melhorias para o app.",
+              "A interface das preferências foi refinada, junto com alguns ajustes no processo de publicação e manutenção do projeto.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Interface das preferências refinada.",
+                  "Melhorado o posicionamento dos controles nas configurações.",
+                  "Atualizado o fluxo de publicação da versão Android.",
+                ],
+              },
+            ],
+          },
           "v0.9.2": {
             paragraphs: [
               "Esta é uma pequena atualização de manutenção focada em manter o My Connection confiável e preparado para o que vem pela frente.",
