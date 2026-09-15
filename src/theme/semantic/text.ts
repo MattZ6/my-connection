@@ -8,11 +8,17 @@ export const fontSizes = {
   title: typography["5"],
 };
 
+export const mono = {
+  regular: "GeistMono_400Regular",
+  medium: "GeistMono_500Medium",
+}
+
 export const fontFamily = {
   regular: "Poppins_400Regular",
   medium: "Poppins_500Medium",
   semiBold: "Poppins_600SemiBold",
   bold: "Poppins_700Bold",
+  mono,
 };
 
 export type FontSize = typeof fontSizes;
