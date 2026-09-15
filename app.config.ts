@@ -180,7 +180,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
   platforms: ["ios", "android"],
 
-  orientation: "default",
+  orientation: "portrait",
   userInterfaceStyle: "automatic",
 
   icon: variant.icon.ios.light.imagePath,
