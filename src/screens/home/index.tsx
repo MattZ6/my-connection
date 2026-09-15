@@ -110,13 +110,13 @@ function Content() {
 
             {(netInfo.type === NetInfoStateType.wifi ||
               netInfo.type === NetInfoStateType.ethernet) && (
-                <FadeInWrapper>
-                  <IPConfigSection
-                    ipAddress={netInfo.details.ipAddress}
-                    subnetMask={netInfo.details.subnet}
-                  />
-                </FadeInWrapper>
-              )}
+              <FadeInWrapper>
+                <IPConfigSection
+                  ipAddress={netInfo.details.ipAddress}
+                  subnetMask={netInfo.details.subnet}
+                />
+              </FadeInWrapper>
+            )}
 
             {(netInfo.type === NetInfoStateType.bluetooth ||
               netInfo.type === NetInfoStateType.cellular ||
@@ -125,12 +125,12 @@ function Content() {
               netInfo.type === NetInfoStateType.other ||
               netInfo.type === NetInfoStateType.wimax ||
               netInfo.type === NetInfoStateType.wifi) && (
-                <FadeInWrapper>
-                  <PropertiesSection
-                    isConnectionExpensive={netInfo.details.isConnectionExpensive}
-                  />
-                </FadeInWrapper>
-              )}
+              <FadeInWrapper>
+                <PropertiesSection
+                  isConnectionExpensive={netInfo.details.isConnectionExpensive}
+                />
+              </FadeInWrapper>
+            )}
           </>
         )}
       </ScrollView>

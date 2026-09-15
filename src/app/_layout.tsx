@@ -90,7 +90,7 @@ function RootStackNavigation() {
     <Stack
       screenOptions={{
         headerShadowVisible: false,
-        headerTransparent: Platform.OS === 'ios',
+        headerTransparent: Platform.OS === "ios",
         headerStyle: {
           backgroundColor: Platform.select({
             android: colors.surface.base.toString(),
