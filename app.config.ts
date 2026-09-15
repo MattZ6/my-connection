@@ -2,31 +2,33 @@ import type { ConfigContext, ExpoConfig } from "expo/config";
 
 import { name, version } from "./package.json";
 
+const basePackageName = "dev.zanin.myconnection";
+
 type Variant = "development" | "preview" | "production";
 
 const variantConfig = {
   development: {
-    package: "dev.zanin.myconnection.dev",
-    primaryColor: "#43484E",
+    package: `${basePackageName}.dev`,
+    primaryColor: "#1458E8",
     splash: {
       android: {
         light: {
           imagePath: "./assets/variants/dev/splash-light.png",
-          backgroundColor: "#F0F0F3",
+          backgroundColor: "#1458E8",
         },
         dark: {
           imagePath: "./assets/variants/dev/splash-dark.png",
-          backgroundColor: "#18191B",
+          backgroundColor: "#1458E8",
         },
       },
       ios: {
         light: {
           imagePath: "./assets/variants/dev/splash-light.png",
-          backgroundColor: "#F0F0F3",
+          backgroundColor: "#1458E8",
         },
         dark: {
           imagePath: "./assets/variants/dev/splash-dark.png",
-          backgroundColor: "#18191B",
+          backgroundColor: "#1458E8",
         },
       },
     },
@@ -37,7 +39,7 @@ const variantConfig = {
         backgroundImagePath:
           "./assets/variants/dev/android-adaptive-icon-background.png",
         monochromeImagePath: "./assets/variants/android-monochrome-icon.png",
-        backgroundColor: "#18191B",
+        backgroundColor: "#1458E8",
       },
       ios: {
         light: {
@@ -58,7 +60,7 @@ const variantConfig = {
     },
   },
   preview: {
-    package: "dev.zanin.myconnection.preview",
+    package: `${basePackageName}.preview`,
     primaryColor: "#B0B4BA",
     splash: {
       android: {
@@ -110,7 +112,7 @@ const variantConfig = {
     },
   },
   production: {
-    package: "dev.zanin.myconnection",
+    package: basePackageName,
     primaryColor: "#FCFCFD",
     splash: {
       android: {
