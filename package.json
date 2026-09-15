@@ -36,6 +36,7 @@
     "licenses:generate": "bunx npm-license-crawler -onlyDirectDependencies -json ./src/assets/licenses.json"
   },
   "dependencies": {
+    "@expo-google-fonts/geist-mono": "0.4.3",
     "@expo-google-fonts/poppins": "0.4.1",
     "@expo/ui": "57.0.13",
     "@legendapp/list": "3.3.8",
