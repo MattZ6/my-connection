@@ -11,7 +11,7 @@ export const fontSizes = {
 export const mono = {
   regular: "GeistMono_400Regular",
   medium: "GeistMono_500Medium",
-}
+};
 
 export const fontFamily = {
   regular: "Poppins_400Regular",
