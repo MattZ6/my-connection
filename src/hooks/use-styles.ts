@@ -1,15 +1,19 @@
 import { useMemo } from "react";
-import type { StyleSheet } from "react-native";
+import type { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 import type { ThemeConfig } from "@/theme/types";
 
 import { useTheme } from "./use-theme";
 
-export type StyleFactory<T extends StyleSheet.NamedStyles<T>> = (
+type NamedStyles<T> = {
+  [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
+};
+
+export type StyleFactory<T extends NamedStyles<T>> = (
   theme: ThemeConfig,
 ) => T;
 
-export function useStyles<T extends StyleSheet.NamedStyles<T>>(
+export function useStyles<T extends NamedStyles<T>>(
   factory: StyleFactory<T>,
 ) {
   const theme = useTheme();

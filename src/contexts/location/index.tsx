@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { AppState, type NativeEventSubscription, Platform } from "react-native";
+import { AppState, type EventSubscription, Platform } from "react-native";
 
 import type { LocationContextTypes, LocationProviderTypes } from "./types";
 
@@ -94,7 +94,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
   );
 
   useEffect(() => {
-    let focusSubscription: NativeEventSubscription | null = null;
+    let focusSubscription: EventSubscription | null = null;
 
     if (Platform.OS === "android") {
       focusSubscription = AppState.addEventListener("focus", () => {
@@ -108,7 +108,7 @@ export function LocationProvider({ children }: LocationProviderTypes.Props) {
         const currentAppState = currentAppStateRef.current;
 
         if (
-          currentAppState.match(/inactive|background/) &&
+          currentAppState?.match(/inactive|background/) &&
           nextAppState === "active"
         ) {
           checkPermission();
