@@ -9,13 +9,9 @@ type NamedStyles<T> = {
   [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
 };
 
-export type StyleFactory<T extends NamedStyles<T>> = (
-  theme: ThemeConfig,
-) => T;
+export type StyleFactory<T extends NamedStyles<T>> = (theme: ThemeConfig) => T;
 
-export function useStyles<T extends NamedStyles<T>>(
-  factory: StyleFactory<T>,
-) {
+export function useStyles<T extends NamedStyles<T>>(factory: StyleFactory<T>) {
   const theme = useTheme();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: Re-mount only when theme changes.
