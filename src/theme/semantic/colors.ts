@@ -1,5 +1,7 @@
+/** biome-ignore-all lint/style/noNonNullAssertion: user for ColorValue - platform colors will always be filled on iOS and Android. */
+
 import { Color } from "expo-router";
-import { type OpaqueColorValue, Platform } from "react-native";
+import { type ColorValue, Platform } from "react-native";
 
 import { darkPalette, palette } from "../tokens/palette";
 
@@ -83,12 +85,12 @@ export function generateSystemColors(
         android: androidMaterialColor.surface,
         ios: Color.ios.systemBackground,
         default: "",
-      }),
+      })!,
       elevated: Platform.select({
         android: androidMaterialColor.surfaceContainerLow,
         ios: Color.ios.secondarySystemBackground,
         default: "",
-      }),
+      })!,
     },
 
     brandSurface: {
@@ -96,12 +98,12 @@ export function generateSystemColors(
         android: androidMaterialColor.surfaceContainerHigh,
         ios: Color.ios.systemBackground,
         default: "",
-      }),
+      })!,
       elevated: Platform.select({
         android: androidMaterialColor.primaryInverse,
         ios: Color.ios.secondarySystemBackground,
         default: "",
-      }),
+      })!,
     },
 
     brandContent: {
@@ -109,12 +111,12 @@ export function generateSystemColors(
         android: androidMaterialColor.primary,
         ios: Color.ios.systemBlue,
         default: "",
-      }),
+      })!,
       muted: Platform.select({
         android: androidMaterialColor.onSurfaceVariant,
         ios: Color.ios.system,
         default: "",
-      }),
+      })!,
     },
 
     content: {
@@ -122,12 +124,12 @@ export function generateSystemColors(
         android: androidMaterialColor.onSurface,
         ios: Color.ios.label,
         default: "",
-      }),
+      })!,
       muted: Platform.select({
         android: androidMaterialColor.onSurfaceVariant,
         ios: Color.ios.secondaryLabel,
         default: "",
-      }),
+      })!,
     },
 
     border: {
@@ -135,7 +137,7 @@ export function generateSystemColors(
         android: androidMaterialColor.surfaceContainerHighest,
         ios: Color.ios.separator,
         default: "",
-      }),
+      })!,
     },
 
     semantic: {
@@ -143,17 +145,17 @@ export function generateSystemColors(
         android: androidMaterialColor.tertiary,
         ios: Color.ios.label,
         default: "",
-      }),
+      })!,
       warning: Platform.select({
         android: androidMaterialColor.error,
         ios: Color.ios.secondaryLabel,
         default: "",
-      }),
+      })!,
     },
   };
 }
 
-type AppColorValue = OpaqueColorValue | string;
+type AppColorValue = NonNullable<ColorValue>;
 
 type Surface = {
   base: AppColorValue;
