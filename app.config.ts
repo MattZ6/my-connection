@@ -13,21 +13,21 @@ const variantConfig = {
     splash: {
       android: {
         light: {
-          imagePath: "./assets/variants/dev/splash-light.png",
+          imagePath: "./assets/variants/dev/splash.png",
           backgroundColor: "#1458E8",
         },
         dark: {
-          imagePath: "./assets/variants/dev/splash-dark.png",
+          imagePath: "./assets/variants/dev/splash.png",
           backgroundColor: "#1458E8",
         },
       },
       ios: {
         light: {
-          imagePath: "./assets/variants/dev/splash-light.png",
+          imagePath: "./assets/variants/dev/splash.png",
           backgroundColor: "#1458E8",
         },
         dark: {
-          imagePath: "./assets/variants/dev/splash-dark.png",
+          imagePath: "./assets/variants/dev/splash.png",
           backgroundColor: "#1458E8",
         },
       },
@@ -43,10 +43,10 @@ const variantConfig = {
       },
       ios: {
         light: {
-          imagePath: "./assets/variants/dev/ios-light-icon.png",
+          imagePath: "./assets/variants/dev/ios-icon.png",
         },
         dark: {
-          imagePath: "./assets/variants/dev/ios-dark-icon.png",
+          imagePath: "./assets/variants/dev/ios-icon.png",
         },
         tinted: {
           imagePath: "./assets/variants/ios-tinted-icon.png",
