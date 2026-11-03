@@ -17,6 +17,7 @@ import {
 } from "@expo/ui/jetpack-compose/modifiers";
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import type { Ref } from "react";
+import { StyleSheet, View } from "react-native";
 
 import { useTheme } from "@/hooks/use-theme";
 
@@ -77,15 +78,16 @@ export function LocationBottomSheet({
               },
             })}
           >
-            <Column horizontalAlignment="center" verticalArrangement="center">
-              <RNHostView matchContents modifiers={[size(72, 72)]}>
+            {/* The RN view fills the whole surface and centers the symbol. */}
+            <RNHostView matchContents>
+              <View style={styles.iconBox}>
                 <SymbolView
                   name={{ android: icon }}
                   tintColor={colors.content.muted}
-                  size={44}
+                  size={40}
                 />
-              </RNHostView>
-            </Column>
+              </View>
+            </RNHostView>
           </Surface>
         )}
 
@@ -117,45 +119,54 @@ export function LocationBottomSheet({
           </Text>
         </Column>
 
-        {onAction && actionTitle && (
-          <Button
+        {(onAction || dismissTitle) && (
+          // Both actions live in one block, closer to each other than to the
+          // rest of the sheet.
+          <Column
             modifiers={[fillMaxWidth()]}
-            contentPadding={{ bottom: 16, top: 16 }}
-            colors={{
-              containerColor: colors.brandContent.base,
-              contentColor: colors.brandSurface.base,
-            }}
-            onClick={onAction}
+            verticalArrangement={{ spacedBy: 4 }}
           >
-            <Text
-              style={{
-                fontFamily: fontFamily.medium,
-                fontSize: fontSizes.body.fontSize,
-                lineHeight: fontSizes.body.lineHeight,
-              }}
-            >
-              {actionTitle}
-            </Text>
-          </Button>
-        )}
+            {onAction && actionTitle && (
+              <Button
+                modifiers={[fillMaxWidth()]}
+                contentPadding={{ bottom: 16, top: 16 }}
+                colors={{
+                  containerColor: colors.brandContent.base,
+                  contentColor: colors.brandSurface.base,
+                }}
+                onClick={onAction}
+              >
+                <Text
+                  style={{
+                    fontFamily: fontFamily.medium,
+                    fontSize: fontSizes.body.fontSize,
+                    lineHeight: fontSizes.body.lineHeight,
+                  }}
+                >
+                  {actionTitle}
+                </Text>
+              </Button>
+            )}
 
-        {dismissTitle && (
-          <TextButton
-            modifiers={[fillMaxWidth()]}
-            contentPadding={{ bottom: 16, top: 16 }}
-            colors={{ contentColor: colors.content.base }}
-            onClick={onCloseRequest}
-          >
-            <Text
-              style={{
-                fontFamily: fontFamily.medium,
-                fontSize: fontSizes.body.fontSize,
-                lineHeight: fontSizes.body.lineHeight,
-              }}
-            >
-              {dismissTitle}
-            </Text>
-          </TextButton>
+            {dismissTitle && (
+              <TextButton
+                modifiers={[fillMaxWidth()]}
+                contentPadding={{ bottom: 16, top: 16 }}
+                colors={{ contentColor: colors.content.base }}
+                onClick={onCloseRequest}
+              >
+                <Text
+                  style={{
+                    fontFamily: fontFamily.medium,
+                    fontSize: fontSizes.body.fontSize,
+                    lineHeight: fontSizes.body.lineHeight,
+                  }}
+                >
+                  {dismissTitle}
+                </Text>
+              </TextButton>
+            )}
+          </Column>
         )}
 
         {footnote && (
@@ -186,3 +197,12 @@ export function LocationBottomSheet({
     </ModalBottomSheet>
   );
 }
+
+const styles = StyleSheet.create({
+  iconBox: {
+    width: 72,
+    height: 72,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
