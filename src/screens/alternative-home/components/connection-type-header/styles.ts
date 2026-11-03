@@ -20,6 +20,8 @@ export function getStyles(theme: ThemeConfig) {
     },
     content: {
       flexShrink: 1,
+      // Same height as the icon, so a lone label sits centered next to it.
+      height: 44,
       justifyContent: "center",
       gap: 2,
     },
