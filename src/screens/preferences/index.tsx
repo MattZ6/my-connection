@@ -53,9 +53,9 @@ export function PreferencesScreen() {
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
+        fadingEdgeLength={32}
       >
         <AutomaticUpdatesSection onOpenFrequency={handleOpenFrequencySheet} />
         <StatusSection />
