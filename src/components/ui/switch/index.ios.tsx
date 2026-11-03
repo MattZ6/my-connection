@@ -3,6 +3,8 @@ import { useTheme } from "@/hooks/use-theme";
 
 type Props = {
   value: boolean;
+  /** Android only for now. */
+  enabled?: boolean;
 };
 
 export function Switch({ value }: Props) {
