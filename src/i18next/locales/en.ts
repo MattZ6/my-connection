@@ -276,18 +276,21 @@ export const en = {
     },
 
     preferences: {
-      meta: { title: "Preferences" },
+      meta: { title: "Network updates" },
       sections: {
-        network_updates: {
-          title: "Network updates",
+        automatic_updates: {
+          title: "Automatic updates",
           fields: {
             automatic_updates: {
               title: "Automatic updates",
-              description: "Refresh network information automatically",
+              description: "Refresh network information automatically.",
             },
-            frequency: {
-              title: "Update frequency",
-            },
+            frequency: { title: "Update frequency" },
+          },
+        },
+        status: {
+          title: "Status",
+          fields: {
             last_updated: {
               title: "Last updated",
               value: {
@@ -304,19 +307,20 @@ export const en = {
             },
           },
           actions: {
-            refresh: {
-              title: "Refresh network status",
-            },
+            refresh: { title: "Refresh network status" },
           },
         },
-        haptics: {
-          title: "Haptic Feedback",
-          fields: {
-            haptics: {
-              title: "Haptic Feedback",
-              description: "Vibrate slightly on interactions.",
-            },
-          },
+      },
+      frequency_sheet: {
+        title: "Update frequency",
+        description:
+          "How often the app refreshes your network information while it is open.",
+        default: "Default",
+        options: {
+          "5s": "Near real time. Useful to find the best spot for your signal.",
+          "15s": "Shows changes sooner. Good when you are moving around.",
+          "30s": "A balance between fresh data and fewer refreshes.",
+          "60s": "Fewer refreshes. Good when you are staying in one place.",
         },
       },
     },

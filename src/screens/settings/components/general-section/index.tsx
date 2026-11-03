@@ -1,15 +1,12 @@
 import { Link } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-
+import { SettingsRow } from "@/components/ui/settings-row";
+import { SettingsSection } from "@/components/ui/settings-section";
 import { Switch } from "@/components/ui/switch";
-
 import { useHaptics } from "@/hooks/use-haptics";
 import { usePreferences } from "@/hooks/use-preferences";
 import { useTheme } from "@/hooks/use-theme";
-
-import { SettingsRow } from "../settings-row";
-import { SettingsSection } from "../settings-section";
 
 export function GeneralSection() {
   const { t, i18n } = useTranslation("translation");

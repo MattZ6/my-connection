@@ -1,12 +1,10 @@
 import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform } from "react-native";
-
+import { SettingsRow } from "@/components/ui/settings-row";
+import { SettingsSection } from "@/components/ui/settings-section";
 import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
-
 import { NewBadge } from "../new-badge";
-import { SettingsRow } from "../settings-row";
-import { SettingsSection } from "../settings-section";
 
 const params = new URLSearchParams({
   source: "myconnection-app",

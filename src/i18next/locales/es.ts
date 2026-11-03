@@ -277,18 +277,22 @@ export const es = {
     },
 
     preferences: {
-      meta: { title: "Preferencias" },
+      meta: { title: "Actualizaciones de red" },
       sections: {
-        network_updates: {
-          title: "Actualizaciones de red",
+        automatic_updates: {
+          title: "Actualizaciones automáticas",
           fields: {
             automatic_updates: {
               title: "Actualizaciones automáticas",
-              description: "Actualiza automáticamente la información de la red",
+              description:
+                "Actualiza automáticamente la información de la red.",
             },
-            frequency: {
-              title: "Frecuencia de actualización",
-            },
+            frequency: { title: "Frecuencia de actualización" },
+          },
+        },
+        status: {
+          title: "Estado",
+          fields: {
             last_updated: {
               title: "Última actualización",
               value: {
@@ -305,19 +309,20 @@ export const es = {
             },
           },
           actions: {
-            refresh: {
-              title: "Actualizar estado de la red",
-            },
+            refresh: { title: "Actualizar estado de la red" },
           },
         },
-        haptics: {
-          title: "Respuesta háptica",
-          fields: {
-            haptics: {
-              title: "Respuesta háptica",
-              description: "Vibra ligeramente al interactuar.",
-            },
-          },
+      },
+      frequency_sheet: {
+        title: "Frecuencia de actualización",
+        description:
+          "Con qué frecuencia la app actualiza la información de tu red mientras está abierta.",
+        default: "Predeterminado",
+        options: {
+          "5s": "Casi en tiempo real. Útil para encontrar el mejor lugar para la señal.",
+          "15s": "Muestra los cambios antes. Bueno cuando te estás moviendo.",
+          "30s": "Un equilibrio entre datos recientes y menos actualizaciones.",
+          "60s": "Menos actualizaciones. Bueno cuando te quedas en un lugar.",
         },
       },
     },

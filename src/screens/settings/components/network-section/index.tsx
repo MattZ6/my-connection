@@ -1,11 +1,9 @@
 import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
-
+import { SettingsRow } from "@/components/ui/settings-row";
+import { SettingsSection } from "@/components/ui/settings-section";
 import { useLocation } from "@/hooks/use-location";
 import { useNetworkUpdates } from "@/hooks/use-network-updates";
-
-import { SettingsRow } from "../settings-row";
-import { SettingsSection } from "../settings-section";
 
 export function NetworkSection() {
   const { t } = useTranslation("translation", {

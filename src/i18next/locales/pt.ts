@@ -279,18 +279,21 @@ export const pt = {
     },
 
     preferences: {
-      meta: { title: "Preferências" },
+      meta: { title: "Atualizações de rede" },
       sections: {
-        network_updates: {
-          title: "Atualizações de rede",
+        automatic_updates: {
+          title: "Atualizações automáticas",
           fields: {
             automatic_updates: {
               title: "Atualizações automáticas",
-              description: "Atualiza automaticamente as informações da rede",
+              description: "Atualiza automaticamente as informações da rede.",
             },
-            frequency: {
-              title: "Frequência de atualização",
-            },
+            frequency: { title: "Frequência de atualização" },
+          },
+        },
+        status: {
+          title: "Status",
+          fields: {
             last_updated: {
               title: "Última atualização",
               value: {
@@ -307,19 +310,21 @@ export const pt = {
             },
           },
           actions: {
-            refresh: {
-              title: "Atualizar status da rede",
-            },
+            refresh: { title: "Atualizar status da rede" },
           },
         },
-        haptics: {
-          title: "Feedback tátil",
-          fields: {
-            haptics: {
-              title: "Feedback tátil",
-              description: "Vibra levemente ao interagir.",
-            },
-          },
+      },
+      frequency_sheet: {
+        title: "Frequência de atualização",
+        description:
+          "Com que frequência o app atualiza as informações da sua rede enquanto está aberto.",
+        default: "Padrão",
+        options: {
+          "5s": "Quase em tempo real. Útil para achar o melhor lugar para o sinal.",
+          "15s":
+            "Mostra mudanças mais rápido. Bom quando você está se movendo.",
+          "30s": "Um equilíbrio entre dados atualizados e menos atualizações.",
+          "60s": "Menos atualizações. Bom quando você fica num lugar só.",
         },
       },
     },

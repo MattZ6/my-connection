@@ -16,15 +16,28 @@ export function getStyles(theme: ThemeConfig) {
       width: 22,
       height: 22,
     },
+    leadingTop: {
+      alignSelf: "flex-start",
+      marginTop: 1,
+    },
+    content: {
+      flex: 1,
+      gap: 2,
+    },
     icon: {
       tintColor: theme.colors.content.muted,
     },
     label: {
-      flex: 1,
       fontFamily: theme.fontFamily.regular,
       fontSize: 15,
       lineHeight: 20,
       color: theme.colors.content.base,
+    },
+    description: {
+      fontFamily: theme.fontFamily.regular,
+      fontSize: 13,
+      lineHeight: 18,
+      color: theme.colors.content.muted,
     },
     trailing: {
       flexShrink: 1,
