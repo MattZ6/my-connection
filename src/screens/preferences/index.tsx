@@ -42,7 +42,7 @@ export function PreferencesScreen() {
       <Stack.Screen.Title
         style={{
           fontFamily: Platform.select({
-            android: fontFamily.medium,
+            android: fontFamily.semiBold,
             ios: fontFamily.semiBold,
           }),
           color: colors.content.base.toString(),

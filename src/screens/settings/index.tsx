@@ -16,8 +16,6 @@ import { PrivacyDisclaimer } from "./components/privacy-disclaimer";
 
 import { getStyles } from "./styles";
 
-const isIos = Platform.OS === "ios";
-
 const environment = String(
   process.env.EXPO_PUBLIC_APP_VARIANT || "development",
 ) as "development" | "preview" | "production";
@@ -36,14 +34,9 @@ export function SettingsScreen() {
   return (
     <>
       <Stack.Screen.Title
-        large={isIos}
-        largeStyle={{
-          fontFamily: fontFamily.bold,
-          color: colors.content.base.toString(),
-        }}
         style={{
           fontFamily: Platform.select({
-            android: fontFamily.medium,
+            android: fontFamily.semiBold,
             ios: fontFamily.semiBold,
           }),
           color: colors.content.base.toString(),

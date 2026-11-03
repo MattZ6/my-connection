@@ -29,7 +29,7 @@ export function LanguageScreen() {
       <Stack.Screen.Title
         style={{
           fontFamily: Platform.select({
-            android: fontFamily.medium,
+            android: fontFamily.semiBold,
             ios: fontFamily.semiBold,
           }),
           color: colors.content.base.toString(),
@@ -40,7 +40,7 @@ export function LanguageScreen() {
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
+        fadingEdgeLength={32}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
