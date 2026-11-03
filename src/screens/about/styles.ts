@@ -15,28 +15,5 @@ export function getStyles(theme: ThemeConfig, insets: EdgeInsets) {
       paddingHorizontal: 16,
       gap: 24,
     },
-    intro: {
-      paddingHorizontal: 4,
-      fontFamily: theme.fontFamily.regular,
-      fontSize: theme.fontSizes.bodySmall.fontSize,
-      lineHeight: theme.fontSizes.bodySmall.lineHeight,
-      color: theme.colors.content.muted,
-    },
-    disclaimer: {
-      alignItems: "center",
-      gap: 6,
-      paddingTop: 8,
-    },
-    disclaimerIcon: {
-      tintColor: theme.colors.content.muted,
-    },
-    disclaimerText: {
-      maxWidth: 280,
-      fontFamily: theme.fontFamily.regular,
-      fontSize: 13,
-      lineHeight: 18,
-      color: theme.colors.content.muted,
-      textAlign: "center",
-    },
   });
 }

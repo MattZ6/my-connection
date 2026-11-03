@@ -48,7 +48,12 @@ export function getStyles(theme: ThemeConfig) {
       borderRadius: theme.radii.full,
       alignItems: "center",
       justifyContent: "center",
+      overflow: "hidden",
       backgroundColor: theme.colors.brandSurface.elevated,
+    },
+    avatarImage: {
+      position: "absolute",
+      inset: 0,
     },
     avatarText: {
       fontFamily: theme.fontFamily.mono.regular,

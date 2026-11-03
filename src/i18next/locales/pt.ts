@@ -456,8 +456,6 @@ export const pt = {
           },
         },
       },
-      disclaimer:
-        "Não se preocupe — essas informações não saem do seu dispositivo.",
     },
 
     language: {

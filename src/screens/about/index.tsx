@@ -1,9 +1,8 @@
 import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
-import { SymbolView } from "expo-symbols";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, ScrollView, Text, View } from "react-native";
+import { Platform, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useStyles } from "@/hooks/use-styles";
@@ -54,15 +53,6 @@ export function AboutScreen() {
         <AuthorCard />
         <ExploreSection />
         <BuildSection />
-
-        <View style={styles.disclaimer}>
-          <SymbolView
-            size={20}
-            name={{ android: "shield", ios: "lock.shield" }}
-            tintColor={styles.disclaimerIcon.tintColor}
-          />
-          <Text style={styles.disclaimerText}>{t("about.disclaimer")}</Text>
-        </View>
       </ScrollView>
     </>
   );

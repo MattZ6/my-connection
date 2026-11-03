@@ -454,8 +454,6 @@ export const es = {
           },
         },
       },
-      disclaimer:
-        "No te preocupes — esta información no sale de tu dispositivo.",
     },
 
     language: {

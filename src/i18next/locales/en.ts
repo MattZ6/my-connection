@@ -452,7 +452,6 @@ export const en = {
           },
         },
       },
-      disclaimer: "Don't worry — this information never leaves your device.",
     },
 
     language: {
