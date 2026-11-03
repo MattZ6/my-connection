@@ -3,19 +3,19 @@ import { Stack } from "expo-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
-
-import { Section } from "@/components/ui/section";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { LanguageSelect } from "./components/language-select";
+import { LanguageSection } from "./components/language-section";
 
 import { getStyles } from "./styles";
 
 export function LanguageScreen() {
   const { colors, fontFamily } = useTheme();
-  const styles = useStyles(getStyles);
+  const insets = useSafeAreaInsets();
+  const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
   const { markInteractive } = useObserve();
 
@@ -44,9 +44,7 @@ export function LanguageScreen() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        <Section title={t("language.sections.language.title")}>
-          <LanguageSelect />
-        </Section>
+        <LanguageSection />
       </ScrollView>
     </>
   );

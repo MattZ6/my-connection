@@ -476,7 +476,10 @@ export const en = {
           title: "Language",
           fields: {
             language: {
-              en: { title: "English" },
+              en: {
+                title: "English",
+                description: "English",
+              },
               pt: {
                 title: "Português (Brasil)",
                 description: "Brazilian Portuguese",

@@ -18,7 +18,8 @@ type Trailing = "chevron" | "external" | "none";
 
 type Props = {
   label: string;
-  icon: {
+  /** Leading icon; rows without one (e.g. language names) skip it. */
+  icon?: {
     android: AndroidSymbol;
     ios?: SFSymbol;
   };
@@ -70,12 +71,14 @@ export function SettingsRow({
 
   const content = (
     <>
-      <SymbolView
-        name={icon}
-        size={22}
-        tintColor={styles.icon.tintColor}
-        style={[styles.leadingIcon, description ? styles.leadingTop : null]}
-      />
+      {icon && (
+        <SymbolView
+          name={icon}
+          size={22}
+          tintColor={styles.icon.tintColor}
+          style={[styles.leadingIcon, description ? styles.leadingTop : null]}
+        />
+      )}
 
       <View style={styles.content}>
         <Text style={styles.label} numberOfLines={1}>
