@@ -330,57 +330,54 @@ export const pt = {
     },
 
     permissions: {
-      meta: { title: "Permissões" },
+      meta: { title: "Acesso à localização" },
+      intro:
+        "O Android só compartilha o nome do Wi-Fi (SSID) e o BSSID com apps que têm acesso à localização. O My Connection usa esse acesso só para isso.",
+      status: {
+        visible: "O nome do Wi-Fi está visível",
+        hidden: "O nome do Wi-Fi está oculto",
+        progress: "{{done}} de {{total}} passos concluídos",
+      },
       sections: {
-        location: {
-          title: "Localização",
-          fields: {
-            permission: {
-              title: "Acesso à localização",
-              value: {
-                undetermined: "Não definido",
-                granted: "Permitido",
-                denied: "Não permitido",
-              },
-            },
-            precision: {
-              title: "Precisão",
-              value: {
-                none: "Indisponível",
-                precise: "Precisa",
-                reduced: "Reduzida",
-              },
-            },
-            location: {
-              title: "Serviços de localização",
-              value: {
-                true: "Ativados",
-                false: "Desativados",
-              },
-            },
-          },
-          action: {
-            request_permission: "Permitir acesso",
-            open_app_permission_settings: "Abrir configurações",
-            open_location_settings: "Ativar localização",
-          },
-          disclaimer: {
-            permission_undetermined:
-              "O acesso à localização é necessário para exibir os detalhes da rede Wi-Fi.",
-            permission_denied_can_ask_again:
-              "O acesso à localização é necessário para exibir os detalhes da rede Wi-Fi.",
-            permission_denied:
-              "O acesso à localização é necessário para exibir os detalhes da rede Wi-Fi.\nAtive nas configurações do dispositivo.",
-            invalid_precision:
-              "A localização precisa é necessária para acessar os detalhes da rede Wi-Fi.\nPermita a localização precisa.",
-            location_disabled:
-              "Ative os serviços de localização para acessar os detalhes da rede Wi-Fi.",
-            all_right: "Todas as configurações necessárias estão ativadas.",
+        steps: { title: "Passos" },
+        manage: {
+          title: "Gerenciar",
+          app_permissions: {
+            title: "Permissões do app",
+            description:
+              "Altere ou remova o acesso nas configurações do Android.",
           },
         },
       },
-      disclaimer:
-        "Sua localização não é armazenada nem compartilhada.\nEla é usada apenas para acessar os dados da rede Wi-Fi.",
+      steps: {
+        permission: {
+          done_title: "Acesso à localização",
+          done_description: "Permitido.",
+          title: "Permitir acesso à localização",
+          description: "Necessário para ler o nome do Wi-Fi.",
+          description_blocked:
+            "O acesso foi negado. Permita nas configurações do Android.",
+          action: "Permitir",
+          action_blocked: "Abrir configurações",
+        },
+        precision: {
+          done_title: "Localização precisa",
+          done_description: "Ativada.",
+          title: "Usar localização precisa",
+          description:
+            "A localização aproximada não basta para ler o nome do Wi-Fi.",
+          description_locked: "Disponível após o passo 1.",
+          action: "Abrir configurações",
+        },
+        services: {
+          done_title: "Serviços de localização",
+          done_description: "Ativados.",
+          title: "Ativar os serviços de localização",
+          description: "A localização está desativada neste aparelho.",
+          action: "Ativar",
+        },
+      },
+      disclaimer: "Sua localização nunca é armazenada nem compartilhada.",
     },
 
     appearance: {
