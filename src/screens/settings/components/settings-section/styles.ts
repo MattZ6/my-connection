@@ -22,7 +22,7 @@ export function getStyles(theme: ThemeConfig) {
       overflow: "hidden",
     },
     divider: {
-      height: 1,
+      height: 2,
       backgroundColor: theme.colors.surface.base,
     },
   });

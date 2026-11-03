@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
@@ -23,7 +24,8 @@ const environment = String(
 
 export function SettingsScreen() {
   const { colors, fontFamily } = useTheme();
-  const styles = useStyles(getStyles);
+  const insets = useSafeAreaInsets();
+  const styles = useStyles(s => getStyles(s, insets));
   const { t } = useTranslation();
   const { markInteractive } = useObserve();
 
@@ -52,9 +54,9 @@ export function SettingsScreen() {
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
+        fadingEdgeLength={32}
       >
         <EnvironmentBanner variant={environment} />
         <NetworkSection />
