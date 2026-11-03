@@ -18,180 +18,6 @@ export const es = {
     },
 
     home: {
-      meta: { title: "Mi Conexión" },
-
-      sections: {
-        hero: {
-          fields: {
-            connection_type: {
-              label: "Tipo de conexión",
-              value: {
-                bluetooth: "Bluetooth",
-                cellular: "Datos móviles",
-                ethernet: "Ethernet",
-                none: "Ninguna",
-                other: "Otra",
-                unknown: "Desconocida",
-                vpn: "VPN",
-                wifi: "Wi-Fi",
-                wimax: "WiMAX",
-              },
-            },
-            strength: { label: "Intensidad de la señal" },
-            speed: {
-              label: "Velocidad",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              label: "Descarga",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              label: "Subida",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            carrier: {
-              label: "Operador",
-            },
-            generation: {
-              label: "Generación de red",
-            },
-          },
-        },
-
-        summary: {
-          title: "Resumen",
-          fields: {
-            wifi_enabled: {
-              title: "Wi-Fi activado",
-              description: "Indica si el Wi-Fi está encendido.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-            connected: {
-              title: "Conectado",
-              description:
-                "Indica si estás conectado a una red en este momento.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-            internet_reachable: {
-              title: "Acceso a internet",
-              description:
-                "Indica si es posible acceder a internet con la conexión actual.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-          },
-        },
-
-        performance: {
-          title: "Rendimiento",
-          fields: {
-            strength: {
-              title: "Intensidad de la señal",
-              value_zero: "—",
-              value_other: "{{ count }}%",
-            },
-            speed: {
-              title: "Velocidad del enlace",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              title: "Descarga",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              title: "Subida",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-          },
-        },
-
-        network: {
-          title: "Red",
-          fields: {
-            ssid: {
-              title: "SSID",
-              action: {
-                title: "Toca para mostrar",
-                handling: {
-                  permission_request: {
-                    title: "Acceder al nombre de la red Wi-Fi",
-                    message:
-                      "Para mostrar el nombre de tu red Wi-Fi (SSID), esta app necesita acceso a la ubicación. Es un requisito del sistema Android.",
-                    action: { title: "Permitir Acceso" },
-                  },
-                  permission_blocked: {
-                    title: "Permiso necesario",
-                    message:
-                      "El permiso de ubicación fue denegado.\nPuedes activarlo en la configuración del dispositivo.",
-                    action: { title: "Abrir Configuración" },
-                  },
-                  precision_required: {
-                    title: "Ubicación precisa requerida",
-                    message:
-                      "Para mostrar información detallada de la red Wi-Fi, es necesario activar la ubicación precisa.\nAjusta esta opción en la configuración del dispositivo.",
-                    action: { title: "Abrir Configuración" },
-                  },
-                  location_off: {
-                    title: "Activar ubicación",
-                    message:
-                      "Es necesario activar la ubicación para acceder a los datos de la red Wi-Fi.",
-                    action: { title: "Abrir Configuración" },
-                  },
-                },
-              },
-            },
-            bssid: { title: "BSSID" },
-            frequency: {
-              title: "Frecuencia",
-              value_zero: "—",
-              value_other: "{{ count }} GHz",
-            },
-          },
-        },
-
-        ip: {
-          title: "Configuración de IP",
-          fields: {
-            ip: {
-              title: "Dirección IP",
-              description: "Puede estar en formato IPv4 o IPv6.",
-            },
-            mask: {
-              title: "Máscara de subred",
-              description: "Se muestra en formato IPv4.",
-            },
-          },
-        },
-
-        cellular: {
-          title: "Red móvil",
-          fields: {
-            carrier: { title: "Operador" },
-            generation: { title: "Generación de red" },
-          },
-        },
-
-        properties: {
-          title: "Propiedades de la conexión",
-          fields: {
-            expensive_connection: {
-              title: "Conexión costosa",
-              description:
-                "Puede consumir más batería o generar costos adicionales.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-          },
-        },
-      },
-    },
-
-    alternative_home: {
       header: {
         type: {
           wifi: "Wi-Fi",
@@ -294,6 +120,32 @@ export const es = {
       network_name: {
         dismiss: "Ahora no",
         footnote: "Tu ubicación nunca se guarda ni se comparte.",
+        handling: {
+          permission_request: {
+            title: "Acceder al nombre de la red Wi-Fi",
+            message:
+              "Para mostrar el nombre de tu red Wi-Fi (SSID), esta app necesita acceso a la ubicación. Es un requisito del sistema Android.",
+            action: { title: "Permitir Acceso" },
+          },
+          permission_blocked: {
+            title: "Permiso necesario",
+            message:
+              "El permiso de ubicación fue denegado.\nPuedes activarlo en la configuración del dispositivo.",
+            action: { title: "Abrir Configuración" },
+          },
+          precision_required: {
+            title: "Ubicación precisa requerida",
+            message:
+              "Para mostrar información detallada de la red Wi-Fi, es necesario activar la ubicación precisa.\nAjusta esta opción en la configuración del dispositivo.",
+            action: { title: "Abrir Configuración" },
+          },
+          location_off: {
+            title: "Activar ubicación",
+            message:
+              "Es necesario activar la ubicación para acceder a los datos de la red Wi-Fi.",
+            action: { title: "Abrir Configuración" },
+          },
+        },
       },
       hints: {
         dismiss: "Descartar",
@@ -360,9 +212,6 @@ export const es = {
           message:
             "La velocidad y la señal dependen del servidor de la VPN, así que los números aquí pueden variar.",
         },
-      },
-      dev_mocks: {
-        live: "En vivo",
       },
     },
 

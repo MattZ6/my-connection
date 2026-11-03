@@ -18,179 +18,6 @@ export const en = {
     },
 
     home: {
-      meta: { title: "Connection Health" },
-
-      sections: {
-        hero: {
-          fields: {
-            connection_type: {
-              label: "Connection Type",
-              value: {
-                bluetooth: "Bluetooth",
-                cellular: "Cellular",
-                ethernet: "Ethernet",
-                none: "None",
-                other: "Other",
-                unknown: "Unknown",
-                vpn: "VPN",
-                wifi: "Wi-Fi",
-                wimax: "WiMAX",
-              },
-            },
-            strength: { label: "Signal Strength" },
-            speed: {
-              label: "Speed",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              label: "Download",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              label: "Upload",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            carrier: {
-              label: "Carrier",
-            },
-            generation: {
-              label: "Generation",
-            },
-          },
-        },
-
-        summary: {
-          title: "Summary",
-          fields: {
-            wifi_enabled: {
-              title: "Wi-Fi Enabled",
-              description: "Whether Wi-Fi is turned on.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-            connected: {
-              title: "Connected",
-              description: "Whether you're currently connected to a network.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-            internet_reachable: {
-              title: "Internet Access",
-              description:
-                "Whether the internet can be reached using your current connection.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-          },
-        },
-
-        performance: {
-          title: "Performance",
-          fields: {
-            strength: {
-              title: "Signal Strength",
-              value_zero: "—",
-              value_other: "{{ count }}%",
-            },
-            speed: {
-              title: "Link Speed",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              title: "Download",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              title: "Upload",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-          },
-        },
-
-        network: {
-          title: "Network",
-          fields: {
-            ssid: {
-              title: "SSID",
-              action: {
-                title: "Tap to show",
-                handling: {
-                  permission_request: {
-                    title: "Access Wi-Fi network name",
-                    message:
-                      "To show your Wi-Fi network name (SSID), this app requires location access. This is an Android system requirement.",
-                    action: { title: "Allow Access" },
-                  },
-                  permission_blocked: {
-                    title: "Permission required",
-                    message:
-                      "Location permission was denied.\nYou can enable it in your device settings.",
-                    action: { title: "Open Settings" },
-                  },
-                  precision_required: {
-                    title: "Precise location required",
-                    message:
-                      "To show detailed Wi-Fi information, precise location needs to be enabled.\nUpdate your location settings to continue.",
-                    action: { title: "Open Settings" },
-                  },
-                  location_off: {
-                    title: "Turn on location",
-                    message:
-                      "Location services need to be enabled to access Wi-Fi details.",
-                    action: { title: "Open Settings" },
-                  },
-                },
-              },
-            },
-            bssid: { title: "BSSID" },
-            frequency: {
-              title: "Frequency",
-              value_zero: "—",
-              value_other: "{{ count }} GHz",
-            },
-          },
-        },
-
-        ip: {
-          title: "IP Configuration",
-          fields: {
-            ip: {
-              title: "IP Address",
-              description: "Can be in IPv4 or IPv6 format.",
-            },
-            mask: {
-              title: "Subnet Mask",
-              description: "Displayed in IPv4 format.",
-            },
-          },
-        },
-
-        cellular: {
-          title: "Cellular",
-          fields: {
-            carrier: { title: "Carrier" },
-            generation: { title: "Network Generation" },
-          },
-        },
-
-        properties: {
-          title: "Connection Properties",
-          fields: {
-            expensive_connection: {
-              title: "Expensive Connection",
-              description:
-                "May consume more battery or incur additional costs.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-          },
-        },
-      },
-    },
-
-    alternative_home: {
       header: {
         type: {
           wifi: "Wi-Fi",
@@ -293,6 +120,32 @@ export const en = {
       network_name: {
         dismiss: "Not now",
         footnote: "Your location is never stored or shared.",
+        handling: {
+          permission_request: {
+            title: "Access Wi-Fi network name",
+            message:
+              "To show your Wi-Fi network name (SSID), this app requires location access. This is an Android system requirement.",
+            action: { title: "Allow Access" },
+          },
+          permission_blocked: {
+            title: "Permission required",
+            message:
+              "Location permission was denied.\nYou can enable it in your device settings.",
+            action: { title: "Open Settings" },
+          },
+          precision_required: {
+            title: "Precise location required",
+            message:
+              "To show detailed Wi-Fi information, precise location needs to be enabled.\nUpdate your location settings to continue.",
+            action: { title: "Open Settings" },
+          },
+          location_off: {
+            title: "Turn on location",
+            message:
+              "Location services need to be enabled to access Wi-Fi details.",
+            action: { title: "Open Settings" },
+          },
+        },
       },
       hints: {
         dismiss: "Dismiss",
@@ -358,9 +211,6 @@ export const en = {
           message:
             "Speed and signal depend on the VPN server, so the numbers here may differ.",
         },
-      },
-      dev_mocks: {
-        live: "Live",
       },
     },
 

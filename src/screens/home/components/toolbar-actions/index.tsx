@@ -1,11 +1,7 @@
-import { Observe } from "expo-observe";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { useCallback } from "react";
 import { Platform, Pressable, View } from "react-native";
-import Animated from "react-native-reanimated";
 
-import { useAnimatedNetworkUpdates } from "@/hooks/use-animated-network-updates";
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
 
@@ -15,23 +11,13 @@ import { getStyles } from "./styles";
 
 export function ToolbarActions() {
   const styles = useStyles(getStyles);
-  const { performTapFeedback, notifySuccess, notifyFailure } = useHaptics();
+  const { performTapFeedback } = useHaptics();
+  const router = useRouter();
 
-  const { isRefreshing, refresh, animatedStyle } = useAnimatedNetworkUpdates({
-    onBefore: performTapFeedback,
-    onSuccess: notifySuccess,
-    onFailure: notifyFailure,
-  });
-
-  const handleRefresh = useCallback(() => {
-    Observe.logEvent("connection.refresh", {
-      attributes: {
-        source: "manual",
-        from: "/(main)",
-      },
-    });
-    refresh();
-  }, [refresh]);
+  const handleNavigate = () => {
+    performTapFeedback();
+    router.navigate("/settings");
+  };
 
   return (
     <Stack.Toolbar placement="right" asChild={Platform.OS === "android"}>
@@ -42,22 +28,19 @@ export function ToolbarActions() {
             android_disableSound
             android_ripple={androidRippleConfig}
             hitSlop={{ right: 8, top: 16, left: 16, bottom: 16 }}
-            onPress={handleRefresh}
-            disabled={isRefreshing}
+            onPress={handleNavigate}
           >
-            <Animated.View style={animatedStyle}>
-              <SymbolView
-                name={{ android: "refresh" }}
-                tintColor={styles.icon.color}
-              />
-            </Animated.View>
+            <SymbolView
+              name={{ android: "settings" }}
+              tintColor={styles.icon.color}
+            />
           </Pressable>
         </View>
       )}
 
       {Platform.OS === "ios" && (
-        <Stack.Toolbar.Button onPress={handleRefresh} disabled={isRefreshing}>
-          <Stack.Toolbar.Icon sf="arrow.clockwise" />
+        <Stack.Toolbar.Button onPress={handleNavigate}>
+          <Stack.Toolbar.Icon sf="0.circle" />
         </Stack.Toolbar.Button>
       )}
     </Stack.Toolbar>
