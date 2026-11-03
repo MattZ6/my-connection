@@ -8,9 +8,11 @@ import { getStyles } from "./styles";
 type Props = {
   title: string;
   children: ReactNode;
+  /** Content shown right below the card, such as an action button. */
+  footer?: ReactNode;
 };
 
-export function SettingsSection({ title, children }: Props) {
+export function SettingsSection({ title, children, footer }: Props) {
   const styles = useStyles(getStyles);
 
   const items = Children.toArray(children).filter(isValidElement);
@@ -29,6 +31,8 @@ export function SettingsSection({ title, children }: Props) {
           </Fragment>
         ))}
       </View>
+
+      {footer}
     </View>
   );
 }

@@ -172,6 +172,9 @@ function mapUpdateFrequencyToMilliseconds(
   frequency: NetworkUpdatesContextTypes.UpdateFrequency,
 ) {
   switch (frequency) {
+    case "5s":
+      return 5 * 1000;
+
     case "15s":
       return 15 * 1000;
 

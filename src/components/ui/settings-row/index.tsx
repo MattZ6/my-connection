@@ -22,6 +22,7 @@ type Props = {
     android: AndroidSymbol;
     ios?: SFSymbol;
   };
+  description?: string;
   value?: string;
   badge?: ReactNode;
   control?: ReactNode;
@@ -30,11 +31,14 @@ type Props = {
   onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
   /** Skips the default tap feedback, for rows that give their own. */
   silent?: boolean;
+  /** Renders a plain row that only shows information (no press). */
+  readOnly?: boolean;
 };
 
 export function SettingsRow({
   label,
   icon,
+  description,
   value,
   badge,
   control,
@@ -42,6 +46,7 @@ export function SettingsRow({
   accessibilityHint,
   onPress,
   silent,
+  readOnly,
 }: Props) {
   const styles = useStyles(getStyles);
   const { performTapFeedback } = useHaptics();
@@ -57,25 +62,22 @@ export function SettingsRow({
     [onPress, performTapFeedback, silent],
   );
 
-  return (
-    <Pressable
-      onPress={handlePress}
-      android_disableSound
-      android_ripple={androidRippleConfig}
-      accessibilityRole={trailing === "external" ? "link" : "button"}
-      accessibilityHint={accessibilityHint}
-      style={styles.container}
-    >
+  const content = (
+    <>
       <SymbolView
         name={icon}
         size={22}
         tintColor={styles.icon.tintColor}
-        style={styles.leadingIcon}
+        style={[styles.leadingIcon, description ? styles.leadingTop : null]}
       />
 
-      <Text style={styles.label} numberOfLines={1}>
-        {label}
-      </Text>
+      <View style={styles.content}>
+        <Text style={styles.label} numberOfLines={1}>
+          {label}
+        </Text>
+
+        {!!description && <Text style={styles.description}>{description}</Text>}
+      </View>
 
       <View style={styles.trailing}>
         {!!value && (
@@ -100,6 +102,23 @@ export function SettingsRow({
           />
         )}
       </View>
+    </>
+  );
+
+  if (readOnly) {
+    return <View style={styles.container}>{content}</View>;
+  }
+
+  return (
+    <Pressable
+      onPress={handlePress}
+      android_disableSound
+      android_ripple={androidRippleConfig}
+      accessibilityRole={trailing === "external" ? "link" : "button"}
+      accessibilityHint={accessibilityHint}
+      style={styles.container}
+    >
+      {content}
     </Pressable>
   );
 }

@@ -9,22 +9,35 @@ export function getStyles(theme: ThemeConfig) {
       alignItems: "center",
       gap: 16,
       minHeight: 56,
-      paddingVertical: 10,
+      paddingVertical: 16,
       paddingHorizontal: 16,
     },
     leadingIcon: {
       width: 22,
       height: 22,
     },
+    leadingTop: {
+      alignSelf: "flex-start",
+      marginTop: 4,
+    },
+    content: {
+      flex: 1,
+      gap: 2,
+    },
     icon: {
       tintColor: theme.colors.content.muted,
     },
     label: {
-      flex: 1,
       fontFamily: theme.fontFamily.regular,
-      fontSize: 15,
-      lineHeight: 20,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
       color: theme.colors.content.base,
+    },
+    description: {
+      fontFamily: theme.fontFamily.regular,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      color: theme.colors.content.muted,
     },
     trailing: {
       flexShrink: 1,
@@ -35,8 +48,8 @@ export function getStyles(theme: ThemeConfig) {
     value: {
       flexShrink: 1,
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 20,
+      fontSize: 15,
+      lineHeight: theme.fontSizes.body.lineHeight,
       color: theme.colors.content.muted,
     },
   });

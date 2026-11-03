@@ -2,7 +2,7 @@ import type { NetInfoState } from "@react-native-community/netinfo";
 import type { ReactNode } from "react";
 
 export namespace NetworkUpdatesContextTypes {
-  export type UpdateFrequency = "15s" | "30s" | "60s";
+  export type UpdateFrequency = "5s" | "15s" | "30s" | "60s";
 
   export type Context = {
     netInfo: NetInfoState | null;
