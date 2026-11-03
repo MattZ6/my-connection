@@ -482,6 +482,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.10.0": {
+            title: "A brand new home",
+            date: "2026-11-03",
+            description:
+              "A redesigned home that shows your connection at a glance, with a signal ring, tips and connection details.",
+          },
           "v0.9.3": {
             title: "Small improvements",
             date: "2026-08-25",
@@ -604,6 +610,43 @@ export const en = {
           },
         },
         content: {
+          "v0.10.0": {
+            paragraphs: [
+              "My Connection has a brand new home. Everything you need to understand your connection now fits on a single screen, without tabs.",
+              "A signal ring shows how strong your Wi-Fi is, next to internet access and link speed. When something looks off, a short tip explains what is going on and how to fix it.",
+              "This release also moves the app to Expo SDK 58 and brings a new typeface, Geist, across the whole app.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "Redesigned home screen with a signal strength ring.",
+                  "Tips for weak signal, no internet access, slow links and more.",
+                  "Connection details sheet for each connection type.",
+                  "Guided flow to show your Wi-Fi network name.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Removed the tab bar: settings are one tap away from the home screen.",
+                  "New Geist typeface across the app.",
+                  "Smoother animations when the connection changes.",
+                  "The app now stays in portrait orientation.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Upgraded to Expo SDK 58.",
+                  "Updated project dependencies.",
+                ],
+              },
+            ],
+          },
           "v0.9.3": {
             paragraphs: [
               "This update brings a few small improvements to the app.",
