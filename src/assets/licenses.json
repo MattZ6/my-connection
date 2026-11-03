@@ -5,7 +5,7 @@
     "licenseUrl": "https://github.com/expo/google-fonts/raw/master/LICENSE",
     "parents": "my-connection"
   },
-  "@expo-google-fonts/poppins@0.4.1": {
+  "@expo-google-fonts/geist@0.4.2": {
     "licenses": "MIT AND OFL-1.1",
     "repository": "https://github.com/expo/google-fonts",
     "licenseUrl": "https://github.com/expo/google-fonts/raw/master/LICENSE",
