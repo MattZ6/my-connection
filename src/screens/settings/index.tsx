@@ -3,15 +3,16 @@ import { Stack } from "expo-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { AboutSectionContent } from "./components/about-section-content";
+import { AboutSection } from "./components/about-section";
 import { EnvironmentBanner } from "./components/environment-banner";
-import { PreferencesSectionContent } from "./components/preferences-section-content";
+import { GeneralSection } from "./components/general-section";
+import { NetworkSection } from "./components/network-section";
 import { PrivacyDisclaimer } from "./components/privacy-disclaimer";
-import { PrivacySectionContent } from "./components/privacy-section";
 
 import { getStyles } from "./styles";
 
@@ -23,7 +24,8 @@ const environment = String(
 
 export function SettingsScreen() {
   const { colors, fontFamily } = useTheme();
-  const styles = useStyles(getStyles);
+  const insets = useSafeAreaInsets();
+  const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
   const { markInteractive } = useObserve();
 
@@ -52,14 +54,14 @@ export function SettingsScreen() {
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
+        fadingEdgeLength={32}
       >
         <EnvironmentBanner variant={environment} />
-        <PreferencesSectionContent />
-        <PrivacySectionContent />
-        <AboutSectionContent />
+        <NetworkSection />
+        <GeneralSection />
+        <AboutSection />
         <PrivacyDisclaimer />
       </ScrollView>
     </>

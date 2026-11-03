@@ -12,13 +12,11 @@ export function PrivacyDisclaimer() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.iconContainer}>
-        <SymbolView
-          size={24}
-          name={{ android: "shield_locked", ios: "lock.shield" }}
-          tintColor={styles.icon.tintColor}
-        />
-      </View>
+      <SymbolView
+        size={20}
+        name={{ android: "shield", ios: "lock.shield" }}
+        tintColor={styles.icon.tintColor}
+      />
       <Text style={styles.text}>{t("disclaimer.text")}</Text>
     </View>
   );

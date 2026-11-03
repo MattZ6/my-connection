@@ -230,27 +230,44 @@ export const es = {
               "Esta es una versión preliminar de la app. Algunas funciones aún están en evolución.",
           },
         },
-        preferences: {
-          title: "Preferencias",
+        network: {
+          title: "Red",
           links: {
-            preferences: { title: "Preferencias" },
-            appearance: { title: "Apariencia" },
-            language: { title: "Idioma" },
+            network_updates: {
+              title: "Actualizaciones de red",
+              value: {
+                enabled: "Cada {{frequency}}",
+                disabled: "Desactivadas",
+              },
+            },
+            location: {
+              title: "Acceso a la ubicación",
+              value: {
+                allowed: "Permitido",
+                approximate: "Aproximado",
+                not_allowed: "No permitido",
+              },
+            },
           },
         },
-        privacy: {
-          title: "Privacidad",
+        general: {
+          title: "General",
           links: {
-            permissions: { title: "Permisos" },
-            privacy_policy: { title: "Política de Privacidad" },
+            appearance: {
+              title: "Apariencia",
+              value: { system: "Sistema", light: "Claro", dark: "Oscuro" },
+            },
+            language: { title: "Idioma" },
+            haptics: { title: "Respuesta háptica" },
           },
         },
         about: {
           title: "Acerca de",
           links: {
             about: { title: "Acerca de" },
-            changelog: { title: "Changelog" },
+            changelog: { title: "Changelog", badge: "Nuevo" },
             licenses: { title: "Licencias" },
+            privacy_policy: { title: "Política de Privacidad" },
           },
         },
       },

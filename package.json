@@ -32,6 +32,7 @@
     "ios": "expo start --ios",
     "typecheck": "tsc --noEmit",
     "lint:ci": "biome ci .",
+    "format": "biome format --write",
     "licenses:generate": "bunx npm-license-crawler -onlyDirectDependencies -json ./src/assets/licenses.json"
   },
   "dependencies": {
