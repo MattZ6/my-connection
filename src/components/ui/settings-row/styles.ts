@@ -22,7 +22,6 @@ export function getStyles(theme: ThemeConfig) {
     },
     content: {
       flex: 1,
-      gap: 2,
     },
     icon: {
       tintColor: theme.colors.content.muted,

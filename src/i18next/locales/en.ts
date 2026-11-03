@@ -326,57 +326,53 @@ export const en = {
     },
 
     permissions: {
-      meta: { title: "Permissions" },
+      meta: { title: "Location access" },
+      intro:
+        "Android only shares the Wi-Fi name (SSID) and BSSID with apps that have location access. My Connection uses it only for that.",
+      status: {
+        visible: "Wi-Fi name is visible",
+        hidden: "Wi-Fi name is hidden",
+        progress: "{{done}} of {{total}} steps done",
+      },
       sections: {
-        location: {
-          title: "Location",
-          fields: {
-            permission: {
-              title: "Location Access",
-              value: {
-                undetermined: "Not determined",
-                granted: "Allowed",
-                denied: "Not allowed",
-              },
-            },
-            precision: {
-              title: "Precision",
-              value: {
-                none: "Unavailable",
-                precise: "Precise",
-                reduced: "Reduced",
-              },
-            },
-            location: {
-              title: "Location Services",
-              value: {
-                true: "Enabled",
-                false: "Disabled",
-              },
-            },
-          },
-          action: {
-            request_permission: "Allow access",
-            open_app_permission_settings: "Open settings",
-            open_location_settings: "Turn on location",
-          },
-          disclaimer: {
-            permission_undetermined:
-              "Location access is needed to display your Wi-Fi network details.",
-            permission_denied_can_ask_again:
-              "Location access is needed to display your Wi-Fi network details.",
-            permission_denied:
-              "Location access is required to display Wi-Fi network details.\nEnable it in your device settings.",
-            invalid_precision:
-              "Precise location is required to access Wi-Fi network details.\nPlease allow precise location.",
-            location_disabled:
-              "Location services must be enabled to access Wi-Fi network details.",
-            all_right: "All required settings are enabled.",
+        steps: { title: "Steps" },
+        manage: {
+          title: "Manage",
+          app_permissions: {
+            title: "App permissions",
+            description: "Change or remove access in Android settings.",
           },
         },
       },
-      disclaimer:
-        "Your location is never stored or shared.\nIt’s only used to access Wi-Fi network details.",
+      steps: {
+        permission: {
+          done_title: "Location access",
+          done_description: "Allowed.",
+          title: "Allow location access",
+          description: "Needed to read the Wi-Fi name.",
+          description_blocked:
+            "Access was denied. Allow it in Android settings.",
+          action: "Allow",
+          action_blocked: "Open settings",
+        },
+        precision: {
+          done_title: "Precise location",
+          done_description: "On.",
+          title: "Use precise location",
+          description:
+            "Approximate location is not enough to read the Wi-Fi name.",
+          description_locked: "Available after step 1.",
+          action: "Open settings",
+        },
+        services: {
+          done_title: "Location services",
+          done_description: "On.",
+          title: "Turn on location services",
+          description: "Location is off on this device.",
+          action: "Turn on",
+        },
+      },
+      disclaimer: "Your location is never stored or shared.",
     },
 
     appearance: {
