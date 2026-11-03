@@ -1,5 +1,5 @@
-import { HomeScreen } from "@/screens/home";
+import { AlternativeHomeScreen } from "@/screens/alternative-home";
 
 export default function HomePage() {
-  return <HomeScreen />;
+  return <AlternativeHomeScreen />;
 }
