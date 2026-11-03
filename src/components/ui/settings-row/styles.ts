@@ -12,6 +12,9 @@ export function getStyles(theme: ThemeConfig) {
       paddingVertical: 16,
       paddingHorizontal: 16,
     },
+    disabled: {
+      opacity: 0.55,
+    },
     leadingIcon: {
       width: 22,
       height: 22,

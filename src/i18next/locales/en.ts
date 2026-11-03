@@ -381,17 +381,23 @@ export const en = {
         theme: {
           title: "Theme",
           fields: {
-            system: { title: "System (recommended)" },
+            system: {
+              title: "System",
+              description: "Follows your device setting.",
+            },
             light: { title: "Light" },
             dark: { title: "Dark" },
           },
         },
         android_dynamic_colors: {
+          title: "Colors",
           fields: {
             dynamic_colors: {
               title: "Use system colors",
               description:
                 "Adapt colors based on your device theme and wallpaper.",
+              description_disabled:
+                "Available when the theme is set to System.",
             },
           },
         },

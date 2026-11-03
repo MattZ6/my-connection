@@ -3,20 +3,20 @@ import { Stack } from "expo-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
-
-import { Section } from "@/components/ui/section";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { DynamicColorsToggle } from "./components/dynamic-colors-toggle";
-import { ThemeSelect } from "./components/theme-select";
+import { ColorsSection } from "./components/colors-section";
+import { ThemeSection } from "./components/theme-section";
 
 import { getStyles } from "./styles";
 
 export function AppearanceScreen() {
   const { colors, fontFamily } = useTheme();
-  const styles = useStyles(getStyles);
+  const insets = useSafeAreaInsets();
+  const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
   const { markInteractive } = useObserve();
 
@@ -45,13 +45,8 @@ export function AppearanceScreen() {
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
-        <Section title={t("appearance.sections.theme.title")}>
-          <ThemeSelect />
-        </Section>
-
-        <Section>
-          <DynamicColorsToggle />
-        </Section>
+        <ThemeSection />
+        <ColorsSection />
       </ScrollView>
     </>
   );

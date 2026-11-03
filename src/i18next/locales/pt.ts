@@ -386,17 +386,22 @@ export const pt = {
         theme: {
           title: "Tema",
           fields: {
-            system: { title: "Sistema (recomendado)" },
+            system: {
+              title: "Sistema",
+              description: "Segue a configuração do seu aparelho.",
+            },
             light: { title: "Claro" },
             dark: { title: "Escuro" },
           },
         },
         android_dynamic_colors: {
+          title: "Cores",
           fields: {
             dynamic_colors: {
               title: "Usar cores do sistema",
               description:
                 "Adapta as cores com base no tema e papel de parede do dispositivo.",
+              description_disabled: "Disponível quando o tema está em Sistema.",
             },
           },
         },

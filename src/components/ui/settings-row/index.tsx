@@ -33,6 +33,10 @@ type Props = {
   silent?: boolean;
   /** Renders a plain row that only shows information (no press). */
   readOnly?: boolean;
+  /** Dims the row and ignores presses. */
+  disabled?: boolean;
+  /** Marks the row as the chosen option for screen readers. */
+  selected?: boolean;
 };
 
 export function SettingsRow({
@@ -47,6 +51,8 @@ export function SettingsRow({
   onPress,
   silent,
   readOnly,
+  disabled,
+  selected,
 }: Props) {
   const styles = useStyles(getStyles);
   const { performTapFeedback } = useHaptics();
@@ -112,11 +118,13 @@ export function SettingsRow({
   return (
     <Pressable
       onPress={handlePress}
+      disabled={disabled}
       android_disableSound
       android_ripple={androidRippleConfig}
       accessibilityRole={trailing === "external" ? "link" : "button"}
       accessibilityHint={accessibilityHint}
-      style={styles.container}
+      accessibilityState={{ disabled: !!disabled, selected }}
+      style={[styles.container, disabled && styles.disabled]}
     >
       {content}
     </Pressable>
