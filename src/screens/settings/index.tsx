@@ -25,7 +25,7 @@ const environment = String(
 export function SettingsScreen() {
   const { colors, fontFamily } = useTheme();
   const insets = useSafeAreaInsets();
-  const styles = useStyles(s => getStyles(s, insets));
+  const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
   const { markInteractive } = useObserve();
 
