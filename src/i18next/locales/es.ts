@@ -489,6 +489,7 @@ export const es = {
               },
               es: {
                 title: "Español",
+                description: "Español",
               },
             },
           },

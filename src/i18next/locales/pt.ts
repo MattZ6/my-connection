@@ -487,6 +487,7 @@ export const pt = {
               },
               pt: {
                 title: "Português (Brasil)",
+                description: "Português (Brasil)",
               },
               es: {
                 title: "Español",
