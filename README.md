@@ -37,7 +37,7 @@ It brings together connection status, signal strength, performance, Wi-Fi detail
 
 The goal isn't to expose as much technical information as possible.
 
-It's to make the information that *is* available useful and easy to understand.
+It's to make the information that _is_ available useful and easy to understand.
 
 ## Why I built it
 
@@ -268,7 +268,7 @@ My Connection is licensed under the [MIT License](LICENSE.md).
 
 Copyright © 2026 Matheus Zanin.
 
-___
+---
 
 <div align="center">
   <img
@@ -278,5 +278,5 @@ ___
     height="64"
   />
 
-  <strong>Understand your connection.</strong>
+<strong>Understand your connection.</strong>
 </div>
