@@ -7,11 +7,11 @@ import { Platform, ScrollView } from "react-native";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { AboutSectionContent } from "./components/about-section-content";
+import { AboutSection } from "./components/about-section";
 import { EnvironmentBanner } from "./components/environment-banner";
-import { PreferencesSectionContent } from "./components/preferences-section-content";
+import { GeneralSection } from "./components/general-section";
+import { NetworkSection } from "./components/network-section";
 import { PrivacyDisclaimer } from "./components/privacy-disclaimer";
-import { PrivacySectionContent } from "./components/privacy-section";
 
 import { getStyles } from "./styles";
 
@@ -57,9 +57,9 @@ export function SettingsScreen() {
         contentContainerStyle={styles.scrollContainer}
       >
         <EnvironmentBanner variant={environment} />
-        <PreferencesSectionContent />
-        <PrivacySectionContent />
-        <AboutSectionContent />
+        <NetworkSection />
+        <GeneralSection />
+        <AboutSection />
         <PrivacyDisclaimer />
       </ScrollView>
     </>

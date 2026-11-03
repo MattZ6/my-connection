@@ -229,27 +229,44 @@ export const en = {
               "This is a preview version of the app. Some features may still be evolving.",
           },
         },
-        preferences: {
-          title: "Preferences",
+        network: {
+          title: "Network",
           links: {
-            preferences: { title: "Preferences" },
-            appearance: { title: "Appearance" },
-            language: { title: "Language" },
+            network_updates: {
+              title: "Network updates",
+              value: {
+                enabled: "Every {{frequency}}",
+                disabled: "Disabled",
+              },
+            },
+            location: {
+              title: "Location access",
+              value: {
+                allowed: "Allowed",
+                approximate: "Approximate",
+                not_allowed: "Not allowed",
+              },
+            },
           },
         },
-        privacy: {
-          title: "Privacy",
+        general: {
+          title: "General",
           links: {
-            permissions: { title: "Permissions" },
-            privacy_policy: { title: "Privacy Policy" },
+            appearance: {
+              title: "Appearance",
+              value: { system: "System", light: "Light", dark: "Dark" },
+            },
+            language: { title: "Language" },
+            haptics: { title: "Haptic feedback" },
           },
         },
         about: {
           title: "About",
           links: {
             about: { title: "About" },
-            changelog: { title: "Changelog" },
+            changelog: { title: "Changelog", badge: "New" },
             licenses: { title: "Licenses" },
+            privacy_policy: { title: "Privacy Policy" },
           },
         },
       },

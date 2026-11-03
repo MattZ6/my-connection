@@ -9,9 +9,10 @@ export function getStyles(theme: ThemeConfig) {
       backgroundColor: theme.colors.surface.base,
     },
     scrollContainer: {
-      paddingVertical: 16,
+      paddingTop: 8,
+      paddingBottom: 32,
       paddingHorizontal: 16,
-      gap: 32,
+      gap: 24,
     },
   });
 }

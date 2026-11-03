@@ -7,24 +7,17 @@ export function getStyles(theme: ThemeConfig) {
     container: {
       alignItems: "center",
       justifyContent: "center",
-      gap: 16,
-    },
-    iconContainer: {
-      width: 40,
-      height: 40,
-      borderRadius: theme.radii["4"],
-      alignItems: "center",
-      justifyContent: "center",
-
-      backgroundColor: theme.colors.surface.elevated,
+      gap: 6,
+      paddingTop: 8,
     },
     icon: {
       tintColor: theme.colors.content.muted,
     },
     text: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: theme.fontSizes.bodySmall.fontSize,
-      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      fontSize: 13,
+      lineHeight: 18,
+      maxWidth: 280,
       color: theme.colors.content.muted,
       textAlign: "center",
     },

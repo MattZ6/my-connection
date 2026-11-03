@@ -32,6 +32,7 @@ export const colors: Colors = {
 
   semantic: {
     warning: palette.red["11"],
+    warningSurface: palette.red["3"],
     caution: palette.amber["11"],
     success: palette.green["11"],
   },
@@ -63,6 +64,7 @@ export const darkColors: Colors = {
 
   semantic: {
     warning: darkPalette.red["11"],
+    warningSurface: darkPalette.red["3"],
     caution: darkPalette.amber["11"],
     success: darkPalette.green["11"],
   },
@@ -153,6 +155,11 @@ export function generateSystemColors(
         ios: Color.ios.secondaryLabel,
         default: "",
       })!,
+      warningSurface: Platform.select({
+        android: androidMaterialColor.errorContainer,
+        ios: Color.ios.secondarySystemBackground,
+        default: "",
+      })!,
       caution: Platform.select({
         android: androidMaterialColor.secondary,
         ios: Color.ios.systemOrange,
@@ -180,6 +187,7 @@ type Border = {
 
 type Semantic = {
   warning: AppColorValue;
+  warningSurface: AppColorValue;
   caution: AppColorValue;
   success: AppColorValue;
 };
