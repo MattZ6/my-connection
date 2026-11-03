@@ -409,48 +409,20 @@ export const en = {
     about: {
       meta: { title: "About" },
       sections: {
-        about: {
-          title: "App Info",
+        app: {
+          title: "App",
           fields: {
-            name: { title: "Name" },
-            package: { title: "Package" },
-            version: { title: "Version" },
-            installed_at: { title: "Installed" },
-            updated_at: { title: "Last Updated" },
+            name: "Name",
+            version: "Version",
+            installed_at: "Installed",
+            updated_at: "Last updated",
           },
         },
         device: {
           title: "Device",
           fields: {
-            type: {
-              title: "Device Type",
-              value: {
-                0: "Unknown",
-                1: "Phone",
-                2: "Tablet",
-                3: "Desktop",
-                4: "TV",
-                null: "—",
-              },
-            },
-            manufacturer: { title: "Manufacturer" },
-            model: { title: "Model" },
-            year: { title: "Year Class" },
-            android_design_name: { title: "Android Design Name" },
-            android_product_name: { title: "Android Product Name" },
-          },
-        },
-        os: {
-          title: "Operating System",
-          fields: {
-            name: { title: "OS" },
-            version: { title: "Version" },
-            build_id: { title: "Build ID" },
-            internal_build_id: { title: "Internal Build ID" },
-            android_api: { title: "Android API Level" },
-            android_build_fingerprint: {
-              title: "Build Fingerprint",
-            },
+            model: "Model",
+            android: "Android",
           },
         },
         author: {
@@ -458,11 +430,25 @@ export const en = {
           fields: {
             description:
               "{{app_name}} started as a personal tool to explore network information and evolved into a simple app focused on clarity and control.",
+            role: "Creator of {{app_name}}",
           },
-          actions: {
-            view_on_github: {
-              title: "View on GitHub",
+        },
+        explore: {
+          title: "Explore",
+          fields: {
+            website: { title: "Website" },
+            play_store: {
+              title: "Google Play",
+              description: "Rate or share the app",
             },
+          },
+        },
+        build: {
+          title: "Build",
+          fields: {
+            package: "Package",
+            build_id: "Build ID",
+            fingerprint: "Build fingerprint",
           },
         },
       },

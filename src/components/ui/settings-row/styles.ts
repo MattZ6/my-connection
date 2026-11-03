@@ -54,5 +54,9 @@ export function getStyles(theme: ThemeConfig) {
       lineHeight: theme.fontSizes.body.lineHeight,
       color: theme.colors.content.muted,
     },
+    monoValue: {
+      fontFamily: theme.fontFamily.mono.regular,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+    },
   });
 }
