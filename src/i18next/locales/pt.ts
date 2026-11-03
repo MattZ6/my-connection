@@ -488,6 +488,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.10.0": {
+            title: "Uma Início totalmente nova",
+            date: "2026-11-03",
+            description:
+              "Uma Início redesenhada que mostra sua conexão de relance, com anel de sinal, dicas e detalhes da conexão.",
+          },
           "v0.9.3": {
             title: "Pequenas melhorias",
             date: "2026-08-25",
@@ -610,6 +616,43 @@ export const pt = {
           },
         },
         content: {
+          "v0.10.0": {
+            paragraphs: [
+              "O My Connection ganhou uma Início totalmente nova. Tudo o que você precisa para entender sua conexão agora cabe em uma única tela, sem abas.",
+              "Um anel mostra a intensidade do seu Wi-Fi, junto com o acesso à internet e a velocidade do link. Quando algo parece errado, uma dica curta explica o que está acontecendo e como resolver.",
+              "Esta versão também atualiza o app para o Expo SDK 58 e traz uma nova fonte, a Geist, para o app inteiro.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Novas funcionalidades",
+                items: [
+                  "Tela inicial redesenhada com um anel de intensidade do sinal.",
+                  "Dicas para sinal fraco, falta de acesso à internet, link lento e mais.",
+                  "Detalhes da conexão em uma bottom sheet para cada tipo de conexão.",
+                  "Fluxo guiado para mostrar o nome da sua rede Wi-Fi.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Removida a barra de abas: as configurações ficam a um toque da tela inicial.",
+                  "Nova fonte Geist em todo o app.",
+                  "Animações mais suaves quando a conexão muda.",
+                  "O app agora fica sempre na orientação retrato.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestrutura",
+                items: [
+                  "Atualizado para o Expo SDK 58.",
+                  "Dependências do projeto atualizadas.",
+                ],
+              },
+            ],
+          },
           "v0.9.3": {
             paragraphs: [
               "Esta atualização traz algumas pequenas melhorias para o app.",
