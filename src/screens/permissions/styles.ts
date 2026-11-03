@@ -18,8 +18,8 @@ export function getStyles(theme: ThemeConfig, insets: EdgeInsets) {
     intro: {
       paddingHorizontal: 4,
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 21,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.content.muted,
     },
     disclaimer: {

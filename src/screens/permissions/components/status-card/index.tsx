@@ -1,10 +1,10 @@
 import { SymbolView } from "expo-symbols";
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { useStyles } from "@/hooks/use-styles";
 
-import type { ThemeConfig } from "@/theme/types";
+import { getStyles } from "./styles";
 
 type Props = {
   done: number;
@@ -40,39 +40,4 @@ export function StatusCard({ done, total }: Props) {
       </View>
     </View>
   );
-}
-
-function getStyles(theme: ThemeConfig) {
-  return StyleSheet.create({
-    container: {
-      flexDirection: "row",
-      alignItems: "center",
-      gap: 12,
-      padding: 16,
-      borderRadius: theme.radii["7"],
-      backgroundColor: theme.colors.surface.elevated,
-    },
-    visible: {
-      color: theme.colors.semantic.success,
-    },
-    hidden: {
-      color: theme.colors.semantic.caution,
-    },
-    content: {
-      flex: 1,
-      gap: 2,
-    },
-    title: {
-      fontFamily: theme.fontFamily.medium,
-      fontSize: 15,
-      lineHeight: 20,
-      color: theme.colors.content.base,
-    },
-    progress: {
-      fontFamily: theme.fontFamily.mono.regular,
-      fontSize: 12,
-      lineHeight: 16,
-      color: theme.colors.content.muted,
-    },
-  });
 }

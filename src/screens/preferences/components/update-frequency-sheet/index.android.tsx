@@ -43,7 +43,7 @@ export function UpdateFrequencySheet({
   onClose,
 }: UpdateFrequencySheetProps) {
   const sheetRef = useRef<ModalBottomSheetRef>(null);
-  const { resolvedTheme, colors, fontFamily, radii } = useTheme();
+  const { resolvedTheme, colors, fontFamily, radii, fontSizes } = useTheme();
   const insets = useSafeAreaInsets();
   const { performSelectFeedback } = useHaptics();
   const { t } = useTranslation("translation", {
@@ -103,8 +103,8 @@ export function UpdateFrequencySheet({
               color={colors.content.base.toString()}
               style={{
                 fontFamily: fontFamily.semiBold,
-                fontSize: 20,
-                lineHeight: 28,
+                fontSize: fontSizes.title.fontSize,
+                lineHeight: fontSizes.title.fontSize,
               }}
             >
               {t("title")}
@@ -113,8 +113,8 @@ export function UpdateFrequencySheet({
               color={colors.content.muted.toString()}
               style={{
                 fontFamily: fontFamily.regular,
-                fontSize: 14,
-                lineHeight: 20,
+                fontSize: fontSizes.bodySmall.fontSize,
+                lineHeight: fontSizes.bodySmall.lineHeight,
               }}
             >
               {t("description")}
@@ -131,8 +131,8 @@ export function UpdateFrequencySheet({
                 <Fragment key={option}>
                   {index > 0 && (
                     <HorizontalDivider
-                      thickness={StyleSheet.hairlineWidth}
-                      color={colors.border.default}
+                      thickness={2}
+                      color={colors.surface.elevated}
                     />
                   )}
 

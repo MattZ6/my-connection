@@ -9,7 +9,7 @@ export function getStyles(theme: ThemeConfig) {
       alignItems: "flex-start",
       gap: 16,
       minHeight: 64,
-      paddingVertical: 14,
+      paddingVertical: 16,
       paddingHorizontal: 16,
     },
     locked: {
@@ -35,8 +35,8 @@ export function getStyles(theme: ThemeConfig) {
       borderColor: theme.colors.border.default,
     },
     numberText: {
-      fontSize: 12,
-      lineHeight: 16,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
     },
     numberTextActive: {
       fontFamily: theme.fontFamily.mono.medium,
@@ -48,18 +48,17 @@ export function getStyles(theme: ThemeConfig) {
     },
     content: {
       flex: 1,
-      gap: 2,
     },
     title: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 15,
-      lineHeight: 20,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
       color: theme.colors.content.base,
     },
     description: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 13,
-      lineHeight: 18,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.content.muted,
     },
     action: {
@@ -73,8 +72,8 @@ export function getStyles(theme: ThemeConfig) {
     },
     actionText: {
       fontFamily: theme.fontFamily.medium,
-      fontSize: 13,
-      lineHeight: 18,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.surface.base,
     },
   });

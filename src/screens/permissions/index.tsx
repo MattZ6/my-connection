@@ -70,7 +70,7 @@ export function PermissionsScreen() {
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
+        fadingEdgeLength={32}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
       >
