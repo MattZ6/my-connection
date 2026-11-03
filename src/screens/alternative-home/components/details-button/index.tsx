@@ -1,6 +1,11 @@
 import { SymbolView } from "expo-symbols";
 import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text } from "react-native";
+import Animated, {
+  FadeInUp,
+  FadeOutDown,
+  LinearTransition,
+} from "react-native-reanimated";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
@@ -26,7 +31,14 @@ export function DetailsButton({ onPress }: Props) {
   };
 
   return (
-    <View style={styles.container}>
+    // Rises in from below when details become available, and sinks out when
+    // they go away (offline / unknown).
+    <Animated.View
+      entering={FadeInUp.duration(250)}
+      exiting={FadeOutDown.duration(200)}
+      layout={LinearTransition.duration(220)}
+      style={styles.container}
+    >
       <Pressable
         style={styles.button}
         android_ripple={androidRippleConfig}
@@ -40,6 +52,6 @@ export function DetailsButton({ onPress }: Props) {
           tintColor={styles.label.color}
         />
       </Pressable>
-    </View>
+    </Animated.View>
   );
 }

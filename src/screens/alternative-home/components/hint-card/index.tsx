@@ -1,7 +1,11 @@
 import { SymbolView } from "expo-symbols";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
-import Animated, { FadeInDown, FadeOut } from "react-native-reanimated";
+import Animated, {
+  FadeInDown,
+  FadeOut,
+  LinearTransition,
+} from "react-native-reanimated";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useStyles } from "@/hooks/use-styles";
@@ -68,6 +72,7 @@ export function HintCard({ hint, onDismiss }: Props) {
     <Animated.View
       entering={FadeInDown.duration(250)}
       exiting={FadeOut.duration(150)}
+      layout={LinearTransition.duration(220)}
       style={styles.card}
       accessibilityRole="summary"
     >

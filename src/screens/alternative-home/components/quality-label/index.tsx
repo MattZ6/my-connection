@@ -22,9 +22,12 @@ type Props = {
   color: ColorValue;
 };
 
+/** Each slot keeps its own color, so the outgoing text fades out in its old color. */
+type Slot = { label: string; level: number; color: ColorValue };
+
 type Slots = {
-  current: { label: string; level: number };
-  next: { label: string; level: number };
+  current: Slot;
+  next: Slot;
 };
 
 const ANIMATION_DURATION = 400;
@@ -33,8 +36,8 @@ const ANIMATION_OFFSET = 8;
 export function QualityLabel({ label, level, color }: Props) {
   const styles = useStyles(getStyles);
   const [slots, setSlots] = useState<Slots>({
-    current: { label, level },
-    next: { label, level },
+    current: { label, level, color },
+    next: { label, level, color },
   });
 
   const progress = useSharedValue(1);
@@ -46,7 +49,10 @@ export function QualityLabel({ label, level, color }: Props) {
     }
 
     direction.value = level >= slots.current.level ? 1 : -1;
-    setSlots((state) => ({ current: state.next, next: { label, level } }));
+    setSlots((state) => ({
+      current: state.next,
+      next: { label, level, color },
+    }));
 
     const settle = () =>
       setSlots((state) => ({ current: state.next, next: state.next }));
@@ -64,6 +70,7 @@ export function QualityLabel({ label, level, color }: Props) {
   }, [
     label,
     level,
+    color,
     slots.current.level,
     slots.next.label,
     direction,
@@ -101,13 +108,19 @@ export function QualityLabel({ label, level, color }: Props) {
   return (
     <View style={styles.container}>
       {isAnimating && (
-        <Animated.Text style={[styles.label, { color }, outgoingStyle]}>
+        <Animated.Text
+          style={[styles.label, { color: slots.current.color }, outgoingStyle]}
+        >
           {slots.current.label}
         </Animated.Text>
       )}
 
       <Animated.Text
-        style={[styles.label, { color }, isAnimating && incomingStyle]}
+        style={[
+          styles.label,
+          { color: slots.next.color },
+          isAnimating && incomingStyle,
+        ]}
       >
         {slots.next.label}
       </Animated.Text>
