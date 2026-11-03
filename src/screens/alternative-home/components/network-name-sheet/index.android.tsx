@@ -1,6 +1,7 @@
 import { Host, type ModalBottomSheetRef } from "@expo/ui/jetpack-compose";
 import type { Ref } from "react";
 import { useTranslation } from "react-i18next";
+import { StyleSheet } from "react-native";
 
 import { LocationBottomSheet } from "@/components/location-bottom-sheet";
 import { useTheme } from "@/hooks/use-theme";
@@ -24,7 +25,8 @@ export function NetworkNameSheet({ ref, sheet, onClose }: Props) {
   }
 
   return (
-    <Host matchContents colorScheme={resolvedTheme}>
+    // The sheet opens in its own window; the Host must not take layout space.
+    <Host colorScheme={resolvedTheme} style={styles.host}>
       <LocationBottomSheet
         ref={ref}
         isOpen
@@ -40,3 +42,11 @@ export function NetworkNameSheet({ ref, sheet, onClose }: Props) {
     </Host>
   );
 }
+
+const styles = StyleSheet.create({
+  host: {
+    position: "absolute",
+    width: 0,
+    height: 0,
+  },
+});
