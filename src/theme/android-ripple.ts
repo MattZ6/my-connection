@@ -1,6 +1,14 @@
-import type { PressableAndroidRippleConfig } from "react-native";
+import type { NativeColorValue } from "react-native";
 
-export const androidRippleConfig: PressableAndroidRippleConfig = {
+type AndroidRipple = {
+  color?: NativeColorValue | string;
+  borderless?: boolean;
+  radius?: number;
+  foreground?: boolean;
+  alpha?: number;
+};
+
+export const androidRippleConfig: AndroidRipple = {
   foreground: true,
   color: "#0000001A",
 };

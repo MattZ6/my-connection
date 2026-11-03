@@ -234,10 +234,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           image: variant.splash.android.light.imagePath,
           backgroundColor: variant.splash.android.light.backgroundColor,
           resizeMode: "contain",
+          imageWidth: 200,
           dark: {
             image: variant.splash.android.dark.imagePath,
             backgroundColor: variant.splash.android.dark.backgroundColor,
             resizeMode: "contain",
+            imageWidth: 200,
           },
         },
         ios: {
@@ -245,11 +247,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           tabletImage: variant.splash.ios.light.imagePath,
           backgroundColor: variant.splash.ios.light.backgroundColor,
           resizeMode: "contain",
+          imageWidth: 200,
           dark: {
             image: variant.splash.ios.dark.imagePath,
             tabletImage: variant.splash.ios.dark.imagePath,
             backgroundColor: variant.splash.ios.dark.backgroundColor,
             resizeMode: "contain",
+            imageWidth: 200,
           },
         },
       },
