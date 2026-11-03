@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+
 import type { ThemeConfig } from "@/theme/types";
 
 export function getStyles(theme: ThemeConfig) {
@@ -18,21 +19,42 @@ export function getStyles(theme: ThemeConfig) {
       backgroundColor: theme.colors.surface.elevated,
     },
     content: {
-      position: "relative",
+      flexShrink: 1,
       justifyContent: "center",
+      gap: 2,
     },
     label: {
-      position: "absolute",
       fontFamily: theme.fontFamily.mono.medium,
-      fontSize: theme.fontSizes.bodySmall.fontSize,
-      lineHeight: theme.fontSizes.label.lineHeight,
+      fontSize: 13,
+      lineHeight: 18,
       color: theme.colors.content.muted,
     },
     subtitle: {
-      position: "absolute",
       fontFamily: theme.fontFamily.medium,
-      fontSize: theme.fontSizes.bodySmall.fontSize,
-      lineHeight: theme.fontSizes.label.lineHeight,
+      fontSize: 15,
+      lineHeight: 20,
+      color: theme.colors.content.base,
+    },
+    chipContainer: {
+      alignSelf: "flex-start",
+      borderRadius: theme.radii.full,
+      overflow: "hidden",
+    },
+    chip: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 4,
+      height: 28,
+      paddingLeft: 8,
+      paddingRight: 10,
+      borderRadius: theme.radii.full,
+      borderWidth: 1,
+      borderColor: theme.colors.border.default,
+    },
+    chipLabel: {
+      fontFamily: theme.fontFamily.medium,
+      fontSize: 13,
+      lineHeight: 18,
       color: theme.colors.content.base,
     },
   });

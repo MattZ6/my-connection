@@ -15,6 +15,8 @@ type Props = {
   strokeWidth?: number;
   trackColor?: string;
   progressColor?: string;
+  /** Draws the track as a dotted line (used for unknown states). */
+  dottedTrack?: boolean;
   children?: ReactNode;
   styles?: StyleProp<ViewStyle>;
 };
@@ -25,6 +27,7 @@ export function AnimatedGauge({
   strokeWidth = 8,
   trackColor = "#E5E7EB",
   progressColor = "#000000",
+  dottedTrack = false,
   styles,
   children,
 }: Props) {
@@ -39,6 +42,8 @@ export function AnimatedGauge({
 
   const animatedProps = useAnimatedProps(() => ({
     strokeDashoffset: circumference * (1 - progress.value),
+    // A round line cap still paints a dot at 0%, so hide the arc entirely.
+    strokeOpacity: progress.value > 0.001 ? 1 : 0,
   }));
 
   return (
@@ -56,7 +61,9 @@ export function AnimatedGauge({
           cy={size / 2}
           r={radius}
           stroke={trackColor}
-          strokeWidth={strokeWidth}
+          strokeWidth={dottedTrack ? strokeWidth / 2 : strokeWidth}
+          strokeDasharray={dottedTrack ? "2 10" : undefined}
+          strokeLinecap={dottedTrack ? "round" : undefined}
           fill="none"
         />
 

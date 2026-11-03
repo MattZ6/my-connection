@@ -4,9 +4,11 @@ import {
   ModalBottomSheet,
   type ModalBottomSheetRef,
   RNHostView,
+  Row,
   Shape,
   Surface,
   Text,
+  TextButton,
 } from "@expo/ui/jetpack-compose";
 import {
   fillMaxWidth,
@@ -27,6 +29,8 @@ type Props = {
   onCloseRequest: () => void;
   actionTitle?: string;
   onAction?: () => void;
+  dismissTitle?: string;
+  footnote?: string;
 };
 
 export function LocationBottomSheet({
@@ -38,6 +42,8 @@ export function LocationBottomSheet({
   actionTitle,
   onAction,
   onCloseRequest,
+  dismissTitle,
+  footnote,
 }: Props) {
   const { colors, fontSizes, fontFamily, radii } = useTheme();
 
@@ -131,6 +137,50 @@ export function LocationBottomSheet({
               {actionTitle}
             </Text>
           </Button>
+        )}
+
+        {dismissTitle && (
+          <TextButton
+            modifiers={[fillMaxWidth()]}
+            contentPadding={{ bottom: 16, top: 16 }}
+            colors={{ contentColor: colors.content.base }}
+            onClick={onCloseRequest}
+          >
+            <Text
+              style={{
+                fontFamily: fontFamily.medium,
+                fontSize: fontSizes.body.fontSize,
+                lineHeight: fontSizes.body.lineHeight,
+              }}
+            >
+              {dismissTitle}
+            </Text>
+          </TextButton>
+        )}
+
+        {footnote && (
+          <Row
+            verticalAlignment="center"
+            horizontalArrangement={{ spacedBy: 6 }}
+          >
+            <RNHostView matchContents>
+              <SymbolView
+                name={{ android: "shield" }}
+                tintColor={colors.content.muted}
+                size={16}
+              />
+            </RNHostView>
+            <Text
+              style={{
+                fontFamily: fontFamily.regular,
+                fontSize: fontSizes.label.fontSize,
+                lineHeight: fontSizes.label.lineHeight,
+              }}
+              color={colors.content.muted.toString()}
+            >
+              {footnote}
+            </Text>
+          </Row>
         )}
       </Column>
     </ModalBottomSheet>

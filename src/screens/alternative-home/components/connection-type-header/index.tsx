@@ -2,69 +2,45 @@ import {
   type NetInfoState,
   NetInfoStateType,
 } from "@react-native-community/netinfo";
-import { useEffect, useState } from "react";
-import { View } from "react-native";
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
-import { runOnJS } from "react-native-worklets";
+import { SymbolView } from "expo-symbols";
+import { useTranslation } from "react-i18next";
+import { Pressable, Text, View } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
-import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useStyles } from "@/hooks/use-styles";
+
+import { androidRippleConfig } from "@/theme/android-ripple";
 
 import { ConnectionTypeIcon } from "./components/connection-type-icon";
 
 import { getStyles } from "./styles";
 
-type CircleProps = {
+type Props = {
   netInfo: NetInfoState | null;
+  onShowNetworkName: () => void;
 };
 
-export function ConnectionType({ netInfo }: CircleProps) {
+type Subtitle =
+  | { kind: "text"; value: string }
+  | { kind: "status"; value: "connected" | "not_connected" }
+  | { kind: "show_network_name" }
+  | null;
+
+export function ConnectionTypeHeader({ netInfo, onShowNetworkName }: Props) {
   const styles = useStyles(getStyles);
-  // const { netInfo } = useNetworkUpdates();
-  const [displayedSubtitle, setDisplayedSubtitle] = useState(
-    getAdditionalInfo(netInfo),
-  );
-
-  const showMoreInfo = useSharedValue(0);
-
-  useEffect(() => {
-    const subtitle = getAdditionalInfo(netInfo);
-
-    if (subtitle) {
-      setDisplayedSubtitle(subtitle);
-      showMoreInfo.value = withTiming(1, { duration: 200 });
-      return;
-    }
-
-    showMoreInfo.value = withTiming(0, { duration: 200 }, (finished) => {
-      if (finished) {
-        runOnJS(setDisplayedSubtitle)("");
-      }
-    });
-  }, [netInfo, showMoreInfo]);
-
-  const labelAnimatedStyles = useAnimatedStyle(() => {
-    const translateY = interpolate(showMoreInfo.value, [0, 1], [0, -10]);
-
-    return {
-      transform: [{ translateY }],
-    };
+  const { t } = useTranslation("translation", {
+    keyPrefix: "alternative_home.header",
   });
 
-  const subtitleAnimatedStyles = useAnimatedStyle(() => {
-    const opacity = interpolate(showMoreInfo.value, [0, 1], [0, 1]);
-    const scale = interpolate(showMoreInfo.value, [0, 1], [0.9, 1]);
+  const subtitle = getSubtitle(netInfo);
 
-    return {
-      opacity,
-      transform: [{ scale }, { translateY: 10 }],
-    };
-  });
+  // When Wi-Fi is on but not connected, Android reports type "none".
+  const isWifiWithoutNetwork =
+    netInfo?.type === NetInfoStateType.none && netInfo.isWifiEnabled;
+
+  const typeKey = isWifiWithoutNetwork
+    ? NetInfoStateType.wifi
+    : (netInfo?.type ?? NetInfoStateType.unknown);
 
   return (
     <View style={styles.container}>
@@ -73,85 +49,87 @@ export function ConnectionType({ netInfo }: CircleProps) {
       </View>
 
       <View style={styles.content}>
-        <Animated.Text style={[styles.label, labelAnimatedStyles]}>
-          {LABEL_MAP[netInfo?.type ?? NetInfoStateType.none]}
-        </Animated.Text>
-        <Animated.Text style={[styles.subtitle, subtitleAnimatedStyles]}>
-          {displayedSubtitle}
-        </Animated.Text>
+        <Text style={styles.label} numberOfLines={1}>
+          {t(`type.${typeKey}`)}
+        </Text>
+
+        {(subtitle?.kind === "text" || subtitle?.kind === "status") && (
+          <Animated.Text
+            key={subtitle.value}
+            entering={FadeIn}
+            exiting={FadeOut}
+            style={styles.subtitle}
+            numberOfLines={1}
+          >
+            {subtitle.kind === "status"
+              ? t(`subtitle.${subtitle.value}`)
+              : subtitle.value}
+          </Animated.Text>
+        )}
+
+        {subtitle?.kind === "show_network_name" && (
+          <Animated.View
+            entering={FadeIn}
+            exiting={FadeOut}
+            style={styles.chipContainer}
+          >
+            <Pressable
+              style={styles.chip}
+              android_ripple={androidRippleConfig}
+              onPress={onShowNetworkName}
+              accessibilityRole="button"
+            >
+              <SymbolView
+                name={{ android: "visibility" }}
+                size={16}
+                tintColor={styles.chipLabel.color}
+              />
+              <Text style={styles.chipLabel}>
+                {t("subtitle.show_network_name")}
+              </Text>
+            </Pressable>
+          </Animated.View>
+        )}
       </View>
     </View>
   );
 }
 
-const LABEL_MAP: Record<NetInfoStateType, string> = {
-  bluetooth: "Bluetooth",
-  cellular: "Cellular",
-  ethernet: "Ethernet",
-  none: "No connection",
-  other: "Other",
-  unknown: "Unkown connection",
-  vpn: "VPN",
-  wifi: "Wi-Fi",
-  wimax: "Wi-Max",
-};
-
-function getAdditionalInfo(netInfo: NetInfoState | null) {
+function getSubtitle(netInfo: NetInfoState | null): Subtitle {
   switch (netInfo?.type) {
-    case NetInfoStateType.bluetooth:
-      if (netInfo.isConnected) {
-        return "Connected";
-      }
-
-      return "Not connected";
-
-    case NetInfoStateType.cellular:
-      if (netInfo.details.carrier) {
-        return netInfo.details.carrier;
-      }
-
-      return null;
-
-    case NetInfoStateType.ethernet:
-      if (netInfo.isConnected) {
-        return "Connected";
-      }
-
-      return "Not connected";
-
-    case NetInfoStateType.none:
-      return null;
-
-    case NetInfoStateType.other:
-      return null;
-
-    case NetInfoStateType.unknown:
-      return null;
-
-    case NetInfoStateType.vpn:
-      if (netInfo.isConnected) {
-        return "Connected";
-      }
-
-      return "Not connected";
-
     case NetInfoStateType.wifi:
       if (!netInfo.isConnected) {
-        return "Not connected";
+        return { kind: "status", value: "not_connected" };
       }
 
       if (netInfo.details.ssid) {
-        return netInfo.details.ssid;
+        return { kind: "text", value: netInfo.details.ssid };
       }
 
-      return "Show SSID";
+      return { kind: "show_network_name" };
 
+    case NetInfoStateType.cellular:
+      if (netInfo.details.carrier) {
+        return { kind: "text", value: netInfo.details.carrier };
+      }
+
+      return null;
+
+    case NetInfoStateType.none:
+      if (netInfo.isWifiEnabled) {
+        return { kind: "status", value: "not_connected" };
+      }
+
+      return null;
+
+    case NetInfoStateType.bluetooth:
+    case NetInfoStateType.ethernet:
+    case NetInfoStateType.vpn:
     case NetInfoStateType.wimax:
-      if (netInfo.isConnected) {
-        return "Connected";
-      }
-
-      return "Not connected";
+      return {
+        kind: "status",
+        value: netInfo.isConnected ? "connected" : "not_connected",
+      };
 
     default:
       return null;
