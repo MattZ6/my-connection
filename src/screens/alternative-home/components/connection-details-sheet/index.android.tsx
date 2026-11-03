@@ -4,8 +4,10 @@ import {
   type ModalBottomSheetRef,
   RNHostView,
 } from "@expo/ui/jetpack-compose";
-import { useRef } from "react";
-import { ScrollView } from "react-native";
+import { fillMaxWidth, height } from "@expo/ui/jetpack-compose/modifiers";
+import { useRef, useState } from "react";
+import { ScrollView, StyleSheet, useWindowDimensions } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useTheme } from "@/hooks/use-theme";
 
@@ -29,6 +31,15 @@ export function ConnectionDetailsSheet({
 }: Props) {
   const sheetRef = useRef<ModalBottomSheetRef>(null);
   const { resolvedTheme, colors } = useTheme();
+  const insets = useSafeAreaInsets();
+  const window = useWindowDimensions();
+  const [contentHeight, setContentHeight] = useState<number | null>(null);
+
+  // The Compose sheet does not scroll RN content by itself, so the hosted view
+  // gets an explicit height: the content's own height, capped so long lists
+  // (Wi-Fi) scroll inside the sheet instead of overflowing the screen.
+  const maxHeight = Math.round(window.height * 0.8);
+  const hostHeight = Math.min(contentHeight ?? maxHeight, maxHeight);
 
   if (!isOpen || !details) {
     return null;
@@ -42,15 +53,23 @@ export function ConnectionDetailsSheet({
   };
 
   return (
-    <Host matchContents colorScheme={resolvedTheme}>
+    // The sheet opens in its own window, so the Host itself must not take any
+    // space in the screen layout (otherwise it paints an empty block there).
+    <Host colorScheme={resolvedTheme} style={styles.host}>
       <ModalBottomSheet
         ref={sheetRef}
         onDismissRequest={onClose}
         containerColor={colors.surface.elevated}
         contentColor={colors.content.base}
       >
-        <RNHostView matchContents={{ vertical: true }}>
-          <ScrollView bounces={false}>
+        <RNHostView modifiers={[fillMaxWidth(), height(hostHeight)]}>
+          <ScrollView
+            bounces={false}
+            contentContainerStyle={{ paddingBottom: insets.bottom }}
+            onContentSizeChange={(_, contentSizeHeight) =>
+              setContentHeight(Math.ceil(contentSizeHeight))
+            }
+          >
             <DetailsContent
               details={details}
               onAllowAccess={handleAllowAccess}
@@ -61,3 +80,11 @@ export function ConnectionDetailsSheet({
     </Host>
   );
 }
+
+const styles = StyleSheet.create({
+  host: {
+    position: "absolute",
+    width: 0,
+    height: 0,
+  },
+});

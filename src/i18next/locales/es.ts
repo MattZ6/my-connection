@@ -288,8 +288,7 @@ export const es = {
           vpn: "La VPN oculta la red que tiene debajo, así que solo están disponibles estas propiedades.",
           bluetooth:
             "Internet compartida desde otro dispositivo por Bluetooth. No hay más detalles disponibles para esta conexión.",
-          other:
-            "No hay más detalles disponibles para este tipo de conexión.",
+          other: "No hay más detalles disponibles para este tipo de conexión.",
         },
       },
       network_name: {
