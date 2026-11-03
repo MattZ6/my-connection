@@ -5,7 +5,11 @@ import {
 import { SymbolView } from "expo-symbols";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+import Animated, {
+  FadeIn,
+  FadeOut,
+  LinearTransition,
+} from "react-native-reanimated";
 
 import { useStyles } from "@/hooks/use-styles";
 
@@ -19,6 +23,10 @@ type Props = {
   netInfo: NetInfoState | null;
   onShowNetworkName: () => void;
 };
+
+const LABEL_TRANSITION = LinearTransition.duration(220);
+const SUBTITLE_ENTERING = FadeIn.duration(220).delay(80);
+const SUBTITLE_EXITING = FadeOut.duration(150);
 
 type Subtitle =
   | { kind: "text"; value: string }
@@ -49,15 +57,20 @@ export function ConnectionTypeHeader({ netInfo, onShowNetworkName }: Props) {
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.label} numberOfLines={1}>
+        {/* Slides to the vertical center when the subtitle goes away. */}
+        <Animated.Text
+          layout={LABEL_TRANSITION}
+          style={styles.label}
+          numberOfLines={1}
+        >
           {t(`type.${typeKey}`)}
-        </Text>
+        </Animated.Text>
 
         {(subtitle?.kind === "text" || subtitle?.kind === "status") && (
           <Animated.Text
             key={subtitle.value}
-            entering={FadeIn}
-            exiting={FadeOut}
+            entering={SUBTITLE_ENTERING}
+            exiting={SUBTITLE_EXITING}
             style={styles.subtitle}
             numberOfLines={1}
           >
@@ -69,8 +82,8 @@ export function ConnectionTypeHeader({ netInfo, onShowNetworkName }: Props) {
 
         {subtitle?.kind === "show_network_name" && (
           <Animated.View
-            entering={FadeIn}
-            exiting={FadeOut}
+            entering={SUBTITLE_ENTERING}
+            exiting={SUBTITLE_EXITING}
             style={styles.chipContainer}
           >
             <Pressable
