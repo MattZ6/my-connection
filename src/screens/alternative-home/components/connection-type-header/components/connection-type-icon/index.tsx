@@ -7,16 +7,21 @@ import { type AndroidSymbol, type SFSymbol, SymbolView } from "expo-symbols";
 
 import { useTheme } from "@/hooks/use-theme";
 
+import { SIGNAL_THRESHOLDS } from "../../../../utils/signal-quality";
+
 type Props = {
   netInfo: NetInfoState | null;
 };
 
 export function ConnectionTypeIcon({ netInfo }: Props) {
   const theme = useTheme();
-  const symbolsName = getSymbolFromNetInfo(netInfo);
 
   return (
-    <SymbolView tintColor={theme.colors.content.base} name={symbolsName} />
+    <SymbolView
+      tintColor={theme.colors.content.base}
+      name={getSymbolFromNetInfo(netInfo)}
+      size={22}
+    />
   );
 }
 
@@ -26,13 +31,11 @@ function getSymbolFromNetInfo(netInfo: NetInfoState | null): {
 } {
   switch (netInfo?.type) {
     case NetInfoStateType.bluetooth:
-      if (netInfo.isConnected) {
-        return { android: "bluetooth_connected" };
-      }
+      return {
+        android: netInfo.isConnected ? "bluetooth_connected" : "bluetooth",
+      };
 
-      return { android: "bluetooth" };
-
-    case NetInfoStateType.cellular:
+    case NetInfoStateType.cellular: {
       if (!netInfo.isConnected) {
         return { android: "android_cell_4_bar_off" };
       }
@@ -41,48 +44,33 @@ function getSymbolFromNetInfo(netInfo: NetInfoState | null): {
         return { android: "android_cell_4_bar_alert" };
       }
 
-      if (
-        netInfo.details.cellularGeneration === NetInfoCellularGeneration["2g"]
-      ) {
-        return { android: "g_mobiledata" };
-      }
+      const generationIcon: Record<NetInfoCellularGeneration, AndroidSymbol> = {
+        [NetInfoCellularGeneration["2g"]]: "g_mobiledata",
+        [NetInfoCellularGeneration["3g"]]: "3g_mobiledata",
+        [NetInfoCellularGeneration["4g"]]: "4g_mobiledata",
+        [NetInfoCellularGeneration["5g"]]: "5g",
+      };
 
-      if (
-        netInfo.details.cellularGeneration === NetInfoCellularGeneration["3g"]
-      ) {
-        return { android: "3g_mobiledata" };
-      }
+      const generation = netInfo.details.cellularGeneration;
 
-      if (
-        netInfo.details.cellularGeneration === NetInfoCellularGeneration["4g"]
-      ) {
-        return { android: "4g_mobiledata" };
-      }
-
-      if (
-        netInfo.details.cellularGeneration === NetInfoCellularGeneration["5g"]
-      ) {
-        return { android: "5g" };
-      }
-
-      return { android: "android_cell_4_bar" };
+      return {
+        android: generation ? generationIcon[generation] : "android_cell_4_bar",
+      };
+    }
 
     case NetInfoStateType.ethernet:
       return { android: "settings_ethernet" };
 
     case NetInfoStateType.none:
-      return { android: "unknown_med" };
+      return { android: netInfo.isWifiEnabled ? "wifi_find" : "wifi_off" };
 
     case NetInfoStateType.other:
-      return { android: "swap_vert" };
-
-    case NetInfoStateType.unknown:
-      return { android: "android_wifi_3_bar_question" };
+      return { android: "network_ping" };
 
     case NetInfoStateType.vpn:
-      return { android: "vpn_lock_2" };
+      return { android: "vpn_key" };
 
-    case NetInfoStateType.wifi:
+    case NetInfoStateType.wifi: {
       if (!netInfo.isConnected) {
         return { android: "wifi_off" };
       }
@@ -91,22 +79,29 @@ function getSymbolFromNetInfo(netInfo: NetInfoState | null): {
         return { android: "android_wifi_3_bar_alert" };
       }
 
-      if (netInfo.details.strength !== null) {
-        if (netInfo.details.strength <= 20) {
-          return { android: "wifi_1_bar" };
+      const { strength } = netInfo.details;
+
+      if (strength !== null) {
+        if (strength < SIGNAL_THRESHOLDS.weak) {
+          return { android: "network_wifi_1_bar" };
         }
 
-        if (netInfo.details.strength <= 65) {
-          return { android: "wifi_2_bar" };
+        if (strength < SIGNAL_THRESHOLDS.fair) {
+          return { android: "network_wifi_2_bar" };
+        }
+
+        if (strength < SIGNAL_THRESHOLDS.good) {
+          return { android: "network_wifi_3_bar" };
         }
       }
 
       return { android: "wifi" };
+    }
 
     case NetInfoStateType.wimax:
       return { android: "cell_tower" };
 
     default:
-      return { android: "question_mark" };
+      return { android: "error_outline" };
   }
 }

@@ -16,15 +16,12 @@ import {
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { LocationBottomSheet } from "@/components/location-bottom-sheet";
 import { useHaptics } from "@/hooks/use-haptics";
 import { useLocation } from "@/hooks/use-location";
 import { useNetworkUpdates } from "@/hooks/use-network-updates";
 import { useTheme } from "@/hooks/use-theme";
-
 import { LocationUtils } from "@/utils/location";
-
-import { LocationBottomSheet } from "./components/location-bottom-sheet";
 
 type Props = {
   ssid: string | null;
