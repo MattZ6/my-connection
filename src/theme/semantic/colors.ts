@@ -32,6 +32,7 @@ export const colors: Colors = {
 
   semantic: {
     warning: palette.red["11"],
+    caution: palette.amber["11"],
     success: palette.green["11"],
   },
 };
@@ -62,6 +63,7 @@ export const darkColors: Colors = {
 
   semantic: {
     warning: darkPalette.red["11"],
+    caution: darkPalette.amber["11"],
     success: darkPalette.green["11"],
   },
 };
@@ -151,6 +153,11 @@ export function generateSystemColors(
         ios: Color.ios.secondaryLabel,
         default: "",
       })!,
+      caution: Platform.select({
+        android: androidMaterialColor.secondary,
+        ios: Color.ios.systemOrange,
+        default: "",
+      })!,
     },
   };
 }
@@ -173,6 +180,7 @@ type Border = {
 
 type Semantic = {
   warning: AppColorValue;
+  caution: AppColorValue;
   success: AppColorValue;
 };
 

@@ -18,174 +18,198 @@ export const en = {
     },
 
     home: {
-      meta: { title: "Connection Health" },
-
-      sections: {
-        hero: {
-          fields: {
-            connection_type: {
-              label: "Connection Type",
-              value: {
-                bluetooth: "Bluetooth",
-                cellular: "Cellular",
-                ethernet: "Ethernet",
-                none: "None",
-                other: "Other",
-                unknown: "Unknown",
-                vpn: "VPN",
-                wifi: "Wi-Fi",
-                wimax: "WiMAX",
-              },
-            },
-            strength: { label: "Signal Strength" },
-            speed: {
-              label: "Speed",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              label: "Download",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              label: "Upload",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            carrier: {
-              label: "Carrier",
-            },
-            generation: {
-              label: "Generation",
-            },
+      header: {
+        type: {
+          wifi: "Wi-Fi",
+          cellular: "Cellular",
+          ethernet: "Ethernet",
+          vpn: "VPN",
+          bluetooth: "Bluetooth",
+          other: "Other",
+          wimax: "WiMAX",
+          unknown: "Unknown connection",
+          none: "No connection",
+        },
+        subtitle: {
+          connected: "Connected",
+          not_connected: "Not connected",
+          show_network_name: "Show network name",
+        },
+      },
+      quality: {
+        no_signal: "No signal",
+        weak: "Weak",
+        fair: "Fair",
+        good: "Good",
+        excellent: "Excellent",
+      },
+      gauge: {
+        a11y: "Signal strength {{ value }}%, {{ quality }}",
+        mobile: "Mobile network",
+        wired: "Wired",
+        vpn: "VPN active",
+        tethering: "Tethering",
+        other: "Other network",
+        unknown: "Unknown",
+        offline: "Offline",
+        not_connected: "Not connected",
+        checking: "Checking",
+      },
+      status: {
+        reachable: "Internet reachable",
+        unreachable: "No internet access",
+        offline: "No internet",
+        checking: "Checking internet…",
+      },
+      link_speed: {
+        title: "Link speed",
+        unit: "Mbps",
+        download: "Download",
+        upload: "Upload",
+      },
+      pills: {
+        metered: "Metered connection · uses your data plan",
+        vpn: "Signal details are hidden behind the VPN",
+      },
+      details: {
+        button: "View details",
+        title: "Connection details",
+        sections: {
+          network: "Network",
+          signal: "Signal",
+          ip: "IP configuration",
+          mobile: "Mobile network",
+          properties: "Properties",
+        },
+        fields: {
+          ssid: "Name (SSID)",
+          bssid: "BSSID",
+          frequency: "Frequency",
+          strength: "Strength",
+          link_speed: "Link speed ↓ / ↑",
+          ip_address: "IP address",
+          subnet: "Subnet mask",
+          carrier: "Carrier",
+          generation: "Generation",
+          connection_type: "Connection type",
+          metered: "Metered connection",
+          internet: "Internet access",
+          wifi_enabled: "Wi-Fi turned on",
+        },
+        values: {
+          yes: "Yes",
+          no: "No",
+          unknown: "—",
+          hidden: "Hidden",
+          frequency: "{{ value }} GHz",
+          strength: "{{ value }}%",
+          link_speed: "{{ download }} / {{ upload }} Mbps",
+        },
+        notes: {
+          hidden_network:
+            "Android only shares the Wi-Fi name and BSSID with apps that have location access. Your location is never stored or shared.",
+          allow_access: "Allow access",
+          cellular:
+            "IP address and signal strength are not available for mobile data.",
+          vpn: "The VPN hides the network underneath it, so only these properties are available.",
+          bluetooth:
+            "Internet shared from another device over Bluetooth. No other details are available for this connection.",
+          other: "No other details are available for this connection type.",
+        },
+      },
+      network_name: {
+        dismiss: "Not now",
+        footnote: "Your location is never stored or shared.",
+        handling: {
+          permission_request: {
+            title: "Access Wi-Fi network name",
+            message:
+              "To show your Wi-Fi network name (SSID), this app requires location access. This is an Android system requirement.",
+            action: { title: "Allow Access" },
+          },
+          permission_blocked: {
+            title: "Permission required",
+            message:
+              "Location permission was denied.\nYou can enable it in your device settings.",
+            action: { title: "Open Settings" },
+          },
+          precision_required: {
+            title: "Precise location required",
+            message:
+              "To show detailed Wi-Fi information, precise location needs to be enabled.\nUpdate your location settings to continue.",
+            action: { title: "Open Settings" },
+          },
+          location_off: {
+            title: "Turn on location",
+            message:
+              "Location services need to be enabled to access Wi-Fi details.",
+            action: { title: "Open Settings" },
           },
         },
-
-        summary: {
-          title: "Summary",
-          fields: {
-            wifi_enabled: {
-              title: "Wi-Fi Enabled",
-              description: "Whether Wi-Fi is turned on.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-            connected: {
-              title: "Connected",
-              description: "Whether you're currently connected to a network.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-            internet_reachable: {
-              title: "Internet Access",
-              description:
-                "Whether the internet can be reached using your current connection.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-          },
+      },
+      hints: {
+        dismiss: "Dismiss",
+        actions: {
+          open_network_settings: "Open network settings",
+          choose_network: "Choose a network",
+          turn_on_wifi: "Turn on Wi-Fi",
         },
-
-        performance: {
-          title: "Performance",
-          fields: {
-            strength: {
-              title: "Signal Strength",
-              value_zero: "—",
-              value_other: "{{ count }}%",
-            },
-            speed: {
-              title: "Link Speed",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              title: "Download",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              title: "Upload",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-          },
+        offline: {
+          title: "You're offline",
+          message: "Turn on Wi-Fi or mobile data to get connected.",
         },
-
-        network: {
-          title: "Network",
-          fields: {
-            ssid: {
-              title: "SSID",
-              action: {
-                title: "Tap to show",
-                handling: {
-                  permission_request: {
-                    title: "Access Wi-Fi network name",
-                    message:
-                      "To show your Wi-Fi network name (SSID), this app requires location access. This is an Android system requirement.",
-                    action: { title: "Allow Access" },
-                  },
-                  permission_blocked: {
-                    title: "Permission required",
-                    message:
-                      "Location permission was denied.\nYou can enable it in your device settings.",
-                    action: { title: "Open Settings" },
-                  },
-                  precision_required: {
-                    title: "Precise location required",
-                    message:
-                      "To show detailed Wi-Fi information, precise location needs to be enabled.\nUpdate your location settings to continue.",
-                    action: { title: "Open Settings" },
-                  },
-                  location_off: {
-                    title: "Turn on location",
-                    message:
-                      "Location services need to be enabled to access Wi-Fi details.",
-                    action: { title: "Open Settings" },
-                  },
-                },
-              },
-            },
-            bssid: { title: "BSSID" },
-            frequency: {
-              title: "Frequency",
-              value_zero: "—",
-              value_other: "{{ count }} GHz",
-            },
-          },
+        wifi_disconnected: {
+          title: "Not connected to a network",
+          message: "Wi-Fi is on, but you are not connected to any network.",
         },
-
-        ip: {
-          title: "IP Configuration",
-          fields: {
-            ip: {
-              title: "IP Address",
-              description: "Can be in IPv4 or IPv6 format.",
-            },
-            mask: {
-              title: "Subnet Mask",
-              description: "Displayed in IPv4 format.",
-            },
-          },
+        wifi_no_internet: {
+          title: "Connected, but no internet",
+          message:
+            "The network may need a sign-in, or the router has no internet right now.",
         },
-
-        cellular: {
-          title: "Cellular",
-          fields: {
-            carrier: { title: "Carrier" },
-            generation: { title: "Network Generation" },
-          },
+        cellular_no_internet: {
+          title: "Connected, but no internet",
+          message:
+            "Check if your data plan is active or if you have coverage here.",
         },
-
-        properties: {
-          title: "Connection Properties",
-          fields: {
-            expensive_connection: {
-              title: "Expensive Connection",
-              description:
-                "May consume more battery or incur additional costs.",
-              value: { true: "Yes", false: "No", null: "—" },
-            },
-          },
+        weak_signal: {
+          title: "Weak signal",
+          message:
+            "Move closer to your router or remove obstacles between you and it.",
+        },
+        slow_cellular: {
+          title: "Slow mobile network",
+          message:
+            "You are on {{ generation }}. Pages and video may load slowly here.",
+        },
+        slow_link: {
+          title: "Slow link to your router",
+          message:
+            "Your phone and router are connecting at a low speed. Restarting Wi-Fi can help.",
+        },
+        fair_signal: {
+          title: "Signal could be better",
+          message:
+            "Video calls may stutter. Moving a bit closer to the router can help.",
+        },
+        band_2_4: {
+          title: "You're on 2.4 GHz",
+          message:
+            "If your router also has a 5 GHz network, it is usually faster when you are close.",
+        },
+        metered_wifi: {
+          title: "This Wi-Fi is metered",
+          message:
+            "Android treats it like mobile data, so some apps may limit background use.",
+        },
+        mobile_data: {
+          title: "Using mobile data",
+          message: "Wi-Fi is off. Turning it on can save your data plan.",
+        },
+        vpn: {
+          title: "VPN is on",
+          message:
+            "Speed and signal depend on the VPN server, so the numbers here may differ.",
         },
       },
     },

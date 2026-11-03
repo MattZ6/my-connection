@@ -18,175 +18,199 @@ export const es = {
     },
 
     home: {
-      meta: { title: "Mi Conexión" },
-
-      sections: {
-        hero: {
-          fields: {
-            connection_type: {
-              label: "Tipo de conexión",
-              value: {
-                bluetooth: "Bluetooth",
-                cellular: "Datos móviles",
-                ethernet: "Ethernet",
-                none: "Ninguna",
-                other: "Otra",
-                unknown: "Desconocida",
-                vpn: "VPN",
-                wifi: "Wi-Fi",
-                wimax: "WiMAX",
-              },
-            },
-            strength: { label: "Intensidad de la señal" },
-            speed: {
-              label: "Velocidad",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              label: "Descarga",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              label: "Subida",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            carrier: {
-              label: "Operador",
-            },
-            generation: {
-              label: "Generación de red",
-            },
+      header: {
+        type: {
+          wifi: "Wi-Fi",
+          cellular: "Red móvil",
+          ethernet: "Ethernet",
+          vpn: "VPN",
+          bluetooth: "Bluetooth",
+          other: "Otra",
+          wimax: "WiMAX",
+          unknown: "Conexión desconocida",
+          none: "Sin conexión",
+        },
+        subtitle: {
+          connected: "Conectado",
+          not_connected: "No conectado",
+          show_network_name: "Mostrar nombre de la red",
+        },
+      },
+      quality: {
+        no_signal: "Sin señal",
+        weak: "Débil",
+        fair: "Regular",
+        good: "Bueno",
+        excellent: "Excelente",
+      },
+      gauge: {
+        a11y: "Intensidad de la señal {{ value }}%, {{ quality }}",
+        mobile: "Red móvil",
+        wired: "Por cable",
+        vpn: "VPN activa",
+        tethering: "Compartida",
+        other: "Otra red",
+        unknown: "Desconocida",
+        offline: "Sin conexión",
+        not_connected: "No conectado",
+        checking: "Verificando",
+      },
+      status: {
+        reachable: "Internet accesible",
+        unreachable: "Sin acceso a internet",
+        offline: "Sin internet",
+        checking: "Verificando internet…",
+      },
+      link_speed: {
+        title: "Velocidad del enlace",
+        unit: "Mbps",
+        download: "Descarga",
+        upload: "Subida",
+      },
+      pills: {
+        metered: "Conexión medida · usa tu plan de datos",
+        vpn: "Los detalles de la señal quedan ocultos por la VPN",
+      },
+      details: {
+        button: "Ver detalles",
+        title: "Detalles de la conexión",
+        sections: {
+          network: "Red",
+          signal: "Señal",
+          ip: "Configuración de IP",
+          mobile: "Red móvil",
+          properties: "Propiedades",
+        },
+        fields: {
+          ssid: "Nombre (SSID)",
+          bssid: "BSSID",
+          frequency: "Frecuencia",
+          strength: "Intensidad",
+          link_speed: "Velocidad ↓ / ↑",
+          ip_address: "Dirección IP",
+          subnet: "Máscara de subred",
+          carrier: "Operador",
+          generation: "Generación",
+          connection_type: "Tipo de conexión",
+          metered: "Conexión medida",
+          internet: "Acceso a internet",
+          wifi_enabled: "Wi-Fi activado",
+        },
+        values: {
+          yes: "Sí",
+          no: "No",
+          unknown: "—",
+          hidden: "Oculto",
+          frequency: "{{ value }} GHz",
+          strength: "{{ value }}%",
+          link_speed: "{{ download }} / {{ upload }} Mbps",
+        },
+        notes: {
+          hidden_network:
+            "Android solo comparte el nombre del Wi-Fi y el BSSID con apps que tienen acceso a la ubicación. Tu ubicación nunca se guarda ni se comparte.",
+          allow_access: "Permitir acceso",
+          cellular:
+            "La dirección IP y la intensidad de la señal no están disponibles para datos móviles.",
+          vpn: "La VPN oculta la red que tiene debajo, así que solo están disponibles estas propiedades.",
+          bluetooth:
+            "Internet compartida desde otro dispositivo por Bluetooth. No hay más detalles disponibles para esta conexión.",
+          other: "No hay más detalles disponibles para este tipo de conexión.",
+        },
+      },
+      network_name: {
+        dismiss: "Ahora no",
+        footnote: "Tu ubicación nunca se guarda ni se comparte.",
+        handling: {
+          permission_request: {
+            title: "Acceder al nombre de la red Wi-Fi",
+            message:
+              "Para mostrar el nombre de tu red Wi-Fi (SSID), esta app necesita acceso a la ubicación. Es un requisito del sistema Android.",
+            action: { title: "Permitir Acceso" },
+          },
+          permission_blocked: {
+            title: "Permiso necesario",
+            message:
+              "El permiso de ubicación fue denegado.\nPuedes activarlo en la configuración del dispositivo.",
+            action: { title: "Abrir Configuración" },
+          },
+          precision_required: {
+            title: "Ubicación precisa requerida",
+            message:
+              "Para mostrar información detallada de la red Wi-Fi, es necesario activar la ubicación precisa.\nAjusta esta opción en la configuración del dispositivo.",
+            action: { title: "Abrir Configuración" },
+          },
+          location_off: {
+            title: "Activar ubicación",
+            message:
+              "Es necesario activar la ubicación para acceder a los datos de la red Wi-Fi.",
+            action: { title: "Abrir Configuración" },
           },
         },
-
-        summary: {
-          title: "Resumen",
-          fields: {
-            wifi_enabled: {
-              title: "Wi-Fi activado",
-              description: "Indica si el Wi-Fi está encendido.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-            connected: {
-              title: "Conectado",
-              description:
-                "Indica si estás conectado a una red en este momento.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-            internet_reachable: {
-              title: "Acceso a internet",
-              description:
-                "Indica si es posible acceder a internet con la conexión actual.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-          },
+      },
+      hints: {
+        dismiss: "Descartar",
+        actions: {
+          open_network_settings: "Abrir ajustes de red",
+          choose_network: "Elegir una red",
+          turn_on_wifi: "Activar Wi-Fi",
         },
-
-        performance: {
-          title: "Rendimiento",
-          fields: {
-            strength: {
-              title: "Intensidad de la señal",
-              value_zero: "—",
-              value_other: "{{ count }}%",
-            },
-            speed: {
-              title: "Velocidad del enlace",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            download: {
-              title: "Descarga",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-            upload: {
-              title: "Subida",
-              value_zero: "—",
-              value_other: "{{ count }} Mbps",
-            },
-          },
+        offline: {
+          title: "Estás sin conexión",
+          message: "Activa el Wi-Fi o los datos móviles para conectarte.",
         },
-
-        network: {
-          title: "Red",
-          fields: {
-            ssid: {
-              title: "SSID",
-              action: {
-                title: "Toca para mostrar",
-                handling: {
-                  permission_request: {
-                    title: "Acceder al nombre de la red Wi-Fi",
-                    message:
-                      "Para mostrar el nombre de tu red Wi-Fi (SSID), esta app necesita acceso a la ubicación. Es un requisito del sistema Android.",
-                    action: { title: "Permitir Acceso" },
-                  },
-                  permission_blocked: {
-                    title: "Permiso necesario",
-                    message:
-                      "El permiso de ubicación fue denegado.\nPuedes activarlo en la configuración del dispositivo.",
-                    action: { title: "Abrir Configuración" },
-                  },
-                  precision_required: {
-                    title: "Ubicación precisa requerida",
-                    message:
-                      "Para mostrar información detallada de la red Wi-Fi, es necesario activar la ubicación precisa.\nAjusta esta opción en la configuración del dispositivo.",
-                    action: { title: "Abrir Configuración" },
-                  },
-                  location_off: {
-                    title: "Activar ubicación",
-                    message:
-                      "Es necesario activar la ubicación para acceder a los datos de la red Wi-Fi.",
-                    action: { title: "Abrir Configuración" },
-                  },
-                },
-              },
-            },
-            bssid: { title: "BSSID" },
-            frequency: {
-              title: "Frecuencia",
-              value_zero: "—",
-              value_other: "{{ count }} GHz",
-            },
-          },
+        wifi_disconnected: {
+          title: "No estás conectado a una red",
+          message:
+            "El Wi-Fi está activado, pero no estás conectado a ninguna red.",
         },
-
-        ip: {
-          title: "Configuración de IP",
-          fields: {
-            ip: {
-              title: "Dirección IP",
-              description: "Puede estar en formato IPv4 o IPv6.",
-            },
-            mask: {
-              title: "Máscara de subred",
-              description: "Se muestra en formato IPv4.",
-            },
-          },
+        wifi_no_internet: {
+          title: "Conectado, pero sin internet",
+          message:
+            "Puede que la red pida iniciar sesión, o el router no tenga internet ahora.",
         },
-
-        cellular: {
-          title: "Red móvil",
-          fields: {
-            carrier: { title: "Operador" },
-            generation: { title: "Generación de red" },
-          },
+        cellular_no_internet: {
+          title: "Conectado, pero sin internet",
+          message:
+            "Comprueba si tu plan de datos está activo o si hay cobertura aquí.",
         },
-
-        properties: {
-          title: "Propiedades de la conexión",
-          fields: {
-            expensive_connection: {
-              title: "Conexión costosa",
-              description:
-                "Puede consumir más batería o generar costos adicionales.",
-              value: { true: "Sí", false: "No", null: "—" },
-            },
-          },
+        weak_signal: {
+          title: "Señal débil",
+          message: "Acércate al router o quita obstáculos entre tú y él.",
+        },
+        slow_cellular: {
+          title: "Red móvil lenta",
+          message:
+            "Estás en {{ generation }}. Las páginas y los videos pueden cargar despacio aquí.",
+        },
+        slow_link: {
+          title: "Enlace lento con el router",
+          message:
+            "Tu teléfono y el router se conectan a baja velocidad. Reiniciar el Wi-Fi puede ayudar.",
+        },
+        fair_signal: {
+          title: "La señal podría ser mejor",
+          message:
+            "Las videollamadas pueden cortarse. Acercarte un poco al router puede ayudar.",
+        },
+        band_2_4: {
+          title: "Estás en 2.4 GHz",
+          message:
+            "Si tu router también tiene una red de 5 GHz, suele ser más rápida cuando estás cerca.",
+        },
+        metered_wifi: {
+          title: "Este Wi-Fi es medido",
+          message:
+            "Android lo trata como datos móviles, así que algunas apps pueden limitar el uso en segundo plano.",
+        },
+        mobile_data: {
+          title: "Usando datos móviles",
+          message:
+            "El Wi-Fi está desactivado. Activarlo puede ahorrar tu plan de datos.",
+        },
+        vpn: {
+          title: "VPN activa",
+          message:
+            "La velocidad y la señal dependen del servidor de la VPN, así que los números aquí pueden variar.",
         },
       },
     },
