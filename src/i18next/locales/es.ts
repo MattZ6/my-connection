@@ -536,6 +536,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.12.0": {
+            title: "Un icono nuevo",
+            date: "2026-11-04",
+            description:
+              "Un icono nuevo, vuelve la copia en los detalles de la conexión y pequeños ajustes visuales en toda la app.",
+          },
           "v0.11.0": {
             title: "La privacidad primero",
             date: "2026-11-04",
@@ -670,6 +676,38 @@ export const es = {
           },
         },
         content: {
+          "v0.12.0": {
+            paragraphs: [
+              "My Connection tiene un icono nuevo: un anillo de señal alrededor del símbolo del Wi-Fi, inspirado en el anillo que ves en el inicio.",
+              "Vuelve la copia en los detalles de la conexión. Toca el nombre de la red, el BSSID o la dirección IP en Ver detalles para copiarlo. Esto se había quedado fuera del nuevo inicio.",
+              "Esta versión también trae pequeños ajustes visuales en el inicio, Acerca de y Ajustes.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Novedades",
+                items: [
+                  "Nuevo icono de la app, con un anillo de señal alrededor del símbolo del Wi-Fi.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Vuelve a copiar el nombre de la red, el BSSID y la dirección IP desde los detalles de la conexión.",
+                  "La sección del autor ahora está al final de la pantalla Acerca de.",
+                  "Tamaños de texto y espaciados refinados en los consejos del inicio, el botón de detalles y las pantallas de ajustes.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Se corrigió la posición de la foto del autor en la pantalla Acerca de.",
+                ],
+              },
+            ],
+          },
           "v0.11.0": {
             paragraphs: [
               "La privacidad no es una función, es un principio. A partir de esta versión, My Connection no envía nada sin tu consentimiento.",

@@ -533,6 +533,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.12.0": {
+            title: "A fresh icon",
+            date: "2026-11-04",
+            description:
+              "A new app icon, copying from the connection details is back, and small visual refinements across the app.",
+          },
           "v0.11.0": {
             title: "Privacy first",
             date: "2026-11-04",
@@ -667,6 +673,38 @@ export const en = {
           },
         },
         content: {
+          "v0.12.0": {
+            paragraphs: [
+              "My Connection has a new icon: a signal ring around the Wi-Fi symbol, inspired by the ring you see on the home screen.",
+              "Copying from the connection details is back. Tap the network name, BSSID or IP address in View details to copy it. This had been left out of the new home.",
+              "This version also brings small visual refinements to the home, About and Settings screens.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "New app icon with a signal ring around the Wi-Fi symbol.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Copy the network name, BSSID and IP address from the connection details again.",
+                  "The author section now sits at the end of the About screen.",
+                  "Refined text sizes and spacing on the home tips, the details button and the settings screens.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: [
+                  "Fixed the position of the author photo on the About screen.",
+                ],
+              },
+            ],
+          },
           "v0.11.0": {
             paragraphs: [
               "Privacy isn't a feature, it's a principle. Starting with this version, My Connection sends nothing without your consent.",
