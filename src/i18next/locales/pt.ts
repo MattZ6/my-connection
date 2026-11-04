@@ -490,6 +490,8 @@ export const pt = {
       sections: {
         latest_version: {
           title: "Última versão",
+          badge: "Novo",
+          read_more: "Ler mais",
         },
         previous_versions: {
           title: "Versões anteriores",

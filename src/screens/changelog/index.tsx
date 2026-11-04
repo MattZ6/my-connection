@@ -1,29 +1,22 @@
-import { LegendList } from "@legendapp/list/react-native";
 import { useObserve } from "expo-observe";
 import { Stack, useRouter } from "expo-router";
-import { SymbolView } from "expo-symbols";
 import { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, Pressable } from "react-native";
+import { Platform, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import {
-  SectionItemContent,
-  SectionItemHint,
-  SectionItemLabel,
-  SectionItemLeading,
-  SectionItemRoot,
-  SectionItemTrailing,
-} from "@/components/ui/section";
+import { SettingsSection } from "@/components/ui/settings-section";
 
 import { useHaptics } from "@/hooks/use-haptics";
+import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { androidRippleConfig } from "@/theme/android-ripple";
-
 import { LatestVersionCard } from "./components/latest-version-card";
+import { VersionRow } from "./components/version-row";
 
 import { getStyles } from "./styles";
+import type { ChangelogVersion } from "./types";
 
 type VersionMeta = {
   title: string;
@@ -33,26 +26,26 @@ type VersionMeta = {
 
 type RawVersion = Record<string, VersionMeta>;
 
-const now = new Date();
-
 export function ChangelogScreen() {
   const { colors, fontFamily } = useTheme();
-  const styles = useStyles(getStyles);
+  const insets = useSafeAreaInsets();
+  const styles = useStyles((s) => getStyles(s, insets));
   const { performTapFeedback } = useHaptics();
   const router = useRouter();
   const { t, i18n } = useTranslation("translation", { keyPrefix: "changelog" });
   const { markInteractive } = useObserve();
+  const { currrentAppVersion, lastVersionViewed } = useLastVersionViewed();
 
-  const { latestVersion, versions } = useMemo(() => {
+  const [latestVersion, ...previousVersions] = useMemo(() => {
     const rawVersionsMap = t("versions.meta", {
       returnObjects: true,
     }) as RawVersion;
 
-    const [latestVersion, ...allVersions] = Object.entries(rawVersionsMap).map(
-      ([version, content], _index) => {
-        const date = new Date(`${content.date}T00:00:00`);
+    const currentYear = new Date().getFullYear();
 
-        const isSameYear = now.getFullYear() === date.getFullYear();
+    return Object.entries(rawVersionsMap).map(
+      ([version, content]): ChangelogVersion => {
+        const date = new Date(`${content.date}T00:00:00`);
 
         return {
           version,
@@ -61,19 +54,16 @@ export function ChangelogScreen() {
           date: date.toLocaleDateString(i18n.language, {
             day: "numeric",
             month: "short",
-            year: isSameYear ? undefined : "numeric",
+            year: date.getFullYear() === currentYear ? undefined : "numeric",
           }),
         };
       },
     );
-
-    return {
-      latestVersion: latestVersion,
-      versions: allVersions,
-    };
   }, [t, i18n.language]);
 
-  const handleNavigateToVersionPage = useCallback(
+  const hasNews = currrentAppVersion !== lastVersionViewed;
+
+  const handleOpenVersion = useCallback(
     (version: string) => {
       performTapFeedback();
       router.push(`/settings/changelog/${version}`);
@@ -91,7 +81,7 @@ export function ChangelogScreen() {
       <Stack.Screen.Title
         style={{
           fontFamily: Platform.select({
-            android: fontFamily.semiBold,
+            android: fontFamily.medium,
             ios: fontFamily.semiBold,
           }),
           color: colors.content.base.toString(),
@@ -100,51 +90,31 @@ export function ChangelogScreen() {
         {t("meta.title")}
       </Stack.Screen.Title>
 
-      <LegendList
+      <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
+        fadingEdgeLength={32}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
-        data={versions}
-        keyExtractor={(item) => item.version}
-        recycleItems
-        ListHeaderComponent={
-          <LatestVersionCard
-            title={latestVersion.title}
-            version={latestVersion.version}
-            description={latestVersion.description}
-            formattedDate={latestVersion.date}
-            onPress={handleNavigateToVersionPage}
-          />
-        }
-        renderItem={({ item }) => (
-          <Pressable
-            android_disableSound
-            android_ripple={androidRippleConfig}
-            onPress={() => handleNavigateToVersionPage(item.version)}
-          >
-            <SectionItemRoot style={styles.versionItem}>
-              <SectionItemLeading>
-                <SectionItemHint style={styles.versionLabel}>
-                  {item.version}
-                </SectionItemHint>
-              </SectionItemLeading>
+      >
+        <LatestVersionCard
+          {...latestVersion}
+          hasNews={hasNews}
+          onPress={() => handleOpenVersion(latestVersion.version)}
+        />
 
-              <SectionItemContent>
-                <SectionItemLabel>{item.title}</SectionItemLabel>
-              </SectionItemContent>
-
-              <SectionItemTrailing>
-                <SymbolView
-                  name={{ android: "chevron_right" }}
-                  size={24}
-                  tintColor={colors.content.muted}
-                />
-              </SectionItemTrailing>
-            </SectionItemRoot>
-          </Pressable>
+        {previousVersions.length > 0 && (
+          <SettingsSection title={t("sections.previous_versions.title")}>
+            {previousVersions.map((item) => (
+              <VersionRow
+                key={item.version}
+                version={item.version}
+                title={item.title}
+                onPress={() => handleOpenVersion(item.version)}
+              />
+            ))}
+          </SettingsSection>
         )}
-      />
+      </ScrollView>
     </>
   );
 }
