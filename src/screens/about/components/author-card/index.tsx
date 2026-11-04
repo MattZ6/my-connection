@@ -1,5 +1,4 @@
 import { SymbolView } from "expo-symbols";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Text, View } from "react-native";
 
@@ -9,14 +8,13 @@ import { environment } from "../../environment";
 import { getStyles } from "./styles";
 
 const AUTHOR_NAME = "Matheus Zanin";
-const AUTHOR_INITIALS = "MZ";
-const AUTHOR_AVATAR = "https://github.com/MattZ6.png?size=128";
+/** Bundled with the app so the About screen makes no network request. */
+const AUTHOR_AVATAR = require("@/assets/images/author-avatar.jpg");
 
 export function AuthorCard() {
   const styles = useStyles(getStyles);
   const { t } = useTranslation();
   const appName = t(`app.${environment}.name`);
-  const [avatarFailed, setAvatarFailed] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -40,17 +38,12 @@ export function AuthorCard() {
 
         <View style={styles.byline}>
           <View style={styles.avatar} accessibilityElementsHidden>
-            {/* Initials stay as the fallback while offline or if the photo fails. */}
-            <Text style={styles.avatarText}>{AUTHOR_INITIALS}</Text>
-            {!avatarFailed && (
-              <Image
-                source={{ uri: AUTHOR_AVATAR }}
-                alt=""
-                resizeMode="cover"
-                style={styles.avatarImage}
-                onError={() => setAvatarFailed(true)}
-              />
-            )}
+            <Image
+              source={AUTHOR_AVATAR}
+              alt=""
+              resizeMode="cover"
+              style={styles.avatarImage}
+            />
           </View>
 
           <View style={styles.bylineText}>
