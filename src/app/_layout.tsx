@@ -10,9 +10,9 @@ import { useEffect } from "react";
 import { Platform } from "react-native";
 
 import { Provider } from "@/contexts/provider";
-
 import { useFontFamily } from "@/hooks/use-font-family";
 import { useTheme } from "@/hooks/use-theme";
+import { scrubBreadcrumb, scrubEvent } from "@/libs/sentry/scrubber";
 
 const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
 const packageName = String(ExpoConstants.expoConfig?.slug || "");
@@ -38,13 +38,17 @@ if (sentryDsn) {
     // Sample
     tracesSampleRate: 0.2,
 
-    // Session Replay
-    replaysSessionSampleRate: 0,
-    replaysOnErrorSampleRate: 1,
+    // Network details (SSID, BSSID, IP) never leave the device: no screen
+    // replay, no screenshots or view hierarchy, and every event is scrubbed.
+    attachScreenshot: false,
+    attachViewHierarchy: false,
+    beforeSend: scrubEvent,
+    beforeSendTransaction: scrubEvent,
+    beforeBreadcrumb: scrubBreadcrumb,
 
     enableNativeFramesTracking: !isRunningInExpoGo(),
 
-    integrations: [navigationIntegration, Sentry.mobileReplayIntegration()],
+    integrations: [navigationIntegration],
   });
 }
 
