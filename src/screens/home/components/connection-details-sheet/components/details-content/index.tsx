@@ -2,6 +2,7 @@ import { SymbolView } from "expo-symbols";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { type ColorValue, Pressable, Text, View } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
@@ -17,6 +18,9 @@ import type {
 import { CopyIcon } from "../../../copy-icon";
 
 import { getStyles } from "./styles";
+
+const LABEL_ENTERING = FadeIn.duration(200);
+const LABEL_EXITING = FadeOut.duration(200);
 
 type Props = {
   details: ConnectionDetails;
@@ -51,7 +55,8 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
                 return (
                   <Pressable
                     key={row.label}
-                    disabled={!copyValue}
+                    // No taps while the "Copied" feedback is showing.
+                    disabled={!copyValue || isCopied}
                     onPress={() => copyValue && copy(row.label, copyValue)}
                     android_ripple={androidRippleConfig}
                     style={[
@@ -59,15 +64,18 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
                       index < group.rows.length - 1 && styles.rowDivider,
                     ]}
                   >
-                    {/* The label turns into "Copied" for a moment. */}
-                    <Text
+                    {/* The label cross-fades into "Copied" for a moment. */}
+                    <Animated.Text
+                      key={isCopied ? "copied" : "label"}
+                      entering={LABEL_ENTERING}
+                      exiting={LABEL_EXITING}
                       style={[
                         styles.rowLabel,
                         isCopied && styles.rowLabelCopied,
                       ]}
                     >
                       {isCopied ? t("copied") : t(`fields.${row.label}`)}
-                    </Text>
+                    </Animated.Text>
                     <View style={styles.rowTrailing}>
                       <Value value={row.value} />
                       {copyValue && <CopyIcon isCopied={isCopied} />}

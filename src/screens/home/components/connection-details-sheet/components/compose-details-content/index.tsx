@@ -1,6 +1,10 @@
 import {
+  AnimatedVisibility,
+  Box,
   Button,
   Column,
+  EnterTransition,
+  ExitTransition,
   HorizontalDivider,
   RNHostView,
   Row,
@@ -105,27 +109,18 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                         horizontalArrangement={{ spacedBy: 8 }}
                         modifiers={[
                           fillMaxWidth(),
-                          ...(copyValue
+                          // No taps while the "Copied" feedback is showing.
+                          ...(copyValue && !isCopied
                             ? [clickable(() => copy(row.label, copyValue))]
                             : []),
                           padding(16, 14, 16, 14),
                         ]}
                       >
-                        {/* The label turns into "Copied" for a moment. */}
-                        <Text
-                          color={(isCopied
-                            ? colors.semantic.success
-                            : colors.content.muted
-                          ).toString()}
-                          style={{
-                            fontFamily: fontFamily.regular,
-                            fontSize: 14,
-                            lineHeight: 20,
-                          }}
-                          modifiers={[padding(0, 0, 8, 0)]}
-                        >
-                          {isCopied ? t("copied") : t(`fields.${row.label}`)}
-                        </Text>
+                        <RowLabel
+                          label={t(`fields.${row.label}`)}
+                          copiedLabel={t("copied")}
+                          isCopied={isCopied}
+                        />
                         <Row
                           horizontalArrangement="end"
                           verticalAlignment="center"
@@ -215,6 +210,54 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
         </Text>
       )}
     </Column>
+  );
+}
+
+// Same feel as the copy icon: fade + scale.
+const LABEL_ENTER = EnterTransition.fadeIn().plus(
+  EnterTransition.scaleIn({ initialScale: 0.8 }),
+);
+const LABEL_EXIT = ExitTransition.fadeOut().plus(
+  ExitTransition.scaleOut({ targetScale: 0.8 }),
+);
+
+type RowLabelProps = {
+  label: string;
+  copiedLabel: string;
+  isCopied: boolean;
+};
+
+/** Row label that cross-fades into a green "Copied" for a moment. */
+function RowLabel({ label, copiedLabel, isCopied }: RowLabelProps) {
+  const { colors, fontFamily } = useTheme();
+
+  const style = {
+    fontFamily: fontFamily.regular,
+    fontSize: 14,
+    lineHeight: 20,
+  };
+
+  return (
+    <Box contentAlignment="centerStart" modifiers={[padding(0, 0, 8, 0)]}>
+      <AnimatedVisibility
+        visible={!isCopied}
+        enterTransition={LABEL_ENTER}
+        exitTransition={LABEL_EXIT}
+      >
+        <Text color={colors.content.muted.toString()} style={style}>
+          {label}
+        </Text>
+      </AnimatedVisibility>
+      <AnimatedVisibility
+        visible={isCopied}
+        enterTransition={LABEL_ENTER}
+        exitTransition={LABEL_EXIT}
+      >
+        <Text color={colors.semantic.success.toString()} style={style}>
+          {copiedLabel}
+        </Text>
+      </AnimatedVisibility>
+    </Box>
   );
 }
 
