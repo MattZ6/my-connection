@@ -267,10 +267,10 @@ export const pt = {
           title: "Privacidade",
           links: {
             crash_reports: {
-              title: "Enviar relatórios de erro",
-              description:
-                "Detalhes anônimos de erros que ajudam a corrigir bugs. Nunca inclui nome da rede, BSSID ou IP.",
+              title: "Relatórios de erro",
+              value: { on: "Ativado", off: "Desativado" },
             },
+            privacy_policy: { title: "Política de Privacidade" },
           },
         },
         about: {
@@ -279,12 +279,36 @@ export const pt = {
             about: { title: "Sobre" },
             changelog: { title: "Changelog", badge: "Novo" },
             licenses: { title: "Licenças" },
-            privacy_policy: { title: "Política de Privacidade" },
           },
         },
       },
       disclaimer: {
         text: "Este app não coleta dados pessoais.\nTodas as informações permanecem no seu dispositivo.",
+      },
+    },
+
+    privacy: {
+      meta: { title: "Relatórios de erro" },
+      sections: {
+        crash_reports: {
+          title: "Diagnóstico",
+          fields: {
+            crash_reports: {
+              title: "Enviar relatórios de erro",
+              description:
+                "Detalhes anônimos de erros que ajudam a corrigir bugs. Desativado por padrão.",
+            },
+          },
+        },
+        never_sent: {
+          title: "Nunca enviado",
+          items: {
+            network_name: "Nome da rede (SSID)",
+            bssid: "BSSID",
+            ip_address: "Endereço IP",
+            location: "Localização",
+          },
+        },
       },
     },
 
