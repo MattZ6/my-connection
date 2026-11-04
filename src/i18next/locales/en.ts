@@ -486,6 +486,8 @@ export const en = {
       sections: {
         latest_version: {
           title: "Latest version",
+          badge: "New",
+          read_more: "Read more",
         },
         previous_versions: {
           title: "Previous versions",

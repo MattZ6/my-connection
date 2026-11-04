@@ -488,6 +488,8 @@ export const es = {
       sections: {
         latest_version: {
           title: "Última versión",
+          badge: "Nuevo",
+          read_more: "Leer más",
         },
         previous_versions: {
           title: "Versiones anteriores",
