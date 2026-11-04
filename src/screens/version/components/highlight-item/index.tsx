@@ -8,18 +8,13 @@ type Props = {
   text: string;
 };
 
-export function Item({ text }: Props) {
+export function HighlightItem({ text }: Props) {
   const styles = useStyles(getStyles);
 
   return (
     <View style={styles.container}>
-      <View style={styles.listIndicatorContainer}>
-        <View style={styles.listIndicator} />
-      </View>
-
-      <View style={styles.content}>
-        <Text style={styles.text}>{text}</Text>
-      </View>
+      <View style={styles.bullet} accessibilityElementsHidden />
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 }
