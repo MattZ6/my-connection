@@ -4,70 +4,76 @@ import type { ThemeConfig } from "@/theme/types";
 
 export function getStyles(theme: ThemeConfig) {
   return StyleSheet.create({
-    wrapper: {
-      padding: 16,
-      gap: 32,
+    card: {
+      borderRadius: theme.radii["7"],
+      backgroundColor: theme.colors.surface.elevated,
+      overflow: "hidden",
     },
     container: {
-      padding: 16,
-      gap: 16,
+      padding: 20,
+      gap: 8,
     },
     upperRow: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      gap: 16,
-    },
-    versionContainer: {
-      flex: 1,
-      flexDirection: "row",
-      alignItems: "center",
-      gap: 12,
-    },
-    icon: {
-      tintColor: theme.colors.content.muted,
-    },
-    label: {
-      fontFamily: theme.fontFamily.regular,
-      color: theme.colors.content.muted,
-      fontSize: theme.fontSizes.label.fontSize,
-      lineHeight: theme.fontSizes.label.lineHeight,
-      textTransform: "uppercase",
-      letterSpacing: 1.25,
-    },
-    version: {
-      fontFamily: theme.fontFamily.regular,
-      color: theme.colors.content.muted,
-      fontSize: theme.fontSizes.body.fontSize,
-      lineHeight: theme.fontSizes.body.lineHeight,
-    },
-    date: {
-      fontFamily: theme.fontFamily.regular,
-      color: theme.colors.content.muted,
-      fontSize: theme.fontSizes.bodySmall.fontSize,
-      lineHeight: theme.fontSizes.bodySmall.lineHeight,
-      textAlign: "right",
-    },
-    newVersionDot: {
-      width: 8,
-      height: 8,
-      borderRadius: theme.radii.full,
-      backgroundColor: theme.colors.semantic.warning,
-    },
-    content: {
       gap: 8,
     },
-    title: {
-      fontFamily: theme.fontFamily.medium,
+    tags: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+    },
+    versionChip: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 6,
+      paddingVertical: 2,
+      paddingHorizontal: 10,
+      borderRadius: theme.radii.full,
+      backgroundColor: theme.colors.brandSurface.elevated,
+    },
+    versionChipIcon: {
+      tintColor: theme.colors.content.base,
+    },
+    version: {
+      fontFamily: theme.fontFamily.mono.regular,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
       color: theme.colors.content.base,
+    },
+    date: {
+      fontFamily: theme.fontFamily.mono.regular,
+      fontSize: theme.fontSizes.label.fontSize,
+      lineHeight: theme.fontSizes.label.lineHeight,
+      color: theme.colors.content.muted,
+    },
+    title: {
+      fontFamily: theme.fontFamily.semiBold,
       fontSize: theme.fontSizes.subtitle.fontSize,
       lineHeight: theme.fontSizes.subtitle.lineHeight,
+      color: theme.colors.content.base,
     },
     description: {
       fontFamily: theme.fontFamily.regular,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.content.muted,
-      fontSize: theme.fontSizes.body.fontSize,
-      lineHeight: theme.fontSizes.body.lineHeight,
+    },
+    readMore: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 4,
+      paddingTop: 4,
+    },
+    readMoreText: {
+      fontFamily: theme.fontFamily.medium,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
+      color: theme.colors.content.base,
+    },
+    readMoreIcon: {
+      tintColor: theme.colors.content.base,
     },
   });
 }

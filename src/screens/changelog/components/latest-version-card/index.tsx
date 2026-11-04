@@ -1,79 +1,74 @@
 import { SymbolView } from "expo-symbols";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
 
-import { Card } from "@/components/ui/card";
-import { Section } from "@/components/ui/section";
+import { NewBadge } from "@/components/ui/new-badge";
 
-import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
 import { useStyles } from "@/hooks/use-styles";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
+import type { ChangelogVersion } from "../../types";
 import { getStyles } from "./styles";
 
-type Props = {
-  version: string;
-  title: string;
-  description?: string;
-  formattedDate: string;
-  onPress: (version: string) => void;
+type Props = ChangelogVersion & {
+  hasNews: boolean;
+  onPress: () => void;
 };
 
 export function LatestVersionCard({
-  title,
   version,
+  title,
   description,
-  formattedDate,
+  date,
+  hasNews,
   onPress,
 }: Props) {
   const styles = useStyles(getStyles);
-  const { currrentAppVersion, lastVersionViewed } = useLastVersionViewed();
   const { t } = useTranslation("translation", {
-    keyPrefix: "changelog.sections",
+    keyPrefix: "changelog.sections.latest_version",
   });
 
-  const hasNews = currrentAppVersion !== lastVersionViewed;
-
-  const handlePress = useCallback(() => onPress(version), [onPress, version]);
-
   return (
-    <View style={styles.wrapper}>
-      <Section title={t("latest_version.title")}>
-        <Card>
-          <Pressable
-            android_disableSound
-            android_ripple={androidRippleConfig}
-            onPress={handlePress}
-          >
-            <View style={styles.container}>
-              <View style={styles.upperRow}>
-                <View style={styles.versionContainer}>
-                  <SymbolView
-                    name={{ android: "auto_awesome" }}
-                    tintColor={styles.icon.tintColor}
-                    size={20}
-                  />
-                  <Text style={styles.version}>{version}</Text>
-                  {hasNews && <View style={styles.newVersionDot} />}
-                </View>
-
-                <Text style={styles.date}>{formattedDate}</Text>
-              </View>
-
-              <View style={styles.content}>
-                <Text style={styles.title}>{title}</Text>
-                {description && (
-                  <Text style={styles.description}>{description}</Text>
-                )}
-              </View>
+    <View style={styles.card}>
+      <Pressable
+        android_disableSound
+        android_ripple={androidRippleConfig}
+        accessibilityRole="button"
+        accessibilityLabel={`${t("title")}, ${version}, ${title}`}
+        onPress={onPress}
+        style={styles.container}
+      >
+        <View style={styles.upperRow}>
+          <View style={styles.tags}>
+            <View style={styles.versionChip}>
+              <SymbolView
+                name={{ android: "auto_awesome", ios: "sparkles" }}
+                size={16}
+                tintColor={styles.versionChipIcon.tintColor}
+              />
+              <Text style={styles.version}>{version}</Text>
             </View>
-          </Pressable>
-        </Card>
-      </Section>
 
-      <Text style={styles.label}>{t("previous_versions.title")}</Text>
+            {hasNews && <NewBadge label={t("badge")} />}
+          </View>
+
+          <Text style={styles.date}>{date}</Text>
+        </View>
+
+        <Text style={styles.title}>{title}</Text>
+
+        {!!description && <Text style={styles.description}>{description}</Text>}
+
+        <View style={styles.readMore}>
+          <Text style={styles.readMoreText}>{t("read_more")}</Text>
+          <SymbolView
+            name={{ android: "arrow_forward", ios: "arrow.right" }}
+            size={18}
+            tintColor={styles.readMoreIcon.tintColor}
+          />
+        </View>
+      </Pressable>
     </View>
   );
 }
