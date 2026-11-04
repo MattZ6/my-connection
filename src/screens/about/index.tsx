@@ -43,9 +43,9 @@ export function AboutScreen() {
       >
         <AppSection />
         <DeviceSection />
-        <AuthorCard />
         <ExploreSection />
         <BuildSection />
+        <AuthorCard />
       </ScrollView>
     </>
   );
