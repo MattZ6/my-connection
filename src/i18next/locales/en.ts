@@ -404,7 +404,10 @@ export const en = {
       },
     },
 
-    licenses: { meta: { title: "Licenses" } },
+    licenses: {
+      meta: { title: "Licenses" },
+      description: "{{count}} open source packages make {{app_name}} possible.",
+    },
 
     about: {
       meta: { title: "About" },

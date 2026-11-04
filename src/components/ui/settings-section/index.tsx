@@ -6,7 +6,8 @@ import { useStyles } from "@/hooks/use-styles";
 import { getStyles } from "./styles";
 
 type Props = {
-  title: string;
+  /** Section label above the card; leave it out for a card on its own. */
+  title?: string;
   /** Number shown next to the title, such as how many items the card has. */
   count?: number;
   children: ReactNode;
@@ -21,13 +22,15 @@ export function SettingsSection({ title, count, children, footer }: Props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title} accessibilityRole="header">
-          {title}
-        </Text>
+      {!!title && (
+        <View style={styles.header}>
+          <Text style={styles.title} accessibilityRole="header">
+            {title}
+          </Text>
 
-        {count !== undefined && <Text style={styles.count}>{count}</Text>}
-      </View>
+          {count !== undefined && <Text style={styles.count}>{count}</Text>}
+        </View>
+      )}
 
       <View style={styles.card}>
         {items.map((item, index) => (
