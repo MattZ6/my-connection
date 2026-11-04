@@ -22,8 +22,8 @@ export function getStyles(theme: ThemeConfig) {
     },
     label: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 14,
-      lineHeight: 20,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.content.base,
     },
   });

@@ -11,7 +11,7 @@ export function getStyles(theme: ThemeConfig, insets: EdgeInsets) {
     },
     scrollContainer: {
       paddingTop: 24,
-      paddingBottom: insets.bottom + 16,
+      paddingBottom: insets.bottom + 24,
       paddingHorizontal: 16,
       gap: 24,
     },

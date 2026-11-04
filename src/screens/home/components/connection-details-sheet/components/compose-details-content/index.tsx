@@ -16,12 +16,13 @@ import {
   clickable,
   fillMaxWidth,
   padding,
+  paddingAll,
   weight,
 } from "@expo/ui/jetpack-compose/modifiers";
 import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import { type ColorValue, StyleSheet, View } from "react-native";
+import { type ColorValue, View } from "react-native";
 
 import { useTheme } from "@/hooks/use-theme";
 
@@ -43,7 +44,7 @@ type Props = {
  * sheet measures and scrolls it by itself.
  */
 export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
-  const { colors, fontFamily, radii } = useTheme();
+  const { colors, fontFamily, radii, fontSizes } = useTheme();
   const { t } = useTranslation("translation", {
     keyPrefix: "home.details",
   });
@@ -64,8 +65,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
         color={colors.content.base.toString()}
         style={{
           fontFamily: fontFamily.semiBold,
-          fontSize: 20,
-          lineHeight: 28,
+          fontSize: fontSizes.title.fontSize,
+          lineHeight: fontSizes.title.lineHeight,
         }}
       >
         {t("title")}
@@ -78,8 +79,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
               color={colors.content.muted.toString()}
               style={{
                 fontFamily: fontFamily.mono.regular,
-                fontSize: 11,
-                lineHeight: 16,
+                fontSize: fontSizes.label.fontSize,
+                lineHeight: fontSizes.label.lineHeight,
                 letterSpacing: 1,
               }}
             >
@@ -100,8 +101,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                     <Fragment key={row.label}>
                       {index > 0 && (
                         <HorizontalDivider
-                          thickness={StyleSheet.hairlineWidth}
-                          color={colors.border.default}
+                          thickness={2}
+                          color={colors.surface.elevated}
                         />
                       )}
                       <Row
@@ -113,7 +114,7 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                           ...(copyValue && !isCopied
                             ? [clickable(() => copy(row.label, copyValue))]
                             : []),
-                          padding(16, 14, 16, 14),
+                          paddingAll(16),
                         ]}
                       >
                         <RowLabel
@@ -167,8 +168,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                     color={colors.content.muted.toString()}
                     style={{
                       fontFamily: fontFamily.regular,
-                      fontSize: 13,
-                      lineHeight: 18,
+                      fontSize: fontSizes.bodySmall.fontSize,
+                      lineHeight: fontSizes.bodySmall.lineHeight,
                     }}
                   >
                     {t("notes.hidden_network")}
@@ -183,8 +184,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                     <Text
                       style={{
                         fontFamily: fontFamily.medium,
-                        fontSize: 13,
-                        lineHeight: 18,
+                        fontSize: fontSizes.bodySmall.fontSize,
+                        lineHeight: fontSizes.bodySmall.lineHeight,
                       }}
                     >
                       {t("notes.allow_access")}
@@ -202,8 +203,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
           color={colors.content.muted.toString()}
           style={{
             fontFamily: fontFamily.regular,
-            fontSize: 13,
-            lineHeight: 18,
+            fontSize: fontSizes.bodySmall.fontSize,
+            lineHeight: fontSizes.bodySmall.lineHeight,
           }}
         >
           {t(`notes.${details.note}`)}
@@ -229,12 +230,12 @@ type RowLabelProps = {
 
 /** Row label that cross-fades into a green "Copied" for a moment. */
 function RowLabel({ label, copiedLabel, isCopied }: RowLabelProps) {
-  const { colors, fontFamily } = useTheme();
+  const { colors, fontFamily, fontSizes } = useTheme();
 
   const style = {
     fontFamily: fontFamily.regular,
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: fontSizes.body.fontSize,
+    lineHeight: fontSizes.body.lineHeight,
   };
 
   return (
@@ -262,15 +263,14 @@ function RowLabel({ label, copiedLabel, isCopied }: RowLabelProps) {
 }
 
 function Value({ value }: { value: DetailValue }) {
-  const { colors, fontFamily } = useTheme();
+  const { colors, fontFamily, fontSizes } = useTheme();
   const { t } = useTranslation("translation", {
     keyPrefix: "home",
   });
 
   const textStyle = {
     fontFamily: fontFamily.regular,
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: fontSizes.bodySmall.fontSize,
     textAlign: "end" as const,
   };
 
@@ -303,7 +303,7 @@ function Value({ value }: { value: DetailValue }) {
           style={{
             ...textStyle,
             fontFamily: fontFamily.mono.regular,
-            fontSize: 13,
+            fontSize: 15,
           }}
         >
           {value.text}

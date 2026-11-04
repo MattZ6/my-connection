@@ -18,19 +18,17 @@ export function getStyles(theme: ThemeConfig) {
       gap: 12,
       alignItems: "flex-start",
     },
-    texts: {
-      gap: 2,
-    },
+    texts: {},
     title: {
       fontFamily: theme.fontFamily.medium,
-      fontSize: 15,
-      lineHeight: 20,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
       color: theme.colors.content.base,
     },
     message: {
       fontFamily: theme.fontFamily.regular,
-      fontSize: 13,
-      lineHeight: 18,
+      fontSize: theme.fontSizes.bodySmall.fontSize,
+      lineHeight: theme.fontSizes.bodySmall.lineHeight,
       color: theme.colors.content.muted,
     },
     actionContainer: {

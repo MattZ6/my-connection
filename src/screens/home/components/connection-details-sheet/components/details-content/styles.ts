@@ -11,8 +11,8 @@ export function getStyles(theme: ThemeConfig) {
     },
     title: {
       fontFamily: theme.fontFamily.semiBold,
-      fontSize: 20,
-      lineHeight: 28,
+      fontSize: theme.fontSizes.title.fontSize,
+      lineHeight: theme.fontSizes.title.lineHeight,
       color: theme.colors.content.base,
     },
     group: {
