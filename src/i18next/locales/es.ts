@@ -261,18 +261,52 @@ export const es = {
             haptics: { title: "Respuesta háptica" },
           },
         },
+        privacy: {
+          title: "Privacidad",
+          links: {
+            crash_reports: {
+              title: "Informes de errores",
+              value: { on: "Activado", off: "Desactivado" },
+            },
+            privacy_policy: { title: "Política de Privacidad" },
+          },
+        },
         about: {
           title: "Acerca de",
           links: {
             about: { title: "Acerca de" },
             changelog: { title: "Changelog", badge: "Nuevo" },
             licenses: { title: "Licencias" },
-            privacy_policy: { title: "Política de Privacidad" },
           },
         },
       },
       disclaimer: {
         text: "Esta app no recopila datos personales.\nToda la información permanece en tu dispositivo.",
+      },
+    },
+
+    privacy: {
+      meta: { title: "Informes de errores" },
+      sections: {
+        crash_reports: {
+          title: "Diagnóstico",
+          fields: {
+            crash_reports: {
+              title: "Enviar informes de errores",
+              description:
+                "Detalles anónimos de errores que ayudan a corregir fallos. Desactivado por defecto.",
+            },
+          },
+        },
+        never_sent: {
+          title: "Nunca se envía",
+          items: {
+            network_name: "Nombre de la red (SSID)",
+            bssid: "BSSID",
+            ip_address: "Dirección IP",
+            location: "Ubicación",
+          },
+        },
       },
     },
 

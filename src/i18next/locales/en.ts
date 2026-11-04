@@ -260,18 +260,52 @@ export const en = {
             haptics: { title: "Haptic feedback" },
           },
         },
+        privacy: {
+          title: "Privacy",
+          links: {
+            crash_reports: {
+              title: "Crash reports",
+              value: { on: "On", off: "Off" },
+            },
+            privacy_policy: { title: "Privacy Policy" },
+          },
+        },
         about: {
           title: "About",
           links: {
             about: { title: "About" },
             changelog: { title: "Changelog", badge: "New" },
             licenses: { title: "Licenses" },
-            privacy_policy: { title: "Privacy Policy" },
           },
         },
       },
       disclaimer: {
         text: "This app does not collect personal data.\nAll information stays on your device.",
+      },
+    },
+
+    privacy: {
+      meta: { title: "Crash reports" },
+      sections: {
+        crash_reports: {
+          title: "Diagnostics",
+          fields: {
+            crash_reports: {
+              title: "Send crash reports",
+              description:
+                "Anonymous error details that help fix bugs. Off by default.",
+            },
+          },
+        },
+        never_sent: {
+          title: "Never sent",
+          items: {
+            network_name: "Network name (SSID)",
+            bssid: "BSSID",
+            ip_address: "IP address",
+            location: "Location",
+          },
+        },
       },
     },
 

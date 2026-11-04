@@ -1,17 +1,9 @@
 import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { Platform } from "react-native";
 import { NewBadge } from "@/components/ui/new-badge";
 import { SettingsRow } from "@/components/ui/settings-row";
 import { SettingsSection } from "@/components/ui/settings-section";
 import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
-
-const params = new URLSearchParams({
-  source: "myconnection-app",
-  platform: Platform.OS,
-});
-
-const PRIVACY_POLICY_LINK = `https://myconnection.zanin.dev/privacy-policy?${params.toString()}`;
 
 export function AboutSection() {
   const { t } = useTranslation("translation", {
@@ -44,14 +36,6 @@ export function AboutSection() {
         <SettingsRow
           label={t("links.licenses.title")}
           icon={{ android: "description", ios: "doc.text" }}
-        />
-      </Link>
-
-      <Link href={PRIVACY_POLICY_LINK} target="_blank" asChild>
-        <SettingsRow
-          label={t("links.privacy_policy.title")}
-          icon={{ android: "policy", ios: "hand.raised" }}
-          trailing="external"
         />
       </Link>
     </SettingsSection>

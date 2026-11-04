@@ -1,9 +1,7 @@
 import "@/i18next/i18next";
 
 import * as Sentry from "@sentry/react-native";
-import { isRunningInExpoGo } from "expo";
-import ExpoConstants from "expo-constants";
-import { Observe, ObserveRoot, useObserve } from "expo-observe";
+import { ObserveRoot, useObserve } from "expo-observe";
 import { Stack, useNavigationContainerRef } from "expo-router";
 import * as ExpoSplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -12,49 +10,14 @@ import { Platform } from "react-native";
 import { Provider } from "@/contexts/provider";
 import { useFontFamily } from "@/hooks/use-font-family";
 import { useTheme } from "@/hooks/use-theme";
-import { scrubBreadcrumb, scrubEvent } from "@/libs/sentry/scrubber";
+import {
+  isCrashReportingAvailable,
+  navigationIntegration,
+  setDiagnosticsEnabled,
+} from "@/libs/diagnostics";
+import { SettingsRepository } from "@/repositories/settings";
 
-const sentryDsn = String(process.env.EXPO_PUBLIC_SENTRY_DSN || "");
-const packageName = String(ExpoConstants.expoConfig?.slug || "");
-const packageVersion = String(ExpoConstants.expoConfig?.version || "");
-const environment = String(
-  process.env.EXPO_PUBLIC_APP_VARIANT || "development",
-);
-
-const navigationIntegration = Sentry.reactNavigationIntegration({
-  enableTimeToInitialDisplay: !isRunningInExpoGo(),
-});
-
-if (sentryDsn) {
-  Sentry.init({
-    dsn: sentryDsn,
-
-    release: `${packageName}@${packageVersion}`,
-
-    // Base config
-    sendDefaultPii: false,
-    environment,
-
-    // Sample
-    tracesSampleRate: 0.2,
-
-    // Network details (SSID, BSSID, IP) never leave the device: no screen
-    // replay, no screenshots or view hierarchy, and every event is scrubbed.
-    attachScreenshot: false,
-    attachViewHierarchy: false,
-    beforeSend: scrubEvent,
-    beforeSendTransaction: scrubEvent,
-    beforeBreadcrumb: scrubBreadcrumb,
-
-    enableNativeFramesTracking: !isRunningInExpoGo(),
-
-    integrations: [navigationIntegration],
-  });
-}
-
-Observe.configure({
-  integrations: { "expo-router": true },
-});
+setDiagnosticsEnabled(SettingsRepository.getCrashReportsFlag() ?? false);
 
 ExpoSplashScreen.preventAutoHideAsync();
 
@@ -108,7 +71,7 @@ function RootStackNavigation() {
 
 let WrappedRootLayout: React.ComponentType = RootLayout;
 
-if (sentryDsn) {
+if (isCrashReportingAvailable) {
   WrappedRootLayout = Sentry.wrap(RootLayout);
 }
 
