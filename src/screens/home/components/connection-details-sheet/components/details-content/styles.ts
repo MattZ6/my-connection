@@ -28,6 +28,7 @@ export function getStyles(theme: ThemeConfig) {
     },
     card: {
       borderRadius: theme.radii[6],
+      overflow: "hidden",
       backgroundColor: theme.colors.surface.base,
     },
     row: {
@@ -49,6 +50,15 @@ export function getStyles(theme: ThemeConfig) {
       fontSize: 14,
       lineHeight: 20,
       color: theme.colors.content.muted,
+    },
+    rowLabelCopied: {
+      color: theme.colors.semantic.success,
+    },
+    rowTrailing: {
+      flexShrink: 1,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
     },
     value: {
       flexShrink: 1,

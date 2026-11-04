@@ -2,18 +2,25 @@ import { SymbolView } from "expo-symbols";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { type ColorValue, Pressable, Text, View } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
+import { useCopyToClipboard } from "../../../../hooks/use-copy-to-clipboard";
 import type {
   ConnectionDetails,
+  DetailRow,
   DetailValue,
 } from "../../../../utils/connection-details";
+import { CopyIcon } from "../../../copy-icon";
 
 import { getStyles } from "./styles";
+
+const LABEL_ENTERING = FadeIn.duration(200);
+const LABEL_EXITING = FadeOut.duration(200);
 
 type Props = {
   details: ConnectionDetails;
@@ -25,6 +32,7 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "home.details",
   });
+  const { copiedKey, copy } = useCopyToClipboard<DetailRow["label"]>();
 
   return (
     <View style={styles.container}>
@@ -40,20 +48,41 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
             </Text>
 
             <View style={styles.card}>
-              {group.rows.map((row, index) => (
-                <View
-                  key={row.label}
-                  style={[
-                    styles.row,
-                    index < group.rows.length - 1 && styles.rowDivider,
-                  ]}
-                >
-                  <Text style={styles.rowLabel}>
-                    {t(`fields.${row.label}`)}
-                  </Text>
-                  <Value value={row.value} />
-                </View>
-              ))}
+              {group.rows.map((row, index) => {
+                const { copyValue } = row;
+                const isCopied = copiedKey === row.label;
+
+                return (
+                  <Pressable
+                    key={row.label}
+                    // No taps while the "Copied" feedback is showing.
+                    disabled={!copyValue || isCopied}
+                    onPress={() => copyValue && copy(row.label, copyValue)}
+                    android_ripple={androidRippleConfig}
+                    style={[
+                      styles.row,
+                      index < group.rows.length - 1 && styles.rowDivider,
+                    ]}
+                  >
+                    {/* The label cross-fades into "Copied" for a moment. */}
+                    <Animated.Text
+                      key={isCopied ? "copied" : "label"}
+                      entering={LABEL_ENTERING}
+                      exiting={LABEL_EXITING}
+                      style={[
+                        styles.rowLabel,
+                        isCopied && styles.rowLabelCopied,
+                      ]}
+                    >
+                      {isCopied ? t("copied") : t(`fields.${row.label}`)}
+                    </Animated.Text>
+                    <View style={styles.rowTrailing}>
+                      <Value value={row.value} />
+                      {copyValue && <CopyIcon isCopied={isCopied} />}
+                    </View>
+                  </Pressable>
+                );
+              })}
             </View>
           </View>
 
