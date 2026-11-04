@@ -55,12 +55,6 @@ export function getStyles(theme: ThemeConfig) {
       position: "absolute",
       inset: 0,
     },
-    avatarText: {
-      fontFamily: theme.fontFamily.mono.regular,
-      fontSize: theme.fontSizes.label.fontSize,
-      lineHeight: theme.fontSizes.label.lineHeight,
-      color: theme.colors.content.base,
-    },
     bylineText: {
       flex: 1,
     },
