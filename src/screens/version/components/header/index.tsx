@@ -7,20 +7,25 @@ import { getStyles } from "./styles";
 type Props = {
   title: string;
   date: string;
-  description?: string;
+  paragraphs: string[];
 };
 
-export function Header({ title, date, description }: Props) {
+export function Header({ title, date, paragraphs }: Props) {
   const styles = useStyles(getStyles);
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.date}>{date}</Text>
-      </View>
+      <Text style={styles.date}>{date}</Text>
 
-      {description && <Text style={styles.description}>{description}</Text>}
+      <Text style={styles.title} accessibilityRole="header">
+        {title}
+      </Text>
+
+      {paragraphs.map((paragraph, index) => (
+        <Text key={index.toString()} style={styles.paragraph}>
+          {paragraph}
+        </Text>
+      ))}
     </View>
   );
 }

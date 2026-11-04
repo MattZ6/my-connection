@@ -2,7 +2,7 @@ import { createMMKV } from "react-native-mmkv";
 
 type Theme = "system" | "light" | "dark";
 type Language = string;
-type NetworkUpdateFrequency = "15s" | "30s" | "60s";
+type NetworkUpdateFrequency = "5s" | "15s" | "30s" | "60s";
 
 export const STORAGE_KEY = {
   THEME: "theme",

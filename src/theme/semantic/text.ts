@@ -14,10 +14,10 @@ export const mono = {
 };
 
 export const fontFamily = {
-  regular: "Poppins_400Regular",
-  medium: "Poppins_500Medium",
-  semiBold: "Poppins_600SemiBold",
-  bold: "Poppins_700Bold",
+  regular: "Geist_400Regular",
+  medium: "Geist_500Medium",
+  semiBold: "Geist_600SemiBold",
+  bold: "Geist_700Bold",
   mono,
 };
 

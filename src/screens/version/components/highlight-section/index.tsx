@@ -1,39 +1,18 @@
-import { View } from "react-native";
+import { SettingsSection } from "@/components/ui/settings-section";
 
-import { Card } from "@/components/ui/card";
-import { SectionDivider } from "@/components/ui/section";
+import { HighlightItem } from "../highlight-item";
 
-import { useStyles } from "@/hooks/use-styles";
-
-import { Header } from "./components/header";
-import { Item } from "./components/item";
-
-import { getStyles } from "./styles";
-
-type Highlight = {
-  type: string;
+type Props = {
   title: string;
   items: string[];
 };
 
-type Props = {
-  section: Highlight;
-};
-
-export function HighlightSection({ section }: Props) {
-  const styles = useStyles(getStyles);
-
+export function HighlightSection({ title, items }: Props) {
   return (
-    <Card style={styles.card}>
-      <Header title={section.title} type={section.type} />
-
-      <SectionDivider horizontalMargin={false} />
-
-      <View style={styles.list}>
-        {section.items.map((paragraph, index) => (
-          <Item key={index.toString()} text={paragraph} />
-        ))}
-      </View>
-    </Card>
+    <SettingsSection title={title} count={items.length}>
+      {items.map((item, index) => (
+        <HighlightItem key={index.toString()} text={item} />
+      ))}
+    </SettingsSection>
   );
 }

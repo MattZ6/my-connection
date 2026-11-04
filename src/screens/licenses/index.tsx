@@ -1,87 +1,65 @@
-import {
-  LegendList,
-  type LegendListRenderItemProps,
-} from "@legendapp/list/react-native";
 import { useObserve } from "expo-observe";
-import { Stack } from "expo-router";
-import { useCallback, useEffect } from "react";
+import { Link, Stack } from "expo-router";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform } from "react-native";
+import { Platform, ScrollView, Text } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import licenses from "@/assets/licenses.json";
+
+import { SettingsSection } from "@/components/ui/settings-section";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
 
-import { LicenseItem } from "./components/license-item";
+import { environment } from "../about/environment";
+import { LicenseRow } from "./components/license-row";
 
 import { getStyles } from "./styles";
 
 type License = {
   key: string;
   name: string;
-  version: string;
+  version: string | null;
   licenses: string;
-  repository: string;
-  licenseUrl: string;
-  parents: string;
-  imageUrl: string;
+  url: string | null;
 };
 
-const parsedLicenses = Object.keys(licenses)
-  .map((key) => {
-    let name = String(key);
-    let version = null;
+function toUrl(value?: string) {
+  if (!value) {
+    return null;
+  }
 
-    if (key.lastIndexOf("@") > 0) {
-      name = String(key).substring(0, key.lastIndexOf("@"));
-      version = `v${key.substring(key.lastIndexOf("@") + 1)}`;
-    }
+  return value.startsWith("github:")
+    ? value.replace("github:", "https://github.com/")
+    : value;
+}
 
-    let repository = String(
-      licenses[key as keyof typeof licenses].repository || "",
-    );
-
-    if (repository.startsWith("github:")) {
-      repository = repository.replace("github:", "https://github.com/");
-    }
-
-    const paths = repository.split("/");
-    paths.pop();
+const parsedLicenses: License[] = Object.entries(licenses)
+  .map(([key, info]) => {
+    const separator = key.lastIndexOf("@");
+    const hasVersion = separator > 0;
 
     return {
-      ...licenses[key as keyof typeof licenses],
       key,
-      name,
-      version,
-      imageUrl: paths.join("/").concat(".png?size=40"),
-    } as License;
+      name: hasVersion ? key.substring(0, separator) : key,
+      version: hasVersion ? key.substring(separator + 1) : null,
+      licenses: info.licenses,
+      url: toUrl(info.repository) ?? toUrl(info.licenseUrl),
+    };
   })
   .sort((previous, current) => previous.name.localeCompare(current.name));
 
 export function LicensesScreen() {
   const { colors, fontFamily } = useTheme();
-  const styles = useStyles(getStyles);
+  const insets = useSafeAreaInsets();
+  const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
   const { markInteractive } = useObserve();
 
   useEffect(() => {
     markInteractive();
   }, [markInteractive]);
-
-  const renderItem = useCallback(
-    ({ item }: LegendListRenderItemProps<License>) => {
-      return (
-        <LicenseItem
-          imageUrl={item.imageUrl}
-          name={item.name}
-          licenses={item.licenses}
-          version={item.version}
-        />
-      );
-    },
-    [],
-  );
 
   return (
     <>
@@ -98,16 +76,40 @@ export function LicensesScreen() {
         {t("licenses.meta.title")}
       </Stack.Screen.Title>
 
-      <LegendList
+      <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
+        fadingEdgeLength={32}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
-        data={parsedLicenses}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.key}
-        recycleItems
-      />
+      >
+        <Text style={styles.description}>
+          {t("licenses.description", {
+            count: parsedLicenses.length,
+            app_name: t(`app.${environment}.name`),
+          })}
+        </Text>
+
+        <SettingsSection>
+          {parsedLicenses.map((item) =>
+            item.url ? (
+              <Link key={item.key} href={item.url} target="_blank" asChild>
+                <LicenseRow
+                  name={item.name}
+                  version={item.version}
+                  licenses={item.licenses}
+                />
+              </Link>
+            ) : (
+              <LicenseRow
+                key={item.key}
+                name={item.name}
+                version={item.version}
+                licenses={item.licenses}
+              />
+            ),
+          )}
+        </SettingsSection>
+      </ScrollView>
     </>
   );
 }
