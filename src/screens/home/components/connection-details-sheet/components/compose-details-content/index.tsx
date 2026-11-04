@@ -9,6 +9,7 @@ import {
   Text,
 } from "@expo/ui/jetpack-compose";
 import {
+  clickable,
   fillMaxWidth,
   padding,
   weight,
@@ -20,10 +21,13 @@ import { type ColorValue, StyleSheet, View } from "react-native";
 
 import { useTheme } from "@/hooks/use-theme";
 
+import { useCopyToClipboard } from "../../../../hooks/use-copy-to-clipboard";
 import type {
   ConnectionDetails,
+  DetailRow,
   DetailValue,
 } from "../../../../utils/connection-details";
+import { CopyIcon } from "../../../copy-icon";
 
 type Props = {
   details: ConnectionDetails;
@@ -39,6 +43,7 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "home.details",
   });
+  const { copiedKey, copy } = useCopyToClipboard<DetailRow["label"]>();
 
   const cardShape = Shape.RoundedCorner({
     cornerRadii: {
@@ -83,39 +88,61 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
               modifiers={[fillMaxWidth()]}
             >
               <Column>
-                {group.rows.map((row, index) => (
-                  <Fragment key={row.label}>
-                    {index > 0 && (
-                      <HorizontalDivider
-                        thickness={StyleSheet.hairlineWidth}
-                        color={colors.border.default}
-                      />
-                    )}
-                    <Row
-                      verticalAlignment="center"
-                      horizontalArrangement={{ spacedBy: 16 }}
-                      modifiers={[fillMaxWidth(), padding(16, 14, 16, 14)]}
-                    >
-                      <Text
-                        color={colors.content.muted.toString()}
-                        style={{
-                          fontFamily: fontFamily.regular,
-                          fontSize: 14,
-                          lineHeight: 20,
-                        }}
-                      >
-                        {t(`fields.${row.label}`)}
-                      </Text>
+                {group.rows.map((row, index) => {
+                  const { copyValue } = row;
+                  const isCopied = copiedKey === row.label;
+
+                  return (
+                    <Fragment key={row.label}>
+                      {index > 0 && (
+                        <HorizontalDivider
+                          thickness={StyleSheet.hairlineWidth}
+                          color={colors.border.default}
+                        />
+                      )}
                       <Row
-                        horizontalArrangement="end"
                         verticalAlignment="center"
-                        modifiers={[weight(1)]}
+                        horizontalArrangement={{ spacedBy: 8 }}
+                        modifiers={[
+                          fillMaxWidth(),
+                          ...(copyValue
+                            ? [clickable(() => copy(row.label, copyValue))]
+                            : []),
+                          padding(16, 14, 16, 14),
+                        ]}
                       >
-                        <Value value={row.value} />
+                        {/* The label turns into "Copied" for a moment. */}
+                        <Text
+                          color={(isCopied
+                            ? colors.semantic.success
+                            : colors.content.muted
+                          ).toString()}
+                          style={{
+                            fontFamily: fontFamily.regular,
+                            fontSize: 14,
+                            lineHeight: 20,
+                          }}
+                          modifiers={[padding(0, 0, 8, 0)]}
+                        >
+                          {isCopied ? t("copied") : t(`fields.${row.label}`)}
+                        </Text>
+                        <Row
+                          horizontalArrangement="end"
+                          verticalAlignment="center"
+                          modifiers={[weight(1)]}
+                        >
+                          <Value value={row.value} />
+                        </Row>
+                        {/* Outside the weighted row, so a long value never pushes it out. */}
+                        {copyValue && (
+                          <RNHostView matchContents>
+                            <CopyIcon isCopied={isCopied} />
+                          </RNHostView>
+                        )}
                       </Row>
-                    </Row>
-                  </Fragment>
-                ))}
+                    </Fragment>
+                  );
+                })}
               </Column>
             </Surface>
           </Column>

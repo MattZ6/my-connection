@@ -74,6 +74,7 @@ export const pt = {
       details: {
         button: "Ver detalhes",
         title: "Detalhes da conexão",
+        copied: "Copiado",
         sections: {
           network: "Rede",
           signal: "Sinal",

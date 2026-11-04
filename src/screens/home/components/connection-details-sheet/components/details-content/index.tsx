@@ -8,10 +8,13 @@ import { useTheme } from "@/hooks/use-theme";
 
 import { androidRippleConfig } from "@/theme/android-ripple";
 
+import { useCopyToClipboard } from "../../../../hooks/use-copy-to-clipboard";
 import type {
   ConnectionDetails,
+  DetailRow,
   DetailValue,
 } from "../../../../utils/connection-details";
+import { CopyIcon } from "../../../copy-icon";
 
 import { getStyles } from "./styles";
 
@@ -25,6 +28,7 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "home.details",
   });
+  const { copiedKey, copy } = useCopyToClipboard<DetailRow["label"]>();
 
   return (
     <View style={styles.container}>
@@ -40,20 +44,37 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
             </Text>
 
             <View style={styles.card}>
-              {group.rows.map((row, index) => (
-                <View
-                  key={row.label}
-                  style={[
-                    styles.row,
-                    index < group.rows.length - 1 && styles.rowDivider,
-                  ]}
-                >
-                  <Text style={styles.rowLabel}>
-                    {t(`fields.${row.label}`)}
-                  </Text>
-                  <Value value={row.value} />
-                </View>
-              ))}
+              {group.rows.map((row, index) => {
+                const { copyValue } = row;
+                const isCopied = copiedKey === row.label;
+
+                return (
+                  <Pressable
+                    key={row.label}
+                    disabled={!copyValue}
+                    onPress={() => copyValue && copy(row.label, copyValue)}
+                    android_ripple={androidRippleConfig}
+                    style={[
+                      styles.row,
+                      index < group.rows.length - 1 && styles.rowDivider,
+                    ]}
+                  >
+                    {/* The label turns into "Copied" for a moment. */}
+                    <Text
+                      style={[
+                        styles.rowLabel,
+                        isCopied && styles.rowLabelCopied,
+                      ]}
+                    >
+                      {isCopied ? t("copied") : t(`fields.${row.label}`)}
+                    </Text>
+                    <View style={styles.rowTrailing}>
+                      <Value value={row.value} />
+                      {copyValue && <CopyIcon isCopied={isCopied} />}
+                    </View>
+                  </Pressable>
+                );
+              })}
             </View>
           </View>
 

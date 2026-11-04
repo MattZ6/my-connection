@@ -31,6 +31,8 @@ export type DetailRow = {
     | "internet"
     | "wifi_enabled";
   value: DetailValue;
+  /** Raw value copied to the clipboard when the row is tapped. */
+  copyValue?: string;
 };
 
 export type DetailGroup = {
@@ -50,6 +52,10 @@ const EMPTY: DetailValue = {
 
 function mono(text: string | null | undefined): DetailValue {
   return text ? { kind: "mono", text } : EMPTY;
+}
+
+function copyable(text: string | null | undefined) {
+  return text || undefined;
 }
 
 function propertiesGroup(
@@ -137,10 +143,12 @@ export function getConnectionDetails(
               value: isHidden
                 ? { kind: "hidden" }
                 : { kind: "text", text: details.ssid ?? "" },
+              copyValue: copyable(details.ssid),
             },
             {
               label: "bssid",
               value: isHidden ? { kind: "hidden" } : mono(details.bssid),
+              copyValue: isHidden ? undefined : copyable(details.bssid),
             },
             {
               label: "frequency",
@@ -165,7 +173,11 @@ export function getConnectionDetails(
         {
           title: "ip",
           rows: [
-            { label: "ip_address", value: mono(details.ipAddress) },
+            {
+              label: "ip_address",
+              value: mono(details.ipAddress),
+              copyValue: copyable(details.ipAddress),
+            },
             { label: "subnet", value: mono(details.subnet) },
           ],
         },
@@ -214,7 +226,11 @@ export function getConnectionDetails(
           {
             title: "ip",
             rows: [
-              { label: "ip_address", value: mono(ipAddress) },
+              {
+                label: "ip_address",
+                value: mono(ipAddress),
+                copyValue: copyable(ipAddress),
+              },
               { label: "subnet", value: mono(subnet) },
             ],
           },
