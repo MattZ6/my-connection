@@ -535,6 +535,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v0.11.0": {
+            title: "La privacidad primero",
+            date: "2026-11-04",
+            description:
+              "Ajustes rediseñados e informes de errores opcionales, desactivados por defecto. Los detalles de tu red nunca salen de tu dispositivo.",
+          },
           "v0.10.0": {
             title: "Un inicio completamente nuevo",
             date: "2026-11-03",
@@ -663,6 +669,43 @@ export const es = {
           },
         },
         content: {
+          "v0.11.0": {
+            paragraphs: [
+              "La privacidad no es una función, es un principio. A partir de esta versión, My Connection no envía nada sin tu consentimiento.",
+              "Los informes de errores ahora son opcionales y están desactivados por defecto. Si los activas en Ajustes › Privacidad, el nombre de la red, el BSSID y la dirección IP se eliminan antes del envío, y la pantalla nunca se graba.",
+              "Los ajustes también se rediseñaron por completo, con pantallas más claras para las actualizaciones de red, el acceso a la ubicación, la apariencia, el idioma y más.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Novedades",
+                items: [
+                  "Ajustes rediseñados y organizados en secciones.",
+                  "Nueva sección Privacidad con informes de errores opcionales, desactivados por defecto.",
+                  "Las actualizaciones de red ahora pueden ocurrir cada 5 segundos.",
+                  "Nuevas pantallas de Novedades y de versión.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Pantallas de Actualizaciones de red, Acceso a la ubicación, Apariencia, Idioma, Acerca de y Licencias rediseñadas.",
+                  "Nuevo diseño del interruptor en toda la app.",
+                  "El fondo de la app ahora sigue el tema.",
+                  "La foto del autor viene incluida en la app, así que la pantalla Acerca de ya no se conecta a GitHub.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Los informes de errores ya no incluyen grabaciones de pantalla y eliminan los detalles de la red antes del envío.",
+                  "Se eliminaron Expo Insights y Expo Observe.",
+                ],
+              },
+            ],
+          },
           "v0.10.0": {
             paragraphs: [
               "My Connection estrena un inicio completamente nuevo. Todo lo que necesitas para entender tu conexión ahora cabe en una sola pantalla, sin pestañas.",

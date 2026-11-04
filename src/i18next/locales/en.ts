@@ -532,6 +532,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v0.11.0": {
+            title: "Privacy first",
+            date: "2026-11-04",
+            description:
+              "Redesigned settings and optional crash reports that are off by default. Network details never leave your device.",
+          },
           "v0.10.0": {
             title: "A brand new home",
             date: "2026-11-03",
@@ -660,6 +666,43 @@ export const en = {
           },
         },
         content: {
+          "v0.11.0": {
+            paragraphs: [
+              "Privacy isn't a feature, it's a principle. Starting with this version, My Connection sends nothing without your consent.",
+              "Crash reports are now optional and off by default. If you turn them on in Settings › Privacy, network names, BSSIDs and IP addresses are removed before anything is sent, and the screen is never recorded.",
+              "Settings were also redesigned from top to bottom, with clearer screens for network updates, location access, appearance, language and more.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "New features",
+                items: [
+                  "Redesigned Settings, organized in sections.",
+                  "New Privacy section with optional crash reports, off by default.",
+                  "Network updates can now refresh every 5 seconds.",
+                  "New Changelog and version screens.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "Redesigned Network updates, Location access, Appearance, Language, About and Licenses screens.",
+                  "New switch design across the app.",
+                  "The app background now follows the theme.",
+                  "The author photo is bundled with the app, so the About screen no longer contacts GitHub.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Crash reports no longer include screen recordings and remove network details before sending.",
+                  "Removed Expo Insights and Expo Observe.",
+                ],
+              },
+            ],
+          },
           "v0.10.0": {
             paragraphs: [
               "My Connection has a brand new home. Everything you need to understand your connection now fits on a single screen, without tabs.",
