@@ -1,6 +1,5 @@
-import { useObserve } from "expo-observe";
 import { Stack, useRouter } from "expo-router";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -33,7 +32,6 @@ export function ChangelogScreen() {
   const { performTapFeedback } = useHaptics();
   const router = useRouter();
   const { t, i18n } = useTranslation("translation", { keyPrefix: "changelog" });
-  const { markInteractive } = useObserve();
   const { currrentAppVersion, lastVersionViewed } = useLastVersionViewed();
 
   const [latestVersion, ...previousVersions] = useMemo(() => {
@@ -70,10 +68,6 @@ export function ChangelogScreen() {
     },
     [performTapFeedback, router.push],
   );
-
-  useEffect(() => {
-    markInteractive();
-  }, [markInteractive]);
 
   return (
     <>

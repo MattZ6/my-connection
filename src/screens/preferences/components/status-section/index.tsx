@@ -1,4 +1,3 @@
-import { Observe } from "expo-observe";
 import { SymbolView } from "expo-symbols";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
@@ -34,12 +33,6 @@ export function StatusSection() {
   });
 
   const handleRefresh = useCallback(() => {
-    Observe.logEvent("connection.refresh", {
-      attributes: {
-        source: "manual",
-        from: "/settings/preferences",
-      },
-    });
     refresh();
   }, [refresh]);
 

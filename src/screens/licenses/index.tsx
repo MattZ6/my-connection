@@ -1,6 +1,4 @@
-import { useObserve } from "expo-observe";
 import { Link, Stack } from "expo-router";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -55,11 +53,6 @@ export function LicensesScreen() {
   const insets = useSafeAreaInsets();
   const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
-  const { markInteractive } = useObserve();
-
-  useEffect(() => {
-    markInteractive();
-  }, [markInteractive]);
 
   return (
     <>
