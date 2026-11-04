@@ -411,48 +411,20 @@ export const es = {
     about: {
       meta: { title: "Acerca de" },
       sections: {
-        about: {
-          title: "Información de la app",
+        app: {
+          title: "App",
           fields: {
-            name: { title: "Nombre" },
-            package: { title: "Identificador" },
-            version: { title: "Versión" },
-            installed_at: { title: "Instalado el" },
-            updated_at: { title: "Última actualización" },
+            name: "Nombre",
+            version: "Versión",
+            installed_at: "Instalado el",
+            updated_at: "Última actualización",
           },
         },
         device: {
           title: "Dispositivo",
           fields: {
-            type: {
-              title: "Tipo de dispositivo",
-              value: {
-                0: "Desconocido",
-                1: "Teléfono",
-                2: "Tablet",
-                3: "Escritorio",
-                4: "TV",
-                null: "—",
-              },
-            },
-            manufacturer: { title: "Fabricante" },
-            model: { title: "Modelo" },
-            year: { title: "Año del dispositivo" },
-            android_design_name: { title: "Nombre de diseño de Android" },
-            android_product_name: { title: "Nombre del producto Android" },
-          },
-        },
-        os: {
-          title: "Sistema operativo",
-          fields: {
-            name: { title: "SO" },
-            version: { title: "Versión" },
-            build_id: { title: "ID de compilación" },
-            internal_build_id: { title: "ID interno" },
-            android_api: { title: "Nivel de API de Android" },
-            android_build_fingerprint: {
-              title: "Fingerprint de la compilación",
-            },
+            model: "Modelo",
+            android: "Android",
           },
         },
         author: {
@@ -460,16 +432,28 @@ export const es = {
           fields: {
             description:
               "{{app_name}} comenzó como una herramienta personal para explorar información de red y evolucionó hacia una app simple enfocada en claridad y control.",
+            role: "Creador de {{app_name}}",
           },
-          actions: {
-            view_on_github: {
-              title: "View on GitHub",
+        },
+        explore: {
+          title: "Explorar",
+          fields: {
+            website: { title: "Sitio web" },
+            play_store: {
+              title: "Google Play",
+              description: "Califica o comparte la app",
             },
           },
         },
+        build: {
+          title: "Compilación",
+          fields: {
+            package: "Identificador",
+            build_id: "ID de compilación",
+            fingerprint: "Fingerprint de la compilación",
+          },
+        },
       },
-      disclaimer:
-        "No te preocupes — esta información no sale de tu dispositivo.",
     },
 
     language: {

@@ -413,48 +413,20 @@ export const pt = {
     about: {
       meta: { title: "Sobre" },
       sections: {
-        about: {
-          title: "Informações do app",
+        app: {
+          title: "App",
           fields: {
-            name: { title: "Nome" },
-            package: { title: "Identificador" },
-            version: { title: "Versão" },
-            installed_at: { title: "Instalado em" },
-            updated_at: { title: "Atualizado em" },
+            name: "Nome",
+            version: "Versão",
+            installed_at: "Instalado em",
+            updated_at: "Atualizado em",
           },
         },
         device: {
           title: "Dispositivo",
           fields: {
-            type: {
-              title: "Tipo de dispositivo",
-              value: {
-                0: "Desconhecido",
-                1: "Smartphone",
-                2: "Tablet",
-                3: "Desktop",
-                4: "TV",
-                null: "—",
-              },
-            },
-            manufacturer: { title: "Fabricante" },
-            model: { title: "Modelo" },
-            year: { title: "Ano do dispositivo" },
-            android_design_name: { title: "Nome do design do Android" },
-            android_product_name: { title: "Nome do produto do Android" },
-          },
-        },
-        os: {
-          title: "Sistema operacional",
-          fields: {
-            name: { title: "SO" },
-            version: { title: "Versão" },
-            build_id: { title: "ID da build" },
-            internal_build_id: { title: "ID interno da build" },
-            android_api: { title: "Nível da API do Android" },
-            android_build_fingerprint: {
-              title: "Fingerprint da build",
-            },
+            model: "Modelo",
+            android: "Android",
           },
         },
         author: {
@@ -462,16 +434,28 @@ export const pt = {
           fields: {
             description:
               "O {{app_name}} começou como uma ferramenta pessoal para explorar informações de rede e evoluiu para um app simples focado em clareza e controle.",
+            role: "Criador do {{app_name}}",
           },
-          actions: {
-            view_on_github: {
-              title: "Ver no GitHub",
+        },
+        explore: {
+          title: "Explorar",
+          fields: {
+            website: { title: "Site" },
+            play_store: {
+              title: "Google Play",
+              description: "Avalie ou compartilhe o app",
             },
           },
         },
+        build: {
+          title: "Build",
+          fields: {
+            package: "Identificador",
+            build_id: "ID da build",
+            fingerprint: "Fingerprint da build",
+          },
+        },
       },
-      disclaimer:
-        "Não se preocupe — essas informações não saem do seu dispositivo.",
     },
 
     language: {

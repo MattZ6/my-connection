@@ -25,6 +25,8 @@ type Props = {
   };
   description?: string;
   value?: string;
+  /** Shows the value in Geist Mono, for versions and other codes. */
+  monoValue?: boolean;
   badge?: ReactNode;
   control?: ReactNode;
   trailing?: Trailing;
@@ -45,6 +47,7 @@ export function SettingsRow({
   icon,
   description,
   value,
+  monoValue,
   badge,
   control,
   trailing = "chevron",
@@ -90,7 +93,10 @@ export function SettingsRow({
 
       <View style={styles.trailing}>
         {!!value && (
-          <Text style={styles.value} numberOfLines={1}>
+          <Text
+            style={[styles.value, monoValue && styles.monoValue]}
+            numberOfLines={1}
+          >
             {value}
           </Text>
         )}
