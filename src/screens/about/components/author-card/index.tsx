@@ -5,11 +5,10 @@ import { Image, Text, View } from "react-native";
 import { useStyles } from "@/hooks/use-styles";
 
 import { environment } from "../../environment";
+
 import { getStyles } from "./styles";
 
 const AUTHOR_NAME = "Matheus Zanin";
-/** Bundled with the app so the About screen makes no network request. */
-const AUTHOR_AVATAR = require("@/assets/images/author-avatar.jpg");
 
 export function AuthorCard() {
   const styles = useStyles(getStyles);
@@ -39,7 +38,7 @@ export function AuthorCard() {
         <View style={styles.byline}>
           <View style={styles.avatar} accessibilityElementsHidden>
             <Image
-              source={AUTHOR_AVATAR}
+              source={require("@/assets/images/author-avatar.jpg")}
               alt=""
               resizeMode="cover"
               style={styles.avatarImage}

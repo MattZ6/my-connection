@@ -50,8 +50,11 @@ export function getStyles(theme: ThemeConfig) {
       justifyContent: "center",
       overflow: "hidden",
       backgroundColor: theme.colors.brandSurface.elevated,
+      position: "relative",
     },
     avatarImage: {
+      width: 40,
+      height: 40,
       position: "absolute",
       inset: 0,
     },
