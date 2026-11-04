@@ -1,7 +1,6 @@
 import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
 import ExpoConstants from "expo-constants";
-import { Observe } from "expo-observe";
 
 import { scrubBreadcrumb, scrubEvent } from "@/libs/sentry/scrubber";
 
@@ -63,15 +62,10 @@ function stopSentry() {
 }
 
 /**
- * Turns crash reports and app metrics on or off. Nothing is sent until the
+ * Turns crash reports on or off. Nothing is sent until the
  * person turns this on in Settings; it is off by default.
  */
 export function setDiagnosticsEnabled(enabled: boolean) {
-  Observe.configure({
-    dispatchingEnabled: enabled,
-    integrations: { "expo-router": true },
-  });
-
   if (enabled) {
     startSentry();
   } else {

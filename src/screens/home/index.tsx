@@ -1,7 +1,6 @@
 import { NetInfoStateType } from "@react-native-community/netinfo";
-import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -25,7 +24,6 @@ import { getConnectionDetails } from "./utils/connection-details";
 export function HomeScreen() {
   const safeInsets = useSafeAreaInsets();
   const styles = useStyles((config) => getStyles(config, safeInsets));
-  const { markInteractive } = useObserve();
 
   const { netInfo } = useNetworkUpdates();
   const { hint, dismiss } = useConnectionHint(netInfo);
@@ -33,10 +31,6 @@ export function HomeScreen() {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   const details = useMemo(() => getConnectionDetails(netInfo), [netInfo]);
-
-  useEffect(() => {
-    markInteractive();
-  }, [markInteractive]);
 
   // Offline and unknown states have nothing to detail.
   const hasDetails =

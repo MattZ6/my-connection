@@ -1,7 +1,5 @@
-import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -24,7 +22,6 @@ export function PermissionsScreen() {
   const insets = useSafeAreaInsets();
   const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation("translation", { keyPrefix: "permissions" });
-  const { markInteractive } = useObserve();
   const {
     permission,
     precision,
@@ -32,10 +29,6 @@ export function PermissionsScreen() {
     locationServicesEnabled,
     requestPermission,
   } = useLocation();
-
-  useEffect(() => {
-    markInteractive();
-  }, [markInteractive]);
 
   const isGranted = permission === "granted";
 

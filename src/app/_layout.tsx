@@ -1,7 +1,6 @@
 import "@/i18next/i18next";
 
 import * as Sentry from "@sentry/react-native";
-import { ObserveRoot, useObserve } from "expo-observe";
 import { Stack, useNavigationContainerRef } from "expo-router";
 import * as ExpoSplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -24,14 +23,12 @@ ExpoSplashScreen.preventAutoHideAsync();
 function RootLayout() {
   const ref = useNavigationContainerRef();
   const [fontsLoaded] = useFontFamily();
-  const { markInteractive } = useObserve();
 
   useEffect(() => {
     if (fontsLoaded) {
       ExpoSplashScreen.hideAsync();
-      markInteractive();
     }
-  }, [fontsLoaded, markInteractive]);
+  }, [fontsLoaded]);
 
   useEffect(() => {
     if (ref) {
@@ -75,4 +72,4 @@ if (isCrashReportingAvailable) {
   WrappedRootLayout = Sentry.wrap(RootLayout);
 }
 
-export default ObserveRoot.wrap(WrappedRootLayout);
+export default WrappedRootLayout;

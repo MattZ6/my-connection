@@ -1,6 +1,5 @@
-import { useObserve } from "expo-observe";
 import { Stack } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,13 +19,8 @@ export function PreferencesScreen() {
   const insets = useSafeAreaInsets();
   const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation("translation", { keyPrefix: "preferences" });
-  const { markInteractive } = useObserve();
   const { updateFrequency, changeUpdateFrequency } = useNetworkUpdates();
   const [isFrequencySheetOpen, setIsFrequencySheetOpen] = useState(false);
-
-  useEffect(() => {
-    markInteractive();
-  }, [markInteractive]);
 
   const handleOpenFrequencySheet = useCallback(() => {
     setIsFrequencySheetOpen(true);
