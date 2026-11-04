@@ -261,6 +261,16 @@ export const es = {
             haptics: { title: "Respuesta háptica" },
           },
         },
+        privacy: {
+          title: "Privacidad",
+          links: {
+            crash_reports: {
+              title: "Enviar informes de errores",
+              description:
+                "Detalles anónimos de errores que ayudan a corregir fallos. Nunca incluye el nombre de la red, el BSSID ni la IP.",
+            },
+          },
+        },
         about: {
           title: "Acerca de",
           links: {

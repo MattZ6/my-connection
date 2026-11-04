@@ -263,6 +263,16 @@ export const pt = {
             haptics: { title: "Feedback tátil" },
           },
         },
+        privacy: {
+          title: "Privacidade",
+          links: {
+            crash_reports: {
+              title: "Enviar relatórios de erro",
+              description:
+                "Detalhes anônimos de erros que ajudam a corrigir bugs. Nunca inclui nome da rede, BSSID ou IP.",
+            },
+          },
+        },
         about: {
           title: "Sobre",
           links: {

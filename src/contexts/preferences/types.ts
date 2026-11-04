@@ -4,6 +4,8 @@ export namespace PreferencesContextTypes {
   export type Context = {
     hapticsEnabled: boolean;
     toggleHaptics: () => void;
+    crashReportsEnabled: boolean;
+    toggleCrashReports: () => void;
   };
 }
 

@@ -13,6 +13,7 @@ import { EnvironmentBanner } from "./components/environment-banner";
 import { GeneralSection } from "./components/general-section";
 import { NetworkSection } from "./components/network-section";
 import { PrivacyDisclaimer } from "./components/privacy-disclaimer";
+import { PrivacySection } from "./components/privacy-section";
 
 import { getStyles } from "./styles";
 
@@ -54,6 +55,7 @@ export function SettingsScreen() {
         <EnvironmentBanner variant={environment} />
         <NetworkSection />
         <GeneralSection />
+        <PrivacySection />
         <AboutSection />
         <PrivacyDisclaimer />
       </ScrollView>

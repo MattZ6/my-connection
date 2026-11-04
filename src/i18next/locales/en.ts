@@ -260,6 +260,16 @@ export const en = {
             haptics: { title: "Haptic feedback" },
           },
         },
+        privacy: {
+          title: "Privacy",
+          links: {
+            crash_reports: {
+              title: "Send crash reports",
+              description:
+                "Anonymous error details that help fix bugs. Never includes network name, BSSID or IP.",
+            },
+          },
+        },
         about: {
           title: "About",
           links: {

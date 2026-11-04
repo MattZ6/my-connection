@@ -12,6 +12,7 @@ export const STORAGE_KEY = {
   NETWORK_AUTOMATIC_UPDATES_ENABLED: "network.auto_updates.on",
   NETWORK_AUTOMATIC_UPDATES_FREQUENCY: "network.auto_updates.frequency",
   LAST_CHANGELOG_VERSION_VIEWED: "version.last_seen",
+  CRASH_REPORTS: "diagnostics.crash_reports.on",
 };
 
 export const SettingsRepository = {
@@ -60,6 +61,20 @@ export const SettingsRepository = {
   },
   saveHapticsFlag: (value: boolean) => {
     personalSettingsStorage.set(STORAGE_KEY.HAPTICS, value);
+  },
+  getCrashReportsFlag: () => {
+    const storedValue = personalSettingsStorage.getBoolean(
+      STORAGE_KEY.CRASH_REPORTS,
+    );
+
+    if (storedValue === undefined || storedValue === null) {
+      return null;
+    }
+
+    return storedValue;
+  },
+  saveCrashReportsFlag: (value: boolean) => {
+    personalSettingsStorage.set(STORAGE_KEY.CRASH_REPORTS, value);
   },
   getAndroidDynamicColorsFlag: () => {
     const storedValue = personalSettingsStorage.getBoolean(
