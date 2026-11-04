@@ -408,7 +408,11 @@ export const pt = {
       },
     },
 
-    licenses: { meta: { title: "Licenças" } },
+    licenses: {
+      meta: { title: "Licenças" },
+      description:
+        "{{count}} pacotes de código aberto tornam o {{app_name}} possível.",
+    },
 
     about: {
       meta: { title: "Sobre" },
