@@ -3,17 +3,21 @@ import "@/i18next/i18next";
 import * as Sentry from "@sentry/react-native";
 import { Stack, useNavigationContainerRef } from "expo-router";
 import * as ExpoSplashScreen from "expo-splash-screen";
+import * as ExpoSystemUI from "expo-system-ui";
 import { useEffect } from "react";
 import { Platform } from "react-native";
 
 import { Provider } from "@/contexts/provider";
+
 import { useFontFamily } from "@/hooks/use-font-family";
 import { useTheme } from "@/hooks/use-theme";
+
 import {
   isCrashReportingAvailable,
   navigationIntegration,
   setDiagnosticsEnabled,
 } from "@/libs/diagnostics";
+
 import { SettingsRepository } from "@/repositories/settings";
 
 setDiagnosticsEnabled(SettingsRepository.getCrashReportsFlag() ?? false);
@@ -49,6 +53,10 @@ function RootLayout() {
 
 function RootStackNavigation() {
   const { colors } = useTheme();
+
+  useEffect(() => {
+    ExpoSystemUI.setBackgroundColorAsync(colors.surface.base);
+  }, [colors.surface.base]);
 
   return (
     <Stack
