@@ -538,6 +538,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v0.12.0": {
+            title: "Um ícone novo",
+            date: "2026-11-04",
+            description:
+              "Um ícone novo, a cópia nos detalhes da conexão está de volta e pequenos ajustes visuais em todo o app.",
+          },
           "v0.11.0": {
             title: "Privacidade em primeiro lugar",
             date: "2026-11-04",
@@ -672,6 +678,36 @@ export const pt = {
           },
         },
         content: {
+          "v0.12.0": {
+            paragraphs: [
+              "O My Connection ganhou um ícone novo: um anel de sinal em volta do símbolo do Wi-Fi, inspirado no anel que você vê na Início.",
+              "A cópia nos detalhes da conexão está de volta. Toque no nome da rede, no BSSID ou no endereço IP em Ver detalhes para copiar. Isso havia ficado de fora da nova Início.",
+              "Esta versão também traz pequenos ajustes visuais na Início, em Sobre e nas Configurações.",
+            ],
+            highlights: [
+              {
+                type: "features",
+                title: "Novidades",
+                items: [
+                  "Novo ícone do app, com um anel de sinal em volta do símbolo do Wi-Fi.",
+                ],
+              },
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Copie de novo o nome da rede, o BSSID e o endereço IP nos detalhes da conexão.",
+                  "A seção do autor agora fica no fim da tela Sobre.",
+                  "Tamanhos de texto e espaçamentos refinados nas dicas da Início, no botão de detalhes e nas telas de configurações.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correções",
+                items: ["Corrigida a posição da foto do autor na tela Sobre."],
+              },
+            ],
+          },
           "v0.11.0": {
             paragraphs: [
               "Privacidade não é uma feature, é um princípio. A partir desta versão, o My Connection não envia nada sem o seu consentimento.",
