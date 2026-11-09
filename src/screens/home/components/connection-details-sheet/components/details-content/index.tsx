@@ -32,7 +32,8 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "home.details",
   });
-  const { copiedKey, copy } = useCopyToClipboard<DetailRow["label"]>();
+  const { isCopied: isRowCopied, copy } =
+    useCopyToClipboard<DetailRow["label"]>();
 
   return (
     <View style={styles.container}>
@@ -50,13 +51,14 @@ export function DetailsContent({ details, onAllowAccess }: Props) {
             <View style={styles.card}>
               {group.rows.map((row, index) => {
                 const { copyValue } = row;
-                const isCopied = copiedKey === row.label;
+                const isCopied = isRowCopied(row.label);
 
                 return (
                   <Pressable
                     key={row.label}
-                    // No taps while the "Copied" feedback is showing.
-                    disabled={!copyValue || isCopied}
+                    // Stays enabled; `copy` ignores taps while this row shows
+                    // its "Copied" feedback.
+                    disabled={!copyValue}
                     onPress={() => copyValue && copy(row.label, copyValue)}
                     android_ripple={androidRippleConfig}
                     style={[
