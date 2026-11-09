@@ -109,7 +109,7 @@ export function SettingsRow({
           <SymbolView
             name={{
               android:
-                trailing === "external" ? "open_in_new" : "chevron_right",
+                trailing === "external" ? "arrow_outward" : "chevron_right",
               ios: trailing === "external" ? "arrow.up.right" : "chevron.right",
             }}
             size={20}
