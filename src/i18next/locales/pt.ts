@@ -542,6 +542,12 @@ export const pt = {
       },
       versions: {
         meta: {
+          "v1.0.0": {
+            title: "Versão 1.0",
+            date: "2026-11-09",
+            description:
+              "A primeira versão estável: detalhes da conexão mais confiáveis, um novo aviso de privacidade nas Configurações e pequenos toques em Sobre.",
+          },
           "v0.12.0": {
             title: "Um ícone novo",
             date: "2026-11-04",
@@ -682,6 +688,42 @@ export const pt = {
           },
         },
         content: {
+          "v1.0.0": {
+            paragraphs: [
+              "O Minha Conexão chegou à 1.0. Depois da nova Início, das Configurações redesenhadas, das mudanças de privacidade e do ícone novo, esta versão cuida dos detalhes.",
+              "Os detalhes da conexão ficaram mais confiáveis. Os toques continuam funcionando quando a janela se expande, as últimas linhas rolam acima da barra de navegação e cada linha mostra o seu próprio Copiado.",
+              "Configurações e Sobre também ganharam pequenos toques: um novo aviso de privacidade, o logo do Google Play e o ícone do app nos links de Sobre, e uma seta para fora nos links externos.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Melhorias",
+                items: [
+                  "Novo aviso de privacidade no fim das Configurações.",
+                  "Os links do Google Play e do site em Sobre agora mostram o logo do Google Play e o ícone do app.",
+                  "O link do site em Sobre agora tem uma descrição curta.",
+                  "Links externos agora usam uma seta para fora.",
+                  "Os textos do app agora usam o nome Minha Conexão.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correções",
+                items: [
+                  "Os toques em Ver detalhes continuam funcionando quando a janela se expande, por exemplo quando aparece o aviso de localização.",
+                  "As últimas linhas de Ver detalhes agora rolam acima da barra de navegação.",
+                  "Cada linha de Ver detalhes mostra o seu próprio Copiado, mesmo quando você copia várias seguidas.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestrutura",
+                items: [
+                  "Licenças e Changelog agora usam uma lista mais rápida.",
+                ],
+              },
+            ],
+          },
           "v0.12.0": {
             paragraphs: [
               "O Minha Conexão ganhou um ícone novo: um anel de sinal em volta do símbolo do Wi-Fi, inspirado no anel que você vê na Início.",

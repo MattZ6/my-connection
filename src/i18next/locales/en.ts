@@ -537,6 +537,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v1.0.0": {
+            title: "Version 1.0",
+            date: "2026-11-09",
+            description:
+              "The first stable version: a more reliable connection details sheet, a new privacy note in Settings and small touches in About.",
+          },
           "v0.12.0": {
             title: "A fresh icon",
             date: "2026-11-04",
@@ -677,6 +683,41 @@ export const en = {
           },
         },
         content: {
+          "v1.0.0": {
+            paragraphs: [
+              "My Connection reaches 1.0. After the new home, the redesigned Settings, the privacy changes and the new icon, this version takes care of the details.",
+              "The connection details are more reliable. Taps keep working when the sheet expands, the last lines scroll above the navigation bar, and each row shows its own Copied feedback.",
+              "Settings and About also got small touches: a new privacy note, the Google Play logo and the app icon on the About links, and an outward arrow on external links.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "New privacy note at the end of Settings.",
+                  "The Google Play and website links in About now show the Google Play logo and the app icon.",
+                  "The website link in About now has a short description.",
+                  "External links now use an outward arrow.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: [
+                  "Taps in View details keep working when the sheet expands, for example when the location note shows up.",
+                  "The last lines in View details now scroll above the navigation bar.",
+                  "Each row in View details shows its own Copied feedback, even when you copy several in a row.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Licenses and Changelog now render with a faster list.",
+                ],
+              },
+            ],
+          },
           "v0.12.0": {
             paragraphs: [
               "My Connection has a new icon: a signal ring around the Wi-Fi symbol, inspired by the ring you see on the home screen.",
