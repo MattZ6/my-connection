@@ -50,7 +50,7 @@ export function LicenseRow({ name, version, licenses, onPress }: Props) {
       </View>
 
       <SymbolView
-        name={{ android: "open_in_new", ios: "arrow.up.right" }}
+        name={{ android: "arrow_outward", ios: "arrow.up.right" }}
         size={18}
         tintColor={styles.icon.tintColor}
       />
