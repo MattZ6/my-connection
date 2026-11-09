@@ -540,6 +540,12 @@ export const es = {
       },
       versions: {
         meta: {
+          "v1.0.0": {
+            title: "Llegó la 1.0",
+            date: "2026-11-09",
+            description:
+              "Mi Conexión llega a la 1.0. Gracias a todos los que probaron y enviaron comentarios en el camino.",
+          },
           "v0.12.0": {
             title: "Un icono nuevo",
             date: "2026-11-04",
@@ -680,6 +686,42 @@ export const es = {
           },
         },
         content: {
+          "v1.0.0": {
+            paragraphs: [
+              "¡Mi Conexión llega a la 1.0! Lo que empezó como una idea simple para ver la señal de tu Wi-Fi ahora es una app completa, con un nuevo inicio, Ajustes rediseñados, la privacidad primero y un icono nuevo.",
+              "Gracias a todos los que instalaron, probaron y enviaron comentarios en el camino. Esta versión existe gracias a ustedes.",
+              "La 1.0 también cuida los detalles: Ver detalles es más fiable, Ajustes tiene un nuevo aviso de privacidad y Acerca de recibió pequeños toques.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Mejoras",
+                items: [
+                  "Nuevo aviso de privacidad al final de Ajustes.",
+                  "Los enlaces de Google Play y del sitio en Acerca de ahora muestran el logo de Google Play y el icono de la app.",
+                  "El enlace del sitio en Acerca de ahora tiene una descripción corta.",
+                  "Los enlaces externos ahora usan una flecha hacia fuera.",
+                  "Los textos de la app ahora usan el nombre Mi Conexión.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Correcciones",
+                items: [
+                  "Los toques en Ver detalles siguen funcionando cuando la hoja se expande, por ejemplo cuando aparece el aviso de ubicación.",
+                  "Las últimas líneas de Ver detalles ahora se desplazan por encima de la barra de navegación.",
+                  "Cada fila de Ver detalles muestra su propio Copiado, incluso cuando copias varias seguidas.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infraestructura",
+                items: [
+                  "Licencias y Changelog ahora usan una lista más rápida.",
+                ],
+              },
+            ],
+          },
           "v0.12.0": {
             paragraphs: [
               "Mi Conexión tiene un icono nuevo: un anillo de señal alrededor del símbolo del Wi-Fi, inspirado en el anillo que ves en el inicio.",

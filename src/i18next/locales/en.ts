@@ -537,6 +537,12 @@ export const en = {
       },
       versions: {
         meta: {
+          "v1.0.0": {
+            title: "1.0 is here",
+            date: "2026-11-09",
+            description:
+              "My Connection reaches 1.0. Thank you to everyone who tested and sent feedback along the way.",
+          },
           "v0.12.0": {
             title: "A fresh icon",
             date: "2026-11-04",
@@ -677,6 +683,41 @@ export const en = {
           },
         },
         content: {
+          "v1.0.0": {
+            paragraphs: [
+              "My Connection reaches 1.0! What started as a simple idea to check your Wi-Fi signal is now a complete app, with a new home, redesigned Settings, privacy first and a fresh icon.",
+              "Thank you to everyone who installed it, tested it and sent feedback along the way. This version exists because of you.",
+              "1.0 also polishes the details: View details is more reliable, Settings has a new privacy note and About got small touches.",
+            ],
+            highlights: [
+              {
+                type: "improvements",
+                title: "Improvements",
+                items: [
+                  "New privacy note at the end of Settings.",
+                  "The Google Play and website links in About now show the Google Play logo and the app icon.",
+                  "The website link in About now has a short description.",
+                  "External links now use an outward arrow.",
+                ],
+              },
+              {
+                type: "fixes",
+                title: "Fixes",
+                items: [
+                  "Taps in View details keep working when the sheet expands, for example when the location note shows up.",
+                  "The last lines in View details now scroll above the navigation bar.",
+                  "Each row in View details shows its own Copied feedback, even when you copy several in a row.",
+                ],
+              },
+              {
+                type: "infrastructure",
+                title: "Infrastructure",
+                items: [
+                  "Licenses and Changelog now render with a faster list.",
+                ],
+              },
+            ],
+          },
           "v0.12.0": {
             paragraphs: [
               "My Connection has a new icon: a signal ring around the Wi-Fi symbol, inspired by the ring you see on the home screen.",
