@@ -541,10 +541,10 @@ export const es = {
       versions: {
         meta: {
           "v1.0.0": {
-            title: "Versión 1.0",
+            title: "Llegó la 1.0",
             date: "2026-11-09",
             description:
-              "La primera versión estable: detalles de la conexión más fiables, un nuevo aviso de privacidad en Ajustes y pequeños toques en Acerca de.",
+              "Mi Conexión llega a la 1.0. Gracias a todos los que probaron y enviaron comentarios en el camino.",
           },
           "v0.12.0": {
             title: "Un icono nuevo",
@@ -688,9 +688,9 @@ export const es = {
         content: {
           "v1.0.0": {
             paragraphs: [
-              "Mi Conexión llega a la 1.0. Después del nuevo inicio, los Ajustes rediseñados, los cambios de privacidad y el icono nuevo, esta versión cuida los detalles.",
-              "Los detalles de la conexión son más fiables. Los toques siguen funcionando cuando la hoja se expande, las últimas líneas se desplazan por encima de la barra de navegación y cada fila muestra su propio Copiado.",
-              "Ajustes y Acerca de también recibieron pequeños toques: un nuevo aviso de privacidad, el logo de Google Play y el icono de la app en los enlaces de Acerca de, y una flecha hacia fuera en los enlaces externos.",
+              "¡Mi Conexión llega a la 1.0! Lo que empezó como una idea simple para ver la señal de tu Wi-Fi ahora es una app completa, con un nuevo inicio, Ajustes rediseñados, la privacidad primero y un icono nuevo.",
+              "Gracias a todos los que instalaron, probaron y enviaron comentarios en el camino. Esta versión existe gracias a ustedes.",
+              "La 1.0 también cuida los detalles: Ver detalles es más fiable, Ajustes tiene un nuevo aviso de privacidad y Acerca de recibió pequeños toques.",
             ],
             highlights: [
               {

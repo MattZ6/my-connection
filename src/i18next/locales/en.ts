@@ -538,10 +538,10 @@ export const en = {
       versions: {
         meta: {
           "v1.0.0": {
-            title: "Version 1.0",
+            title: "1.0 is here",
             date: "2026-11-09",
             description:
-              "The first stable version: a more reliable connection details sheet, a new privacy note in Settings and small touches in About.",
+              "My Connection reaches 1.0. Thank you to everyone who tested and sent feedback along the way.",
           },
           "v0.12.0": {
             title: "A fresh icon",
@@ -685,9 +685,9 @@ export const en = {
         content: {
           "v1.0.0": {
             paragraphs: [
-              "My Connection reaches 1.0. After the new home, the redesigned Settings, the privacy changes and the new icon, this version takes care of the details.",
-              "The connection details are more reliable. Taps keep working when the sheet expands, the last lines scroll above the navigation bar, and each row shows its own Copied feedback.",
-              "Settings and About also got small touches: a new privacy note, the Google Play logo and the app icon on the About links, and an outward arrow on external links.",
+              "My Connection reaches 1.0! What started as a simple idea to check your Wi-Fi signal is now a complete app, with a new home, redesigned Settings, privacy first and a fresh icon.",
+              "Thank you to everyone who installed it, tested it and sent feedback along the way. This version exists because of you.",
+              "1.0 also polishes the details: View details is more reliable, Settings has a new privacy note and About got small touches.",
             ],
             highlights: [
               {
