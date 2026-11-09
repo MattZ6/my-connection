@@ -1,11 +1,16 @@
+import { LegendList } from "@legendapp/list/react-native";
 import { Link, Stack } from "expo-router";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, ScrollView, Text } from "react-native";
+import { Platform, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import licenses from "@/assets/licenses.json";
 
-import { SettingsSection } from "@/components/ui/settings-section";
+import {
+  SettingsSectionDivider,
+  SettingsSectionItem,
+} from "@/components/ui/settings-section";
 
 import { useStyles } from "@/hooks/use-styles";
 import { useTheme } from "@/hooks/use-theme";
@@ -54,6 +59,29 @@ export function LicensesScreen() {
   const styles = useStyles((s) => getStyles(s, insets));
   const { t } = useTranslation();
 
+  const renderItem = useCallback(
+    ({ item, index }: { item: License; index: number }) => (
+      <SettingsSectionItem index={index} total={parsedLicenses.length}>
+        {item.url ? (
+          <Link href={item.url} target="_blank" asChild>
+            <LicenseRow
+              name={item.name}
+              version={item.version}
+              licenses={item.licenses}
+            />
+          </Link>
+        ) : (
+          <LicenseRow
+            name={item.name}
+            version={item.version}
+            licenses={item.licenses}
+          />
+        )}
+      </SettingsSectionItem>
+    ),
+    [],
+  );
+
   return (
     <>
       <Stack.Screen.BackButton displayMode="minimal" />
@@ -69,40 +97,26 @@ export function LicensesScreen() {
         {t("licenses.meta.title")}
       </Stack.Screen.Title>
 
-      <ScrollView
+      <LegendList
+        data={parsedLicenses}
+        keyExtractor={(item) => item.key}
+        renderItem={renderItem}
+        estimatedItemSize={72}
+        ItemSeparatorComponent={SettingsSectionDivider}
+        ListHeaderComponent={
+          <Text style={styles.description}>
+            {t("licenses.description", {
+              count: parsedLicenses.length,
+              app_name: t(`app.${environment}.name`),
+            })}
+          </Text>
+        }
+        ListHeaderComponentStyle={styles.header}
         contentInsetAdjustmentBehavior="automatic"
         fadingEdgeLength={32}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
-      >
-        <Text style={styles.description}>
-          {t("licenses.description", {
-            count: parsedLicenses.length,
-            app_name: t(`app.${environment}.name`),
-          })}
-        </Text>
-
-        <SettingsSection>
-          {parsedLicenses.map((item) =>
-            item.url ? (
-              <Link key={item.key} href={item.url} target="_blank" asChild>
-                <LicenseRow
-                  name={item.name}
-                  version={item.version}
-                  licenses={item.licenses}
-                />
-              </Link>
-            ) : (
-              <LicenseRow
-                key={item.key}
-                name={item.name}
-                version={item.version}
-                licenses={item.licenses}
-              />
-            ),
-          )}
-        </SettingsSection>
-      </ScrollView>
+      />
     </>
   );
 }
