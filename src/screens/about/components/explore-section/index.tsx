@@ -2,6 +2,7 @@ import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform } from "react-native";
 
+import { AppGlyphIcon } from "@/components/icons/app-glyph-icon";
 import { PlayStoreIcon } from "@/components/icons/play-store-icon";
 import { SettingsRow } from "@/components/ui/settings-row";
 import { SettingsSection } from "@/components/ui/settings-section";
@@ -26,8 +27,8 @@ export function ExploreSection() {
       <Link href={WEBSITE_LINK} target="_blank" asChild>
         <SettingsRow
           label={t("fields.website.title")}
-          description="myconnection.zanin.dev"
-          icon={{ android: "language", ios: "globe" }}
+          description={t("fields.website.description")}
+          renderIcon={(props) => <AppGlyphIcon {...props} />}
           trailing="external"
         />
       </Link>

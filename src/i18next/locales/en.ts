@@ -475,7 +475,10 @@ export const en = {
         explore: {
           title: "Explore",
           fields: {
-            website: { title: "Website" },
+            website: {
+              title: "Website",
+              description: "Learn more about the app",
+            },
             play_store: {
               title: "Google Play",
               description: "Rate or share the app",
