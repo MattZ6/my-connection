@@ -13,6 +13,17 @@ export function getStyles(theme: ThemeConfig) {
     icon: {
       tintColor: theme.colors.content.muted,
     },
+    content: {
+      alignItems: "center",
+      gap: 4,
+    },
+    title: {
+      fontFamily: theme.fontFamily.medium,
+      fontSize: theme.fontSizes.body.fontSize,
+      lineHeight: theme.fontSizes.body.lineHeight,
+      color: theme.colors.content.base,
+      textAlign: "center",
+    },
     text: {
       fontFamily: theme.fontFamily.regular,
       fontSize: 13,

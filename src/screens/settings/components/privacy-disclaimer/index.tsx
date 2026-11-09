@@ -17,7 +17,10 @@ export function PrivacyDisclaimer() {
         name={{ android: "shield", ios: "lock.shield" }}
         tintColor={styles.icon.tintColor}
       />
-      <Text style={styles.text}>{t("disclaimer.text")}</Text>
+      <View style={styles.content}>
+        <Text style={styles.title}>{t("disclaimer.title")}</Text>
+        <Text style={styles.text}>{t("disclaimer.text")}</Text>
+      </View>
     </View>
   );
 }

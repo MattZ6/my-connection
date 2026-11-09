@@ -282,7 +282,8 @@ export const es = {
         },
       },
       disclaimer: {
-        text: "Esta app no recopila datos personales.\nToda la información permanece en tu dispositivo.",
+        title: "Tu red sigue siendo tuya",
+        text: "La app lee tu conexión en tu teléfono, y ahí se queda.",
       },
     },
 

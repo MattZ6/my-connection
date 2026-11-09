@@ -281,7 +281,8 @@ export const en = {
         },
       },
       disclaimer: {
-        text: "This app does not collect personal data.\nAll information stays on your device.",
+        title: "Your network stays yours",
+        text: "The app reads your connection on your phone, and that's where it stays.",
       },
     },
 
