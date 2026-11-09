@@ -1,3 +1,9 @@
+import CheckIcon from "@expo/material-symbols/check.xml";
+import ContentCopyIcon from "@expo/material-symbols/content_copy.xml";
+import DataUsageIcon from "@expo/material-symbols/data_usage.xml";
+import LocationOnIcon from "@expo/material-symbols/location_on.xml";
+import LockIcon from "@expo/material-symbols/lock.xml";
+import RemoveIcon from "@expo/material-symbols/remove.xml";
 import {
   AnimatedVisibility,
   Box,
@@ -6,7 +12,7 @@ import {
   EnterTransition,
   ExitTransition,
   HorizontalDivider,
-  RNHostView,
+  Icon,
   Row,
   Shape,
   Surface,
@@ -19,10 +25,9 @@ import {
   paddingAll,
   weight,
 } from "@expo/ui/jetpack-compose/modifiers";
-import { type AndroidSymbol, SymbolView } from "expo-symbols";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
-import { type ColorValue, View } from "react-native";
+import type { ColorValue, ImageSourcePropType } from "react-native";
 
 import { useTheme } from "@/hooks/use-theme";
 
@@ -32,7 +37,6 @@ import type {
   DetailRow,
   DetailValue,
 } from "../../../../utils/connection-details";
-import { CopyIcon } from "../../../copy-icon";
 
 type Props = {
   details: ConnectionDetails;
@@ -130,11 +134,7 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                           <Value value={row.value} />
                         </Row>
                         {/* Outside the weighted row, so a long value never pushes it out. */}
-                        {copyValue && (
-                          <RNHostView matchContents>
-                            <CopyIcon isCopied={isCopied} />
-                          </RNHostView>
-                        )}
+                        {copyValue && <CopyIcon isCopied={isCopied} />}
                       </Row>
                     </Fragment>
                   );
@@ -156,7 +156,7 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                 modifiers={[padding(16, 16, 16, 16)]}
               >
                 <SmallIcon
-                  name="location_on"
+                  source={LocationOnIcon}
                   color={colors.content.muted}
                   size={20}
                 />
@@ -214,7 +214,7 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
   );
 }
 
-// Same feel as the copy icon: fade + scale.
+// Label and copy icon cross-fade with the same feel: fade + scale.
 const LABEL_ENTER = EnterTransition.fadeIn().plus(
   EnterTransition.scaleIn({ initialScale: 0.8 }),
 );
@@ -262,6 +262,48 @@ function RowLabel({ label, copiedLabel, isCopied }: RowLabelProps) {
   );
 }
 
+// The icon swap scales a bit more than the label, like the RN `CopyIcon`.
+const ICON_ENTER = EnterTransition.fadeIn().plus(
+  EnterTransition.scaleIn({ initialScale: 0.6 }),
+);
+const ICON_EXIT = ExitTransition.fadeOut().plus(
+  ExitTransition.scaleOut({ targetScale: 0.6 }),
+);
+
+const COPY_ICON_SIZE = 16;
+
+/** "Copy" icon that cross-fades into a green check once the value is copied. */
+function CopyIcon({ isCopied }: { isCopied: boolean }) {
+  const { colors } = useTheme();
+
+  return (
+    <Box contentAlignment="center">
+      <AnimatedVisibility
+        visible={!isCopied}
+        enterTransition={ICON_ENTER}
+        exitTransition={ICON_EXIT}
+      >
+        <SmallIcon
+          source={ContentCopyIcon}
+          color={colors.content.muted}
+          size={COPY_ICON_SIZE}
+        />
+      </AnimatedVisibility>
+      <AnimatedVisibility
+        visible={isCopied}
+        enterTransition={ICON_ENTER}
+        exitTransition={ICON_EXIT}
+      >
+        <SmallIcon
+          source={CheckIcon}
+          color={colors.semantic.success}
+          size={COPY_ICON_SIZE}
+        />
+      </AnimatedVisibility>
+    </Box>
+  );
+}
+
 function Value({ value }: { value: DetailValue }) {
   const { colors, fontFamily, fontSizes } = useTheme();
   const { t } = useTranslation("translation", {
@@ -284,13 +326,13 @@ function Value({ value }: { value: DetailValue }) {
   );
 
   const withIcon = (
-    icon: AndroidSymbol,
+    icon: ImageSourcePropType,
     label: string,
     iconColor: NonNullable<ColorValue>,
     labelColor: NonNullable<ColorValue> = colors.content.base,
   ) => (
     <Row verticalAlignment="center" horizontalArrangement={{ spacedBy: 4 }}>
-      <SmallIcon name={icon} color={iconColor} size={18} />
+      <SmallIcon source={icon} color={iconColor} size={18} />
       {text(label, labelColor)}
     </Row>
   );
@@ -317,17 +359,21 @@ function Value({ value }: { value: DetailValue }) {
       return text(t(value.key, value.params));
 
     case "hidden":
-      return withIcon("lock", t("details.values.hidden"), colors.content.muted);
+      return withIcon(
+        LockIcon,
+        t("details.values.hidden"),
+        colors.content.muted,
+      );
 
     case "metered":
       return value.value
         ? withIcon(
-            "data_usage",
+            DataUsageIcon,
             t("details.values.yes"),
             colors.semantic.caution,
             colors.semantic.caution,
           )
-        : withIcon("remove", t("details.values.no"), colors.content.muted);
+        : withIcon(RemoveIcon, t("details.values.no"), colors.content.muted);
 
     case "boolean":
       if (value.value === null) {
@@ -336,35 +382,26 @@ function Value({ value }: { value: DetailValue }) {
 
       return value.value
         ? withIcon(
-            "check",
+            CheckIcon,
             t("details.values.yes"),
             colors.semantic.success,
             colors.semantic.success,
           )
-        : withIcon("remove", t("details.values.no"), colors.content.muted);
+        : withIcon(RemoveIcon, t("details.values.no"), colors.content.muted);
   }
 }
 
 type SmallIconProps = {
-  name: AndroidSymbol;
+  source: ImageSourcePropType;
   color: NonNullable<ColorValue>;
   size: number;
 };
 
-/** A Material Symbol hosted from RN, centered in a fixed square box. */
-function SmallIcon({ name, color, size }: SmallIconProps) {
-  return (
-    <RNHostView matchContents>
-      <View
-        style={{
-          width: size,
-          height: size,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <SymbolView name={{ android: name }} size={size} tintColor={color} />
-      </View>
-    </RNHostView>
-  );
+/**
+ * A Material Symbol drawn by Compose itself. No React Native view is hosted
+ * here on purpose: inside the sheet's own window an `RNHostView` handles its
+ * own touches, so it would swallow taps meant for the row around it.
+ */
+function SmallIcon({ source, color, size }: SmallIconProps) {
+  return <Icon source={source} tint={color} size={size} />;
 }
