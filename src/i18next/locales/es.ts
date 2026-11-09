@@ -478,7 +478,10 @@ export const es = {
         explore: {
           title: "Explorar",
           fields: {
-            website: { title: "Sitio web" },
+            website: {
+              title: "Sitio web",
+              description: "Changelog, privacidad y contacto",
+            },
             play_store: {
               title: "Google Play",
               description: "Califica o comparte la app",

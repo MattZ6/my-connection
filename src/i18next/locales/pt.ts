@@ -480,7 +480,10 @@ export const pt = {
         explore: {
           title: "Explorar",
           fields: {
-            website: { title: "Site" },
+            website: {
+              title: "Site",
+              description: "Changelog, privacidade e contato",
+            },
             play_store: {
               title: "Google Play",
               description: "Avalie ou compartilhe o app",

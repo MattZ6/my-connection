@@ -27,7 +27,7 @@ export function ExploreSection() {
       <Link href={WEBSITE_LINK} target="_blank" asChild>
         <SettingsRow
           label={t("fields.website.title")}
-          description="myconnection.zanin.dev"
+          description={t("fields.website.description")}
           renderIcon={(props) => <AppGlyphIcon {...props} />}
           trailing="external"
         />
