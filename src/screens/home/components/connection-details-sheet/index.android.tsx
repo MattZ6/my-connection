@@ -67,7 +67,7 @@ export function ConnectionDetailsSheet({
           modifiers={[
             fillMaxWidth(),
             verticalScroll(),
-            padding(16, 0, 16, insets.bottom),
+            padding(16, 0, 16, insets.bottom + 1),
           ]}
         >
           <ComposeDetailsContent
