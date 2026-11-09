@@ -480,7 +480,7 @@ export const es = {
           fields: {
             website: {
               title: "Sitio web",
-              description: "Changelog, privacidad y contacto",
+              description: "Conoce más sobre la app",
             },
             play_store: {
               title: "Google Play",

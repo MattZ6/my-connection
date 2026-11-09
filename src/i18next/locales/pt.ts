@@ -482,7 +482,7 @@ export const pt = {
           fields: {
             website: {
               title: "Site",
-              description: "Changelog, privacidade e contato",
+              description: "Saiba mais sobre o app",
             },
             play_store: {
               title: "Google Play",

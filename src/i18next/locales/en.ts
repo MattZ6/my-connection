@@ -477,7 +477,7 @@ export const en = {
           fields: {
             website: {
               title: "Website",
-              description: "Changelog, privacy and contact",
+              description: "Learn more about the app",
             },
             play_store: {
               title: "Google Play",
