@@ -7,6 +7,7 @@
       "dependencies": {
         "@expo-google-fonts/geist": "0.4.2",
         "@expo-google-fonts/geist-mono": "0.4.3",
+        "@expo/material-symbols": "0.1.1",
         "@expo/ui": "58.0.27",
         "@legendapp/list": "3.7.1",
         "@react-native-community/netinfo": "12.0.1",
@@ -252,6 +253,8 @@
     "@expo/log-box": ["@expo/log-box@58.0.15", "", { "dependencies": { "@expo/dom-webview": "^58.0.2", "@expo/log-box-utils": "^58.0.2", "anser": "^1.4.9", "stacktrace-parser": "^0.1.10" }, "peerDependencies": { "expo": "*", "react": "*", "react-native": "*" }, "optionalPeers": ["expo"] }, "sha512-IBpaJcTdJlSqmiEtyI9XDiNPSRUZNpeWdRbzE4ic6I4k17mpy0LxWJ4Mz2hB7B48b9BrleUKFeZ+6VseglmvGQ=="],
 
     "@expo/log-box-utils": ["@expo/log-box-utils@58.0.2", "", {}, "sha512-My8Lwe9FU/yDwwzqwi5LN2rzzDcJqIAZKrD9f0XHZEKz/FQnWJYdt1rsV7+RwqMGeGq2XsxTCVT1ggTCOvumxw=="],
+
+    "@expo/material-symbols": ["@expo/material-symbols@0.1.1", "", { "bin": { "add-material-symbols": "bin/add-material-symbols.mjs" } }, "sha512-ruA6hZATOPKxo1qSd1NE3HI9FrmEDwcMDhsvzTAdMkP9AapdHfJ/0tKmBMWFJir85voxs1twYxLVrGW9OLGaOg=="],
 
     "@expo/metro": ["@expo/metro@58.0.0", "", { "dependencies": { "metro": "0.87.1", "metro-babel-transformer": "0.87.1", "metro-cache": "0.87.1", "metro-cache-key": "0.87.1", "metro-config": "0.87.1", "metro-core": "0.87.1", "metro-file-map": "0.87.1", "metro-minify-terser": "0.87.1", "metro-resolver": "0.87.1", "metro-runtime": "0.87.1", "metro-source-map": "0.87.1", "metro-symbolicate": "0.87.1", "metro-transform-plugins": "0.87.1", "metro-transform-worker": "0.87.1" } }, "sha512-PMD640ihB0C3Oqm0AnDVJ/8qF2cKbRUEqGuSOr4tM/OTb9ktxsQqsiSSSeaOEgdCZBq20AxRS0d6WHNhhH2P+g=="],
 

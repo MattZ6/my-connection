@@ -11,6 +11,12 @@
     "licenseUrl": "https://github.com/expo/google-fonts/raw/master/LICENSE",
     "parents": "my-connection"
   },
+  "@expo/material-symbols@0.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/expo/material-symbols",
+    "licenseUrl": "https://github.com/expo/material-symbols/raw/main/LICENSE",
+    "parents": "my-connection"
+  },
   "@expo/ui@58.0.27": {
     "licenses": "MIT",
     "repository": "https://github.com/expo/expo",
