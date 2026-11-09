@@ -1,10 +1,15 @@
+import { LegendList } from "@legendapp/list/react-native";
 import { Stack, useRouter } from "expo-router";
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, ScrollView } from "react-native";
+import { Platform, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { SettingsSection } from "@/components/ui/settings-section";
+import {
+  SettingsSectionDivider,
+  SettingsSectionHeader,
+  SettingsSectionItem,
+} from "@/components/ui/settings-section";
 
 import { useHaptics } from "@/hooks/use-haptics";
 import { useLastVersionViewed } from "@/hooks/use-last-version-viewed";
@@ -69,6 +74,19 @@ export function ChangelogScreen() {
     [performTapFeedback, router.push],
   );
 
+  const renderItem = useCallback(
+    ({ item, index }: { item: ChangelogVersion; index: number }) => (
+      <SettingsSectionItem index={index} total={previousVersions.length}>
+        <VersionRow
+          version={item.version}
+          title={item.title}
+          onPress={() => handleOpenVersion(item.version)}
+        />
+      </SettingsSectionItem>
+    ),
+    [previousVersions.length, handleOpenVersion],
+  );
+
   return (
     <>
       <Stack.Screen.BackButton displayMode="minimal" />
@@ -84,31 +102,33 @@ export function ChangelogScreen() {
         {t("meta.title")}
       </Stack.Screen.Title>
 
-      <ScrollView
+      <LegendList
+        data={previousVersions}
+        keyExtractor={(item) => item.version}
+        renderItem={renderItem}
+        estimatedItemSize={56}
+        ItemSeparatorComponent={SettingsSectionDivider}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <LatestVersionCard
+              {...latestVersion}
+              hasNews={hasNews}
+              onPress={() => handleOpenVersion(latestVersion.version)}
+            />
+
+            {previousVersions.length > 0 && (
+              <SettingsSectionHeader
+                title={t("sections.previous_versions.title")}
+              />
+            )}
+          </View>
+        }
+        ListHeaderComponentStyle={styles.headerContainer}
         contentInsetAdjustmentBehavior="automatic"
         fadingEdgeLength={32}
         style={styles.container}
         contentContainerStyle={styles.scrollContainer}
-      >
-        <LatestVersionCard
-          {...latestVersion}
-          hasNews={hasNews}
-          onPress={() => handleOpenVersion(latestVersion.version)}
-        />
-
-        {previousVersions.length > 0 && (
-          <SettingsSection title={t("sections.previous_versions.title")}>
-            {previousVersions.map((item) => (
-              <VersionRow
-                key={item.version}
-                version={item.version}
-                title={item.title}
-                onPress={() => handleOpenVersion(item.version)}
-              />
-            ))}
-          </SettingsSection>
-        )}
-      </ScrollView>
+      />
     </>
   );
 }

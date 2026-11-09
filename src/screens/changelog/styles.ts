@@ -13,6 +13,11 @@ export function getStyles(theme: ThemeConfig, insets: EdgeInsets) {
       paddingTop: 24,
       paddingBottom: insets.bottom + 24,
       paddingHorizontal: 16,
+    },
+    headerContainer: {
+      paddingBottom: 8,
+    },
+    header: {
       gap: 24,
     },
   });

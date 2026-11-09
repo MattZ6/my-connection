@@ -33,6 +33,18 @@ export function getStyles(theme: ThemeConfig) {
       backgroundColor: theme.colors.surface.elevated,
       overflow: "hidden",
     },
+    item: {
+      backgroundColor: theme.colors.surface.elevated,
+      overflow: "hidden",
+    },
+    firstItem: {
+      borderTopLeftRadius: theme.radii["7"],
+      borderTopRightRadius: theme.radii["7"],
+    },
+    lastItem: {
+      borderBottomLeftRadius: theme.radii["7"],
+      borderBottomRightRadius: theme.radii["7"],
+    },
     divider: {
       height: 2,
       backgroundColor: theme.colors.surface.base,

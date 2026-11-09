@@ -13,7 +13,9 @@ export function getStyles(theme: ThemeConfig, insets: EdgeInsets) {
       paddingTop: 24,
       paddingBottom: insets.bottom + 24,
       paddingHorizontal: 16,
-      gap: 24,
+    },
+    header: {
+      paddingBottom: 24,
     },
     description: {
       paddingHorizontal: 4,
