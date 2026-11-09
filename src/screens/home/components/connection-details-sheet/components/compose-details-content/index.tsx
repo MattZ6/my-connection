@@ -52,7 +52,8 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
   const { t } = useTranslation("translation", {
     keyPrefix: "home.details",
   });
-  const { copiedKey, copy } = useCopyToClipboard<DetailRow["label"]>();
+  const { isCopied: isRowCopied, copy } =
+    useCopyToClipboard<DetailRow["label"]>();
 
   const cardShape = Shape.RoundedCorner({
     cornerRadii: {
@@ -99,7 +100,7 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
               <Column>
                 {group.rows.map((row, index) => {
                   const { copyValue } = row;
-                  const isCopied = copiedKey === row.label;
+                  const isCopied = isRowCopied(row.label);
 
                   return (
                     <Fragment key={row.label}>
@@ -114,8 +115,9 @@ export function ComposeDetailsContent({ details, onAllowAccess }: Props) {
                         horizontalArrangement={{ spacedBy: 8 }}
                         modifiers={[
                           fillMaxWidth(),
-                          // No taps while the "Copied" feedback is showing.
-                          ...(copyValue && !isCopied
+                          // Always tappable; `copy` ignores taps while this
+                          // row shows its "Copied" feedback.
+                          ...(copyValue
                             ? [clickable(() => copy(row.label, copyValue))]
                             : []),
                           paddingAll(16),
