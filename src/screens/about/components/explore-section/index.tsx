@@ -2,6 +2,7 @@ import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Platform } from "react-native";
 
+import { PlayStoreIcon } from "@/components/icons/play-store-icon";
 import { SettingsRow } from "@/components/ui/settings-row";
 import { SettingsSection } from "@/components/ui/settings-section";
 
@@ -35,7 +36,7 @@ export function ExploreSection() {
         <SettingsRow
           label={t("fields.play_store.title")}
           description={t("fields.play_store.description")}
-          icon={{ android: "shop", ios: "bag" }}
+          renderIcon={(props) => <PlayStoreIcon {...props} />}
           trailing="external"
         />
       </Link>
