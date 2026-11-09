@@ -1,60 +1,36 @@
 # Contributing
 
-Thanks for your interest in contributing to **My Connection**. ❤️
+Thanks for helping with My Connection. Bug reports, fixes and translations are all welcome.
 
-**My Connection** is an open-source project focused on making network
-information easier to understand on mobile devices.
+## Setup
 
-Contributions are welcome, whether you're fixing a bug, improving
-documentation, adding a translation, refining the UI, or working on
-the application's technical foundations.
-
-## Development setup
-
-### Requirements
-
-You'll need:
-
-- Node.js
-- Bun
-- Expo
-- Android Studio and/or Xcode (to run emulators, if needed)
-- A physical device is recommended for network-related features
-
-### Setup
-
-In order to clone the project (via HTTPS), run this command:
+You need [Bun](https://bun.sh), Android Studio (or an Android device with USB debugging) and, for cloud builds, an [Expo account](https://expo.dev).
 
 ```bash
 git clone https://github.com/MattZ6/my-connection.git
-```
-
-> 💡 SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command: `git clone git@github.com:MattZ6/my-connection.git`
-
-Install the project dependencies:
-
-```bash
+cd my-connection
 bun i
 ```
 
-Start the development server:
+The app uses native modules, so it doesn't run in Expo Go. Install a development build once, then start the dev server:
 
 ```bash
-bun start
+bunx expo run:android   # builds and installs the dev build locally
+bun android             # starts the dev server on later runs
 ```
+
+Prefer a physical device. Emulators don't report real Wi-Fi data.
+
+Crash reporting needs `EXPO_PUBLIC_SENTRY_DSN`. Leave it unset locally and the app runs without it.
 
 ## Making changes
 
-Please keep changes focused.
+- Keep each pull request to one change, and follow the patterns already in the code.
+- Write commits as [Conventional Commits](https://www.conventionalcommits.org), e.g. `fix(home): keep the details sheet taps working`.
+- Name branches the same way: `feat/…`, `fix/…`, `docs/…`.
+- Texts live in `src/i18next/locales` (`en`, `pt`, `es`). Update all three when you add or change one.
 
-Good pull requests usually:
-- solve one problem;
-- have a clear description;
-- avoid unrelated refactors;
-- preserve existing patterns;
-- include documentation when appropriate.
-
-Before opening a pull request, run:
+Before opening a pull request, run the same checks as CI:
 
 ```bash
 bun typecheck
@@ -62,95 +38,12 @@ bun lint:ci
 bunx expo-doctor
 ```
 
-## Translations
+In the pull request, say what changed, why, and how you tested it (device and Android version).
 
-Translations are especially welcome.
+## Reporting bugs
 
-If you want to improve an existing translation or add a new language, please keep the existing translation structure and terminology consistent with the rest of the application.
+[Open an issue](https://github.com/MattZ6/my-connection/issues) with the steps to reproduce, what you expected, and your device, Android version, app version and connection type. Network behavior varies a lot between devices, so these details matter.
 
-The project currently supports:
-- English
-- Brazilian Portuguese
-- Spanish
+## Code of Conduct and license
 
-## Pull requests
-
-When opening a pull request, please describe:
-
-### What changed?
-
-Briefly explain the change.
-
-### Why?
-
-Explain the problem or motivation behind it.
-
-### How was it tested?
-
-Describe the relevant testing performed.
-
-For example:
-- Android physical device
-- Android emulator
-- iOS simulator
-- iOS physical device
-- Static validation only
-
-If the change affects the UI, screenshots or a short recording are
-very helpful (and appreciated).
-
-## Commit messages
-
-There is no strict commit message convention at the moment.
-
-Keep commits clear and descriptive.
-
-Prefer:
-```bash
-Add connection refresh indicator
-Fix Wi-Fi permission state
-Improve network details layout
-Add Spanish translations
-```
-
-over:
-```bash
-fix stuff
-changes
-update
-```
-
-## Code style
-
-Please follow the existing project conventions.
-
-The project uses:
-- TypeScript
-- React Native
-- Expo
-- Bun
-- Biome
-
-Avoid introducing new dependencies unless they provide meaningful
-value to the project.
-
-## Issues
-
-When reporting a bug, please include:
-- What happened
-- What you expected to happen
-- Device
-- Operating system version
-- App version
-- Connection type
-- Steps to reproduce
-
-Network-related bugs are particularly sensitive to device and platform differences, so these details can be **very helpful**.
-
-## Code of Conduct
-
-By participating in this project, you agree to follow the project's [Code of Conduct](https://github.com/MattZ6/my-connection/blob/main/.github/CODE_OF_CONDUCT.md).
-
-## License
-
-By contributing to **My Connection**, you agree that your contributions will be licensed under the project's [MIT License](https://github.com/MattZ6/my-connection/blob/main/LICENSE.md).
+By taking part you agree to the [Code of Conduct](CODE_OF_CONDUCT.md), and your contributions are licensed under the [MIT License](../LICENSE.md).
