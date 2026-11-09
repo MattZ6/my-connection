@@ -1,6 +1,7 @@
 import { type AndroidSymbol, type SFSymbol, SymbolView } from "expo-symbols";
 import { type ReactNode, useCallback } from "react";
 import {
+  type ColorValue,
   type GestureResponderEvent,
   Pressable,
   Text,
@@ -23,6 +24,11 @@ type Props = {
     android: AndroidSymbol;
     ios?: SFSymbol;
   };
+  /**
+   * Draws a custom leading icon, such as a brand logo, in place of `icon`.
+   * Gets the same size and color as the symbol icons.
+   */
+  renderIcon?: (props: { size: number; color: ColorValue }) => ReactNode;
   description?: string;
   value?: string;
   /** Shows the value in Geist Mono, for versions and other codes. */
@@ -45,6 +51,7 @@ type Props = {
 export function SettingsRow({
   label,
   icon,
+  renderIcon,
   description,
   value,
   monoValue,
@@ -74,13 +81,21 @@ export function SettingsRow({
 
   const content = (
     <>
-      {icon && (
-        <SymbolView
-          name={icon}
-          size={22}
-          tintColor={styles.icon.tintColor}
+      {renderIcon ? (
+        <View
           style={[styles.leadingIcon, description ? styles.leadingTop : null]}
-        />
+        >
+          {renderIcon({ size: 22, color: styles.icon.tintColor })}
+        </View>
+      ) : (
+        icon && (
+          <SymbolView
+            name={icon}
+            size={22}
+            tintColor={styles.icon.tintColor}
+            style={[styles.leadingIcon, description ? styles.leadingTop : null]}
+          />
+        )
       )}
 
       <View style={styles.content}>
