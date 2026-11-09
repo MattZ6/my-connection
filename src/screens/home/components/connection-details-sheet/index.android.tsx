@@ -11,6 +11,7 @@ import {
 } from "@expo/ui/jetpack-compose/modifiers";
 import { useRef } from "react";
 import { StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useTheme } from "@/hooks/use-theme";
 
@@ -34,6 +35,7 @@ export function ConnectionDetailsSheet({
 }: Props) {
   const sheetRef = useRef<ModalBottomSheetRef>(null);
   const { resolvedTheme, colors } = useTheme();
+  const insets = useSafeAreaInsets();
 
   if (!isOpen || !details) {
     return null;
@@ -56,9 +58,17 @@ export function ConnectionDetailsSheet({
         containerColor={colors.surface.elevated}
         contentColor={colors.content.base}
       >
-        {/* Compose content: the sheet measures it and the column scrolls. */}
+        {/*
+          Compose content: the sheet measures it and the column scrolls. The
+          sheet draws behind the navigation bar, so the bottom inset keeps the
+          last lines above it (and counts them in the scroll range).
+        */}
         <Column
-          modifiers={[fillMaxWidth(), verticalScroll(), padding(16, 0, 16, 0)]}
+          modifiers={[
+            fillMaxWidth(),
+            verticalScroll(),
+            padding(16, 0, 16, insets.bottom + 1),
+          ]}
         >
           <ComposeDetailsContent
             details={details}

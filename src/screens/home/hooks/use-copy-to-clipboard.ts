@@ -7,49 +7,69 @@ import { useHaptics } from "@/hooks/use-haptics";
 const COPIED_FEEDBACK_DURATION = 1500;
 
 /**
- * Copies text to the clipboard (it never leaves the device) and remembers
- * which item was copied last, so that item can show the "Copied" feedback.
+ * Copies text to the clipboard (it never leaves the device) and tracks the
+ * "Copied" feedback per item: each item runs its own timer, so copying one
+ * item never cuts short the feedback of another.
  */
 export function useCopyToClipboard<Key extends string>() {
-  const [copiedKey, setCopiedKey] = useState<Key | null>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
-  // Mirrors copiedKey without waiting for a render, so quick double taps are
+  const [copiedKeys, setCopiedKeys] = useState<ReadonlySet<Key>>(
+    () => new Set(),
+  );
+  const timeoutsRef = useRef(new Map<Key, ReturnType<typeof setTimeout>>());
+  // Mirrors copiedKeys without waiting for a render, so quick double taps are
   // ignored too.
-  const lockedKeyRef = useRef<Key | null>(null);
+  const lockedKeysRef = useRef(new Set<Key>());
   const { notifySuccess, notifyFailure } = useHaptics();
 
-  useEffect(() => () => clearTimeout(timeoutRef.current), []);
+  useEffect(() => {
+    const timeouts = timeoutsRef.current;
+
+    return () => {
+      for (const timeout of timeouts.values()) {
+        clearTimeout(timeout);
+      }
+    };
+  }, []);
 
   const copy = useCallback(
     async (key: Key, text: string) => {
-      // The item showing "Copied" ignores taps until the feedback ends.
-      if (lockedKeyRef.current === key) {
+      // An item showing "Copied" ignores taps until its feedback ends.
+      if (lockedKeysRef.current.has(key)) {
         return;
       }
 
-      lockedKeyRef.current = key;
+      lockedKeysRef.current.add(key);
 
       try {
         await ExpoClipboard.setStringAsync(text, {
           inputFormat: ExpoClipboard.StringFormat.PLAIN_TEXT,
         });
       } catch {
-        lockedKeyRef.current = null;
+        lockedKeysRef.current.delete(key);
         notifyFailure();
         return;
       }
 
       notifySuccess();
-      setCopiedKey(key);
+      setCopiedKeys((keys) => new Set(keys).add(key));
 
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => {
-        lockedKeyRef.current = null;
-        setCopiedKey(null);
-      }, COPIED_FEEDBACK_DURATION);
+      timeoutsRef.current.set(
+        key,
+        setTimeout(() => {
+          timeoutsRef.current.delete(key);
+          lockedKeysRef.current.delete(key);
+          setCopiedKeys((keys) => {
+            const next = new Set(keys);
+            next.delete(key);
+            return next;
+          });
+        }, COPIED_FEEDBACK_DURATION),
+      );
     },
     [notifySuccess, notifyFailure],
   );
 
-  return { copiedKey, copy };
+  const isCopied = useCallback((key: Key) => copiedKeys.has(key), [copiedKeys]);
+
+  return { isCopied, copy };
 }
