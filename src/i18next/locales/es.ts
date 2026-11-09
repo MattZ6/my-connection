@@ -366,7 +366,7 @@ export const es = {
     permissions: {
       meta: { title: "Acceso a la ubicación" },
       intro:
-        "Android solo comparte el nombre del Wi-Fi (SSID) y el BSSID con apps que tienen acceso a la ubicación. My Connection usa este acceso solo para eso.",
+        "Android solo comparte el nombre del Wi-Fi (SSID) y el BSSID con apps que tienen acceso a la ubicación. Mi Conexión usa este acceso solo para eso.",
       status: {
         visible: "El nombre del Wi-Fi es visible",
         hidden: "El nombre del Wi-Fi está oculto",
@@ -577,7 +577,7 @@ export const es = {
             title: "Sitio web oficial y mejoras",
             date: "2026-06-02",
             description:
-              "Presenta el sitio web oficial de My Connection mientras continúa mejorando la experiencia del producto y su integración con las plataformas.",
+              "Presenta el sitio web oficial de Mi Conexión mientras continúa mejorando la experiencia del producto y su integración con las plataformas.",
           },
           "v0.8.0": {
             title: "Listo para distribución",
@@ -679,7 +679,7 @@ export const es = {
         content: {
           "v0.12.0": {
             paragraphs: [
-              "My Connection tiene un icono nuevo: un anillo de señal alrededor del símbolo del Wi-Fi, inspirado en el anillo que ves en el inicio.",
+              "Mi Conexión tiene un icono nuevo: un anillo de señal alrededor del símbolo del Wi-Fi, inspirado en el anillo que ves en el inicio.",
               "Vuelve la copia en los detalles de la conexión. Toca el nombre de la red, el BSSID o la dirección IP en Ver detalles para copiarlo. Esto se había quedado fuera del nuevo inicio.",
               "Esta versión también trae pequeños ajustes visuales en el inicio, Acerca de y Ajustes.",
             ],
@@ -711,7 +711,7 @@ export const es = {
           },
           "v0.11.0": {
             paragraphs: [
-              "La privacidad no es una función, es un principio. A partir de esta versión, My Connection no envía nada sin tu consentimiento.",
+              "La privacidad no es una función, es un principio. A partir de esta versión, Mi Conexión no envía nada sin tu consentimiento.",
               "Los informes de errores ahora son opcionales y están desactivados por defecto. Si los activas en Ajustes › Privacidad, el nombre de la red, el BSSID y la dirección IP se eliminan antes del envío, y la pantalla nunca se graba.",
               "Los ajustes también se rediseñaron por completo, con pantallas más claras para las actualizaciones de red, el acceso a la ubicación, la apariencia, el idioma y más.",
             ],
@@ -748,7 +748,7 @@ export const es = {
           },
           "v0.10.0": {
             paragraphs: [
-              "My Connection estrena un inicio completamente nuevo. Todo lo que necesitas para entender tu conexión ahora cabe en una sola pantalla, sin pestañas.",
+              "Mi Conexión estrena un inicio completamente nuevo. Todo lo que necesitas para entender tu conexión ahora cabe en una sola pantalla, sin pestañas.",
               "Un anillo muestra la intensidad de tu Wi-Fi, junto con el acceso a internet y la velocidad del enlace. Cuando algo no va bien, un consejo breve explica qué pasa y cómo solucionarlo.",
               "Esta versión también actualiza la app a Expo SDK 58 y trae una nueva tipografía, Geist, en toda la app.",
             ],
@@ -802,7 +802,7 @@ export const es = {
           },
           "v0.9.2": {
             paragraphs: [
-              "Esta es una pequeña actualización de mantenimiento centrada en mantener My Connection estable y preparado para lo que viene.",
+              "Esta es una pequeña actualización de mantenimiento centrada en mantener Mi Conexión estable y preparada para lo que viene.",
               "El principal cambio visible para el usuario corrige un enlace incorrecto en la página de política de privacidad, mientras que el proyecto también recibió mejoras en dependencias, CI, analytics y calidad del código.",
               "También añadimos las bases para el proyecto open source, incluyendo un nuevo README, pautas de contribución, Código de Conducta y licencia MIT.",
             ],
@@ -854,7 +854,7 @@ export const es = {
           },
           "v0.9.0": {
             paragraphs: [
-              "Esta versión presenta el sitio web oficial de My Connection, reuniendo la Política de Privacidad, el Registro de Cambios y los recursos de soporte en un único lugar.",
+              "Esta versión presenta el sitio web oficial de Mi Conexión, reuniendo la Política de Privacidad, el Registro de Cambios y los recursos de soporte en un único lugar.",
               "También incluye varias mejoras en la experiencia de la aplicación, facilitando la navegación por Configuración y mejorando el comportamiento de Dynamic Colors en dispositivos Android compatibles.",
               "Detrás de escena, la observabilidad y los flujos de distribución continúan evolucionando para preparar el proyecto para su próximo lanzamiento público.",
             ],
@@ -1239,7 +1239,7 @@ export const es = {
           },
           "v0.1.0": {
             paragraphs: [
-              "Esta versión marca el inicio de una nueva fase para My Connection.",
+              "Esta versión marca el inicio de una nueva fase para Mi Conexión.",
               "El proyecto comenzó en marzo de 2024 como una idea simple. Después de un tiempo, retomé el desarrollo con una dirección más clara y un enfoque más estructurado — introduciendo pull requests, versionado y un flujo de trabajo adecuado.",
               "A partir de ahora, el objetivo es evolucionar la app paso a paso, enfocándose en claridad, consistencia y una mejor experiencia general.",
             ],
