@@ -9,32 +9,25 @@ type Props = {
 /**
  * The app icon's glyph (signal ring + Wi-Fi arc) redrawn as a one-color
  * symbol on a 24px grid with a 2px stroke, to sit next to Material Symbols.
- * The ring keeps the icon's 78% progress; the rest of it is a faint track.
+ * Only the ring's 78% progress arc is drawn, with no track behind it, and the
+ * ring spans almost the whole grid so it reads as large as the other symbols.
  */
 export function AppGlyphIcon({ size, color }: Props) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Circle
-        cx={12}
-        cy={12}
-        r={9}
-        stroke={color}
-        strokeOpacity={0.35}
-        strokeWidth={2}
-      />
       <Path
-        d="M12 3A9 9 0 1 1 3.16 10.31"
+        d="M12 2A10 10 0 1 1 2.18 10.13"
         stroke={color}
         strokeWidth={2}
         strokeLinecap="round"
       />
       <Path
-        d="M8.2 12.4A5.2 5.2 0 0 1 15.8 12.4"
+        d="M7.78 12.44A5.78 5.78 0 0 1 16.22 12.44"
         stroke={color}
         strokeWidth={2}
         strokeLinecap="round"
       />
-      <Circle cx={12} cy={14.6} r={1.4} fill={color} />
+      <Circle cx={12} cy={14.9} r={1.5} fill={color} />
     </Svg>
   );
 }
