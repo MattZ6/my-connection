@@ -44,6 +44,8 @@ In the pull request, say what changed, why, and how you tested it (device and An
 
 [Open an issue](https://github.com/MattZ6/my-connection/issues) with the steps to reproduce, what you expected, and your device, Android version, app version and connection type. Network behavior varies a lot between devices, so these details matter.
 
+For security issues, follow the [security policy](SECURITY.md) instead of opening a public issue.
+
 ## Code of Conduct and license
 
 By taking part you agree to the [Code of Conduct](CODE_OF_CONDUCT.md), and your contributions are licensed under the [MIT License](../LICENSE.md).
